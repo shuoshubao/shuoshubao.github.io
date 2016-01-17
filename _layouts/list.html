@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+
+{% include head.html %}
+
+<body>
+	{% include header.html %}
+
+	<!-- 列表 -->
+    <div class="g-list" id="g-list">
+    	{{ content }}
+    </div>
+    <!-- 文章 -->
+    <div class="g-article" id="g-article"></div>
+
+    {% include footer.html %}
+</body>
+</html>

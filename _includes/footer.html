@@ -1,0 +1,50 @@
+<footer class="g-footer">
+    <div class="wrapper">
+        <span>©</span>
+        <time>2015</time>
+        <span>{{ site.title }}</span>
+		<span>|</span>
+        <span>Powered by </span>
+        <a target="_blank" href="https://github.com/shuoshubao">GitHub</a>
+    </div>
+</footer>
+<script>
+if(window.location.hostname === '{{ site.pathname }}') {
+// 百度统计
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?12f2656ca2bbd3123c8d0ef2e3d2ef0a";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+}
+</script>
+<script id="script-data">
+var DATA = {
+  posts: [
+    {% for post in site.posts %}
+      {
+        title: "{{ post.title }}",
+        date: "{{ post.date | date: "%Y-%m-%d" }}",
+        url: "{{ post.url }}/",
+        path: "{{ post.path }}",
+        collection: "{{ post.collection }}",
+        categories: "{{ post.categories }}",
+        permalink: "{{ post.permalink }}",
+      },
+    {% endfor %}
+  ]
+};
+</script>
+<script src="/sta/lib/sea.js"></script>
+<script>
+seajs.config({
+    base: '/sta/lib/',
+    alias: {
+        jquery: '/sta/lib/jquery.js',
+        zepto: '/sta/lib/zepto.js',
+    }
+})
+seajs.use('/sta/js/base');
+</script>

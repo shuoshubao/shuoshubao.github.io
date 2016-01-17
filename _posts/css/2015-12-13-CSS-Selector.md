@@ -1,0 +1,84 @@
+---
+layout: post
+title:  "CSS - 选择器"
+date:   2015-12-13 00:00:01
+categories: css
+permalink: css/selector
+---
+
+
+
+# 基础选择器
+
+* *
+* #
+* .
+* ele
+
+# 层级选择器
+
+* ,
+* 空格
+* >
+* +
+* ele1~ele2
+
+# 属性选择器
+
+* [attr]
+* [attr=val]
+* [attr*=val]
+* [attr~=val]
+* [attr^=val]
+* [attr$=val]
+* [attr\|=val]
+
+# 伪类
+
+* :link
+* :active
+* :hover
+* :visited
+
+# 伪元素
+
+* :before
+* :after
+
+# 索引选择器
+
+* :first-child		`太子`
+* :last-child			`小公子`
+* :only-child			`独子`
+* :nth-child(n)		`N子`
+* :nth-last-child(n)
+
+* :first-of-type
+* :last-of-type
+* :only-of-type
+* :nth-of-type(n)
+* :nth-last-of-type(n)
+
+# 表单选择器
+
+* :focus
+* :enabled
+* :disabled
+* :checked
+
+# 文本
+
+* :first-letter
+* :first-line
+
+# 其他
+
+* :empty
+* :target
+* ::selection
+* ::-webkit-scrollbar
+
+# 卵用
+
+* :root
+* :lang()

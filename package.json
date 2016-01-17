@@ -1,0 +1,7 @@
+{
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-seajs-transport": "^0.3.1",
+    "gulp-uglify": "^1.5.1"
+  }
+}
