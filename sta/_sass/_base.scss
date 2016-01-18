@@ -216,21 +216,22 @@ code {
 
 pre {
   background-color: #f8f8f8;
-  border: 1px solid #aaa;
+  border: 1px solid #ccc;
   font-size: 12px;
   line-height: 18px;
   border-radius: 2px;
   padding: 5px 10px;
   overflow: hidden;
+  box-shadow: 0 0 10px rgba(0,0,0,.15) inset;
 }
 
 code {
-  margin: 0 0px;
-  padding: 0px 0px;
-  word-wrap: break-word;
-  border: 1px solid #eaeaea;
-  background-color: #f8f8f8;
+  padding: 1px 3px;
+  margin: 0 3px;
+  background-color: #ddd;
+  border: 1px solid #ccc;
   border-radius: 3px;
+  word-wrap: break-word;
 }
 
 pre code {
