@@ -21,7 +21,7 @@ permalink: css/selector
 * 空格
 * >
 * +
-* ele1~ele2
+* ~
 
 # 属性选择器
 
@@ -44,15 +44,16 @@ permalink: css/selector
 
 * :before
 * :after
+* :first-letter
+* :first-line
 
 # 索引选择器
 
-* :first-child		`太子`
-* :last-child			`小公子`
-* :only-child			`独子`
-* :nth-child(n)		`N子`
+* :first-child
+* :last-child
+* :only-child
+* :nth-child(n)
 * :nth-last-child(n)
-
 * :first-of-type
 * :last-of-type
 * :only-of-type
@@ -66,17 +67,13 @@ permalink: css/selector
 * :disabled
 * :checked
 
-# 文本
-
-* :first-letter
-* :first-line
-
 # 其他
 
 * :empty
 * :target
-* ::selection
-* ::-webkit-scrollbar
+* :selection
+* :-webkit-scrollbar
+* :-webkit-full-screen
 
 # 卵用
 

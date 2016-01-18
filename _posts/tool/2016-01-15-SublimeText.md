@@ -35,7 +35,7 @@ permalink: tool/sublime
       "draw_white_space": "all",
     }
 
-# Package Control
+# [Package Control](https://packagecontrol.io/installation)
 
 ### sublime text 2
 
@@ -45,13 +45,9 @@ permalink: tool/sublime
 
     import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)
 
-### 官网
-
-[官网](https://packagecontrol.io/installation)
-
 # 插件
 
-* Emmet
+* [Emmet](http://shuoshubao.github.io/tool/emmet/)
 * CSS3
 * jQuery
 * LESS
