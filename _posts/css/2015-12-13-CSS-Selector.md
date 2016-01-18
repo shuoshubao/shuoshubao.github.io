@@ -69,6 +69,7 @@ permalink: css/selector
 
 # 其他
 
+* :not()
 * :empty
 * :target
 * :selection

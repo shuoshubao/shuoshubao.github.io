@@ -42,9 +42,10 @@ iframe {
 html {
   height: 100%;
   font-size: 20px;
+  -webkit-touch-callout: none;
   -webkit-text-size-adjust: 100%;
+  -webkit-overflow-scrolling: touch;
   -webkit-tap-highlight-color: transparent;
-  -webkit-overflow-scrolling: touch
 }
 
 body {
