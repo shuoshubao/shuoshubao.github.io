@@ -58,6 +58,7 @@ permalink: tool/sublime
 * SCSS
 * CSScomb
 * JsFormat
+* Quote HTML
 * HTML-CSS-JS Prettify
 * All Autocomplete
 * AllFileName
