@@ -199,13 +199,16 @@ a:visited {
 blockquote {
   margin: 0;
   color: #828282;
-  border-left: 4px solid #26c6da;
-  padding-left: 10px;
+  border-left: 4px solid #999;
+  background-color: #f5f5f5;
+  padding: 10px 15px;
   font-size: 18px;
   letter-spacing: -1px;
   font-style: italic;
+  p {
+    margin: 0 !important;
+  }
 }
-
 
 /* 代码 */
 
@@ -229,7 +232,7 @@ pre {
 code {
   padding: 1px 3px;
   margin: 0 3px;
-  background-color: #ddd;
+  background-color: #fdf6e3;
   border: 1px solid #ccc;
   border-radius: 3px;
   word-wrap: break-word;
