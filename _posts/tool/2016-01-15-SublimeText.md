@@ -21,18 +21,14 @@ permalink: tool/sublime
       "highlight_line": true,
       // 光标样式
       "caret_style": "smooth",
-      // 突出显示大括号
-      "match_brackets_braces": true,
-      // 突出显示尖括号
-      "match_brackets_angle": true,
       // 保存文件时会删除每行结束后多余的空格
       "trim_trailing_white_space_on_save": true,
-      // 保存时在最后添加一个空行
-      "ensure_newline_at_eof_on_save": true,
       // ctrl+f时，自动复制到查找面板的文本框里
       "find_selected_text": true,
       // 空格、制表符显示点：all、selection、none
       "draw_white_space": "all",
+      // 保存时在最后添加一个空行 (看着办)
+      // "ensure_newline_at_eof_on_save": true,
     }
 
 # [Package Control](https://packagecontrol.io/installation)
