@@ -1,18 +1,12 @@
 define(function(require, exports, module) {
   require('zepto');
-  require('../plugins/zepto.pagination.js');
-  require('../plugins/zepto.dialog.js');
-  /*$('.g-footer').pagination({
-    iTotal: 22,
-    iCur: 3
-  });*/
   $('#script-data').remove();
   var arrNav = ['html', 'css', 'js', 'jq', 'tool'];
   // 渲染列表
   function renderList(dataList) {
     var strTemp = '<ul>';
     $.each(dataList, function(i, v) {
-      strTemp += '<li data-href="'+v.url+'">'+
+      strTemp += '<li data-href="'+v.url.slice(0,-1)+'">'+
         '<span class="title">'+v.title+'</span>'+
         '<span class="time">'+v.date+'</span>'+
       '</li>';
