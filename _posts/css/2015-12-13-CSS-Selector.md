@@ -75,6 +75,7 @@ permalink: css/selector
 * :selection
 * :-webkit-scrollbar
 * :-webkit-full-screen
+* :-webkit-input-placeholder
 
 # 卵用
 
