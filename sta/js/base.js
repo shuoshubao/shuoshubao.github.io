@@ -15,6 +15,14 @@ define(function(require, exports, module) {
     render(sHref);
     showHideMiniNav();
   });
+  $('.g-header .brand, .g-xs-header .title').click(function() {
+    if(window.location.pathname === '/') {
+      return false;
+    }
+    window.history.pushState({}, '', '/');
+    render('/');
+    showHideMiniNav();
+  });
   $(window).on('popstate', function() {
     init();
     var arrPath = window.location.pathname.split('/');
@@ -26,6 +34,9 @@ define(function(require, exports, module) {
   });
   $('.g-xs-header .icon-menu').click(function() {
     showHideMiniNav(true);
+  });
+  $('.mask-nav').click(function() {
+    showHideMiniNav();
   });
   function showHideMiniNav(bHide) {
     if(bHide) {
