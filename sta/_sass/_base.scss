@@ -55,6 +55,7 @@ body {
   font: 14px/1.5 arial, 'Microsoft Yahei', 'Hiragino Sans GB', sans-serif;
   transition: transform .4s;
   overflow-x: hidden;
+  position: relative;
   &.move-right {
     transform: translateX(250px);
   }

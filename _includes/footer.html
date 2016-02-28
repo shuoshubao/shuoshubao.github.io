@@ -1,3 +1,13 @@
+<article class="g-loading">
+  <div class="w-loading ">
+    <div class="m-loading">
+      <div class="item item-y"></div>
+      <div class="item item-r"></div>
+      <div class="item item-g"></div>
+    </div>
+    <div class="text">数据加载中</div>
+  </div>
+</article>
 <footer class="g-footer">
   <div class="wrapper">
     <span>©</span>
@@ -9,8 +19,8 @@
   </div>
 </footer>
 <script>
-if(window.location.hostname === '{{ site.pathname }}') {
 // 百度统计
+if(window.location.hostname === '{{ site.pathname }}') {
 var _hmt = _hmt || [];
 (function() {
   var hm = document.createElement("script");
@@ -21,8 +31,7 @@ var _hmt = _hmt || [];
 }
 </script>
 <script id="script-data">
-var DATA = {
-  posts: [
+var DATA = [
   {% for post in site.posts %}
     {
     title: "{{ post.title }}",
@@ -34,8 +43,7 @@ var DATA = {
     permalink: "{{ post.permalink }}",
     },
   {% endfor %}
-  ]
-};
+];
 </script>
 <script src="/sta/lib/sea.js"></script>
 <script>
