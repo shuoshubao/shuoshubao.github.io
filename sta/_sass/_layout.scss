@@ -182,13 +182,14 @@ $max-zIndex : 100;
 .g-footer {
   height: 51px;
   color: #666;
-  @extend .m-center;
-  .wrapper {
+  .outer {
     position: absolute;
     bottom: 0;
+    left: 0;
     width: 100%;
     padding: 15px 10px;
     border-top: 1px solid #ddd;
+    background-color: #f5f5f5;
   }
   a {
     color: #6cc;
