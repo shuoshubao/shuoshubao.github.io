@@ -47,14 +47,5 @@ var DATA = [
   {% endfor %}
 ];
 </script>
-<script src="/sta/lib/sea.js"></script>
-<script>
-seajs.config({
-  base: '/sta/lib/',
-  alias: {
-    jquery: '/sta/lib/jquery.js',
-    zepto: '/sta/lib/zepto.js',
-  }
-})
-seajs.use('/sta/js/base');
-</script>
+<script src="/sta/lib/zepto.js"></script>
+<script src="/sta/js/dest/base.js"></script>
