@@ -79,7 +79,7 @@ function render(sHref) {
 function renderList(arr) {
   var s = '<ul class="m-list">';
   $.each(arr, function(i, v) {
-    s += '<li data-href="'+v.url.slice(0,-1)+'.html">'+
+    s += '<li data-href="'+v.url+'">'+
       '<span class="title">'+v.title+'</span>'+
       '<span class="time">'+v.date+'</span>'+
     '</li>';
