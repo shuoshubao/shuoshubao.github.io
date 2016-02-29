@@ -4,7 +4,10 @@ var $view = $('#g-content');
 init();
 $('#g-content').on('click', '.m-list li', function() {
   var sHref = $(this).data('href');
-  render(sHref);
+  render({
+    href: sHref,
+    title: $(this).data('title')
+  });
   showHideMiniNav();
 });
 $('.g-nav').on('click', 'li', function() {
@@ -12,7 +15,11 @@ $('.g-nav').on('click', 'li', function() {
   if(sHref === window.location.pathname) {
     return false;
   }
-  render(sHref);
+  render({
+    href: sHref,
+    title: sHref.split('/')[1] || 'WEB前端开发'
+  });
+  document.title = sHref.split('/')[1] || 'WEB前端开发';
   showHideMiniNav();
 });
 $('.g-header .brand, .g-xs-header .title').click(function() {
@@ -20,10 +27,15 @@ $('.g-header .brand, .g-xs-header .title').click(function() {
     return false;
   }
   window.history.pushState({}, '', '/');
-  render('/');
+  render({
+    url: '/',
+    title: 'WEB前端开发'
+  });
   showHideMiniNav();
 });
-$(window).on('popstate', function() {
+$(window).on('popstate', function(e) {
+  console.log(e.state.title);
+  document.title = e.state.title || 'WEB前端开发';
   init();
   var arrPath = window.location.pathname.split('/');
   // 文章
@@ -59,8 +71,10 @@ function init() {
   }
   renderNav();
 }
-function render(sHref) {
-  window.history.pushState({}, '', sHref);
+function render(data) {
+  window.history.pushState({
+    title: data.title
+  }, '', data.href);
   var arrPath = window.location.pathname.split('/');
   // 首页
   if(arrPath[1] === '') {
@@ -72,14 +86,14 @@ function render(sHref) {
   }
   // nav about 文章
   if(arrPath[2] || arrPath[2] === '' && ['nav', 'about'].indexOf(arrPath[1]) !== -1) {
-    $view.load(sHref + ' #g-content');
+    $view.load(data.href + ' #g-content');
   }
   renderNav();
 }
 function renderList(arr) {
   var s = '<ul class="m-list">';
   $.each(arr, function(i, v) {
-    s += '<li data-href="'+v.url+'">'+
+    s += '<li data-href="'+v.url+'" data-title="'+v.title+'">'+
       '<span class="title">'+v.title+'</span>'+
       '<span class="time">'+v.date+'</span>'+
     '</li>';
