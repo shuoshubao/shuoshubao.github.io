@@ -8,14 +8,14 @@ permalink: css/selector
 
 
 
-# 基础选择器
+# 基础
 
 * \*
 * \#
 * \.
 * ele
 
-# 层级选择器
+# 层级
 
 * ,
 * 空格
@@ -23,7 +23,7 @@ permalink: css/selector
 * \+
 * ~
 
-# 属性选择器
+# 属性
 
 * [attr]
 * [attr=val]
@@ -47,7 +47,7 @@ permalink: css/selector
 * :first-letter
 * :first-line
 
-# 索引选择器
+# 索引
 
 * :first-child
 * :last-child
@@ -60,7 +60,7 @@ permalink: css/selector
 * :nth-of-type(n)
 * :nth-last-of-type(n)
 
-# 表单选择器
+# 表单
 
 * :focus
 * :enabled
