@@ -8,6 +8,7 @@ $('#g-content').on('click', '.m-list li', function() {
     href: sHref,
     title: $(this).data('title')
   });
+  document.title = $(this).data('title');
   showHideMiniNav();
 });
 $('.g-nav').on('click', 'li', function() {
