@@ -115,6 +115,7 @@ permalink: tool/sublime
 
 * alt+. 补全标签
 * alt+shift+w 为选中域包裹一对闭合标签（js中也可以用，改变开始标签名,结束标签名同步变化）
+* ctrl+alt+enter 为选中域包裹一对闭合标签
 * ctrl+e 将光标前的单词补全为闭合标签
 
 ### 大小写
