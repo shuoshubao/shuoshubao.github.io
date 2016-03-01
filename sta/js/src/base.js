@@ -18,9 +18,9 @@ $('.g-nav').on('click', 'li', function() {
   }
   render({
     href: sHref,
-    title: sHref.split('/')[1] || 'WEB前端开发'
+    title: $(this).data('title')
   });
-  document.title = sHref.split('/')[1] || 'WEB前端开发';
+  document.title = $(this).data('title');
   showHideMiniNav();
 });
 $('.g-header .brand, .g-xs-header .title').click(function() {
@@ -35,7 +35,6 @@ $('.g-header .brand, .g-xs-header .title').click(function() {
   showHideMiniNav();
 });
 $(window).on('popstate', function(e) {
-  console.log(e.state.title);
   document.title = e.state.title || 'WEB前端开发';
   init();
   var arrPath = window.location.pathname.split('/');
@@ -115,6 +114,7 @@ function renderNav() {
   var arrPath = window.location.pathname.split('/');
   $('.g-nav li').removeClass('active');
   $('.g-nav li[data-href="/'+(arrPath[1]==''?'':arrPath[1]+'/')+'"]').addClass('active').siblings().removeClass('active');
+  document.title = $('.g-nav li[data-href="/'+(arrPath[1]==''?'':arrPath[1]+'/')+'"]').data('title');
 }
 
 });

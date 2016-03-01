@@ -9,4 +9,4 @@ gulp.task('min-js', function () {
 });
 
 //
-gulp.task('default', []);
+gulp.task('default', ['min-js']);
