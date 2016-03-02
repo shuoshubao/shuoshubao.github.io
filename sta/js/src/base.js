@@ -35,7 +35,7 @@ $('.g-header .brand, .g-xs-header .title').click(function() {
   showHideMiniNav();
 });
 $(window).on('popstate', function(e) {
-  document.title = e.state.title || 'WEB前端开发';
+  document.title = e.state ? e.state.title : 'WEB前端开发';
   init();
   var arrPath = window.location.pathname.split('/');
   // 文章

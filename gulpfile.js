@@ -8,5 +8,9 @@ gulp.task('min-js', function () {
       .pipe(gulp.dest('sta/js/dest/'))
 });
 
-//
+gulp.task('watch', function () {
+ gulp.watch('sta/js/src/*.', ['min-js']);
+});
+
+
 gulp.task('default', ['min-js']);
