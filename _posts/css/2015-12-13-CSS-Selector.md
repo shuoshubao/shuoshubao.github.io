@@ -75,7 +75,11 @@ permalink: css/selector
 * :selection
 * :-webkit-scrollbar
 * :-webkit-full-screen
-* :-webkit-input-placeholder
+* :-webkit-touch-callout
+* -webkit-text-size-adjust
+* -webkit-input-placeholder
+* -webkit-overflow-scrolling
+* -webkit-tap-highlight-color
 
 # 卵用
 
