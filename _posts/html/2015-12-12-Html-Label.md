@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "HTML标签"
+title:  "HTML label"
 date:   2015-12-21 23:01:01
 categories: html
 permalink: html/label

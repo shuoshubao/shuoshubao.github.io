@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "CSS - 选择器"
+title:  "CSS - Selector"
 date:   2015-12-13 00:00:01
 categories: css
 permalink: css/selector
