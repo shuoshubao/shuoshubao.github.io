@@ -53,7 +53,7 @@ permalink: tool/sublime
 * Quote HTML
 * HTML-CSS-JS Prettify
 * All Autocomplete
-* AllFileName
+* AutoFileName
 * DocBlockr
 * DeleteBlankLines
 * Console API Snippets
