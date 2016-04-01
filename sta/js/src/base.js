@@ -1,5 +1,6 @@
 $(function() {
 
+$('#script-data').remove();
 var $view = $('#g-content');
 init();
 $('#g-content').on('click', '.m-list li', function() {
