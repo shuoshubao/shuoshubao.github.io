@@ -9,15 +9,21 @@
 }
 
 ::-webkit-scrollbar {
-  width: 6px;
-  border-radius: 3px;
-  background: 0 0
+  width: 8px;
 }
 
 ::-webkit-scrollbar-thumb {
-  border: 1px solid #b2b2b2;
-  border-radius: 3px;
-  background: #c7c7c7
+  border-radius: 4px;
+  background: #666
+}
+
+::-webkit-scrollbar:horizontal {
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+  border-radius: 4px;
+  background: #666
 }
 
 article,
@@ -220,14 +226,14 @@ code {
 }
 
 pre {
-  background-color: #f8f8f8;
-  border: 1px solid #e5e5e5;
+  padding: 15px 10px;
   font-size: 12px;
   line-height: 18px;
   border-radius: 2px;
-  padding: 5px 10px;
-  overflow: hidden;
+  background-color: #f8f8f8;
+  border: 1px solid #aaa;
   box-shadow: 0 0 10px rgba(0,0,0,.05) inset;
+  overflow: auto;
 }
 
 code {
