@@ -27,7 +27,7 @@ permalink: tool/sublime
       "find_selected_text": true,
       // 空格、制表符显示点：all、selection、none
       "draw_white_space": "all",
-      // 保存时在最后添加一个空行 (看着办)
+      // 保存时在最后添加一个空行（看着办）
       // "ensure_newline_at_eof_on_save": true,
     }
 
@@ -82,88 +82,87 @@ permalink: tool/sublime
 
 ## 文件
 
-* ctrl+o 打开
-* ctrl+n 新建标签页
-* ctrl+shift+n 新建窗口
-* ctrl+w 关闭标签页
-* ctrl+shift+w 关闭窗口
-* ctrl+` 打开控制台
-* ctrl+shift+p 打开命令面板
-* ctrl+p 搜索项目中的文件
-* ctrl+g 跳到指定行
+* ctrl+o                    打开文件
+* ctrl+n                    新建标签页
+* ctrl+shift+n              新建窗口
+* ctrl+w                    关闭标签页
+* ctrl+shift+w              关闭窗口
+* ctrl+`                    打开控制台
+* ctrl+shift+p              打开命令面板
+* ctrl+p                    搜索项目中的文件
+* ctrl+g                    跳到指定行
 
 ## 编辑
 
-* ctrl+c 复制（选中部分/当前行）
-* ctrl+x 剪切（选中部分/当前行）
-* ctrl+v 粘贴
-* ctrl+shift+v 粘贴+缩进
-* ctrl+k,ctrl+v 从粘贴板
-* ctrl+z 撤销
-* ctrl+y 重复上次操作
-
-### 行
-
-* ctrl+[
-* ctrl+]
-* ctrl+shift+up
-* ctrl+shift+down
-* ctrl+shift+d 复制并新建一行
-* ctrl+shift+k 删除行
-* ctrl+j 合并行
-* ctrl+alt+back 删除空行（DeleteBlankLines插件）
-* ctrl+alt+back 删剩余空行（DeleteBlankLines插件）
-
-### 注释
-
-* ctrl+/
-* ctrl+shift+/
-
-### 文本
-
-* ctrl+enter 往下插入行
-* ctrl+shift+enter 往上插入行
-* ctrl+delete 删除光标至单词尾
-* ctrl+backspace 删除光标至单词头
-* ctrl+k,ctrl+k 删除光标至行尾
-* ctrl+k,ctrl+backspace 删除光标至行首
-* ctrl+t 交换光标左右字符
-
-### 标签
-
-* alt+. 补全标签
-* alt+shift+w 为选中域包裹一对闭合标签（js中也可以用，改变开始标签名,结束标签名同步变化）
-* ctrl+alt+enter 为选中域包裹一对闭合标签
-* ctrl+e 将光标前的单词补全为闭合标签
-
-### 大小写
-
-* ctrl+k,ctrl+u 大写
-* ctrl+k,ctrl+l 小写
-
-### 折叠
-
-* ctrl+shift+[ 折叠
-* ctrl+shift+] 展开
-* ctrl+shift+j 展开所有
-* ctrl+k,ctrl+t 折叠标签属性
-* ctrl+k,ctrl+数字 折叠n层
-
-### 排序
-
-* f9 行按升序排
-* ctrl+f9 行按升序排,区分大小写
-
+* ctrl+c                    复制（选中部分/当前行）
+* ctrl+x                    剪切（选中部分/当前行）
+* ctrl+v                    粘贴
+* ctrl+shift+v              粘贴+缩进
+* ctrl+k,ctrl+v             打开粘贴板
+* ctrl+z                    撤销
+* ctrl+y                    重复上次操作
 
 ## 选择
 
-* ctrl+a 全选
-* ctrl+d 选择单词
-* ctrl+l 选择行
-* ctrl+alt+up 添加上一行
-* ctrl+alt+down 添加下一行
-* ctrl+shift+l 选择多行
-* esc 只留第一个选择
-* ctrl+shift+a 选中标签里面的全部内容不包括标签
-* ctrl+shift+j 选中缩进里面的全部内容
-* ctrl+shift+m 选中花括号里面的全部内容不包括花括号
+* ctrl+a                    全选
+* ctrl+d                    选择单词
+* ctrl+l                    选择一行
+* ctrl+alt+up               添加上一行
+* ctrl+alt+down             添加下一行
+* ctrl+shift+l              选择多行
+* esc                       只留第一个选择
+* ctrl+shift+a              光标所在标签的全部内容
+* ctrl+shift+j              光标所在标签的父标签的全部内容
+* ctrl+shift+m              选中光标所在括号（小括号，中括号，大括号）里面的全部内容
+
+### 行
+
+* ctrl+shift+up             上移一行
+* ctrl+shift+down           下移一行
+* ctrl+shift+d              复制并新建一行
+* ctrl+shift+k              删除行
+* ctrl+j                    合并行
+* ctrl+alt+back             删除空行（DeleteBlankLines插件）
+* ctrl+alt+back             删剩余空行（DeleteBlankLines插件）
+
+### 注释 / 缩进
+
+* ctrl+/
+* ctrl+shift+/
+* ctrl+[
+* ctrl+]
+
+### 文本
+
+* ctrl+enter                往下插入行
+* ctrl+shift+enter          往上插入行
+* ctrl+delete               删除光标至单词尾
+* ctrl+backspace            删除光标至单词头
+* ctrl+k,ctrl+k             删除光标至行尾
+* ctrl+k,ctrl+backspace     删除光标至行首
+* ctrl+t                    交换光标左右字符
+
+### 标签
+
+* alt+.                     补全标签
+* alt+shift+w               为选中域包裹一对闭合标签
+* ctrl+alt+enter            为选中域包裹一对闭合标签（比楼上的命令更高级）
+* ctrl+e                    将选中的单词补全为一对闭合标签
+
+### 大小写
+
+* ctrl+k,ctrl+u             大写
+* ctrl+k,ctrl+l             小写
+
+### 折叠
+
+* ctrl+shift+[              折叠
+* ctrl+shift+]              展开
+* ctrl+shift+j              展开所有
+* ctrl+k,ctrl+t             折叠标签属性
+* ctrl+k,ctrl+数字          折叠n层
+
+### 排序
+
+* f9                        行按升序排
+* ctrl+f9                   行按升序排，区分大小写
