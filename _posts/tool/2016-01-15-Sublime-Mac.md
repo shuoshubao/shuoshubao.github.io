@@ -1,9 +1,9 @@
 ---
 layout: post
-title:  "Sublime"
+title:  "Sublime Mac"
 date:   2016-01-15 11:11:11
 categories: tool
-permalink: tool/sublime
+permalink: tool/sublime_mac
 ---
 
 
@@ -82,87 +82,79 @@ permalink: tool/sublime
 
 ## 文件
 
-* ctrl+o                    打开文件
-* ctrl+n                    新建标签页
-* ctrl+shift+n              新建窗口
-* ctrl+w                    关闭标签页
-* ctrl+shift+w              关闭窗口
+* cmd+o                     打开文件
+* cmd+n                     新建标签页
+* cmd+shift+n               新建窗口
+* cmd+w                     关闭标签页
+* cmd+shift+w               关闭窗口
+* cmd+shift+p               打开命令面板
+* cmd+p                     搜索项目中的文件
+* cmd+g                     跳到指定行
 * ctrl+`                    打开控制台
-* ctrl+shift+p              打开命令面板
-* ctrl+p                    搜索项目中的文件
-* ctrl+g                    跳到指定行
 
 ## 编辑
 
-* ctrl+c                    复制（选中部分/当前行）
-* ctrl+x                    剪切（选中部分/当前行）
-* ctrl+v                    粘贴
-* ctrl+shift+v              粘贴+缩进
-* ctrl+k,ctrl+v             打开粘贴板
-* ctrl+z                    撤销
-* ctrl+y                    重复上次操作
+* cmd+c                     复制（选中部分/当前行）
+* cmd+x                     剪切（选中部分/当前行）
+* cmd+v                     粘贴
+* cmd+shift+v               粘贴+缩进
+* cmd+alt+v                 打开粘贴板
+* cmd+z                     撤销
+* cmd+y                     重复上次操作
 
 ## 选择
 
-* ctrl+a                    全选
-* ctrl+d                    选择单词
-* ctrl+l                    选择一行
-* ctrl+alt+up               添加上一行
-* ctrl+alt+down             添加下一行
-* ctrl+shift+l              选择多行
+* cmd+a                     全选
+* cmd+d                     选择单词
+* cmd+l                     选择一行
+* shift+alt+up              添加上一行
+* shift+alt+down            添加下一行
 * esc                       只留第一个选择
-* ctrl+shift+a              光标所在标签的全部内容
-* ctrl+shift+j              光标所在标签的父标签的全部内容
+* cmd+shift+a               光标所在标签的全部内容
+* cmd+shift+j               光标所在标签的父标签的全部内容
 * ctrl+shift+m              选中光标所在括号（小括号，中括号，大括号）里面的全部内容
 
 ### 行
 
-* ctrl+shift+up             上移一行
-* ctrl+shift+down           下移一行
-* ctrl+shift+d              复制并新建一行
-* ctrl+shift+k              删除行
-* ctrl+j                    合并行
-* ctrl+alt+back             删除空行（DeleteBlankLines插件）
-* ctrl+alt+back             删剩余空行（DeleteBlankLines插件）
+* cmd+ctrl+up              上移一行
+* cmd+ctrl+down            下移一行
+* cmd+shift+d              复制并粘贴行
+* ctrl+shift+k             删除行
+* cmd+j                    合并行
 
-### 注释 / 缩进
+### 注释 / 缩进 / 大小写
 
-* ctrl+/
-* ctrl+shift+/
-* ctrl+[
-* ctrl+]
+* cmd+/
+* cmd+shift+/
+* cmd+[
+* cmd+]
+* cmd+k,u    大写
+* cmd+k,l    小写
 
 ### 文本
 
-* ctrl+enter                往下插入行
-* ctrl+shift+enter          往上插入行
-* ctrl+delete               删除光标至单词尾
-* ctrl+backspace            删除光标至单词头
-* ctrl+k,ctrl+k             删除光标至行尾
-* ctrl+k,ctrl+backspace     删除光标至行首
+* cmd+enter                往下插入行
+* cmd+shift+enter          往上插入行
+* cmd+delete               删除光标至行首
+* ctrl+k                   删除光标至行尾
 * ctrl+t                    交换光标左右字符
 
 ### 标签
 
-* alt+.                     补全标签
+* cmd+alt+.                 补全标签
 * alt+shift+w               为选中域包裹一对闭合标签
 * ctrl+alt+enter            为选中域包裹一对闭合标签（比楼上的命令更高级）
 * ctrl+e                    将选中的单词补全为一对闭合标签
 
-### 大小写
-
-* ctrl+k,ctrl+u             大写
-* ctrl+k,ctrl+l             小写
-
 ### 折叠
 
-* ctrl+shift+[              折叠
-* ctrl+shift+]              展开
-* ctrl+shift+j              展开所有
-* ctrl+k,ctrl+t             折叠标签属性
-* ctrl+k,ctrl+数字          折叠n层
+* cmd+alt+[              折叠
+* cmd+alt+]              展开
+* cmd+k,j                展开所有
+* cmd+k,t                折叠标签属性
+* cmd+k,数字              折叠n层
 
-### 排序
+### 排序（卵用）
 
 * f9                        行按升序排
 * ctrl+f9                   行按升序排，区分大小写
