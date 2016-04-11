@@ -72,14 +72,7 @@ permalink: css/selector
 * :not()
 * :empty
 * :target
-* :selection
-* :-webkit-scrollbar
-* :-webkit-full-screen
-* :-webkit-touch-callout
-* -webkit-text-size-adjust
-* -webkit-input-placeholder
-* -webkit-overflow-scrolling
-* -webkit-tap-highlight-color
+* ::selection
 
 # 卵用
 
