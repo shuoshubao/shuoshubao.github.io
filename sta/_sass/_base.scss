@@ -234,6 +234,17 @@ pre {
   border: 1px solid #aaa;
   box-shadow: 0 0 10px rgba(0,0,0,.05) inset;
   overflow: auto;
+  transition: border-color 0.2s;
+  &:hover {
+    border-color: #666;
+    box-shadow: 0 0px 5px 0px rgba(0, 0, 0, 0.4);
+  }
+  code {
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+  }
 }
 
 code {
@@ -244,14 +255,6 @@ code {
   border-radius: 3px;
   word-wrap: break-word;
 }
-
-pre code {
-  margin: 0;
-  padding: 0;
-  border: none;
-  background: transparent;
-}
-
 
 /**
  * Clearfix
