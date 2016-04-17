@@ -72,6 +72,7 @@ permalink: css/selector
 * :not()
 * :empty
 * :target
+<<<<<<< HEAD
 * :selection
 
 # webkit
@@ -84,6 +85,9 @@ permalink: css/selector
 * -webkit-overflow-scrolling
 * -webkit-tap-highlight-color
 * -webkit-filter
+=======
+* ::selection
+>>>>>>> 26cbf9723668c06dfce0d0f8573594531af1a62e
 
 # 卵用
 
