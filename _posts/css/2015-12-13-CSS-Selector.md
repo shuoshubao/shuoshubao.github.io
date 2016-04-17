@@ -73,6 +73,9 @@ permalink: css/selector
 * :empty
 * :target
 * :selection
+
+# webkit
+
 * :-webkit-scrollbar
 * :-webkit-full-screen
 * :-webkit-touch-callout
@@ -80,6 +83,7 @@ permalink: css/selector
 * -webkit-input-placeholder
 * -webkit-overflow-scrolling
 * -webkit-tap-highlight-color
+* -webkit-filter
 
 # 卵用
 
