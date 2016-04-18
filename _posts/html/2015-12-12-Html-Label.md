@@ -48,9 +48,9 @@ permalink: html/label
 # Form
 
 * form
-* label
 * button
 * input
+* label
 * textarea
 * select,optgroup,option
 * fieldset,legend（没啥用）
@@ -62,8 +62,8 @@ permalink: html/label
 * thead
 * tbody
 * tfoot
-* th
 * tr
+* th
 * td
 * colgroup
 * col
