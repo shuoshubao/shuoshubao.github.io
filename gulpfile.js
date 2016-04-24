@@ -1,16 +1,15 @@
-var gulp = require('gulp');
-var uglify = require('gulp-uglify');
+"use strict";
+let gulp = require('gulp');
+let markdown = require('gulp-markdown');
+let htmlmin = require('gulp-htmlmin');
 
-// 压缩js
-gulp.task('min-js', function () {
-  gulp.src('sta/js/src/*.js')
-      .pipe(uglify())
-      .pipe(gulp.dest('sta/js/dest/'))
+/*
+gulp.task('markdown', () => {
+  return gulp.src('_posts\/\*\*\/\*.md')
+    .pipe(markdown())
+    .pipe(htmlmin({
+      collapseWhitespace: true
+    }))
+    .pipe(gulp.dest('_posts_other'));
 });
-
-gulp.task('watch', function () {
- gulp.watch('sta/js/src/*.', ['min-js']);
-});
-
-
-gulp.task('default', ['min-js']);
+*/
