@@ -18,6 +18,7 @@ pathname: shuoshubao.github.io
 
 # 编译设置
 markdown: kramdown
+port: 5000
 
 # 设置 sass 路径 + 压缩
 sass:
