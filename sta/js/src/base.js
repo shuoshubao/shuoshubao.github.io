@@ -41,7 +41,7 @@ $(window).on('popstate', function(e) {
   var arrPath = window.location.pathname.split('/');
   // 文章
   if(arrPath[2]) {
-    $view.load(window.location.href + ' #g-content');
+    $view.load(window.location.href + ' .markdown');
   }
   showHideMiniNav();
 });
@@ -86,8 +86,14 @@ function render(data) {
     renderList(getListInfo(arrPath[1]));
   }
   // nav about 文章
-  if(arrPath[2] || arrPath[2] === '' && ['nav', 'about'].indexOf(arrPath[1]) !== -1) {
-    $view.load(data.href + ' #g-content');
+  if(arrPath[2] || arrPath[2] === '' && $.inArray(arrPath[1], ['nav', 'about']) !== -1) {
+    var sSelector;
+    if(arrPath[2]) {
+      sSelector = ' .markdown';
+    }else {
+      sSelector = ' .p-' + arrPath[1];
+    }
+    $view.load(data.href + sSelector);
   }
   renderNav();
 }
