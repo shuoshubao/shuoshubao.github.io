@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>DOM</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="硕鼠宝,shuoshubao,shubao,FE,html5,css3,js,jquery,jq">
+  <meta name="keywords" content="硕鼠宝,shuoshubao,shubao,FE,html5,css3,js,jquery,jq">
+  <link rel="stylesheet" href="/sta/css/base.css">
+  <link rel="icon" type="image/x-icon" href="https://assets-cdn.github.com/favicon.ico">
+  <base target="_blank">
+</head>
+
+
+<body>
+  <header class="g-header">
+  <div class="wrapper">
+    <div class="brand">
+      <h1 class="title">WEB前端开发</h1>
+      <h2 class="subtitle">专注前端开发，关注用户体验</h2>
+    </div>
+    <div class="attention">
+      <a class="iconfont icon-qq" target="_blank" href="http://sighttp.qq.com/authd?IDKEY=ac3c33ef370b9c4efc05e5660a2d2085b121007e508c595f"></a>
+      <a class="iconfont icon-weibo" target="_blank" href="http://weibo.com/qq759979885"></a>
+    </div>
+  </div>
+</header>
+<header class="g-xs-header">
+  <h1 class="title">FE</h1>
+  <div class="icon-menu">
+    <span class="line"></span>
+    <span class="line"></span>
+    <span class="line"></span>
+  </div>
+</header>
+<nav class="g-nav">
+  <ul>
+    <li data-href="/" data-title="WEB前端开发">Home</li>
+    <li data-href="/html/" data-title="HTML类目">HTML</li>
+    <li data-href="/css/" data-title="CSS类目">CSS</li>
+    <li data-href="/js/" data-title="JS类目">JS</li>
+    <li data-href="/tool/" data-title="前端工具">Tool</li>
+    <li data-href="/nav/" data-title="前端资源导航">Resource</li>
+    <li data-href="/about/" data-title="关于">About</li>
+  </ul>
+</nav>
+<div class="mask-nav"></div>
+
+
+  <div class="g-content" id="g-content">
+    <div class="markdown">
+      <h1 id="node">Node</h1>
+
+<ul>
+  <li>document.documentElement</li>
+  <li>document.head</li>
+  <li>document.body</li>
+</ul>
+
+<h2 id="section">节点</h2>
+<ul>
+  <li>Document</li>
+  <li>DocumentType</li>
+  <li>Element</li>
+  <li>Attribute</li>
+  <li>Text</li>
+  <li>DocumentFragment</li>
+</ul>
+
+<h2 id="section-1">属性</h2>
+
+<ul>
+  <li>nodeName</li>
+  <li>
+    <p>nodeType</p>
+  </li>
+  <li>ownerDocument</li>
+  <li>
+    <p>baseURI</p>
+  </li>
+  <li>childNodes</li>
+  <li>firstNode</li>
+  <li>lastChild</li>
+  <li>nextSibling</li>
+  <li>previousSibling</li>
+  <li>parentNode</li>
+  <li>
+    <p>parentElement</p>
+  </li>
+  <li>textContent</li>
+  <li>nodeValue</li>
+</ul>
+
+<h2 id="section-2">方法</h2>
+
+<ul>
+  <li>appendChild()</li>
+  <li>hasChildNodes()</li>
+  <li>insertBefore()</li>
+  <li>removeChild()</li>
+  <li>replaceChild()</li>
+  <li>cloneNode()</li>
+  <li>contains()</li>
+  <li>compareDocumentPosition()</li>
+  <li>
+    <p>isEqualNode()</p>
+  </li>
+  <li>normalize()</li>
+</ul>
+
+<h1 id="nodelist">NodeList</h1>
+
+<ul>
+  <li>Node.childNodes</li>
+  <li>document.querySelectorAll()</li>
+  <li>document.getElementsByTagName()</li>
+</ul>
+
+<h2 id="section-3">属性</h2>
+
+<ul>
+  <li>length</li>
+  <li>数字索引</li>
+</ul>
+
+<h2 id="section-4">方法</h2>
+
+<ul>
+  <li>item(i)</li>
+</ul>
+
+<blockquote>
+  <p>item(i) 等价于 NodeList[i]</p>
+</blockquote>
+
+<h1 id="htmlcollection">HTMLCollection</h1>
+
+<ul>
+  <li>docuement.anchors</li>
+  <li>document.images</li>
+  <li>document.links</li>
+  <li>document.scripts</li>
+  <li>docuement.forms</li>
+  <li>document.embeds</li>
+</ul>
+
+<h2 id="section-5">属性</h2>
+
+<ul>
+  <li>length</li>
+  <li>数字索引</li>
+</ul>
+
+<h2 id="section-6">方法</h2>
+
+<ul>
+  <li>item(i)</li>
+  <li>namedItem(name / id)</li>
+</ul>
+
+<blockquote>
+  <p>item(i) 等价于 NodeList[i]</p>
+
+  <p>namedItem(name / id) 等价于 NodeList[name / id]</p>
+</blockquote>
+
+<h1 id="parentnode-childnode">ParentNode, ChildNode</h1>
+
+<ul>
+  <li>children</li>
+  <li>firstElementChild</li>
+  <li>lastElementChild</li>
+  <li>childElementCount</li>
+  <li>remove()</li>
+  <li>before()</li>
+  <li>after()</li>
+  <li>replaceWith()</li>
+</ul>
+
+<h1 id="element">Element</h1>
+
+<h2 id="section-7">属性</h2>
+
+<ul>
+  <li>attributes</li>
+  <li>id</li>
+  <li>tagName</li>
+  <li>innerHTML</li>
+  <li>children</li>
+  <li>firstElementChild</li>
+  <li>lastElementChild</li>
+  <li>childElementCount</li>
+  <li>nextElementSibling</li>
+  <li>previousElementSibling</li>
+  <li>className</li>
+  <li>classList
+    <ul>
+      <li>add()</li>
+      <li>remove()</li>
+      <li>contains()</li>
+      <li>toggle()</li>
+      <li>item()</li>
+      <li>toString()</li>
+    </ul>
+  </li>
+  <li>clientHeight</li>
+  <li>clientLeft</li>
+  <li>clientTop</li>
+  <li>clientWidth</li>
+  <li>scrollHeight</li>
+  <li>scrollWidth</li>
+  <li>scrollLeft</li>
+  <li>
+    <p>scrollTop</p>
+  </li>
+  <li>dataset</li>
+  <li>
+    <p>style</p>
+  </li>
+  <li>offsetParent</li>
+  <li>offsetTop</li>
+  <li>offsetLeft</li>
+  <li>tabindex</li>
+</ul>
+
+<h2 id="section-8">方法</h2>
+<ul>
+  <li>选择器
+    <ul>
+      <li>querySelector()</li>
+      <li>querySelectorAll()</li>
+      <li>getElementsByTagName()</li>
+      <li>getElementsByClassName()</li>
+    </ul>
+  </li>
+  <li>节点
+    <ul>
+      <li>remove()</li>
+      <li>before()</li>
+      <li>after()</li>
+      <li>replaceWith()</li>
+      <li>closest()</li>
+      <li>matches()</li>
+    </ul>
+  </li>
+  <li>属性
+    <ul>
+      <li>hasAttribute()</li>
+      <li>getAttribute()</li>
+      <li>setAttribute()</li>
+      <li>removeAttribute()</li>
+    </ul>
+  </li>
+  <li>scrollIntoView()</li>
+  <li>focus()</li>
+  <li>elementFromPoint()</li>
+</ul>
+
+<h1 id="table">table元素</h1>
+
+<h2 id="section-9">属性</h2>
+
+<ul>
+  <li>caption</li>
+  <li>tHead</li>
+  <li>tBodies</li>
+  <li>tFoot</li>
+  <li>rows</li>
+  <li>rows.cells</li>
+</ul>
+
+<h2 id="section-10">方法</h2>
+
+<ul>
+  <li>createCaption</li>
+  <li>deleteCaption</li>
+  <li>createTHead</li>
+  <li>deleteTHead</li>
+  <li>insertRow</li>
+  <li>deleteRow</li>
+  <li>insertCell</li>
+  <li>deleteCell</li>
+</ul>
+
+<h1 id="eventtarget">EventTarget</h1>
+
+<h2 id="section-11">部署</h2>
+
+<ul>
+  <li>window对象</li>
+  <li>document节点</li>
+  <li>Element节点</li>
+  <li>XMLHttpRequest</li>
+</ul>
+
+<h2 id="section-12">方法</h2>
+
+<ul>
+  <li>addEventListener()</li>
+  <li>removeEventListener()</li>
+  <li>dispatchEvent()</li>
+</ul>
+
+    </div>
+  </div>
+
+  <article class="g-loading">
+  <div class="w-loading ">
+    <div class="m-loading">
+      <div class="item item-y"></div>
+      <div class="item item-r"></div>
+      <div class="item item-g"></div>
+    </div>
+    <div class="text">数据加载中</div>
+  </div>
+</article>
+<footer class="g-footer">
+  <div class="outer">
+    <div class="wrapper">
+      <span>©</span>
+      <time>2016</time>
+      <span>WEB前端开发</span>
+      <span>|</span>
+      <span>Powered by </span>
+      <a target="_blank" href="https://github.com/shuoshubao/shuoshubao.github.io/">GitHub</a>
+    </div>
+  </div>
+</footer>
+<div style="display: none;" data-role="seo">
+  <h1>硕鼠宝</h1>
+  <h1>shuoshubao</h1>
+  <h1>shubao</h1>
+  <h1>FE</h1>
+  <h1>html5</h1>
+  <h1>css3</h1>
+  <h1>js</h1>
+  <h1>jquery</h1>
+  <h1>jq</h1>
+</div>
+<script>
+// 百度统计
+if(window.location.hostname === 'shuoshubao.github.io') {
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?12f2656ca2bbd3123c8d0ef2e3d2ef0a";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+}
+</script>
+<script id="script-data">
+var DATA = [
+  
+    {
+    title: "React",
+    date: "2016-05-03",
+    url: "/js/react",
+    path: "_posts/js/2016-05-03-React.md",
+    collection: "posts",
+    categories: "js",
+    permalink: "js/react",
+    },
+  
+    {
+    title: "ES6",
+    date: "2016-04-27",
+    url: "/js/es6",
+    path: "_posts/js/2016-04-28-ES6.md",
+    collection: "posts",
+    categories: "js",
+    permalink: "js/es6",
+    },
+  
+    {
+    title: "JS代码片段",
+    date: "2016-04-01",
+    url: "/js/code_fragment",
+    path: "_posts/js/2016-01-01-Code.md",
+    collection: "posts",
+    categories: "js",
+    permalink: "js/code_fragment",
+    },
+  
+    {
+    title: "ES5",
+    date: "2016-03-20",
+    url: "/js/es5",
+    path: "_posts/js/2015-11-06-ES5.md",
+    collection: "posts",
+    categories: "js",
+    permalink: "js/es5",
+    },
+  
+    {
+    title: "English",
+    date: "2016-03-03",
+    url: "/tool/english",
+    path: "_posts/tool/2016-03-03-English.md",
+    collection: "posts",
+    categories: "tool",
+    permalink: "tool/english",
+    },
+  
+    {
+    title: "Software",
+    date: "2016-01-17",
+    url: "/tool/software",
+    path: "_posts/tool/2016-01-18-Software.md",
+    collection: "posts",
+    categories: "tool",
+    permalink: "tool/software",
+    },
+  
+    {
+    title: "Emmet",
+    date: "2016-01-16",
+    url: "/tool/emmet",
+    path: "_posts/tool/2016-01-16-Emmet.md",
+    collection: "posts",
+    categories: "tool",
+    permalink: "tool/emmet",
+    },
+  
+    {
+    title: "Sublime Win",
+    date: "2016-01-15",
+    url: "/tool/sublime_win",
+    path: "_posts/tool/2016-01-15-Sublime-Win.md",
+    collection: "posts",
+    categories: "tool",
+    permalink: "tool/sublime_win",
+    },
+  
+    {
+    title: "Sublime Mac",
+    date: "2016-01-15",
+    url: "/tool/sublime_mac",
+    path: "_posts/tool/2016-01-15-Sublime-Mac.md",
+    collection: "posts",
+    categories: "tool",
+    permalink: "tool/sublime_mac",
+    },
+  
+    {
+    title: "Gitbook",
+    date: "2016-01-13",
+    url: "/tool/gitbook",
+    path: "_posts/tool/2016-01-13-Gitbook.md",
+    collection: "posts",
+    categories: "tool",
+    permalink: "tool/gitbook",
+    },
+  
+    {
+    title: "Notification",
+    date: "2016-01-04",
+    url: "/js/notification",
+    path: "_posts/js/2016-01-04-Notification.md",
+    collection: "posts",
+    categories: "js",
+    permalink: "js/notification",
+    },
+  
+    {
+    title: "Storage",
+    date: "2016-01-04",
+    url: "/js/storage",
+    path: "_posts/js/2016-01-03-Storage.md",
+    collection: "posts",
+    categories: "js",
+    permalink: "js/storage",
+    },
+  
+    {
+    title: "Fullscreen",
+    date: "2016-01-03",
+    url: "/js/fullscreen",
+    path: "_posts/js/2016-01-02-Fullscreenchange.md",
+    collection: "posts",
+    categories: "js",
+    permalink: "js/fullscreen",
+    },
+  
+    {
+    title: "DOM",
+    date: "2016-01-03",
+    url: "/js/dom",
+    path: "_posts/js/2016-01-02-DOM.md",
+    collection: "posts",
+    categories: "js",
+    permalink: "js/dom",
+    },
+  
+    {
+    title: "Event api",
+    date: "2016-01-02",
+    url: "/js/event",
+    path: "_posts/js/2016-01-01-Event.md",
+    collection: "posts",
+    categories: "js",
+    permalink: "js/event",
+    },
+  
+    {
+    title: "Mac",
+    date: "2015-12-30",
+    url: "/tool/mac",
+    path: "_posts/tool/2015-12-29-Mac.md",
+    collection: "posts",
+    categories: "tool",
+    permalink: "tool/mac",
+    },
+  
+    {
+    title: "HTML label",
+    date: "2015-12-22",
+    url: "/html/label",
+    path: "_posts/html/2015-12-12-Html-Label.md",
+    collection: "posts",
+    categories: "html",
+    permalink: "html/label",
+    },
+  
+    {
+    title: "CSS",
+    date: "2015-12-18",
+    url: "/css/total",
+    path: "_posts/css/2015-12-12-CSS-Total.md",
+    collection: "posts",
+    categories: "css",
+    permalink: "css/total",
+    },
+  
+    {
+    title: "Gem",
+    date: "2015-12-17",
+    url: "/tool/gem",
+    path: "_posts/tool/2015-12-12-Gem.md",
+    collection: "posts",
+    categories: "tool",
+    permalink: "tool/gem",
+    },
+  
+    {
+    title: "CSS - Selector",
+    date: "2015-12-13",
+    url: "/css/selector",
+    path: "_posts/css/2015-12-13-CSS-Selector.md",
+    collection: "posts",
+    categories: "css",
+    permalink: "css/selector",
+    },
+  
+    {
+    title: "Smarty",
+    date: "2015-12-13",
+    url: "/tool/smarty",
+    path: "_posts/tool/2015-12-12-Smarty.md",
+    collection: "posts",
+    categories: "tool",
+    permalink: "tool/smarty",
+    },
+  
+    {
+    title: "Jekyll",
+    date: "2015-12-13",
+    url: "/tool/jekyll",
+    path: "_posts/tool/2015-12-12-Jekyll.md",
+    collection: "posts",
+    categories: "tool",
+    permalink: "tool/jekyll",
+    },
+  
+    {
+    title: "Markdown",
+    date: "2015-11-11",
+    url: "/tool/markdown",
+    path: "_posts/tool/2015-12-12-Markdown.md",
+    collection: "posts",
+    categories: "tool",
+    permalink: "tool/markdown",
+    },
+  
+    {
+    title: "Angular",
+    date: "2015-11-06",
+    url: "/js/angular",
+    path: "_posts/js/2015-11-06-Angular.md",
+    collection: "posts",
+    categories: "js",
+    permalink: "js/angular",
+    },
+  
+];
+</script>
+<script src="/sta/lib/zepto.js"></script>
+<!-- <script src="/sta/js/dest/base.js"></script> -->
+<script src="/sta/js/src/base.js"></script>
+</body>
+</html>
