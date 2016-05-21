@@ -49,6 +49,6 @@
     "webpack": "^1.13.0"
   },
   "dependencies": {
-    "showdown": "^1.4.1"
+    "marked": "^0.3.5"
   }
 }

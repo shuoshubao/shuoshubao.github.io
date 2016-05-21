@@ -1,12 +1,7 @@
 let React = require('react');
 let ReactDOM = require('react-dom');
-let Showdown  = require('showdown');
-Showdown.setOption({
-  'tables': true,
-  'tablesHeaderId': true
-});
-let Converter = new Showdown.Converter();
 
+let marked = require('marked');
 let data = require('./data.jsx');
 require('../less/app.less');
 
@@ -95,7 +90,7 @@ let App = React.createClass({
         if(rs.ok) {
           rs.text().then(rs => {
             this.setState({
-              content: listName ? ('<div class="p-'+listName+'">'+rs+'</div>') : ('<div class="markdown">'+rs+'</div>'),
+              content: listName ? ('<div class="p-'+listName+'">'+marked(rs)+'</div>') : ('<div class="markdown">'+marked(rs)+'</div>'),
             });
             this.hideLoading();
           });
@@ -106,7 +101,7 @@ let App = React.createClass({
     }else {
       this.getArticle(url, function(rs) {
         this.setState({
-          content: listName ? ('<div class="p-'+listName+'">'+rs+'</div>') : ('<div class="markdown">'+rs+'</div>'),
+          content: listName ? ('<div class="p-'+listName+'">'+marked(rs)+'</div>') : ('<div class="markdown">'+marked(rs)+'</div>'),
         });
         this.hideLoading();
       }.bind(this), function() {
@@ -160,7 +155,7 @@ let App = React.createClass({
         </nav>
         {(()=>{
           if(typeof this.state.content === 'string') {
-            return <article className="g-content" ref="content" dangerouslySetInnerHTML={{__html: Converter.makeHtml(this.state.content)}} />;
+            return <article className="g-content" ref="content" dangerouslySetInnerHTML={{__html: this.state.content}} />;
           }else {
             return <article className="g-content" ref="content">{this.state.content}</article>;
           }
