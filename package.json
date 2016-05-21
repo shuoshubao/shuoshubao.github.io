@@ -1,26 +1,54 @@
 {
-  "name": "shuoshubao.github.io",
-  "description": "[http://shuoshubao.github.io/](http://shuoshubao.github.io/)",
-  "version": "1.0.0",
-  "main": "gulpfile.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/shuoshubao/shuoshubao.github.io.git"
+  "name": "react",
+  "private": true,
+  "version": "0.0.1",
+  "babel": {
+    "plugins": [
+      "transform-react-jsx"
+    ],
+    "presets": [
+      "es2015",
+      "stage-2",
+      "react"
+    ]
   },
-  "author": "硕鼠宝",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/shuoshubao/shuoshubao.github.io/issues"
-  },
-  "homepage": "https://github.com/shuoshubao/shuoshubao.github.io#readme",
+  "description": "react",
+  "main": "",
   "scripts": {
-    "start": ""
+    "start": "webpack --display-error-details --progress --colors --watch",
+    "build": "webpack --progress --profile --colors --config webpack.prod.config.js"
   },
-  "dependencies": {},
+  "repository": "",
+  "keywords": [
+    "fe",
+    "html5",
+    "css3",
+    "js",
+    "react",
+    "shuoshubao"
+  ],
+  "author": "shuoshubao",
   "devDependencies": {
-    "gulp": "^3.9.1",
-    "gulp-browserify": "^0.5.1",
-    "gulp-htmlmin": "^1.3.0",
-    "gulp-markdown": "^1.2.0"
+    "babel-core": "^6.1.4",
+    "babel-loader": "^6.1.0",
+    "babel-plugin-transform-react-jsx": "^6.0.18",
+    "babel-polyfill": "^6.2.0",
+    "babel-preset-es2015": "^6.1.18",
+    "babel-preset-react": "^6.3.13",
+    "babel-preset-stage-2": "^6.1.18",
+    "css-loader": "^0.23.0",
+    "file-loader": "^0.8.5",
+    "html-loader": "^0.4.3",
+    "less": "^2.7.1",
+    "less-loader": "^2.2.3",
+    "markdown-loader": "^0.1.7",
+    "react": "^0.14.2",
+    "react-addons-linked-state-mixin": "^0.14.3",
+    "react-dom": "^0.14.2",
+    "style-loader": "^0.13.0",
+    "webpack": "^1.13.0"
+  },
+  "dependencies": {
+    "showdown": "^1.4.1"
   }
 }
