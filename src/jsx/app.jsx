@@ -160,8 +160,6 @@ let App = React.createClass({
             return <article className="g-content" ref="content">{this.state.content}</article>;
           }
         })()}
-
-
         <section className={'g-loading ' + (this.state.isLoading ? '' : 'hide')}>
           <div className="w-loading ">
             <div className="m-loading">
@@ -169,7 +167,7 @@ let App = React.createClass({
               <div className="item item-r"></div>
               <div className="item item-g"></div>
             </div>
-            <div className="text">数据加载中</div>
+            <div className="text">loading...</div>
           </div>
         </section>
         <footer className="g-footer">
