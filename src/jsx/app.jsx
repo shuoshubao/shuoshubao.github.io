@@ -118,15 +118,18 @@ let App = React.createClass({
       navIndex: this.getIndex()
     });
   },
-  componentDidMount: function() {
+  statistic: function() {
     if(this.props.isProd) {
       let _hmt = _hmt || [];
       (()=>{
-        let hm = document.createElement("script");
-        hm.src = "//hm.baidu.com/hm.js?12f2656ca2bbd3123c8d0ef2e3d2ef0a";
+        let hm = document.createElement('script');
+        hm.src = '//hm.baidu.com/hm.js?'+data.baidutongjiId;
         document.head.appendChild(hm)
       })();
     }
+  },
+  componentDidMount: function() {
+    this.statistic();
     this.init();
     window.addEventListener('hashchange', this.init, false);
   },

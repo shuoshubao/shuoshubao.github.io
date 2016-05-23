@@ -73,7 +73,7 @@
 | polling | 轮询 |
 | deploy | 部署 |
 | proxy | 代理 |
-| interface | 接口，关键字 |
+| interface | 接口 |
 | interactive | 交互式的 |
 | caution | 警告 |
 | integration | 集成 |
@@ -83,3 +83,11 @@
 | bundler | 打包 |
 | boilerplate | 模板 |
 | intent | 目的 |
+| anti-pattern | 反模式 |
+| notation | 符号 |
+| weird | 奇怪的 |
+| dynamic | 动态的 |
+| intuitively | 直观地 |
+| situation | 情况 |
+| complicated | 复杂的 |
+| reflecte | 反映 |

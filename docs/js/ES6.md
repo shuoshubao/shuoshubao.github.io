@@ -121,6 +121,14 @@
 * Object.is()    // +0 != 0, NaN == NaN
 * Object.assign()
 
+# Symbol
+
+* 不能和其他类型的值进行运算
+* 可以显式转化为字符串和布尔值
+* Symbol.for()
+* Symbol.keyFor()
+* Symbol.hasInstance
+* Symbol.isConcatSpreadable
 
 
 
