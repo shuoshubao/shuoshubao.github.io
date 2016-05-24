@@ -11,7 +11,7 @@ let App = React.createClass({
   getDefaultProps: function() {
     return {
       isProd: isProd,
-      docRoot: 'http://shuoshubao.com/api/getMarkdown.php/?',
+      docRoot: 'http://shuoshubao.com/api/getMarkdown.php?',
       hashRoot: '/#',
     };
   },
@@ -81,11 +81,11 @@ let App = React.createClass({
     xhr.send();
   },
   renderArticle: function(categories, article, listName) {
-    if(!data.article.filter(function(v, k) {
-      return v.categories === categories;
-    }).filter(function(v, k) {
-      return v.name === article;
-    }).length) {
+    if(['nav', 'about'].indexOf(categories) === -1 && article !== 'index' && !data.article.filter(function(v, k) {
+        return v.categories === categories;
+      }).filter(function(v, k) {
+        return v.name === article;
+      }).length) {
       console.log('文章不存在');
       return false;
     }
