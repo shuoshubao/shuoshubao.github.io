@@ -11,7 +11,7 @@ let App = React.createClass({
   getDefaultProps: function() {
     return {
       isProd: isProd,
-      docRoot: '/docs/',
+      docRoot: 'http://shuoshubao.com/api/getMarkdown.php/?',
       hashRoot: '/#',
     };
   },
@@ -81,7 +81,15 @@ let App = React.createClass({
     xhr.send();
   },
   renderArticle: function(categories, article, listName) {
-    let url = this.props.docRoot + [categories, article].join('/') + '.md';
+    if(!data.article.filter(function(v, k) {
+      return v.categories === categories;
+    }).filter(function(v, k) {
+      return v.name === article;
+    }).length) {
+      console.log('文章不存在');
+      return false;
+    }
+    let url = this.props.docRoot + [categories, article].join('/');
     this.setState({
       isLoading: true
     });
