@@ -169,11 +169,6 @@ module.exports = {
       name: 'Sublime-Win',
       title: 'Sublime-Win',
       categories: 'tool',
-    },
-    {
-      name: 'nav',
-      title: 'index',
-      categories: 'nav',
-    },
+    }
   ],
 };
