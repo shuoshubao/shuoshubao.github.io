@@ -45,6 +45,11 @@ let App = React.createClass({
       });
     }.bind(this), 300);
   },
+  openNav: function() {
+    this.setState({
+      openNav: !this.state.openNav,
+    });
+  },
   renderList: function(categories) {
     this.setState({
       isLoading: true
@@ -123,7 +128,8 @@ let App = React.createClass({
   init: function() {
     this.renderView(this.getHash());
     this.setState({
-      navIndex: this.getIndex()
+      navIndex: this.getIndex(),
+      openNav: false,
     });
   },
   statistic: function() {
@@ -151,7 +157,13 @@ let App = React.createClass({
                 <img className="logo" width="36" height="36" src="http://facebook.github.io/react/img/logo.svg" />
                 <span className="name">React</span>
               </a>
-              <ul>
+              <span className="btn-navbar" onClick={this.openNav}>
+                <span className="icon-bar"></span>
+                <span className="icon-bar"></span>
+                <span className="icon-bar"></span>
+                <span className="icon-bar"></span>
+              </span>
+              <ul style={{height: this.state.openNav?(data.nav.length*40+20):0}}>
                 {
                   data.nav.map(function(v, i) {
                     return <li key={i} className={this.state.navIndex === i ? 'active' : ''}>
