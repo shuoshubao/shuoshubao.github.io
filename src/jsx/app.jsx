@@ -132,18 +132,7 @@ let App = React.createClass({
       openNav: false,
     });
   },
-  statistic: function() {
-    if(this.props.isProd) {
-      let _hmt = _hmt || [];
-      (()=>{
-        let hm = document.createElement('script');
-        hm.src = '//hm.baidu.com/hm.js?'+data.baidutongjiId;
-        document.head.appendChild(hm)
-      })();
-    }
-  },
   componentDidMount: function() {
-    this.statistic();
     this.init();
     window.addEventListener('hashchange', this.init, false);
   },
