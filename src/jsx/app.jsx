@@ -157,7 +157,7 @@ let App = React.createClass({
                 <img className="logo" width="36" height="36" src="http://facebook.github.io/react/img/logo.svg" />
                 <span className="name">React</span>
               </a>
-              <span className="btn-navbar" onClick={this.openNav}>
+              <span className={'btn-navbar ' + (this.state.openNav?'active':'')} onClick={this.openNav}>
                 <span className="icon-bar"></span>
                 <span className="icon-bar"></span>
                 <span className="icon-bar"></span>
