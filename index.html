@@ -15,13 +15,15 @@
 <script src="/build/common.js"></script>
 <script src="/build/app.bundle.js"></script>
 <script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?12f2656ca2bbd3123c8d0ef2e3d2ef0a";
-  var s = document.getElementsByTagName("script")[0];
-  s.parentNode.insertBefore(hm, s);
-})();
+if(window.location.host === 'shuoshubao.github.io') {
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?12f2656ca2bbd3123c8d0ef2e3d2ef0a";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+}
 </script>
 </body>
 </html>
