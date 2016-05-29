@@ -125,6 +125,11 @@ let App = React.createClass({
   renderView: function(hash) {
     this[hash[1]?'renderArticle':'renderList'](...hash);
   },
+  winResize: function() {
+    this.setState({
+      openNav: false
+    });
+  },
   init: function() {
     this.renderView(this.getHash());
     this.setState({
@@ -135,6 +140,7 @@ let App = React.createClass({
   componentDidMount: function() {
     this.init();
     window.addEventListener('hashchange', this.init, false);
+    window.addEventListener('resize', this.winResize, false);
   },
   render: function() {
     return (
