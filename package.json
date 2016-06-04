@@ -1,7 +1,15 @@
 {
-  "name": "react",
-  "private": true,
-  "version": "0.0.1",
+  "name": "shuoshubao",
+  "version": "1.0.2",
+  "description": "shuoshubao`s blog",
+  "keywords": ["fe", "html5", "css3", "js", "react", "shuoshubao"],
+  "author": "shuoshubao",
+  "main": "",
+  "repository": "https://github.com/shuoshubao/shuoshubao.github.io.git",
+  "scripts": {
+    "start": "webpack --display-error-details --progress --colors --watch",
+    "build": "webpack --progress --profile --colors --config webpack.prod.config.js"
+  },
   "babel": {
     "plugins": [
       "transform-react-jsx"
@@ -12,22 +20,6 @@
       "react"
     ]
   },
-  "description": "react",
-  "main": "",
-  "scripts": {
-    "start": "webpack --display-error-details --progress --colors --watch",
-    "build": "webpack --progress --profile --colors --config webpack.prod.config.js"
-  },
-  "repository": "",
-  "keywords": [
-    "fe",
-    "html5",
-    "css3",
-    "js",
-    "react",
-    "shuoshubao"
-  ],
-  "author": "shuoshubao",
   "devDependencies": {
     "babel-core": "^6.1.4",
     "babel-loader": "^6.1.0",
