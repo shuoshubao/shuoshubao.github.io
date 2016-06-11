@@ -30,20 +30,20 @@ let App = React.createClass({
   getIndex: function() {
     let navIndex = 0;
     let categories = this.getHash()[0];
-    data.nav.forEach(function(v, k) {
-      if(v.categories === categories) {
-        navIndex = k;
+    data.nav.forEach((...arg) => {
+      if(arg[0].categories === categories) {
+        navIndex = arg[1];
         return false;
       }
     });
     return navIndex;
   },
   hideLoading: function() {
-    setTimeout(function() {
+    setTimeout(() => {
       this.setState({
         isLoading: false
       });
-    }.bind(this), 300);
+    }, 300);
   },
   openNav: function() {
     this.setState({
@@ -54,13 +54,13 @@ let App = React.createClass({
     this.setState({
       isLoading: true
     });
-    let dataList = categories === 'index' ? data.article : data.article.filter(function(v, k) {
-      return v.categories === categories;
+    let dataList = categories === 'index' ? data.article : data.article.filter((...arg) => {
+      return arg[0].categories === categories;
     });
-    let list = dataList.map((v, k)=>{
+    let list = dataList.map((...arg) => {
       return (
-        <li key={k}>
-          <a href={this.props.hashRoot + v.categories + '/' + v.name}>{v.title}</a>
+        <li key={arg[1]}>
+          <a href={this.props.hashRoot + arg[0].categories + '/' + arg[0].name}>{arg[0].title}</a>
         </li>
       );
     });
@@ -75,7 +75,7 @@ let App = React.createClass({
   },
   getArticle: function(url, success, failure) {
     let xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = () => {
       if(xhr.readyState === 4 && xhr.status === 200) {
         success(xhr.responseText);
       }else {
@@ -86,10 +86,10 @@ let App = React.createClass({
     xhr.send();
   },
   renderArticle: function(categories, article, listName) {
-    if(['nav', 'about'].indexOf(categories) === -1 && article !== 'index' && !data.article.filter(function(v, k) {
-        return v.categories === categories;
-      }).filter(function(v, k) {
-        return v.name === article;
+    if(['nav', 'about'].indexOf(categories) === -1 && article !== 'index' && !data.article.filter((...arg) => {
+        return arg[0].categories === categories;
+      }).filter((...arg) => {
+        return arg[0].name === article;
       }).length) {
       console.log('文章不存在');
       return false;
@@ -99,7 +99,7 @@ let App = React.createClass({
       isLoading: true
     });
     if(window.fetch) {
-      fetch(url).then(function(rs) {
+      fetch(url).then(rs => {
         if(rs.ok) {
           rs.text().then(rs => {
             this.setState({
@@ -110,16 +110,16 @@ let App = React.createClass({
         }else {
           this.hideLoading();
         }
-      }.bind(this));
+      });
     }else {
-      this.getArticle(url, function(rs) {
+      this.getArticle(url, rs => {
         this.setState({
           content: listName ? ('<div class="p-'+listName+'">'+marked(rs)+'</div>') : ('<div class="markdown"><a target="_blank" href="'+('http://shuoshubao.com/docs/'+[categories, article].join('/')+'.md')+'">源码</a>'+marked(rs)+'</div>'),
         });
         this.hideLoading();
-      }.bind(this), function() {
+      }, () => {
         this.hideLoading();
-      }.bind(this));
+      });
     }
   },
   renderView: function(hash) {
@@ -153,39 +153,38 @@ let App = React.createClass({
                 <span className="name">React</span>
               </a>
               <span className={'btn-navbar ' + (this.state.openNav?'active':'')} onClick={this.openNav}>
-                <span className="icon-bar"></span>
-                <span className="icon-bar"></span>
-                <span className="icon-bar"></span>
-                <span className="icon-bar"></span>
+                {
+                  (new Array(4).fill(1)).map((...arg) => <span key={arg[1]} className="icon-bar"></span>)
+                }
               </span>
               <ul style={{height: this.state.openNav?(data.nav.length*40+20):0}}>
                 {
-                  data.nav.map(function(v, i) {
-                    return <li key={i} className={this.state.navIndex === i ? 'active' : ''}>
-                      <a href={this.props.hashRoot + data.nav[i].categories}>{v.text}</a>
+                  data.nav.map((...arg) => {
+                    return <li key={arg[1]} className={this.state.navIndex === arg[1] ? 'active' : ''}>
+                      <a href={this.props.hashRoot + data.nav[arg[1]].categories}>{arg[0].text}</a>
                     </li>;
-                  }.bind(this))
+                  })
                 }
               </ul>
               <a className="btn-github" target="_blank" href={data.meta.githubLink}>GitHub</a>
             </div>
           </div>
         </nav>
-        {(()=>{
+        {(() => {
           if(typeof this.state.content === 'string') {
             return <article className="g-content" ref="content" dangerouslySetInnerHTML={{__html: this.state.content}} />;
           }else {
             return <article className="g-content" ref="content">{this.state.content}</article>;
           }
         })()}
-        <section className={'g-loading ' + (this.state.isLoading ? '' : 'hide')}>
+        <section className={'g-loading '+(this.state.isLoading?'':'hide')}>
           <div className="w-loading ">
             <div className="m-loading">
               <div className="item item-y"></div>
               <div className="item item-r"></div>
               <div className="item item-g"></div>
             </div>
-            <div className="text">loading...</div>
+            <div className="text">Loading...</div>
           </div>
         </section>
         <footer className="g-footer">
