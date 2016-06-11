@@ -1,7 +1,7 @@
-# shuoshubao
+# shuoshubao.github.io
 
 * git clone https://github.com/shuoshubao/shuoshubao.github.io.git
-* cd shuoshubao
+* cd shuoshubao.github.io
 * npm install
 * node server.js 开启服务
 * http://localhost:8000
