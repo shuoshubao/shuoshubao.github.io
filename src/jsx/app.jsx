@@ -5,12 +5,10 @@ let marked = require('marked');
 let data = require('./data.jsx');
 require('../less/app.less');
 
-const isProd = window.location.hostname === data.meta.hostnameProd;
 
 let App = React.createClass({
   getDefaultProps: function() {
     return {
-      isProd: isProd,
       docRoot: 'http://shuoshubao.com/api/getMarkdown.php?',
       hashRoot: '/#',
     };
