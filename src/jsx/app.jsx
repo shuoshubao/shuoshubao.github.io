@@ -9,7 +9,8 @@ require('../less/app.less');
 let App = React.createClass({
   getDefaultProps: function() {
     return {
-      docRoot: 'http://shuoshubao.com/api/getMarkdown.php?',
+      // docRoot: 'http://shuoshubao.com/api/getMarkdown.php?',
+      docRoot: '/docs/',
       hashRoot: '/#',
     };
   },
@@ -92,7 +93,7 @@ let App = React.createClass({
       console.log('文章不存在');
       return false;
     }
-    let url = this.props.docRoot + [categories, article].join('/');
+    let url = this.props.docRoot + [categories, article].join('/') + '.md';
     this.setState({
       isLoading: true
     });
