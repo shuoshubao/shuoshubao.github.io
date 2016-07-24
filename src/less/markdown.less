@@ -1,8 +1,8 @@
 .markdown {
-  :first-child {
+  &>*:first-child {
     margin-top: 0;
   }
-  :last-child {
+  &>*:last-child {
     margin-bottom: 0;
   }
   & > p,
@@ -188,7 +188,7 @@
     border-top: 1px solid #ccc;
     background-color: #fff;
   }
-  table tr:nth-child(2n) {
+  table tr:hover {
     background-color: #f8f8f8;
   }
 }
