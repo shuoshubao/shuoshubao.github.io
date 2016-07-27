@@ -1,8 +1,8 @@
-let React = require('react');
-let ReactDOM = require('react-dom');
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-let marked = require('marked');
-let data = require('./data.jsx');
+import marked from 'marked';
+import data from './data.jsx';
 require('../less/app.less');
 
 
