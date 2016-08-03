@@ -149,7 +149,7 @@ let App = React.createClass({
             <div className="wrap">
               <a className="home" href={this.props.hashRoot + 'index'}>
                 <img className="logo" width="36" height="36" src="http://facebook.github.io/react/img/logo.svg" />
-                <span className="name">React</span>
+                <span className="name">硕鼠宝</span>
               </a>
               <span className={'btn-navbar ' + (this.state.openNav?'active':'')} onClick={this.openNav}>
                 {
