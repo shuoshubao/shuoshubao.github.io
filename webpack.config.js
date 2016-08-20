@@ -7,7 +7,7 @@ module.exports = {
   },
   output: {
     path: './build',
-    filename: '[name].bundle.js'
+    filename: '[name].js'
   },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin('common.js')
