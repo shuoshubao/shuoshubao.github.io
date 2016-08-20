@@ -24,15 +24,17 @@
 
 #代码框
 
-    console.log('Hello, world');
-    <div ng-controller="Aaa">
-        <p>{{name}}</p>
-        <div ng-controller="Bbb">
-            <h2>{{name}}</h2>
-        </div>
+```
+console.log('Hello, world');
+<div ng-controller="Aaa">
+    <p>{{name}}</p>
+    <div ng-controller="Bbb">
+        <h2>{{name}}</h2>
     </div>
+</div>
+```
 
-> 前面加4个空格缩进（Ctrl+K）
+> ```
 
 #列表
 
@@ -53,11 +55,13 @@
 
 #表格
 
-    |Tables|Are|Cool|
-    |-|:-:|-:|
-    | col 3 is      | right-aligned | $1600 |
-    | col 2 is      | centered      |   $12 |
-    | zebra stripes | are neat      |    $1 |
+```
+|Tables|Are|Cool|
+|-|:-:|-:|
+| col 3 is      | right-aligned | $1600 |
+| col 2 is      | centered      |   $12 |
+| zebra stripes | are neat      |    $1 |
+```
 
 
 |Tables|Are|Cool|
@@ -68,15 +72,17 @@
 
 # 反斜杠
 
-    \   反斜线
-    `   反引号
-    *   星号
-    _   底线
-    {}  花括号
-    []  方括号
-    ()  括弧
-    #   井字号
-    +   加号
-    -   减号
-    .   英文句点
-    !   惊叹号
+```
+\   反斜线
+`   反引号
+*   星号
+_   底线
+{}  花括号
+[]  方括号
+()  括弧
+#   井字号
++   加号
+-   减号
+.   英文句点
+!   惊叹号
+```

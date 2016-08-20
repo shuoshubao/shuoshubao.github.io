@@ -2,24 +2,30 @@
 
 ## ReactDOM.render()
 
-    ReactDOM.render(
-      <h1>Hello, world!</h1>,
-      document.getElementById('app')
-    );
+```
+ReactDOM.render(
+  <h1>Hello, world!</h1>,
+  document.getElementById('app')
+);
+```
 
 ## ReactDOM.findDOMNode()
 
-    ReactDOM.findDOMNode(this.refs[refName])
+```
+ReactDOM.findDOMNode(this.refs[refName])
+```
 
 # React
 
 ## React.createClass()
 
-    var HelloMessage = React.createClass({
-      render: function() {
-        return <h1>Hello {this.props.name}</h1>;
-      }
-    });
+```
+React.createClass({
+  render: function() {
+    return <h1>Hello {this.props.name}</h1>;
+  }
+});
+```
 
 > 组件类的第一个字母必须大写 ; 组件类只能包含一个顶层标签
 
@@ -29,19 +35,21 @@
 * this.props[propName]
 * this.props.children
 
-      // 特殊属性
-      class -> className
-      for -> htmlFor
-      style{{opacity: .5}}
-      colspan -> colSpan
-      rowspan -> rowSpan
-      defaultValue select/input[text]
-      defaultChecked input[radio, checkbox]
-      key
-      ref
-      dangerouslySetInnerHTML={{__html: ''}}
-      // Transferring Props
-      {...props}
+```
+// 特殊属性
+class -> className
+for -> htmlFor
+style{{opacity: .5}}
+colspan -> colSpan
+rowspan -> rowSpan
+defaultValue select/input[text]
+defaultChecked input[radio, checkbox]
+key
+ref
+dangerouslySetInnerHTML={{__html: ''}}
+// Transferring Props
+{...props}
+```
 
 ### state
 
@@ -73,14 +81,13 @@
 
 # PropTypes
 
-    var MyTitle = React.createClass({
-      propTypes: {
-        title: React.PropTypes.string.isRequired,
-      },
-      render: function() {
-         return <h1> {this.props.title} </h1>;
-       }
-    });
+```
+React.createClass({
+  propTypes: {
+    title: React.PropTypes.string.isRequired,
+  },
+});
+```
 
 * React.PropTypes.array
 * React.PropTypes.bool

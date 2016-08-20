@@ -1,17 +1,21 @@
 # beforeunload
 
-    window.onbeforeunload = function() {
-      return '真的要关闭么？别后悔！';
-    }
+```
+window.onbeforeunload = function() {
+  return '真的要关闭么？别后悔！';
+}
+```
 
 > 只有当事件处理函数返回一个字符串的时候，才会生效
 
 
 # visibility
 
-    document.addEventListener("visibilitychange", function() {
-      // dosomethings
-    }, false);
+```
+document.addEventListener("visibilitychange", function() {
+  // dosomethings
+}, false);
+```
 
 #### 相关属性
 
@@ -24,12 +28,14 @@
 
 # fullscreenchange
 
-    document.addEventListener("fullscreenchange", function( event ) {
-      if (document.fullscreenElement) {
-        console.log('进入全屏');
-      } else {
-        console.log('退出全屏');
-      }
-    }, false);
+```
+document.addEventListener("fullscreenchange", function( event ) {
+  if (document.fullscreenElement) {
+    console.log('进入全屏');
+  } else {
+    console.log('退出全屏');
+  }
+}, false);
+```
 
 # fullscreenerror

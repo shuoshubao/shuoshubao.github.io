@@ -11,8 +11,10 @@
 
 * $rootScope
 * $scope
-  * $scope.$watch(str, function(newVal, oldVal) {} [, ifWatchAll])
-  * $scope.$watch(function(){})
+```
+$scope.$watch(str, function(newVal, oldVal) {} [, ifWatchAll])
+$scope.$watch(function(){})
+```
 * $timeout
 * $interval
   * $interval.cancel()
@@ -48,14 +50,16 @@
 * run()
 * filter()
 
-    var mod1 = angular.module('appName', [需要依赖的模块数组]);
-    mod1.controller('Aaa', ['$scope', '$rootScope', function($scope, $rootScope) {}]);
-    mod1.run(['$rootScope', function($rootScope) {}]);
-    mod1.filter('filterName', function(){
-      return function(str) {
-        return str
-      }
-    });
+```
+var mod1 = angular.module('appName', [需要依赖的模块数组]);
+mod1.controller('Aaa', ['$scope', '$rootScope', function($scope, $rootScope) {}]);
+mod1.run(['$rootScope', function($rootScope) {}]);
+mod1.filter('filterName', function(){
+  return function(str) {
+    return str
+  }
+});
+```
 
 # 工具方法
 
@@ -199,13 +203,13 @@
 
 # 标签指令
 
-* \<a>
-* \<select>
+* \<a\>
+* \<select\>
   * ng-options
   * for in
-* \<textarea>
-* \<input>
-* \<form>
+* \<textarea\>
+* \<input\>
+* \<form\>
 
 # 表单验证
 
@@ -218,10 +222,12 @@
 * ng-maxkength
 * ng-pattern
 
-    .ng-valid
-    .ng-invalid
-    .ng-pristine
-    .ng-dirty
+```
+ng-valid
+ng-invalid
+ng-pristine
+ng-dirty
+```
 
 > 1. novalidate
 > 2. `name` 的方式进行查找
@@ -231,18 +237,20 @@
 
 directive (angular.module)
 
-    mod.directive('directiveName', function() {
-      return {
-        restrict: 'AECM',
-        replace: false | true,
-        transclude: false | true,
-        template: 'str',
-        templateUrl: 'url',
-        scope: false | true | {},
-        controller: ['$scope', function($scope) {}],
-        link: function(scope, element, attr, reController) {}
-      }
-    });
+```
+mod.directive('directiveName', function() {
+  return {
+    restrict: 'AECM',
+    replace: false | true,
+    transclude: false | true,
+    template: 'str',
+    templateUrl: 'url',
+    scope: false | true | {},
+    controller: ['$scope', function($scope) {}],
+    link: function(scope, element, attr, reController) {}
+  }
+});
+```
 
 * restrict
   * A: attribute
@@ -298,7 +306,9 @@ directive (angular.module)
 
 # $cacheFactory服务
 
-    var cache = $cacheFactory(name[, {capacity: num}])
+```
+var cache = $cacheFactory(name[, {capacity: num}])
+```
 
 * info()
   * id
@@ -344,23 +354,27 @@ directive (angular.module)
 
 # factory 自定义服务
 
-    mod.factory('serviceName', ['', '', function() {
-      return {
+```
+mod.factory('serviceName', ['', '', function() {
+  return {
 
-      }
-    }]);
+  }
+}]);
+```
 
 > 不能进行初始化配置，即没有供应商
 
 # provider 自定义服务
 
-    mod.provider('serviceName', [function() {
-      return {
-        $get: function() {
+```
+mod.provider('serviceName', [function() {
+  return {
+    $get: function() {
 
-        }
-      }
-    }]);
+    }
+  }
+}]);
+```
 
 > $get
 >
