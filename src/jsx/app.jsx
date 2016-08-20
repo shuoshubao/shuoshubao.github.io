@@ -205,8 +205,6 @@ let App = React.createClass({
 });
 
 
-let appDiv = document.createElement('div');
-document.body.appendChild(appDiv);
 ReactDOM.render(
   <App />
   ,appDiv
