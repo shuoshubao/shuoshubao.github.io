@@ -7,14 +7,14 @@ require('../less/app.less');
 
 
 let App = React.createClass({
-  getDefaultProps: function() {
+  getDefaultProps() {
     return {
       // docRoot: 'http://shuoshubao.com/api/getMarkdown.php?',
       docRoot: '/docs/',
       hashRoot: '/#',
     };
   },
-  getInitialState: function() {
+  getInitialState() {
     return {
       navIndex: this.getIndex(),
       Loading: false,
@@ -22,11 +22,11 @@ let App = React.createClass({
       hash: this.getHash(),
     };
   },
-  getHash: function() {
+  getHash() {
     let hash = window.location.hash.substring(1).split('/');
     return [hash[0] || 'index', hash[1] || ''];
   },
-  getIndex: function() {
+  getIndex() {
     let navIndex = 0;
     let categories = this.getHash()[0];
     data.nav.forEach((...arg) => {
@@ -37,19 +37,19 @@ let App = React.createClass({
     });
     return navIndex;
   },
-  hideLoading: function() {
+  hideLoading() {
     setTimeout(() => {
       this.setState({
         isLoading: false
       });
     }, 300);
   },
-  openNav: function() {
+  openNav() {
     this.setState({
       openNav: !this.state.openNav,
     });
   },
-  renderList: function(categories) {
+  renderList(categories) {
     this.setState({
       isLoading: true
     });
@@ -72,7 +72,7 @@ let App = React.createClass({
       this.hideLoading();
     }
   },
-  getArticle: function(url, success, failure) {
+  getArticle(url, success, failure) {
     let xhr = new XMLHttpRequest();
     xhr.onreadystatechange = () => {
       if(xhr.readyState === 4 && xhr.status === 200) {
@@ -84,7 +84,7 @@ let App = React.createClass({
     xhr.open('GET', url, true);
     xhr.send();
   },
-  renderArticle: function(categories, article, listName) {
+  renderArticle(categories, article, listName) {
     if(['nav', 'about'].indexOf(categories) === -1 && article !== 'index' && !data.article.filter((...arg) => {
         return arg[0].categories === categories;
       }).filter((...arg) => {
@@ -121,27 +121,27 @@ let App = React.createClass({
       });
     }
   },
-  renderView: function(hash) {
+  renderView(hash) {
     this[hash[1]?'renderArticle':'renderList'](...hash);
   },
-  winResize: function() {
+  winResize() {
     this.setState({
       openNav: false
     });
   },
-  init: function() {
+  init() {
     this.renderView(this.getHash());
     this.setState({
       navIndex: this.getIndex(),
       openNav: false,
     });
   },
-  componentDidMount: function() {
+  componentDidMount() {
     this.init();
     window.addEventListener('hashchange', this.init, false);
     window.addEventListener('resize', this.winResize, false);
   },
-  render: function() {
+  render() {
     return (
       <div>
         <nav className="g-nav">
