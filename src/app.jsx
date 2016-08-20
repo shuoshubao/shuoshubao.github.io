@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import marked from 'marked';
-import data from './data.jsx';
+import data from '../data/data.js';
 require('../less/app.less');
 
 

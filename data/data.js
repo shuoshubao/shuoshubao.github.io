@@ -100,6 +100,16 @@ module.exports = {
       categories: 'js',
     },
     {
+      name: 'JQ',
+      title: 'JQ API',
+      categories: 'js',
+    },
+    {
+      name: 'SQL',
+      title: 'SQL',
+      categories: 'js',
+    },
+    {
       name: 'Storage',
       title: 'Storage',
       categories: 'js',
