@@ -1,17 +1,7 @@
 # const let
 
-## const
-
-* 常量
-* 不存在变量提升
-* 暂时性死区
-
-## let
-
-* 不存在变量提升
-* 暂时性死区
-* 不允许重复声明
-* 块级作用域
+* const
+* let
 
 # 解构赋值
 
@@ -24,13 +14,17 @@
 * 对象
 * 函数参数
 
-## 圆括号的问题
+> 解构赋值的规则是，只要等号右边的值不是对象，就先将其转为对象。由于undefined和null无法转为对象，所以对它们进行解构赋值，都会报错。
 
-### 不能使用圆括号的情况
+## 用途
 
-* 变量声明语句
-* 函数参数
-* 赋值语句中，不能将整个模式，或嵌套模式中的一层，放在圆括号之中
+* 交换变量的值
+* 从函数返回多个值
+* 函数参数的定义
+* 提取JSON数据
+* 函数参数的默认值
+* 遍历Map结构
+* 输入模块的指定方法
 
 # String
 
@@ -41,8 +35,8 @@
 * String.prototype.startsWith()
 * String.prototype.endsWith()
 * String.prototype.repeat()
-* String.prototype.padStart()
-* String.prototype.padEnd()
+* String.prototype.padStart() // ES7
+* String.prototype.padEnd() // ES7
 * String.prototype.String.raw()
 * 模板字符串
 * 标签模板
@@ -90,9 +84,11 @@
 * Array.prototype.keys()
 * Array.prototype.values()
 * Array.prototype.entries()
-* Array.prototype.includes()
+* Array.prototype.includes() // es7
 * 数组的空位
 * 数组推导
+
+> Array.of总是返回参数值组成的数组。如果没有参数，就返回一个空数组
 
 # Function
 
