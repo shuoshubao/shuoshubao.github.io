@@ -102,7 +102,7 @@ let App = React.createClass({
         if(rs.ok) {
           rs.text().then(rs => {
             this.setState({
-              content: listName ? (`<div class="p-${listName}">${marked(rs)}</div>`) : (`<div class="markdown"><a target="_blank" href="http://shuoshubao.com/docs/${[categories, article].join('/')}.md")>源码</a>${marked(rs)}</div>`),
+              content: listName ? (`<div class="p-${listName}">${marked(rs)}</div>`) : (`<div class="markdown"><a target="_blank" href="/docs/${[categories, article].join('/')}.md")>源码</a>${marked(rs)}</div>`),
             });
             this.hideLoading();
           });
@@ -113,7 +113,7 @@ let App = React.createClass({
     }else {
       this.getArticle(url, rs => {
         this.setState({
-          content: listName ? (`<div class="p-${listName}">${marked(rs)}</div>`) : (`<div class="markdown"><a target="_blank" href="http://shuoshubao.com/docs/${[categories, article].join('/')}.md")>源码</a>${marked(rs)}</div>`),
+          content: listName ? (`<div class="p-${listName}">${marked(rs)}</div>`) : (`<div class="markdown"><a target="_blank" href="/docs/${[categories, article].join('/')}.md")>源码</a>${marked(rs)}</div>`),
         });
         this.hideLoading();
       }, () => {
