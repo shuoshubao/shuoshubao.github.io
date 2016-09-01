@@ -15,37 +15,37 @@ module.exports = {
     {
       text: 'Home',
       title: 'WEB前端开发',
-      categories: 'index'
+      categories: 'index',
     },
     {
       text: 'HTML',
       title: 'HTML类目',
-      categories: 'html'
+      categories: 'html',
     },
     {
       text: 'CSS',
       title: 'CSS类目',
-      categories: 'css'
+      categories: 'css',
     },
     {
       text: 'JS',
       title: 'JS类目',
-      categories: 'js'
+      categories: 'js',
     },
     {
       text: 'Tool',
       title: '前端工具',
-      categories: 'tool'
+      categories: 'tool',
     },
     {
       text: 'Resource',
       title: '前端资源导航',
-      categories: 'nav'
+      categories: 'nav',
     },
     {
       text: 'About',
       title: '关于',
-      categories: 'about'
+      categories: 'about',
     }
   ],
   article: [
@@ -123,6 +123,11 @@ module.exports = {
       name: 'Notification',
       title: 'Notification',
       categories: 'js',
+    },
+    {
+      name: 'CodeGuide',
+      title: '代码规范',
+      categories: 'tool',
     },
     {
       name: 'Emmet',
