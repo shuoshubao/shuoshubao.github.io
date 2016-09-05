@@ -5,9 +5,9 @@
 * 使用4个空格代替缩进
 * 嵌套的节点应该缩进
 * 属性值用双引号
+* 标签名全部小写
 * 属性名全小写，分隔符为-
-* 自闭合标签结尾不加/
-* style、script不要加type属性
+* 自定义属性全部 data-*
 * boolean属性指不要声明属性值
 
 ## 基本结构
@@ -23,20 +23,30 @@
 <body>
 ```
 
-## 属性顺序
+## 标签嵌套规范
 
-* class、id、name、data-*
+* 内联元素不能嵌套块元素
+* p, dt, h1 不能嵌套块元素
+* 块元素与块元素平级、内联元素与内联元素平级
+
+## 属性顺序(荐)
+
+* id、class、name、data-*
 * src、for、type、href、value、max-length、pattern
 * placeholder、title、alt
 * required、readonly、disabled
+
+## 推荐
+
+* 自闭合标签结尾不加/
 
 # CSS
 
 ## 语法
 
 * 使用4个空格代替缩进
-* 文件最后保留一个空行
 * 每个属性声明独占一行
+* 选择器嵌套不要超过3层
 * 注释独占一行
 * 分组选择器需换行
 * 嵌套需换行
@@ -61,20 +71,23 @@
 * 类名使用小写字母，以中划线分隔（参考Bootstrap）
 * id采用驼峰式命名
 
-## 顺序
+## 顺序(荐)
 
-* 可见性
-* 浮动
-* 定位
-* 盒模型
-* 字体
-* 颜色、背景色
-* 外边框
+* 可见性(display, visibilty, overflow)
+* 浮动(float, clear)
+* 定位(position, z-index, t-r-b-l)
+* 盒模型(width, min-width, max-width, margin, padding, border, content)
+* 字体(font, line-height)
+* 颜色、背景色(color, background)
+* 其他(transition, transform, outline, box-shadow)
 
-## 优化
+## 推荐
 
-* 选择器不要超过4层
+* 不建议使用类选择器
+* 样式里面不要出现id
+* 尽量不用 important
 * 尽量少用'*'选择器
+* zIndex规范: 100, 101, ...
 * 不要有空的规则
 * 元素选择器小写
 * 去掉小数点前面的0
@@ -88,11 +101,13 @@
 ## 语法
 
 * 使用4个空格代替缩进
-* 文件最后保留一个空行
-* 编辑器开启word wrap
 * 一行一条语句
 * 语句末尾加分号
 * 函数参数之间的逗号后加空格
+* 用'===', '!=='代替'==', '!='
+* 同步模块的require import 都放在最前面
+* 尽量改变className 而不是操作style
+* 将要用于js操作的元素加className act驼峰(eg: actSubmit)
 * 注释独占一行
 * 注释采用DocBlockr风格
 
@@ -169,17 +184,18 @@ for(var i = 0; i < 1; i++) {
 * 对象不要尾逗号
 * 数组不要写空位
 
-## tips
+## 推荐
 
-* 用'===', '!=='代替'==', '!='
-* 注意类型转换
+* 每个js文件头部都应该有个注释(README)
+* 每个js模块应该分配一个id(命名空间)
+* 编辑器开启word wrap
+* css状态名统一化: active, current, disabled, selected, checked (反义加un)
 * 不要用关键字作为对象的属性名
-* 不要在内置对象的原型上添加属性或方法
-* 使用 window.xxx 定义全局变量
+* 不要给内置对象的原型添加属性或方法
+* 使用 window.xxx 显式定义全局变量
 * 变量声明和函数声明手动提升
 * for-in里一定要有hasOwnProperty的判断
 * 不要重复声明变量
-* 不要在循环内部声明函数
-* 行尾不要有空白字符(编辑器设置)
 * 不要使用with
 * 不要使用eval
+* 行尾不要有空白字符(编辑器设置)
