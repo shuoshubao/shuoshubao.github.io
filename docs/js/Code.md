@@ -3,14 +3,14 @@
 
 ## Date.prototype.toISOString
 
-```
+```javascript
 var dt = new Date();
     dt.toISOString().slice(0, -5).replace(/[T]/g, ' ');
 ```
 
 ## RegExp
 
-```
+```javascript
 var dt = new Date();
 var date = [
   [dt.getFullYear(), dt.getMonth() + 1, dt.getDate()].join('-'),
@@ -20,7 +20,7 @@ var date = [
 
 ## Date
 
-```
+```javascript
 function pad(s) {
   return ('0' + s).slice(-2);
 }

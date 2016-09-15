@@ -1,6 +1,6 @@
 # 最佳配置
 
-```
+```json
 {
   "font_size": 18,
   "tab_size": 2,

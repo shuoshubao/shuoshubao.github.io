@@ -11,10 +11,12 @@
 
 * $rootScope
 * $scope
-```
+
+```javascript
 $scope.$watch(str, function(newVal, oldVal) {} [, ifWatchAll])
 $scope.$watch(function(){})
 ```
+
 * $timeout
 * $interval
   * $interval.cancel()
@@ -50,7 +52,7 @@ $scope.$watch(function(){})
 * run()
 * filter()
 
-```
+```javascript
 var mod1 = angular.module('appName', [需要依赖的模块数组]);
 mod1.controller('Aaa', ['$scope', '$rootScope', function($scope, $rootScope) {}]);
 mod1.run(['$rootScope', function($rootScope) {}]);
@@ -222,7 +224,7 @@ mod1.filter('filterName', function(){
 * ng-maxkength
 * ng-pattern
 
-```
+```javascript
 ng-valid
 ng-invalid
 ng-pristine
@@ -237,7 +239,7 @@ ng-dirty
 
 directive (angular.module)
 
-```
+```javascript
 mod.directive('directiveName', function() {
   return {
     restrict: 'AECM',
@@ -306,7 +308,7 @@ mod.directive('directiveName', function() {
 
 # $cacheFactory服务
 
-```
+```javascript
 var cache = $cacheFactory(name[, {capacity: num}])
 ```
 
@@ -354,7 +356,7 @@ var cache = $cacheFactory(name[, {capacity: num}])
 
 # factory 自定义服务
 
-```
+```javascript
 mod.factory('serviceName', ['', '', function() {
   return {
 
@@ -366,7 +368,7 @@ mod.factory('serviceName', ['', '', function() {
 
 # provider 自定义服务
 
-```
+```javascript
 mod.provider('serviceName', [function() {
   return {
     $get: function() {

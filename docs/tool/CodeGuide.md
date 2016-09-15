@@ -12,7 +12,7 @@
 
 ## 基本结构
 
-```
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -115,7 +115,7 @@
 [usejsdoc](http://usejsdoc.org/)
 [JSDoc Guide](http://yuri4ever.github.io/jsdoc/)
 
-```
+```javascript
 // 单行注释
 
 /**
@@ -128,7 +128,7 @@
 
 * 运算符与操作值之间加空格
 
-```
+```javascript
 // []
 var a = [1, 2, 3];
 // {}

@@ -17,7 +17,7 @@
 
 # book.json 书的信息
 
-```
+```json
 {
   "gitbook": "2.x.x",
   "title": "ES6入门指南",

@@ -3,7 +3,7 @@
 * 链接 ： [文字](http://shuoshubao.github.io)
 * 图片 ： ![文字](https://assets-cdn.github.com/favicon.ico)
 
-#标题
+# 标题
 
 #  一级标题
 
@@ -16,27 +16,15 @@
 
 # 斜体/粗体/分隔线
 
-*斜体*
+* \*斜体*
+* \*\* 粗体 **
+* \*\*\*
 
-**粗体**
+# 代码框
 
-***
+* ```
 
-#代码框
-
-```
-console.log('Hello, world');
-<div ng-controller="Aaa">
-    <p>{{name}}</p>
-    <div ng-controller="Bbb">
-        <h2>{{name}}</h2>
-    </div>
-</div>
-```
-
-> ```
-
-#列表
+# 列表
 
 - 无序列表1
 - 无序列表2
@@ -53,7 +41,7 @@ console.log('Hello, world');
 
 ***
 
-#表格
+# 表格
 
 ```
 |Tables|Are|Cool|

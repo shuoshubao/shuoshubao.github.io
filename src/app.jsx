@@ -1,9 +1,9 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-
-import marked from 'marked';
-import data from '../data/data.js';
-require('../less/app.less');
+import React from 'react'
+import ReactDOM from 'react-dom'
+import data from '../data/data.js'
+import marked from 'marked'
+import Prism from 'prismjs'
+require('../less/app.less')
 
 
 let App = React.createClass({
@@ -38,6 +38,9 @@ let App = React.createClass({
     return navIndex;
   },
   hideLoading() {
+    document.querySelectorAll('pre code').forEach(function(v, i) {
+      Prism.highlightElement(v);
+    });
     setTimeout(() => {
       this.setState({
         isLoading: false
@@ -51,7 +54,7 @@ let App = React.createClass({
   },
   renderList(categories) {
     this.setState({
-      isLoading: true
+      isLoading: true,
     });
     let dataList = categories === 'index' ? data.article : data.article.filter((...arg) => {
       return arg[0].categories === categories;
@@ -95,7 +98,7 @@ let App = React.createClass({
     }
     let url = `${this.props.docRoot}${[categories, article].join('/')}.md`;
     this.setState({
-      isLoading: true
+      isLoading: true,
     });
     if(window.fetch) {
       fetch(url).then(rs => {
@@ -126,7 +129,7 @@ let App = React.createClass({
   },
   winResize() {
     this.setState({
-      openNav: false
+      openNav: false,
     });
   },
   init() {
@@ -142,25 +145,27 @@ let App = React.createClass({
     window.addEventListener('resize', this.winResize, false);
   },
   render() {
+    let {hashRoot} = this.props;
+    let {openNav, navIndex, content, isLoading} = this.state;
     return (
       <div>
         <nav className="g-nav">
           <div className="inner">
             <div className="wrap">
-              <a className="home" href={`${this.props.hashRoot}index`}>
+              <a className="home" href={`${hashRoot}index`}>
                 <img className="logo" width="36" height="36" src="./img/logo.png" />
                 <span className="name">硕鼠宝</span>
               </a>
-              <span className={`btn-navbar ${this.state.openNav ? 'active' : ''}`} onClick={this.openNav}>
+              <span className={`btn-navbar ${openNav ? 'active' : ''}`} onClick={this.openNav}>
                 {
                   (new Array(4).fill(1)).map((...arg) => <span key={arg[1]} className="icon-bar"></span>)
                 }
               </span>
-              <ul style={{height: this.state.openNav ? (data.nav.length * 40 + 20) : 0}}>
+              <ul style={{height: openNav ? (data.nav.length * 40 + 20) : 0}}>
                 {
                   data.nav.map((...arg) => {
-                    return <li key={arg[1]} className={this.state.navIndex === arg[1] ? 'active' : ''}>
-                      <a href={`${this.props.hashRoot}${data.nav[arg[1]].categories}`}>{arg[0].text}</a>
+                    return <li key={arg[1]} className={navIndex === arg[1] ? 'active' : ''}>
+                      <a href={`${hashRoot}${data.nav[arg[1]].categories}`}>{arg[0].text}</a>
                     </li>;
                   })
                 }
@@ -170,13 +175,13 @@ let App = React.createClass({
           </div>
         </nav>
         {(() => {
-          if(typeof this.state.content === 'string') {
-            return <article className="g-content" ref="content" dangerouslySetInnerHTML={{__html: this.state.content}} />;
+          if(typeof content === 'string') {
+            return <article className="g-content" ref="content" dangerouslySetInnerHTML={{__html: content}} />;
           }else {
-            return <article className="g-content" ref="content">{this.state.content}</article>;
+            return <article className="g-content" ref="content">{content}</article>;
           }
         })()}
-        <section className={`g-loading ${this.state.isLoading ? '' : 'hide'}`}>
+        <section className={`g-loading ${isLoading ? '' : 'hide'}`}>
           <div className="w-loading ">
             <div className="m-loading">
               <div className="item item-y"></div>

@@ -18,7 +18,7 @@
 
 > new Notification(title, {})
 
-```
+```javascript
 属性
 var n = new Notification(title, {
     body: '',
@@ -36,7 +36,7 @@ onclick
 
 # Demo
 
-```
+```javascript
 if(window.Notification && Notification.permission !== "denied") {
   Notification.requestPermission(function(status) {    // 请求权限
     if(status === 'granted') {

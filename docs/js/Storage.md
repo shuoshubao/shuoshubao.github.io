@@ -11,7 +11,7 @@
 
 ## 事件
 
-```
+```javascript
 window.addEventListener('storage', function(ev) {
     // key : 修改或删除的key值，如果调用clear(),key为null
     // newvalue : 新设置的值，如果调用removeStorage(),key为null
