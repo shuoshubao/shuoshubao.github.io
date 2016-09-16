@@ -3,7 +3,7 @@ var webpack = require('webpack');
 module.exports = {
   context: __dirname + '/src',
   entry: {
-    app: './app.jsx',
+    app: './app.jsx'
   },
   output: {
     path: './build',
@@ -26,12 +26,10 @@ module.exports = {
       {test: /\.css$/, loader: 'style!css'},
       {test: /\.less$/, loader: 'style!css!less'},
       {test: /\.js$/, exclude: /node_modules/, loader: 'babel'},
-      {test: /\.jsx?$/, exclude: /node_modules/, loader: 'babel'},
-      {test: /\.jsx?$/, include: /prosemirror/, loader: 'babel'},
+      {test: /\.jsx?$/, exclude: /node_modules/, loader: 'babel'}
     ]
   },
   resolve: {
-    react: '/node_modules/react/react.js',
-    'react-prosemirror': __dirname
+    react: '/node_modules/react/react.js'
   }
 };
