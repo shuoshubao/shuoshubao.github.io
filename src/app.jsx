@@ -1,15 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import data from '../data/data.js'
 import marked from 'marked'
 import Prism from 'prismjs'
+import data from '../data/data'
 require('../less/app.less')
 
 
-let App = React.createClass({
+const App = React.createClass({
   getDefaultProps() {
     return {
-      // docRoot: 'http://shuoshubao.com/api/getMarkdown.php?',
       docRoot: '/docs/',
       hashRoot: '/#',
     };
@@ -153,7 +152,7 @@ let App = React.createClass({
           <div className="inner">
             <div className="wrap">
               <a className="home" href={`${hashRoot}index`}>
-                <img className="logo" width="36" height="36" src="./img/logo.png" />
+                <img className="logo" width="36" height="36" src="./img/logo.svg" />
                 <span className="name">硕鼠宝</span>
               </a>
               <span className={`btn-navbar ${openNav ? 'active' : ''}`} onClick={this.openNav}>
@@ -209,6 +208,8 @@ let App = React.createClass({
   },
 });
 
+const appDiv = document.createElement('div');
+document.body.appendChild(appDiv);
 
 ReactDOM.render(
   <App />
