@@ -36,10 +36,9 @@
   }
   li {
     float: left;
-    &.active,
-    &:hover {
+    &.active{
       a {
-        color: #4078c0;
+        color: #26c6da;
       }
     }
     a {
@@ -50,13 +49,14 @@
   }
   a {
     color: #333;
+    &.active,
+    &:hover {
+      color: #26c6da;
+    }
   }
   .btn-github {
     float: right;
     padding: 0 10px;
-    &:hover {
-      color: #4078c0;
-    }
   }
 }
 @media (max-width:1000px) {
