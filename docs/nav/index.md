@@ -132,6 +132,8 @@
     <a href="http://tool.lu/base64image/">图片base64</a>
     <a href="http://tool.lu/imageholder/">图片占位符</a>
     <a href="http://tool.lu/timestamp/">时间戳</a>
+    <a href="http://prismjs.com/">PrismJs</a>
+    <a href="https://highlightjs.org/">HighlightJs</a>
   </dd>
 </dl>
 <dl>
@@ -140,7 +142,6 @@
     <a href="http://javascript.ruanyifeng.com/">阮一峰</a>
     <a href="http://www.cnblogs.com/rubylouvre/">司徒正美</a>
     <a href="http://www.css88.com/">愚人码头</a>
-    <a href="http://www.zhangxinxu.com/">张鑫旭</a>
     <a href="http://www.w3cplus.com/">w3cplus</a>
     <a href="http://www.w3cfuns.com/">w3cfuns</a>
     <a href="http://www.tuicool.com/">推酷</a>
