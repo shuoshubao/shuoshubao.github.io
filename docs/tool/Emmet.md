@@ -114,7 +114,8 @@ background-image: linear-gradient(to right, #123 30%, #456);
 ```
 
 
-## 参考链接
+# Referrence
+
 1. [http://emmet.io/](http://emmet.io/)
 2. [http://docs.emmet.io/](http://docs.emmet.io/)
 3. [https://github.com/emmetio/emmet/blob/master/lib/snippets.json](https://github.com/emmetio/emmet/blob/master/lib/snippets.json)

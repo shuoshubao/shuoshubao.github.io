@@ -14,8 +14,6 @@
 * 对象
 * 函数参数
 
-> 解构赋值的规则是，只要等号右边的值不是对象，就先将其转为对象。由于undefined和null无法转为对象，所以对它们进行解构赋值，都会报错。
-
 ## 用途
 
 * 交换变量的值
@@ -125,5 +123,6 @@
 
 
 
+# Referrence
 
 > [http://es6.ruanyifeng.com/](http://es6.ruanyifeng.com/)
