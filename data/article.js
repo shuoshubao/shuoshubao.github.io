@@ -5,6 +5,11 @@ export default [
     categories: 'html',
   },
   {
+    name: 'Html_entities',
+    title: 'HTML 字符实体',
+    categories: 'html',
+  },
+  {
     name: 'Total',
     title: 'CSS',
     categories: 'css',
