@@ -149,13 +149,25 @@
     <a href="http://segmentfault.com/">segmentfault</a>
     <a href="http://www.imooc.com/">慕课网</a>
     <a href="https://developer.mozilla.org/zh-CN/docs/Web">MDN</a>
-    <a href="http://www.alloyteam.com/">alloyteam</a>
-    <a href="http://fex.baidu.com/">fex</a>
     <a href="http://aralejs.org/">aralejs</a>
     <a href="http://aliceui.org/">aliceui</a>
-    <a href="http://nec.netease.com/">nec</a>
   </dd>
 </dl>
+<dl>
+  <dt>Company</dt>
+  <dd>
+    <a href="http://www.alloyteam.com/">腾讯</a>
+    <a href="http://taobaofed.org/">淘宝</a>
+    <a href="http://fex.baidu.com/">百度</a>
+    <a href="https://aotu.io/">京东</a>
+    <a href="http://ued.qunar.com/">去哪儿</a>
+    <a href="http://www.75team.com/">齐舞团</a>
+    <a href="http://mofang.xiaojukeji.com/">滴滴</a>
+    <a href="http://nec.netease.com/">网易</a>
+    <a href="http://ued.ctrip.com/blog/">携程</a>
+    <a href="http://f2e.souche.com/">大搜车</a>
+  </dd>
+</dl> 
 <dl>
   <dt>用户体验</dt>
   <dd>
