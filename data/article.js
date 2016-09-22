@@ -130,8 +130,8 @@ export default [
     categories: 'tool',
   },
   {
-    name: 'Sublime-Mac',
-    title: 'Sublime-Mac',
+    name: 'Sublime',
+    title: 'Sublime',
     categories: 'tool',
   }
 ]
