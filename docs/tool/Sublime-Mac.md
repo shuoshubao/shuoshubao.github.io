@@ -87,8 +87,9 @@ FCCC7561 8A4A1741 68FA4223 ADCEDE07
 * cmd+shift+w               关闭窗口
 * cmd+shift+p               打开命令面板
 * cmd+p                     搜索项目中的文件
-* cmd+g                     跳到指定行
+* ctrl+g                    跳到指定行
 * ctrl+`                    打开控制台
+* cmd+k,b                   显示/隐藏文件目录
 
 ## 编辑
 
@@ -114,11 +115,11 @@ FCCC7561 8A4A1741 68FA4223 ADCEDE07
 
 ### 行
 
-* cmd+ctrl+up              上移一行
-* cmd+ctrl+down            下移一行
-* cmd+shift+d              复制并粘贴行
-* ctrl+shift+k             删除行
-* cmd+j                    合并行
+* cmd+ctrl+up               上移一行
+* cmd+ctrl+down             下移一行
+* cmd+shift+d               复制并粘贴行
+* ctrl+shift+k              删除行
+* cmd+j                     合并行
 
 ### 注释 / 缩进 / 大小写
 
@@ -126,15 +127,15 @@ FCCC7561 8A4A1741 68FA4223 ADCEDE07
 * cmd+shift+/
 * cmd+[
 * cmd+]
-* cmd+k,u    大写
-* cmd+k,l    小写
+* cmd+k,u                   大写
+* cmd+k,l                   小写
 
 ### 文本
 
-* cmd+enter                往下插入行
-* cmd+shift+enter          往上插入行
-* cmd+delete               删除光标至行首
-* ctrl+k                   删除光标至行尾
+* cmd+enter                 往下插入行
+* cmd+shift+enter           往上插入行
+* cmd+delete                删除光标至行首
+* ctrl+k                    删除光标至行尾
 * ctrl+t                    交换光标左右字符
 
 ### 标签
@@ -146,11 +147,11 @@ FCCC7561 8A4A1741 68FA4223 ADCEDE07
 
 ### 折叠
 
-* cmd+alt+[              折叠
-* cmd+alt+]              展开
-* cmd+k,j                展开所有
-* cmd+k,t                折叠标签属性
-* cmd+k,数字              折叠n层
+* cmd+alt+[                 折叠
+* cmd+alt+]                 展开
+* cmd+k,j                   展开所有
+* cmd+k,t                   折叠标签属性
+* cmd+k,数字                 折叠n层
 
 ### 排序（卵用）
 

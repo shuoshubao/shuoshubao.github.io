@@ -133,10 +133,5 @@ export default [
     name: 'Sublime-Mac',
     title: 'Sublime-Mac',
     categories: 'tool',
-  },
-  {
-    name: 'Sublime-Win',
-    title: 'Sublime-Win',
-    categories: 'tool',
   }
 ]
