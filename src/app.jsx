@@ -7,18 +7,6 @@ import DATA_NAV from '../data/nav'
 import DATA_ARTICLE from '../data/article'
 require('../less/app.less')
 
-
-if(!String.prototype.repeat) {
-  String.prototype.repeat = function(num = 1) {
-    let s = [];
-    for (let i = 0; i < num; i++) {
-      s.push(this);
-    }
-    return s.join('');
-  };
-}
-
-
 const App = React.createClass({
   getDefaultProps() {
     return {
@@ -106,27 +94,18 @@ const App = React.createClass({
     this.setState({
       isLoading: true,
     });
-    if(window.fetch) {
-      fetch(url).then(rs => {
-        if(rs.ok) {
-          rs.text().then(rs => {
-            this.setState({
-              content: listName ? (`<div class="p-${listName}">${Marked(rs)}</div>`) : (`<div class="markdown"><a target="_blank" href="/docs/${[categories, article].join('/')}.md")>源码</a>${Marked(rs)}</div>`),
-            });
-            this.hideLoading();
+    fetch(url).then(rs => {
+      if(rs.ok) {
+        rs.text().then(rs => {
+          this.setState({
+            content: listName ? (`<div class="p-${listName}">${Marked(rs)}</div>`) : (`<div class="markdown"><a target="_blank" href="/docs/${[categories, article].join('/')}.md")>源码</a>${Marked(rs)}</div>`),
           });
-        }else {
           this.hideLoading();
-        }
-      });
-    }else {
-      this.getArticle(url, rs => {
-        this.setState({
-          content: listName ? (`<div class="p-${listName}">${Marked(rs)}</div>`) : (`<div class="markdown"><a target="_blank" href="/docs/${[categories, article].join('/')}.md")>源码</a>${Marked(rs)}</div>`),
         });
+      }else {
         this.hideLoading();
-      }, () => this.hideLoading());
-    }
+      }
+    });
   },
   renderView(hash) {
     this[hash[1] ? 'renderArticle' : 'renderList'](...hash);
