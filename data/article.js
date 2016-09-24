@@ -10,6 +10,11 @@ export default [
     categories: 'html',
   },
   {
+    name: 'Html5',
+    title: 'HTML5',
+    categories: 'html',
+  },
+  {
     name: 'Total',
     title: 'CSS',
     categories: 'css',
