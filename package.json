@@ -43,6 +43,7 @@
     "react": "^0.14.2",
     "react-dom": "^0.14.2",
     "style-loader": "^0.13.1",
-    "webpack": "^1.13.0"
+    "webpack": "^1.13.0",
+    "whatwg-fetch": "^1.0.0"
   }
 }

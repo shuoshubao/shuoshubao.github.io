@@ -9,9 +9,7 @@ module.exports = {
     path: './build',
     filename: '[name].js'
   },
-  plugins: [
-    new webpack.optimize.CommonsChunkPlugin('common.js')
-  ],
+  plugins: [],
   module: {
     loaders: [
       {test: /\.css$/, loader: 'style!css'},
