@@ -5,13 +5,18 @@ export default [
     categories: 'html',
   },
   {
-    name: 'Html_entities',
+    name: 'Html_entity',
     title: 'HTML 字符实体',
     categories: 'html',
   },
   {
     name: 'Html5',
     title: 'HTML5',
+    categories: 'html',
+  },
+  {
+    name: 'Event',
+    title: 'HTML事件属性',
     categories: 'html',
   },
   {
