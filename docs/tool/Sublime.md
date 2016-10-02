@@ -7,7 +7,7 @@
   // 自动换行
   "word_wrap": false,
   // tab变成空格
-  "translate_tabs_to_spaces": false,
+  "translate_tabs_to_spaces": true,
   // 突出显示当前光标所在的行
   "highlight_line": true,
   // 光标样式
@@ -18,8 +18,6 @@
   "find_selected_text": true,
   // 空格、制表符显示点：all、selection、none
   "draw_white_space": "all",
-  // 保存时在最后添加一个空行（看着办）
-  // "ensure_newline_at_eof_on_save": true,
 }
 ```
 
