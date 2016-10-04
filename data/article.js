@@ -35,6 +35,11 @@ export default [
     categories: 'js',
   },
   {
+    name: 'React-Native',
+    title: 'React Native',
+    categories: 'js',
+  },
+  {
     name: 'Angular',
     title: 'Angular',
     categories: 'js',
