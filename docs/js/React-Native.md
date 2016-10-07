@@ -18,7 +18,7 @@
 import React, {Component} from 'react';
 import {AppRegistry, Text} from 'react-native';
 
-class AwesomeProject extends Component {
+class Hello extends Component {
   render() {
     return (
       <Text>Hello world!</Text>
@@ -26,7 +26,7 @@ class AwesomeProject extends Component {
   }
 }
 
-AppRegistry.registerComponent('AwesomeProject', () => AwesomeProject);
+AppRegistry.registerComponent('AwesomeProject', () => Hello);
 ```
 
 # Component
@@ -36,7 +36,7 @@ AppRegistry.registerComponent('AwesomeProject', () => AwesomeProject);
 * AppRegistry
 * StyleSheet
 
-# basic
+# base
 
 * View
 * ListView
@@ -45,3 +45,8 @@ AppRegistry.registerComponent('AwesomeProject', () => AwesomeProject);
 * Text
 * Image
 * TextInput
+* TouchableHighlight
+
+* Animated
+* LayoutAnimation
+* TouchableOpacity

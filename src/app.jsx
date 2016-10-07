@@ -1,6 +1,6 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import Marked from 'marked'
+import React, {Component} from 'react'
+import {render} from 'react-dom'
+import marked from 'marked'
 import Prism from 'prismjs'
 import 'whatwg-fetch'
 import DATA_META from '../data/meta'
@@ -8,25 +8,24 @@ import DATA_NAV from '../data/nav'
 import DATA_ARTICLE from '../data/article'
 require('../less/app.less')
 
-const App = React.createClass({
-  getDefaultProps() {
-    return {
-      docRoot: '/docs/',
-      hashRoot: '/#',
-    };
-  },
-  getInitialState() {
-    return {
+class App extends Component {
+  static defaultProps = {
+    docRoot: '/docs/',
+    hashRoot: '/#',
+  }
+  constructor(props) {
+    super(props);
+    this.state = {
       navIndex: this.getIndex(),
-      Loading: false,
+      isLoading: false,
       content: '',
       hash: this.getHash(),
     };
-  },
+  }
   getHash() {
     let hash = window.location.hash.substring(1).split('/');
     return [hash[0] || 'index', hash[1] || ''];
-  },
+  }
   getIndex() {
     let navIndex = 0;
     let categories = this.getHash()[0];
@@ -37,7 +36,7 @@ const App = React.createClass({
       }
     });
     return navIndex;
-  },
+  }
   hideLoading() {
     document.querySelectorAll('pre code').forEach(function(v, i) {
       Prism.highlightElement(v);
@@ -47,12 +46,12 @@ const App = React.createClass({
         isLoading: false
       });
     }, 300);
-  },
+  }
   openNav() {
     this.setState({
       openNav: !this.state.openNav,
     });
-  },
+  }
   renderList(categories) {
     this.setState({
       isLoading: true,
@@ -72,7 +71,7 @@ const App = React.createClass({
       });
       this.hideLoading();
     }
-  },
+  }
   getArticle(url, success, failure) {
     let xhr = new XMLHttpRequest();
     xhr.onreadystatechange = () => {
@@ -84,7 +83,7 @@ const App = React.createClass({
     };
     xhr.open('GET', url, true);
     xhr.send();
-  },
+  }
   renderArticle(categories, article, listName) {
     if(['nav', 'about'].indexOf(categories) === -1 && article !== 'index' && !DATA_ARTICLE.filter((...arg) => arg[0].categories === categories).filter((...arg) => arg[0].name === article).length) {
       console.log('文章不存在');
@@ -99,7 +98,7 @@ const App = React.createClass({
       if(rs.ok) {
         rs.text().then(rs => {
           this.setState({
-            content: listName ? (`<div class="p-${listName}">${Marked(rs)}</div>`) : (`<div class="markdown"><a target="_blank" href="/docs/${[categories, article].join('/')}.md")>源码</a>${Marked(rs)}</div>`),
+            content: listName ? (`<div class="p-${listName}">${marked(rs)}</div>`) : (`<div class="markdown"><a target="_blank" href="/docs/${[categories, article].join('/')}.md")>源码</a>${marked(rs)}</div>`),
           });
           this.hideLoading();
         });
@@ -107,27 +106,27 @@ const App = React.createClass({
         this.hideLoading();
       }
     });
-  },
+  }
   renderView(hash) {
     this[hash[1] ? 'renderArticle' : 'renderList'](...hash);
-  },
+  }
   winResize() {
     this.setState({
       openNav: false,
     });
-  },
+  }
   init() {
     this.renderView(this.getHash());
     this.setState({
       navIndex: this.getIndex(),
       openNav: false,
     });
-  },
+  }
   componentDidMount() {
     this.init();
-    window.addEventListener('hashchange', this.init, false);
-    window.addEventListener('resize', this.winResize, false);
-  },
+    window.addEventListener('hashchange', this.init.bind(this), false);
+    window.addEventListener('resize', this.winResize.bind(this), false);
+  }
   render() {
     let {hashRoot} = this.props;
     let {openNav, navIndex, content, isLoading} = this.state;
@@ -187,13 +186,10 @@ const App = React.createClass({
         </footer>
       </div>
     );
-  },
-});
+  }
+};
 
-const appDiv = document.createElement('div');
-document.body.appendChild(appDiv);
-
-ReactDOM.render(
+render(
   <App />
-  ,appDiv
+  ,document.body.appendChild(document.createElement('div'))
 );
