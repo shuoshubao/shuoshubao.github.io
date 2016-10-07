@@ -35,6 +35,11 @@ export default [
     categories: 'js',
   },
   {
+    name: 'Redux',
+    title: 'Redux',
+    categories: 'js',
+  },
+  {
     name: 'React-Native',
     title: 'React Native',
     categories: 'js',
