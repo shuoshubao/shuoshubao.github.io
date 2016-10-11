@@ -12,13 +12,8 @@ module.exports = {
   plugins: [],
   module: {
     loaders: [
-      {test: /\.css$/, loader: 'style!css'},
       {test: /\.less$/, loader: 'style!css!less'},
-      {test: /\.js$/, exclude: /node_modules/, loader: 'babel'},
-      {test: /\.jsx?$/, exclude: /node_modules/, loader: 'babel'}
+      {test: /\.js$/, loader: 'babel'}
     ]
-  },
-  resolve: {
-    react: '/node_modules/react/react.js'
   }
 };
