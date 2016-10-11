@@ -6,7 +6,7 @@ import 'whatwg-fetch'
 import DATA_META from '../data/meta'
 import DATA_NAV from '../data/nav'
 import DATA_ARTICLE from '../data/article'
-require('../less/app.less')
+import '../less/app.less'
 
 class App extends Component {
   static defaultProps = {
