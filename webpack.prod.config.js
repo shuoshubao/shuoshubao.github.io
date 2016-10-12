@@ -14,16 +14,13 @@ module.exports = {
       compress: {
         warnings: false
       },
-      sourceMap: false,
-      mangle: {
-        except: ['$', 'exports', 'require']
-      }
+      sourceMap: false
     })
   ],
   module: {
     loaders: [
       {test: /\.less$/, loader: 'style!css?module!less'},
-      {test: /\.js$/, loader: 'babel'}
+      {test: /\.js$/, exclude: /node_modules/, loader: 'babel'}
     ]
   }
 };
