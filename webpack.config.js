@@ -9,11 +9,16 @@ module.exports = {
     path: './build',
     filename: '[name].js'
   },
-  plugins: [],
   module: {
     loaders: [
-      {test: /\.less$/, loader: 'style!css?module!less'},
-      {test: /\.js$/, exclude: /node_modules/, loader: 'babel'}
+      {
+        test: /\.less$/,
+        loader: 'style!css?modules&localIdentName=shuoshubao_[hash:base64:10]!less'
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/, loader: 'babel'
+      }
     ]
   }
 };
