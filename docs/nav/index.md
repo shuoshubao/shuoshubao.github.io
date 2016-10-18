@@ -176,3 +176,14 @@
     <a href="http://isux.tencent.com/">腾讯isux</a>
   </dd>
 </dl>
+<dl>
+  <dt>Related</dt>
+  <dd>
+    <a href="http://naotu.baidu.com/file/c104990f09f25683b5e9959abea92741?token=3d5cb6dc13c8fb1d">ECMA</a>
+    <a href="http://naotu.baidu.com/file/ba2d1d4614374fc22bbcbccbd0d9def8?token=e0fab1102b584a7e">DOM</a>
+    <a href="http://naotu.baidu.com/file/56445970f732df2593b8bcd56c05f744?token=44ac11c2809546cc">BOM</a>
+    <a href="http://naotu.baidu.com/file/d852c8647372a1e00577134f94628e71?token=244754c6d4f44f96">JavsScript</a>
+    <a href="http://naotu.baidu.com/file/1d05eeb342c21b3f897d5d8d13904689?token=2c73dd872ca8c708">HTML5</a>
+    <a href="http://shuoshubao.lofter.com/">Lofter</a>
+  </dd>
+</dl>
