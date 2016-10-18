@@ -50,18 +50,8 @@ export default [
     categories: 'js',
   },
   {
-    name: 'Angular',
-    title: 'Angular',
-    categories: 'js',
-  },
-  {
     name: 'Code',
     title: 'JS代码片段',
-    categories: 'js',
-  },
-  {
-    name: 'DOM',
-    title: 'DOM',
     categories: 'js',
   },
   {
@@ -75,6 +65,16 @@ export default [
     categories: 'js',
   },
   {
+    name: 'Ajax',
+    title: 'Ajax',
+    categories: 'js',
+  },
+  {
+    name: 'Fetch',
+    title: 'Fetch',
+    categories: 'js',
+  },
+  {
     name: 'Event',
     title: 'Event',
     categories: 'js',
@@ -85,8 +85,13 @@ export default [
     categories: 'js',
   },
   {
-    name: 'SQL',
-    title: 'SQL',
+    name: 'DOM',
+    title: 'DOM',
+    categories: 'js',
+  },
+  {
+    name: 'Angular',
+    title: 'Angular',
     categories: 'js',
   },
   {
@@ -102,6 +107,11 @@ export default [
   {
     name: 'Notification',
     title: 'Notification',
+    categories: 'js',
+  },
+  {
+    name: 'SQL',
+    title: 'SQL',
     categories: 'js',
   },
   {
