@@ -1,24 +1,4 @@
-var webpack = require('webpack');
+var webpack = require('webpack')
+var webpackCommonConfig = require('./webpack.common.config.js')
 
-module.exports = {
-  context: __dirname + '/src',
-  entry: {
-    app: './app'
-  },
-  output: {
-    path: './build',
-    filename: '[name].js'
-  },
-  module: {
-    loaders: [
-      {
-        test: /\.less$/,
-        loader: 'style!css?modules&localIdentName=shuoshubao_[hash:base64:10]!less'
-      },
-      {
-        test: /\.js$/,
-        exclude: /node_modules/, loader: 'babel'
-      }
-    ]
-  }
-};
+module.exports = Object.assign(webpackCommonConfig);

@@ -1,14 +1,7 @@
-var webpack = require('webpack');
+var webpack = require('webpack')
+var webpackCommonConfig = require('./webpack.common.config.js')
 
-module.exports = {
-  context: __dirname + '/src',
-  entry: {
-    app: './app'
-  },
-  output: {
-    path: './build',
-    filename: '[name].js'
-  },
+module.exports = Object.assign(webpackCommonConfig, {
   plugins: [
     new webpack.optimize.UglifyJsPlugin({
       compress: {
@@ -16,17 +9,5 @@ module.exports = {
       },
       sourceMap: false
     })
-  ],
-  module: {
-    loaders: [
-      {
-        test: /\.less$/,
-        loader: 'style!css?modules&localIdentName=shuoshubao_[hash:base64:10]!less'
-      },
-      {
-        test: /\.js$/,
-        exclude: /node_modules/, loader: 'babel'
-      }
-    ]
-  }
-};
+  ]
+})
