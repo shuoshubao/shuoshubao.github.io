@@ -30,6 +30,11 @@ export default [
     categories: 'css',
   },
   {
+    name: 'Yarn',
+    title: 'Yarn',
+    categories: 'js',
+  },
+  {
     name: 'React',
     title: 'React',
     categories: 'js',
