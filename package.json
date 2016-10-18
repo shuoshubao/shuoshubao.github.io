@@ -1,15 +1,8 @@
 {
   "name": "shuoshubao",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "shuoshubao`s blog",
-  "keywords": [
-    "fe",
-    "html5",
-    "css3",
-    "js",
-    "react",
-    "shuoshubao"
-  ],
+  "keywords": ["fe", "html5", "css3", "js", "react", "shuoshubao"],
   "author": "shuoshubao",
   "license": "MIT",
   "main": "server.js",
