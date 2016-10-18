@@ -1,5 +1,4 @@
-const webpack = require('webpack')
-const webpackCommonConfig = require('./webpack.common.config.js')
+const [webpack, webpackCommonConfig] = [require('webpack'), require('./webpack.common.config.js')]
 
 module.exports = Object.assign(webpackCommonConfig, {
   plugins: [
