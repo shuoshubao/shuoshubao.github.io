@@ -12,126 +12,124 @@ import '../less/prism.css'
 
 class App extends Component {
   static defaultProps = {
-    docRoot: '/docs/',
     hashRoot: '/#',
   }
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       navIndex: this.getIndex(),
       isLoading: false,
       content: '',
-      hash: this.getHash(),
-    };
+      hash: this.getHash()
+    }
   }
   getHash() {
-    let hash = window.location.hash.substring(1).split('/');
-    return [hash[0] || 'index', hash[1] || ''];
+    let hash = window.location.hash.substring(1).split('/')
+    return [hash[0] || 'index', hash[1] || '']
   }
   getIndex() {
-    let navIndex = 0;
-    let categories = this.getHash()[0];
+    let navIndex = 0
+    let categories = this.getHash()[0]
     DATA_NAV.forEach((...arg) => {
       if(arg[0].categories === categories) {
-        navIndex = arg[1];
-        return false;
+        navIndex = arg[1]
+        return false
       }
-    });
-    return navIndex;
+    })
+    return navIndex
   }
   hideLoading() {
     document.querySelectorAll('pre code').forEach(function(v, i) {
-      Prism.highlightElement(v);
-    });
+      Prism.highlightElement(v)
+    })
     setTimeout(() => {
       this.setState({
         isLoading: false
-      });
-    }, 300);
+      })
+    }, 300)
   }
   openNav() {
     this.setState({
       openNav: !this.state.openNav,
-    });
+    })
   }
   renderList(categories) {
     this.setState({
       isLoading: true,
-    });
-    let dataList = categories === 'index' ? DATA_ARTICLE : DATA_ARTICLE.filter((...arg) => arg[0].categories === categories);
-    let {hashRoot} = this.props;
+    })
+    let dataList = categories === 'index' ? DATA_ARTICLE : DATA_ARTICLE.filter((...arg) => arg[0].categories === categories)
+    let {hashRoot} = this.props
     let list = dataList.map((...arg) => (
        <li key={arg[1]}>
          <a href={`${hashRoot}${arg[0].categories}/${arg[0].name}`}>{arg[0].title}</a>
        </li>
-    ));
+    ))
     if(['nav', 'about'].indexOf(categories) != -1) {
-      this.renderArticle(categories, 'index', categories);
+      this.renderArticle(categories, 'index', categories)
     }else {
       this.setState({
-        content: <ul className={styles['m-list']}>{list}</ul>,
-      });
-      this.hideLoading();
+        content: <ul className={styles['m-list']}>{list}</ul>
+      })
+      this.hideLoading()
     }
   }
   getArticle(url, success, failure) {
-    let xhr = new XMLHttpRequest();
+    let xhr = new XMLHttpRequest()
     xhr.onreadystatechange = () => {
       if(xhr.readyState === 4 && xhr.status === 200) {
-        success(xhr.responseText);
+        success(xhr.responseText)
       }else {
-        failure();
+        failure()
       }
-    };
-    xhr.open('GET', url, true);
-    xhr.send();
+    }
+    xhr.open('GET', url, true)
+    xhr.send()
   }
   renderArticle(categories, article, listName) {
     if(['nav', 'about'].indexOf(categories) === -1 && article !== 'index' && !DATA_ARTICLE.filter((...arg) => arg[0].categories === categories).filter((...arg) => arg[0].name === article).length) {
-      console.log('文章不存在');
-      return false;
+      console.log('文章不存在')
+      return false
     }
-    let {docRoot} = this.props;
-    let url = `${docRoot}${[categories, article].join('/')}.md`;
     this.setState({
-      isLoading: true,
-    });
-    fetch(url).then(rs => {
+      isLoading: true
+    })
+    fetch(`/docs/${[categories, article].join('/')}.md`)
+    .then(rs => {
       if(rs.ok) {
         rs.text().then(rs => {
           this.setState({
-            content: listName ? (`<div class="${styles['p-' + listName]}">${marked(rs)}</div>`) : (`<div class="${styles.markdown}"><a target="_blank" href="/docs/${[categories, article].join('/')}.md")>源码</a>${marked(rs)}</div>`),
-          });
-          this.hideLoading();
-        });
+            content: listName ? (`<div class="${styles['p-' + listName]}">${marked(rs)}</div>`) : (`<div class="${styles.markdown}"><a target="_blank" href="/docs/${[categories, article].join('/')}.md")>源码</a>${marked(rs)}</div>`)
+          })
+          this.hideLoading()
+        })
       }else {
-        this.hideLoading();
+        this.hideLoading()
       }
-    });
+    })
   }
   renderView(hash) {
-    this[hash[1] ? 'renderArticle' : 'renderList'](...hash);
+    this[hash[1] ? 'renderArticle' : 'renderList'](...hash)
   }
   winResize() {
     this.setState({
-      openNav: false,
-    });
+      openNav: false
+    })
   }
   init() {
-    this.renderView(this.getHash());
+    this.renderView(this.getHash())
     this.setState({
       navIndex: this.getIndex(),
-      openNav: false,
-    });
+      openNav: false
+    })
   }
   componentDidMount() {
-    this.init();
-    window.addEventListener('hashchange', this.init.bind(this), false);
-    window.addEventListener('resize', this.winResize.bind(this), false);
+    this.init()
+    window.addEventListener('hashchange', this.init.bind(this), false)
+    window.addEventListener('resize', this.winResize.bind(this), false)
   }
   render() {
-    let {hashRoot} = this.props;
-    let {openNav, navIndex, content, isLoading} = this.state;
+    let {hashRoot} = this.props
+    let {openNav, navIndex, content, isLoading} = this.state
     return (
       <div>
         <nav className={styles['g-nav']}>
@@ -147,7 +145,7 @@ class App extends Component {
                   DATA_NAV.map((...arg) => {
                     return <li key={arg[1]} className={navIndex === arg[1] ? styles.active : ''}>
                       <a href={`${hashRoot}${DATA_NAV[arg[1]].categories}`}>{arg[0].text}</a>
-                    </li>;
+                    </li>
                   })
                 }
               </ul>
@@ -187,11 +185,11 @@ class App extends Component {
           </div>
         </footer>
       </div>
-    );
+    )
   }
-};
+}
 
 render(
   <App />
   ,document.body.appendChild(document.createElement('div'))
-);
+)
