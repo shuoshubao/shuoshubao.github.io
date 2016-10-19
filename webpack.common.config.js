@@ -1,10 +1,10 @@
 module.exports = {
   entry: {
-    app: './src/app'
+    app: './asset/app'
   },
   output: {
-    path: './build',
-    filename: '[name].js'
+    path: './asset',
+    filename: '[name].min.js'
   },
   module: {
     loaders: [
