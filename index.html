@@ -10,7 +10,7 @@
 </head>
 <body>
 <script>
-var x = document.createElement('script');x.src = './build/app.js';document.body.appendChild(x);
+localStorage.js ? eval(localStorage.js) : fetch('./build/app.js').then(rs => rs.text()).then(rs => {eval(rs);localStorage.js = rs;});
 </script>
 </body>
 </html>
