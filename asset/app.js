@@ -93,19 +93,23 @@ class App extends Component {
     this.setState({
       isLoading: true
     })
-    fetch(`/docs/${[categories, article].join('/')}.md`)
-    .then(rs => {
-      if(rs.ok) {
-        rs.text().then(rs => {
-          this.setState({
-            content: listName ? (`<div class="${styles['p-' + listName]}">${marked(rs)}</div>`) : (`<div class="${styles.markdown}"><a target="_blank" href="/docs/${[categories, article].join('/')}.md")>源码</a>${marked(rs)}</div>`)
-          })
-          this.hideLoading()
+    let content = localStorage.getItem([categories, article].join())
+    if(content) {
+      this.setState({
+        content: listName ? (`<div class="${styles['p-' + listName]}">${marked(content)}</div>`) : (`<div class="${styles.markdown}"><a target="_blank" href="/docs/${[categories, article].join('/')}.md")>源码</a>${marked(content)}</div>`),
+        isLoading: false
+      })
+    }else {
+      fetch(`/docs/${[categories, article].join('/')}.md`)
+      .then(rs => rs.text())
+      .then(rs => {
+        localStorage.setItem([categories, article].join(), rs)
+        this.setState({
+          content: listName ? (`<div class="${styles['p-' + listName]}">${marked(rs)}</div>`) : (`<div class="${styles.markdown}"><a target="_blank" href="/docs/${[categories, article].join('/')}.md")>源码</a>${marked(rs)}</div>`),
+          isLoading: false
         })
-      }else {
-        this.hideLoading()
-      }
-    })
+      })
+    }
   }
   renderView(hash) {
     this[hash[1] ? 'renderArticle' : 'renderList'](...hash)

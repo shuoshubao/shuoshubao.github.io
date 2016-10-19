@@ -75,6 +75,11 @@ export default [
     categories: 'js',
   },
   {
+    name: 'Promise',
+    title: 'Promise',
+    categories: 'js',
+  },
+  {
     name: 'Event',
     title: 'Event',
     categories: 'js',
