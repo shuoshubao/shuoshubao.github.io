@@ -173,5 +173,15 @@ export default [
     name: 'Sublime',
     title: 'Sublime',
     categories: 'tool',
+  },
+  {
+    name: 'Nav',
+    title: '前端资源导航',
+    categories: 'assemble',
+  },
+  {
+    name: 'About',
+    title: 'About Me',
+    categories: 'assemble',
   }
 ]

@@ -25,13 +25,8 @@ export default [
     categories: 'tool',
   },
   {
-    text: 'Resource',
-    title: '前端资源导航',
-    categories: 'nav',
-  },
-  {
-    text: 'About',
-    title: '关于',
-    categories: 'about',
+    text: 'Assemble',
+    title: 'Assemble',
+    categories: 'assemble',
   }
 ]
