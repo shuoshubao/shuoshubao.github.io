@@ -10,7 +10,7 @@
 </head>
 <body>
 <script>
-localStorage.getItem('js') ? eval(localStorage.getItem('js')) : fetch('./asset/app.min.js').then(rs => rs.text()).then(rs => {
+location.hostname != 'localhost' && localStorage.getItem('js') ? eval(localStorage.getItem('js')) : fetch('./asset/app.min.js').then(rs => rs.text()).then(rs => {
   eval(rs);
   localStorage.setItem('js', rs);
 });

@@ -87,7 +87,7 @@ class App extends Component {
       <div dangerouslySetInnerHTML={{__html: marked(content)}} />
     </div>
     let content = localStorage.getItem([categories, article].join())
-    if(content) {
+    if(location.hostname != 'localhost' && content) {
       this.setState({
         content: getConten(content)
       })
