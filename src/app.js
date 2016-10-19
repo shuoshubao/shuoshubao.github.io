@@ -8,6 +8,7 @@ import DATA_META from '../data/meta'
 import DATA_NAV from '../data/nav'
 import DATA_ARTICLE from '../data/article'
 import styles from '../less/app.less'
+import '../less/prism.css'
 
 
 class App extends Component {

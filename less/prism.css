@@ -4,11 +4,7 @@
  * Based on https://github.com/tshedor/workshop-wp-theme (Example: http://workshop.kansan.com/category/sessions/basics or http://workshop.timshedor.com/category/sessions/basics);
  * @author Tim  Shedor
  */
-.token.comment,
-.token.block-comment,
-.token.prolog,
-.token.doctype,
-.token.cdata {
+.token.comment, .token.block-comment, .token.prolog, .token.doctype, .token.cdata {
 	color: #7D8B99;
 }
 
@@ -115,4 +111,3 @@ pre[data-line] code {
 pre .line-highlight {
 	margin-top: 0;
 }
-
