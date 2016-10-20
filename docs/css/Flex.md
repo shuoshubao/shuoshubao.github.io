@@ -19,3 +19,7 @@
 * flex-basis: <length> | auto /* default auto */
 * flex: none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ]
 * align-self: auto | flex-start | flex-end | center | baseline | stretch
+
+# Referrence
+
+- [阮一峰 flex-grammar](http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html)
