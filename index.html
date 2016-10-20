@@ -10,10 +10,10 @@
 </head>
 <body>
 <script>
-location.hostname != 'localhost' && localStorage.getItem('js') ? eval(localStorage.getItem('js')) : fetch('./asset/app.min.js').then(rs => rs.text()).then(rs => {
-  eval(rs);
-  localStorage.setItem('js', rs);
-});
+window.page_config = {
+  version: '20161021',
+}
 </script>
+<script src="asset/page.min.js"></script>
 </body>
 </html>

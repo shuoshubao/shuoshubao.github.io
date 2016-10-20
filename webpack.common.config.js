@@ -1,5 +1,6 @@
 module.exports = {
   entry: {
+    page: './asset/page',
     app: './asset/app'
   },
   output: {

@@ -6,6 +6,7 @@ import Prism from 'prismjs'
 import DATA_META from '../data/meta'
 import DATA_NAV from '../data/nav'
 import DATA_ARTICLE from '../data/article'
+import DATA_MD5 from '../data/md5'
 import '../less/app.less'
 
 
@@ -65,40 +66,29 @@ class App extends Component {
     })
     this.hideLoading()
   }
-  getArticle(url, success, failure) {
-    let xhr = new XMLHttpRequest()
-    xhr.onreadystatechange = () => {
-      if(xhr.readyState === 4 && xhr.status === 200) {
-        success(xhr.responseText)
-      }else {
-        failure()
-      }
-    }
-    xhr.open('GET', url, true)
-    xhr.send()
-  }
   renderArticle(categories, article) {
-    if(['nav', 'about'].indexOf(categories) === -1 && article !== 'index' && !DATA_ARTICLE.filter((...arg) => arg[0].categories === categories).filter((...arg) => arg[0].name === article).length) {
+    let articleId = [categories, article];
+    if(!DATA_ARTICLE.filter((...arg) => arg[0].categories === categories).filter((...arg) => arg[0].name === article).length) {
       console.log('文章不存在')
       return false
     }
     let getConten = (content) => categories == 'assemble' ? <div dangerouslySetInnerHTML={{__html: marked(content)}} /> : <div className="markdown">
-      <a target="_blank" href={`/docs/${[categories, article].join('/')}.md`}>源码</a>
+      <a target="_blank" href={`/docs/${articleId.join('/')}.md`}>源码</a>
       <div dangerouslySetInnerHTML={{__html: marked(content)}} />
     </div>
-    let content = localStorage.getItem([categories, article].join())
-    if(location.hostname != 'localhost' && content) {
+    let content = localStorage.getItem(articleId.join())
+    if(content && content.slice(0, 5) == DATA_MD5[articleId.join()]) {
       this.setState({
-        content: getConten(content)
+        content: getConten(content.slice(5))
       })
     }else {
       this.setState({
         isLoading: true
       })
-      fetch(`/docs/${[categories, article].join('/')}.md`)
+      fetch(`/docs/${articleId.join('/')}.md`)
       .then(rs => rs.text())
       .then(rs => {
-        localStorage.setItem([categories, article].join(), rs)
+        localStorage.setItem(articleId.join(), DATA_MD5[articleId.join()] + rs)
         this.setState({
           content: getConten(rs)
         })

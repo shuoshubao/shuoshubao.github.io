@@ -1,4 +1,4 @@
-export default [
+module.exports = [
   {
     text: 'Home',
     title: 'WEB前端开发',

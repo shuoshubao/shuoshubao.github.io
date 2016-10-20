@@ -1,4 +1,4 @@
-export default {
+module.exports =  {
   title: 'WEB前端开发',
   author: 'shuoshubao',
   qq: '759979885',
