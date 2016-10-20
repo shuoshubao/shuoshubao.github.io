@@ -30,6 +30,11 @@ export default [
     categories: 'css',
   },
   {
+    name: 'Flex',
+    title: 'Flex',
+    categories: 'css',
+  },
+  {
     name: 'Yarn',
     title: 'Yarn',
     categories: 'js',
