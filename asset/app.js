@@ -159,17 +159,18 @@ class App extends Component {
           :
           <article className="g-content" ref="content">{content}</article>
         }
-
-        <section className={classnames('g-loading', isLoading ? '' : 'hide')}>
-          <div className="w-loading">
-            <div className="m-loading">
-              {
-                ['y', 'r', 'g'].map((v, i) => <div key={i} className={classnames('item', `item-${v}`)} />)
-              }
+        {
+          isLoading && <section className="g-loading">
+            <div className="w-loading">
+              <div className="m-loading">
+                {
+                  ['y', 'r', 'g'].map((v, i) => <div key={i} className={classnames('item', `item-${v}`)} />)
+                }
+              </div>
+              <div className="text">Loading...</div>
             </div>
-            <div className="text">Loading...</div>
-          </div>
-        </section>
+          </section>
+        }
         <footer className="g-footer">
           <div className="outer">
             <div className="wrap">
