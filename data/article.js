@@ -122,7 +122,7 @@ module.exports = [
   {
     name: 'SQL',
     title: 'SQL',
-    categories: 'js',
+    categories: 'tool',
   },
   {
     name: 'CodeGuide',
