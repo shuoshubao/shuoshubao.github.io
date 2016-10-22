@@ -39,14 +39,14 @@ class App extends Component {
     return navIndex
   }
   hideLoading() {
-    document.querySelectorAll('pre code').forEach(function(v, i) {
+    document.querySelectorAll('pre code').forEach((v, i) => {
       Prism.highlightElement(v)
     })
     setTimeout(() => {
       this.setState({
         isLoading: false
       })
-    }, 300)
+    }, 200)
   }
   openNav() {
     this.setState({

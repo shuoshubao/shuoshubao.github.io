@@ -11,9 +11,21 @@
 <body>
 <script>
 window.page_config = {
-  version: '201610210',
+  version: '20161022',
+};
+var versionStorage = localStorage.getItem('version');
+var jsStorage = localStorage.getItem('js');
+if(window.page_config.version == versionStorage) {
+  eval(jsStorage);
+}else {
+  fetch('./asset/app.min.js')
+  .then(rs => rs.text())
+  .then(rs => {
+    eval(rs);
+    localStorage.setItem('js', rs);
+    localStorage.setItem('version', window.page_config.version);
+  });
 }
 </script>
-<script src="asset/page.min.js"></script>
 </body>
 </html>
