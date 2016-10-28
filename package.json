@@ -2,7 +2,14 @@
   "name": "shuoshubao",
   "version": "1.0.3",
   "description": "shuoshubao`s blog",
-  "keywords": ["fe", "html5", "css3", "js", "react", "shuoshubao"],
+  "keywords": [
+    "fe",
+    "html5",
+    "css3",
+    "js",
+    "react",
+    "shuoshubao"
+  ],
   "author": "shuoshubao",
   "license": "MIT",
   "main": "server.js",
@@ -26,6 +33,7 @@
     "marked": "^0.3.5",
     "prismjs": "^1.5.1",
     "react": "^15.3.2",
+    "react-css-modules": "^3.7.10",
     "react-dom": "^15.3.2",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.0"
