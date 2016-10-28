@@ -169,11 +169,8 @@ class App extends Component {
         <footer className={styles['g-footer']}>
           <div className={styles['outer']}>
             <div className={styles['wrap']}>
-              <span>©</span>
-              <time>{new Date().getFullYear()} </time>
-              <span>{DATA_META.title}</span>
-              <span> | </span>
-              <span>Powered by </span>
+              <span>© 2015-{new Date().getFullYear()} Shuoshubao.com 版权所有 {DATA_META.registration}</span>
+              <span> Powered by </span>
               <a target="_blank" href={DATA_META.githubLink}> GitHub </a>
               <a target="_blank" href="https://facebook.github.io/react/"> React </a>
             </div>

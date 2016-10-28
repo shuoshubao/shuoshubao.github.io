@@ -9,4 +9,5 @@ module.exports =  {
   sinaLink: 'http://weibo.com/qq759979885',
   githubLink: 'https://github.com/shuoshubao/shuoshubao.github.io/',
   hostnameProd: 'shuoshubao.github.io',
+  registration: '京ICP备15042742号'
 }
