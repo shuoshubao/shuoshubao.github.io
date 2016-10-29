@@ -10,7 +10,7 @@ module.exports = {
     loaders: [
       {
         test: /\.less$/,
-        loader: 'style!css?module&localIdentName=shuoshubao_[hash:base64:10]!less'
+        loader: 'style!css?module&localIdentName=[local]_[hash:base64:10]!less'
       },
       {
         test: /\.js$/,

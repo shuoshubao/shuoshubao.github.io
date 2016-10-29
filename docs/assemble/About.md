@@ -1,4 +1,4 @@
-<div class="p-about">
+<div class="p-about_1gV7gnyeIc">
   <dl>
       <dt>QQ群</dt>
       <dd>

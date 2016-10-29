@@ -7,26 +7,13 @@
   <meta name="keywords" content="硕鼠宝,shuoshubao,shubao,FE,html5,css3,js,jquery,jq">
   <title>WEB前端开发</title>
   <link rel="icon" type="image/x-icon" href="img/favicon.ico">
-  <link rel="stylesheet" href="css/page.css">
 </head>
 <body>
 <script>
-window.page_config = {
-  version: '20161028',
-};
+window.page_config = {version: '20161029'};
 var versionStorage = localStorage.getItem('version');
 var jsStorage = localStorage.getItem('js');
-if(window.page_config.version == versionStorage) {
-  eval(jsStorage);
-}else {
-  fetch('./asset/app.min.js')
-  .then(rs => rs.text())
-  .then(rs => {
-    eval(rs);
-    localStorage.setItem('js', rs);
-    localStorage.setItem('version', window.page_config.version);
-  });
-}
+window.page_config.version == versionStorage ? eval(jsStorage) : fetch('./asset/app.min.js').then(rs => rs.text()).then(rs => {eval(rs);localStorage.setItem('js', rs);localStorage.setItem('version', window.page_config.version);});
 </script>
 </body>
 </html>

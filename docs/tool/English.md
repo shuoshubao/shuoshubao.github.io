@@ -86,3 +86,4 @@
 | nullified | 无效的 |
 | term | 术语 |
 | terminology | 术语 |
+| dispatch | 分发 |
