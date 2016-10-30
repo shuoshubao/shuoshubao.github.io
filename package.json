@@ -17,7 +17,8 @@
   "scripts": {
     "start": "webpack --display-error-details --progress --colors --watch",
     "build": "webpack --progress --profile --colors --config webpack.prod.config.js",
-    "md5": "node md5"
+    "md5": "node md5",
+    "qiniu": "node qiniu"
   },
   "devDependencies": {
     "babel-core": "^6.1.4",
@@ -32,6 +33,7 @@
     "less-loader": "^2.2.3",
     "marked": "^0.3.5",
     "prismjs": "^1.5.1",
+    "qiniu": "^6.1.13",
     "react": "^15.3.2",
     "react-css-modules": "^3.7.10",
     "react-dom": "^15.3.2",
