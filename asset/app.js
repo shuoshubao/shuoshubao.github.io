@@ -13,7 +13,7 @@ import styles from'../less/app.less'
 
 class App extends Component {
   static defaultProps = {
-    hashRoot: '/#',
+    sourceUrl: 'https://ofuxezs94.qnssl.com/'
   }
   constructor(props) {
     super(props)
@@ -56,10 +56,9 @@ class App extends Component {
   }
   renderList(categories) {
     let dataList = categories === 'index' ? DATA_ARTICLE : DATA_ARTICLE.filter((...arg) => arg[0].categories === categories)
-    let {hashRoot} = this.props
     let list = dataList.map((...arg) => (
        <li key={arg[1]}>
-         <a href={`${hashRoot}${arg[0].categories}/${arg[0].name}`}>{arg[0].title}</a>
+         <a href={`/#${arg[0].categories}/${arg[0].name}`}>{arg[0].title}</a>
        </li>
     ))
     this.setState({
@@ -74,7 +73,7 @@ class App extends Component {
       return false
     }
     let getConten = (content) => categories == 'assemble' ? <div dangerouslySetInnerHTML={{__html: marked(content)}} /> : <div className={styles['markdown']}>
-      <a target="_blank" href={`/docs/${articleId.join('/')}.md`}>源码</a>
+      <a target="_blank" href={`${this.props.sourceUrl}${articleId.join('/')}.md`}>源码</a>
       <div dangerouslySetInnerHTML={{__html: marked(content)}} />
     </div>
     let content = localStorage.getItem(articleId.join())
@@ -86,7 +85,7 @@ class App extends Component {
       this.setState({
         isLoading: true
       })
-      fetch(`https://ofuxezs94.qnssl.com/${articleId.join('/')}.md`)
+      fetch(`${this.props.sourceUrl}${articleId.join('/')}.md`)
       .then(rs => rs.text())
       .then(rs => {
         localStorage.setItem(articleId.join(), DATA_MD5[articleId.join()] + rs)
@@ -118,7 +117,6 @@ class App extends Component {
     window.addEventListener('resize', this.winResize.bind(this), false)
   }
   render() {
-    let {hashRoot} = this.props
     let {openNav, navIndex, content, isLoading} = this.state
     return (
       <div>
@@ -138,7 +136,7 @@ class App extends Component {
                 {
                   DATA_NAV.map((...arg) => {
                     return <li key={arg[1]} className={navIndex === arg[1] ? styles['active'] : ''}>
-                      <a href={`${hashRoot}${DATA_NAV[arg[1]].categories}`}>{arg[0].text}</a>
+                      <a href={`/#${DATA_NAV[arg[1]].categories}`}>{arg[0].text}</a>
                     </li>
                   })
                 }
@@ -182,7 +180,4 @@ class App extends Component {
 }
 
 
-render(
-  <App />
-  ,document.body.appendChild(document.createElement('div'))
-)
+render(<App />, document.body.appendChild(document.createElement('div')))
