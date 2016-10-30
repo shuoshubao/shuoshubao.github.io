@@ -86,7 +86,7 @@ class App extends Component {
       this.setState({
         isLoading: true
       })
-      fetch(`/docs/${articleId.join('/')}.md`)
+      fetch(`https://ofuxezs94.qnssl.com/${articleId.join('/')}.md`)
       .then(rs => rs.text())
       .then(rs => {
         localStorage.setItem(articleId.join(), DATA_MD5[articleId.join()] + rs)
