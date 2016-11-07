@@ -70,6 +70,11 @@ module.exports = [
     categories: 'js',
   },
   {
+    name: 'NodeJs',
+    title: 'NodeJs',
+    categories: 'js',
+  },
+  {
     name: 'Ajax',
     title: 'Ajax',
     categories: 'js',

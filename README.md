@@ -8,3 +8,4 @@
 * npm start 编译并监听 react
 * npm run md5 生成或更新所有文章的md5影射
 * npm run build 编译并压缩 react
+* npm run qiniu 上传docs目录到七牛云存储里
