@@ -11,6 +11,7 @@
   "scripts": {
     "start": "webpack --display-error-details --progress --colors --watch",
     "build": "webpack --progress --profile --colors --config webpack.prod.config.js",
+    "server": "http-server",
     "md5": "node md5",
     "qiniu": "node qiniu"
   },

@@ -12,7 +12,7 @@ article.forEach((v, i) => {
     const fsHash = crypto.createHash('md5')
     const stream = fs.createReadStream(`./docs/${strPath.join('/')}.md`)
     stream.on('data', d => fsHash.update(d))
-    stream.on('end', () => resolve(articleData[strPath.join()] = fsHash.digest('hex').slice(0, 5)))
+    stream.on('end', () => resolve(articleData[strPath.join()] = fsHash.digest('hex')))
   })
 })
 

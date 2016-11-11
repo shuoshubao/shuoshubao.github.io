@@ -77,7 +77,7 @@ class App extends Component {
       <div dangerouslySetInnerHTML={{__html: marked(content)}} />
     </div>
     let content = localStorage.getItem(articleId.join())
-    if(content && content.slice(0, 5) == DATA_MD5[articleId.join()]) {
+    if(content && content.slice(0, 5) == DATA_MD5[articleId.join()].slice(0, 5)) {
       this.setState({
         content: getConten(content.slice(5))
       })
