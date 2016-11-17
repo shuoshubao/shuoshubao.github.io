@@ -88,7 +88,7 @@ class App extends Component {
       fetch(`${this.props.sourceUrl}${articleId.join('/')}.md`)
       .then(rs => rs.text())
       .then(rs => {
-        localStorage.setItem(articleId.join(), DATA_MD5[articleId.join()] + rs)
+        localStorage.setItem(articleId.join(), DATA_MD5[articleId.join().slice(0, 5)] + rs)
         this.setState({
           content: getConten(rs)
         })
