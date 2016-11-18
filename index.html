@@ -10,7 +10,7 @@
 </head>
 <body>
 <script>
-window.page_config = {version: '20161118'};
+window.page_config = {version: '201611180'};
 var versionStorage = localStorage.getItem('version');
 var jsStorage = localStorage.getItem('js');
 window.page_config.version == versionStorage ? eval(jsStorage) : fetch('./asset/app.min.js').then(rs => rs.text()).then(rs => {eval(rs);localStorage.setItem('js', rs);localStorage.setItem('version', window.page_config.version);});
