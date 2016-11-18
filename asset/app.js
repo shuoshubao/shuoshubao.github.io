@@ -13,7 +13,8 @@ import styles from'../less/app.less'
 
 class App extends Component {
   static defaultProps = {
-    sourceUrl: 'https://ofuxezs94.qnssl.com/'
+    sourceUrl: '/docs/'
+    // sourceUrl: 'http://ogtoaourc.bkt.clouddn.com/'
   }
   constructor(props) {
     super(props)
@@ -88,7 +89,7 @@ class App extends Component {
       fetch(`${this.props.sourceUrl}${articleId.join('/')}.md`)
       .then(rs => rs.text())
       .then(rs => {
-        localStorage.setItem(articleId.join(), DATA_MD5[articleId.join().slice(0, 5)] + rs)
+        localStorage.setItem(articleId.join(), DATA_MD5[articleId.join()].slice(0, 5) + rs)
         this.setState({
           content: getConten(rs)
         })

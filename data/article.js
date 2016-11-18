@@ -125,6 +125,11 @@ module.exports = [
     categories: 'js',
   },
   {
+    name: 'Terminal',
+    title: 'Terminal',
+    categories: 'tool',
+  },
+  {
     name: 'SQL',
     title: 'SQL',
     categories: 'tool',

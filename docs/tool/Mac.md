@@ -32,15 +32,15 @@
 
 # 3. 快捷键
 
-* command+,                 打开当前app的设置
-* command+w                 关闭当前标签页
-* command+q                 退出当前程序
-* command+h                 隐藏除了当前窗口
-* command+alt+h             隐藏除了当前窗口以外的所有窗口
-* command+shift+delete      清空垃圾桶
-* command+alt+shift+delete  清空垃圾桶（无提示）
-* command+左右               行首/末
-* command+上下               顶/底部
+* cmd+,                 打开当前app的设置
+* cmd+w                 关闭当前标签页
+* cmd+q                 退出当前程序
+* cmd+h                 隐藏除了当前窗口
+* cmd+alt+h             隐藏除了当前窗口以外的所有窗口
+* cmd+shift+delete      清空垃圾桶
+* cmd+alt+shift+delete  清空垃圾桶（无提示）
+* cmd+左右               行首/末
+* cmd+上下               顶/底部
 * fn+上下                    翻页
 
 
@@ -67,3 +67,14 @@
 # 6. 删除所有的 .DS_Store 文件
 
 > sudo find / -name ".DS_Store" -depth -exec rm {} \;
+
+# 7. Alias
+
+> vim ~/.bash_profile
+
+```
+alias dev = ssh root@172.34.56
+alias gst = git status
+alias gpl = git pull
+alias gps = git push
+```

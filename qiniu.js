@@ -12,10 +12,16 @@ const uploadFile = (uptoken, key, localFile) => qiniu.io.putFile(uptoken, key, l
 
 const article = require('./data/article')
 
-article.forEach((v, i) => {
-  // 要保存的文件名
-  const key = `${[v.categories, v.name].join('/')}.md`
-  //要上传文件的本地路径
-  const filePath = `./docs/${[v.categories, v.name].join('/')}.md`
+const argv = process.argv
+
+if(argv.length === 4) {
+  const key = `${[argv[2], argv[3]].join('/')}.md`
+  const filePath = `./docs/${[argv[2], argv[3]].join('/')}.md`
   uploadFile(uptoken(bucket, key), key, filePath)
-})
+}else {
+  article.forEach((v, i) => {
+    const key = `${[v.categories, v.name].join('/')}.md`
+    const filePath = `./docs/${[v.categories, v.name].join('/')}.md`
+    uploadFile(uptoken(bucket, key), key, filePath)
+  })
+}
