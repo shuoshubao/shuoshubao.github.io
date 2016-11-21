@@ -26,6 +26,7 @@
     "css-loader": "^0.25.0",
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
+    "json-loader": "^0.5.4",
     "marked": "^0.3.6",
     "prismjs": "^1.5.1",
     "qiniu": "^6.1.13",

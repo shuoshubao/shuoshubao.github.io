@@ -6,9 +6,11 @@ import Prism from 'prismjs'
 import DATA_META from '../data/meta'
 import DATA_NAV from '../data/nav'
 import DATA_ARTICLE from '../data/article'
-import DATA_MD5 from '../data/md5'
 import CSSModules from 'react-css-modules'
 import styles from'../less/app.less'
+
+let DATA_MD5 = require('../data/md5')
+console.log(DATA_MD5)
 
 
 class App extends Component {

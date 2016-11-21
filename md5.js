@@ -16,4 +16,4 @@ article.forEach((v, i) => {
   })
 })
 
-Promise.all(arrPromise).then(() => fs.writeFile('./data/md5.js', 'module.exports = ' + JSON.stringify(articleData, null, 2)))
+Promise.all(arrPromise).then(() => fs.writeFile('./data/md5.json', JSON.stringify(articleData, null, 2)))
