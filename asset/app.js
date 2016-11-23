@@ -1,24 +1,25 @@
 import React, {Component} from 'react'
 import {render} from 'react-dom'
 import classnames from 'classnames'
-import marked from 'marked'
-import Prism from 'prismjs'
 import DATA_NAV from '../data/nav'
 import DATA_ARTICLE from '../data/article'
-import styles from'../less/app.less'
+import styles from '../less/app.less'
+import DATA_META from '../data/meta.json'
 
-const DATA_META = require('../data/meta.json')
-
+const DATA_ARTICLE_HTML = {}
+DATA_ARTICLE.forEach((v, i) => {
+  const arr = [v.categories, v.name]
+  DATA_ARTICLE_HTML[arr.join(',')] = require(`../docs/${arr.join('/')}.md`)
+})
 
 class App extends Component {
   static defaultProps = {
     sourceUrl: '/docs/'
   }
-  constructor(props) {
-    super(props)
+  constructor() {
+    super()
     this.state = {
       navIndex: this.getIndex(),
-      isLoading: false,
       content: '',
       hash: this.getHash()
     }
@@ -38,16 +39,6 @@ class App extends Component {
     })
     return navIndex
   }
-  hideLoading() {
-    document.querySelectorAll('pre code').forEach((v, i) => {
-      Prism.highlightElement(v)
-    })
-    setTimeout(() => {
-      this.setState({
-        isLoading: false
-      })
-    }, 200)
-  }
   openNav() {
     this.setState({
       openNav: !this.state.openNav,
@@ -63,7 +54,6 @@ class App extends Component {
     this.setState({
       content: <ul className={styles['m-list']}>{list}</ul>
     })
-    this.hideLoading()
   }
   renderArticle(categories, article) {
     let articleId = [categories, article];
@@ -71,21 +61,11 @@ class App extends Component {
       console.log('文章不存在')
       return false
     }
-    let getConten = (content) => categories == 'assemble' ? <div dangerouslySetInnerHTML={{__html: marked(content)}} /> : <div className={styles['markdown']}>
+    let getConten = (content) => categories == 'assemble' ? <div dangerouslySetInnerHTML={{__html: content}} /> : <div className={styles['markdown']}>
       <a target="_blank" href={`${this.props.sourceUrl}${articleId.join('/')}.md`}>源码</a>
-      <div dangerouslySetInnerHTML={{__html: marked(content)}} />
+      <div dangerouslySetInnerHTML={{__html: content}} />
     </div>
-    this.setState({
-      isLoading: true
-    })
-    fetch(`${this.props.sourceUrl}${articleId.join('/')}.md`)
-    .then(rs => rs.text())
-    .then(rs => {
-      this.setState({
-        content: getConten(rs)
-      })
-      this.hideLoading()
-    })
+    this.setState({content: getConten(DATA_ARTICLE_HTML[articleId.join(',')])})
   }
   renderView(hash) {
     this[hash[1] ? 'renderArticle' : 'renderList'](...hash)
@@ -108,7 +88,10 @@ class App extends Component {
     window.addEventListener('resize', this.winResize.bind(this), false)
   }
   render() {
-    let {openNav, navIndex, content, isLoading} = this.state
+    let {
+      openNav,
+      navIndex,
+      content} = this.state
     return (
       <div>
         <nav className={styles['g-nav']}>
@@ -142,18 +125,6 @@ class App extends Component {
           <article className={styles['g-content']} ref="content" dangerouslySetInnerHTML={{__html: content}} />
           :
           <article className={styles['g-content']} ref="content">{content}</article>
-        }
-        {
-          isLoading && <section className={styles['g-loading']}>
-            <div className={styles['w-loading']}>
-              <div className={styles['m-loading']}>
-                {
-                  ['y', 'r', 'g'].map((v, i) => <div key={i} className={classnames(styles['item'], styles[`item-${v}`])} />)
-                }
-              </div>
-              <div className={styles['text']}>Loading...</div>
-            </div>
-          </section>
         }
         <footer className={styles['g-footer']}>
           <div className={styles['outer']}>

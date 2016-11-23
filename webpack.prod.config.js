@@ -3,11 +3,11 @@ const webpackCommonConfig = require('./webpack.common.config.js')
 
 module.exports = Object.assign(webpackCommonConfig, {
   plugins: [
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      },
-      sourceMap: false
-    })
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('production')
+      }
+    }),
+    new webpack.optimize.UglifyJsPlugin()
   ]
 })

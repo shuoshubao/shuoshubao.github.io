@@ -9,6 +9,10 @@ module.exports = {
   module: {
     loaders: [
       {
+        test: /\.md$/,
+        loader: 'html!markdown'
+      },
+      {
         test: /\.less$/,
         loader: 'style!css?module&localIdentName=[local]_[hash:base64:10]!less'
       },
