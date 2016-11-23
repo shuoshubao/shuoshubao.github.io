@@ -9,11 +9,18 @@
   <link rel="icon" type="image/x-icon" href="img/favicon.ico">
 </head>
 <body>
+<script src="asset/app.min.js"></script>
 <script>
-window.page_config = {version: '20161121'};
-var versionStorage = localStorage.getItem('version');
-var jsStorage = localStorage.getItem('js');
-window.page_config.version == versionStorage ? eval(jsStorage) : fetch('./asset/app.min.js').then(rs => rs.text()).then(rs => {eval(rs);localStorage.setItem('js', rs);localStorage.setItem('version', window.page_config.version);});
+localStorage.clear();
+if(location.hostname === 'shuoshubao.github.io') {
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement('script');
+    hm.src = 'https://hm.baidu.com/hm.js?12f2656ca2bbd3123c8d0ef2e3d2ef0a';
+    var s = document.querySelector('script');
+    s.parentNode.insertBefore(hm, s);
+  })();
+}
 </script>
 </body>
 </html>

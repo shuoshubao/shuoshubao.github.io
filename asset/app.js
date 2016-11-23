@@ -3,20 +3,16 @@ import {render} from 'react-dom'
 import classnames from 'classnames'
 import marked from 'marked'
 import Prism from 'prismjs'
-import DATA_META from '../data/meta'
 import DATA_NAV from '../data/nav'
 import DATA_ARTICLE from '../data/article'
-import CSSModules from 'react-css-modules'
 import styles from'../less/app.less'
 
-let DATA_MD5 = require('../data/md5')
-console.log(DATA_MD5)
+const DATA_META = require('../data/meta.json')
 
 
 class App extends Component {
   static defaultProps = {
     sourceUrl: '/docs/'
-    // sourceUrl: 'http://ogtoaourc.bkt.clouddn.com/'
   }
   constructor(props) {
     super(props)
@@ -79,25 +75,17 @@ class App extends Component {
       <a target="_blank" href={`${this.props.sourceUrl}${articleId.join('/')}.md`}>源码</a>
       <div dangerouslySetInnerHTML={{__html: marked(content)}} />
     </div>
-    let content = localStorage.getItem(articleId.join())
-    if(content && content.slice(0, 5) == DATA_MD5[articleId.join()].slice(0, 5)) {
+    this.setState({
+      isLoading: true
+    })
+    fetch(`${this.props.sourceUrl}${articleId.join('/')}.md`)
+    .then(rs => rs.text())
+    .then(rs => {
       this.setState({
-        content: getConten(content.slice(5))
+        content: getConten(rs)
       })
-    }else {
-      this.setState({
-        isLoading: true
-      })
-      fetch(`${this.props.sourceUrl}${articleId.join('/')}.md`)
-      .then(rs => rs.text())
-      .then(rs => {
-        localStorage.setItem(articleId.join(), DATA_MD5[articleId.join()].slice(0, 5) + rs)
-        this.setState({
-          content: getConten(rs)
-        })
-        this.hideLoading()
-      })
-    }
+      this.hideLoading()
+    })
   }
   renderView(hash) {
     this[hash[1] ? 'renderArticle' : 'renderList'](...hash)

@@ -31,7 +31,6 @@
     "prismjs": "^1.5.1",
     "qiniu": "^6.1.13",
     "react": "^15.3.2",
-    "react-css-modules": "^3.7.10",
     "react-dom": "^15.3.2",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.3"
