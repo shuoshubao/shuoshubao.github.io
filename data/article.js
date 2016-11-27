@@ -122,17 +122,17 @@ module.exports = [
   {
     name: 'overview',
     title: 'overview',
-    categories: 'nodejs',
+    categories: 'node',
   },
   {
     name: 'fs',
     title: 'fs',
-    categories: 'nodejs',
+    categories: 'node',
   },
   {
     name: 'stream',
     title: 'stream',
-    categories: 'nodejs',
+    categories: 'node',
   },
   {
     name: 'Terminal',
