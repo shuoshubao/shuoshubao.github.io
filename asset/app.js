@@ -62,8 +62,8 @@ class App extends Component {
       return false
     }
     let getConten = (content) => categories == 'assemble' ? <div dangerouslySetInnerHTML={{__html: content}} /> : <div className={styles['markdown']}>
-      <a target="_blank" href={`${this.props.sourceUrl}${articleId.join('/')}.md`}>源码</a>
       <div dangerouslySetInnerHTML={{__html: content}} />
+      <a target="_blank" href={`${this.props.sourceUrl}${articleId.join('/')}.md`}>源码</a>
     </div>
     this.setState({content: getConten(DATA_ARTICLE_HTML[articleId.join(',')])})
   }

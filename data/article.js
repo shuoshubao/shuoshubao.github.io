@@ -70,11 +70,6 @@ module.exports = [
     categories: 'js',
   },
   {
-    name: 'NodeJs',
-    title: 'NodeJs',
-    categories: 'js',
-  },
-  {
     name: 'Ajax',
     title: 'Ajax',
     categories: 'js',
@@ -123,6 +118,21 @@ module.exports = [
     name: 'Notification',
     title: 'Notification',
     categories: 'js',
+  },
+  {
+    name: 'overview',
+    title: 'overview',
+    categories: 'nodejs',
+  },
+  {
+    name: 'fs',
+    title: 'fs',
+    categories: 'nodejs',
+  },
+  {
+    name: 'stream',
+    title: 'stream',
+    categories: 'nodejs',
   },
   {
     name: 'Terminal',

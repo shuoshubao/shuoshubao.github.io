@@ -20,6 +20,11 @@ module.exports = [
     categories: 'js',
   },
   {
+    text: 'NodeJs',
+    title: 'NodeJs类目',
+    categories: 'nodejs',
+  },
+  {
     text: 'Tool',
     title: '前端工具',
     categories: 'tool',
