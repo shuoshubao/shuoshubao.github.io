@@ -1,6 +1,6 @@
 {
   "name": "shuoshubao",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "main": "index.js",
   "repository": {
     "url": "https://github.com/shuoshubao/shuoshubao.github.io.git",
@@ -9,11 +9,8 @@
   "author": "shuoshubao <759979885@qq.com>",
   "license": "MIT",
   "scripts": {
-    "start": "webpack --display-error-details --progress --colors --watch",
-    "build": "webpack --progress --profile --colors --config webpack.prod.config.js",
-    "server": "http-server",
-    "md5": "node md5",
-    "qiniu": "node qiniu"
+    "start": "webpack --display-error-details --progress --colors --watch --config webpack/webpack.prod.config.js",
+    "build": "webpack --progress --profile --colors --config webpack/webpack.prod.config.js"
   },
   "dependencies": {
     "babel-core": "^6.18.0",
@@ -29,7 +26,6 @@
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
     "markdown-loader": "^0.1.7",
-    "qiniu": "^6.1.13",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "style-loader": "^0.13.1",
