@@ -145,6 +145,11 @@ module.exports = [
     categories: 'tool',
   },
   {
+    name: 'Mongodb',
+    title: 'Mongodb',
+    categories: 'tool',
+  },
+  {
     name: 'CodeGuide',
     title: '代码规范',
     categories: 'tool',

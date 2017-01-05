@@ -9,7 +9,7 @@
   "author": "shuoshubao <759979885@qq.com>",
   "license": "MIT",
   "scripts": {
-    "start": "webpack --display-error-details --progress --colors --watch --config webpack/webpack.prod.config.js",
+    "start": "webpack --display-error-details --progress --colors --watch --config webpack/webpack.config.js",
     "build": "webpack --progress --profile --colors --config webpack/webpack.prod.config.js"
   },
   "dependencies": {
