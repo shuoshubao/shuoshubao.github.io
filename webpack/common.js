@@ -1,9 +1,9 @@
-const path = require('path');
-const webpack = require('webpack');
-const commonsPlugin = new webpack.optimize.CommonsChunkPlugin('common.js');
+const path = require('path')
+const webpack = require('webpack')
+const commonsPlugin = new webpack.optimize.CommonsChunkPlugin('common.js')
 
-module.exports.webpack = webpack;
-module.exports.commonsPlugin = commonsPlugin;
+module.exports.webpack = webpack
+module.exports.commonsPlugin = commonsPlugin
 module.exports.webpackCommonConfig = {
   entry: {
     app: './asset/app'
@@ -32,4 +32,4 @@ module.exports.webpackCommonConfig = {
       }
     ]
   }
-};
+}
