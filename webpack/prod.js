@@ -1,7 +1,7 @@
 const {
   webpack,
   commonsPlugin,
-  webpackCommonConfig,
+  webpackCommonConfig
 } = require('./common.js')
 
 module.exports = Object.assign(webpackCommonConfig, {
@@ -9,13 +9,13 @@ module.exports = Object.assign(webpackCommonConfig, {
     commonsPlugin,
     new webpack.optimize.UglifyJsPlugin({
       compress: {
-        warnings: false,
-      },
+        warnings: false
+      }
     }),
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: '"production"',
-      },
-    }),
-  ],
+        NODE_ENV: '"production"'
+      }
+    })
+  ]
 })
