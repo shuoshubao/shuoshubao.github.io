@@ -130,6 +130,41 @@ module.exports = [
     categories: 'node',
   },
   {
+    name: 'console',
+    title: 'console',
+    categories: 'node',
+  },
+  {
+    name: 'path',
+    title: 'path',
+    categories: 'node',
+  },
+  {
+    name: 'querystring',
+    title: 'querystring',
+    categories: 'node',
+  },
+  {
+    name: 'url',
+    title: 'url',
+    categories: 'node',
+  },
+  {
+    name: 'util',
+    title: 'util',
+    categories: 'node',
+  },
+  {
+    name: 'readline',
+    title: 'readline',
+    categories: 'node',
+  },
+  {
+    name: 'os',
+    title: 'os',
+    categories: 'node',
+  },
+  {
     name: 'stream',
     title: 'stream',
     categories: 'node',

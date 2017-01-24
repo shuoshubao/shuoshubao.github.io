@@ -47,6 +47,7 @@
 * clearImmediate(immediateObject)
 * console
 * exports
+* global
 * module
 * process
 * global
