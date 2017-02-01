@@ -107,8 +107,9 @@ FCCC7561 8A4A1741 68FA4223 ADCEDE07
 * shift+alt+up              添加上一行
 * shift+alt+down            添加下一行
 * esc                       只留第一个选择
+* cmd+shift+空格             扩展到scope
 * cmd+shift+a               光标所在标签的全部内容
-* cmd+shift+j               光标所在标签的父标签的全部内容
+* cmd+shift+j               光标所在标签的父标签的全部内容（最近的{}）
 * ctrl+shift+m              选中光标所在括号（小括号，中括号，大括号）里面的全部内容
 
 ### 行

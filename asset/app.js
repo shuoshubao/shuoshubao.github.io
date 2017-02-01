@@ -1,17 +1,20 @@
 import React, {Component} from 'react'
 import {render} from 'react-dom'
 import classnames from 'classnames'
-import DATA_NAV from '../data/nav'
-import DATA_ARTICLE from '../data/article'
+import {
+  DATA_NAV,
+  DATA_ARTICLE,
+  DATA_META
+} from '../data'
 import styles from '../less/app.less'
-import DATA_META from '../data/meta.json'
 
 const DATA_ARTICLE_HTML = {}
-DATA_ARTICLE.forEach((v, i) => {
-  const arr = [v.categories, v.name]
-  DATA_ARTICLE_HTML[arr.join(',')] = require(`../docs/${arr.join('/')}.md`)
+Object.entries(DATA_ARTICLE).forEach(v => {
+  v[1].forEach(v2 => {
+    const temp = [v[0], v2.name]
+    DATA_ARTICLE_HTML[temp.join(',')] = require(`../docs/${temp.join('/')}.md`)
+  })
 })
-
 class App extends Component {
   static defaultProps = {
     sourceUrl: '/docs/'
@@ -31,24 +34,42 @@ class App extends Component {
   getIndex() {
     let navIndex = 0
     let categories = this.getHash()[0]
-    DATA_NAV.forEach((...arg) => {
-      if(arg[0].categories === categories) {
-        navIndex = arg[1]
+    DATA_NAV.forEach((v, i) => {
+      if(v.categories === categories)
+        navIndex = i
         return false
-      }
     })
     return navIndex
   }
   openNav() {
     this.setState({
-      openNav: !this.state.openNav,
+      openNav: !this.state.openNav
     })
   }
   renderList(categories) {
-    let dataList = categories === 'index' ? DATA_ARTICLE : DATA_ARTICLE.filter((...arg) => arg[0].categories === categories)
-    let list = dataList.map((...arg) => (
-       <li key={arg[1]}>
-         <a href={`/#${arg[0].categories}/${arg[0].name}`}>{arg[0].title}</a>
+    let dataList = []
+    if(categories === 'index') {
+      Object.entries(DATA_ARTICLE).forEach(v => {
+        v[1].forEach(v2 => {
+          dataList.push({
+            categories: v[0],
+            title: v2.title,
+            name: v2.name
+          })
+        })
+      })
+    }else {
+      DATA_ARTICLE[categories].forEach(v => {
+        dataList.push({
+          categories,
+          title: v.title,
+          name: v.name
+        })
+      })
+    }
+    let list = dataList.map((v, i) => (
+       <li key={i}>
+         <a href={`/#${v.categories}/${v.name}`}>{v.title}</a>
        </li>
     ))
     this.setState({
@@ -56,11 +77,7 @@ class App extends Component {
     })
   }
   renderArticle(categories, article) {
-    let articleId = [categories, article];
-    if(!DATA_ARTICLE.filter((...arg) => arg[0].categories === categories).filter((...arg) => arg[0].name === article).length) {
-      console.log('文章不存在')
-      return false
-    }
+    let articleId = [categories, article]
     let getConten = (content) => categories == 'assemble' ? <div dangerouslySetInnerHTML={{__html: content}} /> : <div className={styles['markdown']}>
       <div dangerouslySetInnerHTML={{__html: content}} />
       <a target="_blank" href={`${this.props.sourceUrl}${articleId.join('/')}.md`}>源码</a>
@@ -108,9 +125,9 @@ class App extends Component {
               </span>
               <ul style={{height: openNav ? (DATA_NAV.length * 40 + 20) : 0}}>
                 {
-                  DATA_NAV.map((...arg) => {
-                    return <li key={arg[1]} className={navIndex === arg[1] ? styles['active'] : ''}>
-                      <a href={`/#${DATA_NAV[arg[1]].categories}`}>{arg[0].text}</a>
+                  DATA_NAV.map((v, i) => {
+                    return <li key={i} className={navIndex === i ? styles['active'] : ''}>
+                      <a href={`/#${DATA_NAV[i].categories}`}>{v.text}</a>
                     </li>
                   })
                 }
@@ -120,11 +137,7 @@ class App extends Component {
           </div>
         </nav>
         {
-          typeof content === 'string'
-          ?
-          <article className={styles['g-content']} ref="content" dangerouslySetInnerHTML={{__html: content}} />
-          :
-          <article className={styles['g-content']} ref="content">{content}</article>
+          typeof content === 'string' ? <article className={styles['g-content']} ref="content" dangerouslySetInnerHTML={{__html: content}} /> : <article className={styles['g-content']} ref="content">{content}</article>
         }
         <footer className={styles['g-footer']}>
           <div className={styles['outer']}>
@@ -140,6 +153,4 @@ class App extends Component {
     )
   }
 }
-
-
 render(<App />, document.body.appendChild(document.createElement('div')))
