@@ -1,8 +1,5 @@
 const {
-  commonsPlugin,
   webpackCommonConfig
-} = require('./common.js')
+} = require('./common')
 
-module.exports = Object.assign(webpackCommonConfig, {
-  plugins: [commonsPlugin]
-})
+module.exports = webpackCommonConfig
