@@ -2,9 +2,9 @@
   <dl>
       <dt>QQ群</dt>
       <dd>
-          <a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=ed1824e8bb9c06fc15ec932fec7db2d52c0e69600c34465660e01816291ff321">
-              <img src="../../img/qq_group.png" alt="北京Web前端 招聘 求职" title="北京Web前端 招聘 求职">
-          </a>
+        <a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=ed1824e8bb9c06fc15ec932fec7db2d52c0e69600c34465660e01816291ff321">
+          <img src="../../img/qq_group.png" alt="北京Web前端 招聘 求职" title="北京Web前端 招聘 求职">
+        </a>
       </dd>
   </dl>
   <dl>
