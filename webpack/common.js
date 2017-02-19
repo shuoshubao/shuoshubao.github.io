@@ -17,6 +17,10 @@ module.exports.webpackCommonConfig = {
         loader: 'html!markdown'
       },
       {
+        test: /\.png|gif|jpg/,
+        loader: 'url-loader'
+      },
+      {
         test: /\.less$/,
         loader: 'style!css?module&localIdentName=[local]_[hash:base64:10]!less'
       },

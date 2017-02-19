@@ -88,3 +88,4 @@
 | terminology | 术语 |
 | dispatch | 分发 |
 | avatar | 头像 |
+| deactivate | 停用 |
