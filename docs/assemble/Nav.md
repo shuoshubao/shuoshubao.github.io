@@ -50,6 +50,9 @@
       <a href="http://reactjs.cn/">react-cn</a>
       <a href="http://react-china.org/">react-china</a>
       <a href="http://alibaba.github.io/weex/">weex</a>
+      <a href="https://facebook.github.io/immutable-js/">immutable.js</a>
+      <a href="https://github.com/ReactTraining/react-router">react-router</a>
+      <a href="https://github.com/gaearon/redux-thunk">redux-thunk</a>
     </dd>
   </dl>
   <dl>
@@ -141,17 +144,17 @@
     <dt>学习网站</dt>
     <dd>
       <a href="http://javascript.ruanyifeng.com/">阮一峰</a>
-      <a href="http://www.cnblogs.com/rubylouvre/">司徒正美</a>
-      <a href="http://www.css88.com/">愚人码头</a>
-      <a href="http://www.w3cplus.com/">w3cplus</a>
+      <a href="https://developer.mozilla.org/zh-CN/docs/Web">MDN</a>
       <a href="http://www.w3cfuns.com/">w3cfuns</a>
+      <a href="http://www.w3cplus.com/">w3cplus</a>
+      <a href="http://aralejs.org/">aralejs</a>
+      <a href="http://aliceui.org/">aliceui</a>
       <a href="http://www.tuicool.com/">推酷</a>
       <a href="http://www.oschina.net/">开源中国</a>
       <a href="http://segmentfault.com/">segmentfault</a>
+      <a href="http://www.css88.com/">愚人码头</a>
+      <a href="http://www.cnblogs.com/rubylouvre/">司徒正美</a>
       <a href="http://www.imooc.com/">慕课网</a>
-      <a href="https://developer.mozilla.org/zh-CN/docs/Web">MDN</a>
-      <a href="http://aralejs.org/">aralejs</a>
-      <a href="http://aliceui.org/">aliceui</a>
     </dd>
   </dl>
   <dl>
