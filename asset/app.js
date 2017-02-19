@@ -6,6 +6,7 @@ import {
   DATA_ARTICLE,
   DATA_META
 } from '../data'
+import '../polyfill'
 import styles from '../less/app.less'
 
 const DATA_ARTICLE_HTML = {}
