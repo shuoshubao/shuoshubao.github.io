@@ -149,6 +149,14 @@
   ],
   "tool": [
     {
+      "name": "ProjectGuide",
+      "title": "项目规范"
+    },
+    {
+      "name": "CodeGuide",
+      "title": "代码规范"
+    },
+    {
       "name": "Terminal",
       "title": "Terminal"
     },
@@ -159,10 +167,6 @@
     {
       "name": "Mongodb",
       "title": "Mongodb"
-    },
-    {
-      "name": "CodeGuide",
-      "title": "代码规范"
     },
     {
       "name": "Emmet",
