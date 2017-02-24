@@ -9,7 +9,7 @@
 * baike
 * redian
 * wenda
-* gongju
+* tool
 * ditu
 * yezhu
 * lvju
