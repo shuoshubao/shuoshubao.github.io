@@ -53,15 +53,9 @@ dangerouslySetInnerHTML={{__html: ''}}
 
 ### state
 
-* getInitialState: function() { return {} }
+* getInitialState: function() { return {} } || () => ({})
 * this.state[stateName]
 * this.setState({})
-
-#  表单
-
-* event.target.value      input、textarea
-* event.target.checked    checkbox、radio
-* event.target.selected   option
 
 # Component Lifecycle
 
@@ -186,6 +180,12 @@ React.createClass({
 | Animation | onAnimationStart onAnimationEnd onAnimationIteration | animationName pseudoElement elapsedTime |
 | Composition | onCompositionEnd onCompositionStart onCompositionUpdate | string data |
 
+
+#  Form event
+
+* event.target.value      input、textarea
+* event.target.checked    checkbox、radio
+* event.target.selected   option
 
 # Top-Level API
 
