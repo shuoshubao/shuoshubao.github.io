@@ -35,8 +35,9 @@ React.createClass({
 * this.props[propName]
 * this.props.children
 
+### special props
+
 ```javascript
-// 特殊属性
 class -> className
 for -> htmlFor
 style{{opacity: .5}}
@@ -47,7 +48,6 @@ defaultChecked input[radio, checkbox]
 key
 ref
 dangerouslySetInnerHTML={{__html: ''}}
-// Transferring Props
 {...props}
 ```
 
@@ -55,7 +55,7 @@ dangerouslySetInnerHTML={{__html: ''}}
 
 * getInitialState: function() { return {} }
 * this.state[stateName]
-* this.setState({}) 修改状态值，每次修改以后，自动调用 this.render 方法，重新渲染组件
+* this.setState({})
 
 #  表单
 
@@ -63,21 +63,63 @@ dangerouslySetInnerHTML={{__html: ''}}
 * event.target.checked    checkbox、radio
 * event.target.selected   option
 
-# 组件的生命周期
+# Component Lifecycle
 
-## 状态
+## Mounting [已插入真实 DOM]
 
-* Mounting：已插入真实 DOM
-* Updating：正在被重新渲染
-* Unmounting：已移出真实 DOM
-
-## 状态处理函数
-
+* constructor()
 * componentWillMount()
+* render()
 * componentDidMount()
+
+## Updating [正在被重新渲染]
+
+* componentWillReceiveProps()
+* shouldComponentUpdate()
 * componentWillUpdate(object nextProps, object nextState)
+* render()
 * componentDidUpdate(object prevProps, object prevState)
+
+## Unmounting [已移出真实 DOM]
+
 * componentWillUnmount()
+
+# Other APIs
+
+## Component APIs
+
+* setState()
+* forceUpdate()
+
+## Class Properties
+
+* defaultProps
+* displayName
+* propTypes
+
+## Instance Properties
+
+* props
+* state
+
+```javascript
+import React, {Component, propTypes} from 'react'
+
+export default class extends Component {
+  static defaultProps = {
+
+  }
+  static propTypes = {
+    visible: propTypes.bool.isRequired
+  }
+  constructor(props) {
+    super(props)
+    this.state = {
+
+    }
+  }
+}
+```
 
 # PropTypes
 
