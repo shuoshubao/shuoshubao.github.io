@@ -7,8 +7,8 @@ module.exports.webpackCommonConfig = {
     app: './asset/app'
   },
   output: {
-    path: './asset',
-    filename: '[name].min.js'
+    path: './build',
+    filename: '[name].js'
   },
   module: {
     loaders: [
