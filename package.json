@@ -9,8 +9,8 @@
   "author": "shuoshubao <759979885@qq.com>",
   "license": "MIT",
   "scripts": {
-    "start": "webpack --display-error-details --progress --colors --watch --config webpack/dev.js",
-    "build": "webpack --progress --profile --colors --config webpack/prod.js"
+    "start": "NODE_ENV=development webpack --display-error-details --progress --colors --watch --config webpack/dev.js",
+    "build": "NODE_ENV=production webpack --progress --profile --colors --config webpack/prod.js"
   },
   "dependencies": {
     "babel-core": "^6.18.0",
