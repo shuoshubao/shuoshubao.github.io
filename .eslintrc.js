@@ -32,10 +32,6 @@ module.exports = {
         "semi": [
             "error",
             "never"
-        ],
-        "react/require-default-props": [
-          "error",
-          "never"
         ]
     }
 };

@@ -87,3 +87,8 @@ var request = new Request(url);
 * .formData()
 * .blob()
 * .arrayBuffer()
+
+
+# Reference
+
+* [https://developer.mozilla.org/en-US/docs/Web/API/Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch)

@@ -69,6 +69,22 @@
       "title": "Fetch"
     },
     {
+      "name": "Body",
+      "title": "Body"
+    },
+    {
+      "name": "Headers",
+      "title": "Headers"
+    },
+    {
+      "name": "Request",
+      "title": "Request"
+    },
+    {
+      "name": "Response",
+      "title": "Response"
+    },
+    {
       "name": "Promise",
       "title": "Promise"
     },
