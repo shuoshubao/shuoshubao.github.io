@@ -156,3 +156,27 @@ FCCC7561 8A4A1741 68FA4223 ADCEDE07
 
 * f9                        行按升序排
 * ctrl+f9                   行按升序排，区分大小写
+
+# 命令行[打开文件或者目录]
+
+## subs
+
+```
+Sublime Text 提供命令行的工具: subs
+路径: /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl
+```
+
+## ln
+
+```
+ln  /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl /usr/local/bin/subl
+或者
+ln  /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl /usr/local/bin/st
+```
+## file or folder
+
+```
+st index.js
+或者
+st img
+```
