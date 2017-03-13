@@ -11,7 +11,7 @@
   "scripts": {
     "start": "NODE_ENV=development webpack --display-error-details --progress --colors --watch --config webpack/dev.js",
     "build": "NODE_ENV=production webpack --progress --profile --colors --config webpack/prod.js",
-    "eslint": "eslint -f table asset"
+    "eslint": "node_modules/.bin/eslint eslint -f table asset ;exit 0"
   },
   "dependencies": {
     "babel-core": "^6.18.0",
@@ -32,8 +32,13 @@
     "react-dom": "^15.3.2",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
-    "webpack": "^1.13.3",
-    "eslint": "^3.16.1",
+    "webpack": "^1.13.3"
+  },
+  "devDependencies": {
+    "eslint": "^3.17.1",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.10.0"
   }
 }
