@@ -116,17 +116,60 @@
 * Object.getOwnPropertyDescriptors()
 * 扩展运算符(...)
 
-# Symbol
+# Set [WeakSet]
+
+* new Set()
+* new Set([]) // array or array-like
+
+## property
+
+* Set.prototype.size
+
+## method
+
+* Set.prototype.add(value)
+* Set.prototype.delete(value)
+* Set.prototype.has(value)
+* Set.prototype.clear()
+
+## Iterator
+
+* Set.prototype.keys()
+* Set.prototype.values()
+* Set.prototype.entries()
+* Set.prototype.forEach()
+
+> Array.from(setInstance)  // Set -> Array
+> ...   // Set -> flat to parameter in Function or menber in Array
 
 
+# Map [WeakSet]
 
+## property
+
+* Map.prototype.size
+
+## method
+
+* Map.prototype.get(key)
+* Map.prototype.set(key, value)
+* Map.prototype.has(key)
+* Map.prototype.delete(key)
+* Map.prototype.clear()
+
+## Iterator
+
+* Set.prototype.keys()
+* Set.prototype.values()
+* Set.prototype.entries()
+* Set.prototype.forEach()
 
 
 
 # Referrence
 
 > [http://es6.ruanyifeng.com/](http://es6.ruanyifeng.com/)
-> 
+>
 > [http://kangax.github.io/compat-table/es5/](http://kangax.github.io/compat-table/es5/)
-> 
+>
 > [http://kangax.github.io/compat-table/es6/](http://kangax.github.io/compat-table/es6/)
