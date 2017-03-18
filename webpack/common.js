@@ -1,4 +1,3 @@
-const path = require('path')
 const webpack = require('webpack')
 
 module.exports.webpack = webpack
@@ -30,7 +29,11 @@ module.exports.webpackCommonConfig = {
       },
       {
         test: /\.js$/,
-        exclude: /node_modules/, loader: 'babel'
+        loader: 'babel',
+        query: {
+          "presets": ["es2015", "stage-2", "react"]
+        },
+        exclude: /node_modules/
       }
     ]
   }
