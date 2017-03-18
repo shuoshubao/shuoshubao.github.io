@@ -11,7 +11,7 @@
   "scripts": {
     "start": "NODE_ENV=development webpack --display-error-details --progress --colors --watch --config webpack/dev.js",
     "build": "NODE_ENV=production webpack --progress --profile --colors --config webpack/prod.js",
-    "eslint": "node_modules/.bin/eslint eslint -f table asset ;exit 0"
+    "eslint": "node_modules/.bin/eslint -f table asset ;exit 0"
   },
   "dependencies": {
     "babel-core": "^6.18.0",
