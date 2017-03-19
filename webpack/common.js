@@ -1,9 +1,11 @@
+const path = require('path')
 const webpack = require('webpack')
 
 module.exports.webpack = webpack
 module.exports.webpackCommonConfig = {
+  context: path.resolve(__dirname, '../asset'),
   entry: {
-    app: './asset/app'
+    app: './app'
   },
   output: {
     path: './build',
@@ -31,7 +33,7 @@ module.exports.webpackCommonConfig = {
         test: /\.js$/,
         loader: 'babel',
         query: {
-          "presets": ["es2015", "stage-2", "react"]
+          'presets': ['es2015', 'stage-2', 'react']
         },
         exclude: /node_modules/
       }

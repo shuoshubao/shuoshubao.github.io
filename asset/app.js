@@ -70,18 +70,21 @@ class App extends Component {
         })
       })
     }
-    let list = dataList.map((v, i) => (
-       <li key={i}>
-         <a href={`/#${v.categories}/${v.name}`}>{v.title}</a>
-       </li>
-    ))
     this.setState({
-      content: <ul className={style.list}>{list}</ul>
+      content: <ul className={style.list}>
+        {
+          dataList.map((v, i) => (
+             <li key={i}>
+               <a href={`/#${v.categories}/${v.name}`}>{v.title}</a>
+             </li>
+          ))
+        }
+      </ul>
     })
   }
   renderArticle(categories, article) {
     let articleId = [categories, article]
-    let getConten = (content) => categories == 'assemble' ? <div dangerouslySetInnerHTML={{__html: content}} /> : <div className={style.markdown}>
+    let getConten = (content) => categories == 'assemble' ? <div className={style[`p-${article.toLowerCase()}`]} dangerouslySetInnerHTML={{__html: content}} /> : <div className={style.markdown}>
       <div dangerouslySetInnerHTML={{__html: content}} />
       <a target="_blank" href={`${this.props.sourceUrl}${articleId.join('/')}.md`}>源码</a>
     </div>
