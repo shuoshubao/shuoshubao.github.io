@@ -123,6 +123,10 @@
       "title": "overview"
     },
     {
+      "name": "global",
+      "title": "global"
+    },
+    {
       "name": "console",
       "title": "console"
     },
