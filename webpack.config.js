@@ -1,11 +1,10 @@
 const path = require('path')
 const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-module.exports.webpack = webpack
-module.exports.webpackCommonConfig = {
-  context: path.resolve(__dirname, '../asset'),
+module.exports = {
   entry: {
-    app: './app'
+    app: './asset/app'
   },
   output: {
     path: './build',
@@ -38,5 +37,15 @@ module.exports.webpackCommonConfig = {
         exclude: /node_modules/
       }
     ]
-  }
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      filename: '../index.html',
+      template: 'template/index.html',
+      hash: true,
+      cache: true
+    }),
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.UglifyJsPlugin()
+  ]
 }
