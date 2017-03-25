@@ -1,7 +1,7 @@
 # Syntax
 
 ```
-var request = new Request(url, option);
+var request = new Request(url, option)
 ```
 
 ## option

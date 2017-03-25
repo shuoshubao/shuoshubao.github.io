@@ -28,19 +28,20 @@ var response = new Response(body, init);
 # Properties
 
 * bodyUsed
-* cache
-* context
-* credentials
 * headers
-* method
-* mode
-* referrer
-* referrerPolicy
+* ok
+* redirected
+* status
+* statusText
+* type
 * url
 
 # Method
 
-[Body](/#js/Body)
+* redirect(url, status)
+* error()
+* clone()
+* [Body](/#js/Body)
 
 # Reference
 
