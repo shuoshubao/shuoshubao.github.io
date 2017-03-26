@@ -169,6 +169,10 @@
   ],
   "tool": [
     {
+      "name": "Git",
+      "title": "Git"
+    },
+    {
       "name": "ProjectGuide",
       "title": "项目规范"
     },
