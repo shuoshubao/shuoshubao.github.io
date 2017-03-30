@@ -1,5 +1,5 @@
 | 英语 | 释义 |
-|-|-|
+|---|---|
 | identifier | 标识符 |
 | declaring | 声明 |
 | parse | 解析 |
