@@ -10,13 +10,14 @@ import {
 import '../polyfill'
 import style from '../less/app.less'
 
-const DATA_ARTICLE_HTML = {}
-Object.entries(DATA_ARTICLE).forEach(v => {
-  v[1].forEach(v2 => {
-    const temp = [v[0], v2.name]
-    DATA_ARTICLE_HTML[temp.join(',')] = require(`../docs/${temp.join('/')}.md`)
+let DATA_ARTICLE_HTML = Object.entries(DATA_ARTICLE).reduce((prev, cur) => {
+  cur[1].forEach(v => {
+    const temp = [cur[0], v.name]
+    prev[temp.join(',')] = require(`../docs/${temp.join('/')}.md`)
   })
-})
+  return prev
+}, {})
+
 class App extends Component {
   static defaultProps = {
     sourceUrl: '/docs/'
@@ -171,7 +172,7 @@ class App extends Component {
         <footer className={style.footer}>
           <div className={style.outer}>
             <div className={style.wrap}>
-              <span>© 2015-{new Date().getFullYear()} Shuoshubao.com 版权所有 {DATA_META.registration}</span>
+              <span>© 2014-{new Date().getFullYear()} Shuoshubao.com 版权所有 {DATA_META.registration}</span>
               <span> Powered by </span>
               <a target="_blank" href={DATA_META.githubLink}> GitHub </a>
               <a target="_blank" href="https://facebook.github.io/react/"> React </a>
