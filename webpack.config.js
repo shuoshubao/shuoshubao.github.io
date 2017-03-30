@@ -2,6 +2,18 @@ const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
+const plugins = [
+  new HtmlWebpackPlugin({
+    filename: '../index.html',
+    template: 'template/index.html',
+    hash: true,
+    cache: true
+  }),
+  new webpack.optimize.DedupePlugin()
+]
+
+process.env.NODE_ENV === 'production' && plugins.push(new webpack.optimize.UglifyJsPlugin())
+
 module.exports = {
   entry: {
     app: './asset/app'
@@ -38,14 +50,5 @@ module.exports = {
       }
     ]
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      filename: '../index.html',
-      template: 'template/index.html',
-      hash: true,
-      cache: true
-    }),
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.UglifyJsPlugin()
-  ]
+  plugins
 }
