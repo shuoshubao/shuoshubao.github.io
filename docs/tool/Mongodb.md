@@ -6,40 +6,18 @@
 
 # Install
 
-## [brew](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/)
-
-> brew install mongodb
-
-## [manually](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/)
-
-> curl -O https://fastdl.mongodb.org/osx/mongodb-osx-x86_64-3.4.1.tgz
-
-> tar -zxvf mongodb-osx-x86_64-3.4.1.tgz
-
-> mkdir -p mongodb
-
-> cp -R -n mongodb-osx-x86_64-3.4.1/ mongodb
-
-> export PATH=<mongodb-install-directory>/bin:$PATH
-
-# Run
-
-> mkdir -p /data/db
-
-> cd <mongodb-install-directory>/bin
-
-> ./mongod
-
-# Shell
-
-> cd <mongodb-install-directory>/bin
-
-> ./mongo
+* brew update
+* brew install mongodb
+* export PATH=`<mongodb-install-directory>`/bin:$PATH
+> export PATH=/usr/local/mongodb/bin:$PATH
+* mkdir -p /data/db
+* mongod --dbpath `<path to data directory>`
+* [Referrence](https://docs.mongodb.com/getting-started/shell/tutorial/install-mongodb-on-os-x/)
 
 # Concept
 
 | SQL | MongoDB | explain |
-|-|-|-|
+|---|---|---|
 | database | database | 数据库 |
 | table | collection | 数据库表/集合 |
 | row | document | 数据记录行/文档 |
@@ -57,46 +35,86 @@
 | 表联合 | 嵌入文档 |
 | 主键 |  主键 (MongoDB 提供了 key 为 _id ) |
 
-# Shell command
+# Shell
 
-* 显示当前数据库名
+```
+if 设置了环境变量
+  mongo
+else
+  cd `<mongodb-install-directory>`/bin
+  ./mongo
+```
 
-> db
+```
+# 显示当前数据库名
+db
 
-* 显示所有数据库列表
+# 显示所有数据库列表
+show dbs
 
-> show dbs
+# 创建/切换数据库
+use db_name
 
-* 创建/切换数据库
+# 文档
+db.collection_name
+db.collection_name.find()
+db.collection_name.findOne()
+db.collection_name.insert(document)
+db.collection_name.save(<document>, {writeConcern: <document>})
+db.collection_name.update(<query>, <update>, {upsert: <boolean>, multi: <boolean>, writeConcern: <document>})
+db.collection_name.remove(<query>, <justOne>)
 
-> use db_name
+# 删除当前数据库
+db.dropDatabase()
 
-* 文档
+# 删除集合
+db.collection_name.drop()
+```
 
-> db.collection_name
+#  MongoDB Package Components
 
-> db.collection_name.find()
+## mongod
 
-> db.collection_name.findOne()
+```
+--help, -h
+--version
+--verbose, -v
+--config <filename>, -f <filename>
+--quiet
+--port <port> Default: 27017
+--bind_ip <ip address>
+--logpath <path>
+--logappend
+--logRotate <string> Default: rename
+--timeStampFormat <string> Default: iso8601-local   ctime | iso8601-utc | iso8601-local
+--syslog
+--syslogFacility <string> Default: user
+--traceExceptions
+--pidfilepath <path>
+--keyFile <file>
+--setParameter <options>
+--nounixsocket
+--unixSocketPrefix <path> Default: /tmp
+--filePermissions <path> Default: 0700
+--fork
+--auth
+--noauth
+--transitionToAuth
+--jsonp
+--profile <level> Default: 0 0 | 1 | 2
+--cpu
+```
 
-> db.collection_name.insert(document)
+## mongoimport
 
-> db.collection_name.save(<document>, {writeConcern: <document>})
+> mongoexport --db `db_name` --collection `collection_name` --out `data.json`
 
-> db.collection_name.update(<query>, <update>, {upsert: <boolean>, multi: <boolean>, writeConcern: <document>})
+## mongoexport
 
-> db.collection_name.remove(<query>, <justOne>)
+### json
 
-* 删除当前数据库
+> mongoexport --db `db_name` --collection `collection_name` --out `data.json`
 
-> db.dropDatabase()
+### csv
 
-* 删除集合
-
-> db.collection_name.drop()
-
-
-
-
-
-
+> mongoexport --db `db_name` --collection `collection_name` --type=csv --fields `field1,field2` --out `data.csv`
