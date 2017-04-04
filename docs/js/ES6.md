@@ -5,40 +5,36 @@
 
 # 解构赋值
 
-## 拥有结构赋值的数据类型
-
 * String
 * Number
 * Boolean
 * Array
-* 对象
 * 函数参数
+* 对象
 
-## 用途
+# Iterator
 
-* 交换变量的值
-* 从函数返回多个值
-* 函数参数的定义
-* 提取JSON数据
-* 函数参数的默认值
-* 遍历Map结构
-* 输入模块的指定方法
+* for...of
+* String、Array、array-like、Set、Map、WeakSet、WeakMap
+
+# typeof
+
+* number、string、boolean、undefined、function、object、`symbol`
 
 # String
 
 * for...of
-* String.prototype.at()
-* String.prototype.normalize()
 * String.prototype.includes()
 * String.prototype.startsWith()
 * String.prototype.endsWith()
 * String.prototype.repeat()
 * String.prototype.padStart() // ES7
 * String.prototype.padEnd() // ES7
-* String.prototype.String.raw()
-* 模板字符串
-* 标签模板
-* 数组推导
+* String.raw()
+* template string
+* tagged template
+* String.prototype.at()
+* String.prototype.normalize()
 
 # Number
 
@@ -49,6 +45,21 @@
 * Number.isInteger()
 * Number.EPSILON
 * Number.isSafeInteger()
+
+# Array
+
+* Array.from()
+* Array.of()
+* Array.prototype.copyWithin(target, start = 0, end = this.length)
+* Array.prototype.find()
+* Array.prototype.findIndex(function(value, index, arr) {})
+* Array.prototype.fill()
+* Array.prototype.keys()
+* Array.prototype.values()
+* Array.prototype.entries()
+* Array.prototype.includes() // es7
+* 数组的空位
+* 数组推导
 
 # Math
 
@@ -70,23 +81,6 @@
 * Math.acosh()
 * Math.atanh()
 * 指数运算符 (**)
-
-# Array
-
-* Array.from()
-* Array.of()
-* Array.prototype.copyWithin(target, start = 0, end = this.length)
-* Array.prototype.find()
-* Array.prototype.findIndex(function(value, index, arr) {})
-* Array.prototype.fill()
-* Array.prototype.keys()
-* Array.prototype.values()
-* Array.prototype.entries()
-* Array.prototype.includes() // es7
-* 数组的空位
-* 数组推导
-
-> Array.of总是返回参数值组成的数组。如果没有参数，就返回一个空数组
 
 # Function
 
@@ -164,7 +158,19 @@
 * Set.prototype.entries()
 * Set.prototype.forEach()
 
+# async
 
+```
+const asyncFunc = async function() {
+  await promise
+}
+
+const asyncFunc = async () => {
+  await promise
+}
+
+asyncFunc().then()
+```
 
 # Referrence
 
