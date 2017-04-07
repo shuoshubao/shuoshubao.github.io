@@ -1,18 +1,21 @@
-const path = require('path')
-const webpack = require('webpack')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+import path from 'path'
+import rimraf from 'rimraf'
+import webpack from 'webpack'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
 
+rimraf.sync('build')
+
+const [isDev, isProd] = [process.env.NODE_ENV === 'development', process.env.NODE_ENV === 'production']
 const plugins = [
   new HtmlWebpackPlugin({
     filename: '../index.html',
-    template: 'template/index.html',
-    hash: true,
-    cache: true
+    template: 'template/index.html'
   }),
   new webpack.optimize.DedupePlugin()
 ]
 
-process.env.NODE_ENV === 'production' && plugins.push(new webpack.optimize.UglifyJsPlugin())
+isProd && plugins.push(new webpack.optimize.UglifyJsPlugin())
+
 
 module.exports = {
   entry: {
@@ -20,7 +23,7 @@ module.exports = {
   },
   output: {
     path: './build',
-    filename: '[name].js'
+    filename: '[name]_[chunkhash].js'
   },
   module: {
     loaders: [
@@ -43,10 +46,10 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel',
+        exclude: path.resolve(__dirname, 'node_modules'),
         query: {
-          'presets': ['es2015', 'stage-2', 'react']
-        },
-        exclude: /node_modules/
+          "presets": ["es2015", "stage-2", "react"]
+        }
       }
     ]
   },
