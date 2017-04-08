@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {render} from 'react-dom'
 import classnames from 'classnames'
+import GitHubButton from '../component/GithubButton'
 import {
   DATA_NAV,
   DATA_ARTICLE,
@@ -159,6 +160,11 @@ class App extends Component {
               <span> Powered by </span>
               <a target="_blank" href={DATA_META.githubLink}> GitHub </a>
               <a target="_blank" href="https://facebook.github.io/react/"> React </a>
+              <GitHubButton
+                type="stargazers"
+                username="shuoshubao"
+                repo="shuoshubao.github.io"
+              />
             </div>
           </div>
         </footer>
