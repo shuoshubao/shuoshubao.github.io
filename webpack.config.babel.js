@@ -2,56 +2,92 @@ import path from 'path'
 import rimraf from 'rimraf'
 import webpack from 'webpack'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
+import HtmlWebpackHarddiskPlugin from 'html-webpack-harddisk-plugin'
 
-rimraf.sync('build')
+rimraf.sync('build/**/*')
 
 const [isDev, isProd] = [process.env.NODE_ENV === 'development', process.env.NODE_ENV === 'production']
 const plugins = [
   new HtmlWebpackPlugin({
+    alwaysWriteToDisk: true,
     filename: '../index.html',
     template: 'template/index.html'
   }),
-  new webpack.optimize.DedupePlugin()
+  new HtmlWebpackHarddiskPlugin()
 ]
 
 isProd && plugins.push(new webpack.optimize.UglifyJsPlugin())
-
 
 module.exports = {
   entry: {
     app: './asset/app'
   },
   output: {
-    path: './build',
-    filename: '[name]_[chunkhash].js'
+    path: path.resolve(__dirname, 'build'),
+    filename: '[name]_[hash].js'
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.md$/,
-        loader: 'html!markdown'
-      },
-      {
-        test: /\.png|gif|jpg/,
-        loader: 'url-loader'
-      },
-      {
-        test: /\.less$/,
-        loader: 'style!css?module&localIdentName=[local]_[hash:base64:10]!less'
+        use: [
+          {
+            loader: 'html-loader'
+          },
+          {
+            loader: 'markdown-loader'
+          }
+        ]
       },
       {
         test: /\.json$/,
-        loader: 'json'
+        use: [
+          {
+            loader: 'json-loader'
+          }
+        ]
+      },
+      {
+        test: /\.png|gif|jpg/,
+        use: [
+          {
+            loader: 'url-loader'
+          }
+        ]
+      },
+      {
+        test: /\.less$/,
+        use: [
+          {
+            loader: 'style-loader'
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              localIdentName: '[local]_[hash:base64:10]'
+            }
+          },
+          {
+            loader: 'less-loader'
+          }
+        ]
       },
       {
         test: /\.js$/,
-        loader: 'babel',
-        exclude: path.resolve(__dirname, 'node_modules'),
-        query: {
+        loader: 'babel-loader',
+        options: {
           "presets": ["es2015", "stage-2", "react"]
         }
       }
     ]
   },
-  plugins
+  plugins,
+  devtool: "source-map",
+  devServer: {
+    inline: true,
+    port: 8080,
+    publicPath: '/build/',
+    filename: '[name]_[hash].js'
+  }
 }
