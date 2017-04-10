@@ -1,2 +1,2 @@
-require('./Object')
-require('./String')
+import './Object'
+import './String'

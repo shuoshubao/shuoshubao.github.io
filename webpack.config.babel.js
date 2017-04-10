@@ -29,17 +29,6 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.md$/,
-        use: [
-          {
-            loader: 'html-loader'
-          },
-          {
-            loader: 'markdown-loader'
-          }
-        ]
-      },
-      {
         test: /\.json$/,
         use: [
           {
@@ -65,7 +54,7 @@ module.exports = {
             loader: 'css-loader',
             options: {
               modules: true,
-              localIdentName: '[local]_[hash:base64:10]'
+              localIdentName: '[local]_[hash:base64:5]'
             }
           },
           {

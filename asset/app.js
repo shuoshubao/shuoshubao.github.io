@@ -9,14 +9,7 @@ import {
 } from '../data'
 import '../polyfill'
 import style from '../less/app.less'
-
-let DATA_ARTICLE_HTML = Object.entries(DATA_ARTICLE).reduce((prev, cur) => {
-  cur[1].forEach(v => {
-    const temp = [cur[0], v.name]
-    prev[temp.join(',')] = require(`../docs/${temp.join('/')}.md`)
-  })
-  return prev
-}, {})
+import MarkdownIt from 'markdown-it'
 
 class App extends Component {
   static defaultProps = {
@@ -91,10 +84,14 @@ class App extends Component {
       <div dangerouslySetInnerHTML={{__html: content}} />
       <a target="_blank" href={`${this.props.sourceUrl}${articleId.join('/')}.md`}>源码</a>
     </div>
-    this.setState({
-      navIndex: this.getIndex(),
-      openNav: false,
-      content: getConten(DATA_ARTICLE_HTML[articleId.join(',')])
+    fetch(`${this.props.sourceUrl}${articleId.join('/')}.md`)
+    .then(rs => rs.text())
+    .then(rs => {
+      this.setState({
+        navIndex: this.getIndex(),
+        openNav: false,
+        content: getConten(MarkdownIt().render(rs))
+      })
     })
   }
   renderView(hash) {
