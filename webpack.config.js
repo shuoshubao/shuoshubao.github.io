@@ -1,9 +1,9 @@
-import path from 'path'
-import rimraf from 'rimraf'
-import webpack from 'webpack'
-import HtmlWebpackPlugin from 'html-webpack-plugin'
-import HtmlWebpackHarddiskPlugin from 'html-webpack-harddisk-plugin'
-import {exec} from 'child_process'
+const path = require('path')
+const rimraf = require('rimraf')
+const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin')
+const {exec} = require('child_process')
 
 exec('rm build/*')
 const [isDev, isProd] = [process.env.NODE_ENV === 'development', process.env.NODE_ENV === 'production']
@@ -19,7 +19,7 @@ const plugins = [
 
 isProd && plugins.push(new webpack.optimize.UglifyJsPlugin())
 
-const webpackConfig = {
+module.exports = {
   entry: {
     app: './asset/app'
   },
@@ -76,10 +76,8 @@ const webpackConfig = {
   devtool: "source-map",
   devServer: {
     inline: true,
-    port: 8080,
+    port: 9090,
     publicPath: '/build/',
     filename: '[name]_[hash].js'
   }
 }
-const t1 = Date.now()
-webpack(webpackConfig).run(() => {console.log(`编译时间: ${Date.now() - t1}ms`)})

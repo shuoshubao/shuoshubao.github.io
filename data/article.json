@@ -119,6 +119,14 @@
     {
       "name": "Notification",
       "title": "Notification"
+    },
+    {
+      "name": "Tinify.js",
+      "title": "Tinify.js"
+    },
+    {
+      "name": "Prettier.js",
+      "title": "Prettier.js"
     }
   ],
   "node": [
