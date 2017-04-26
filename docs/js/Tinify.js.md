@@ -30,3 +30,9 @@ Promise.all(files.map(v => tinifyImg(v)))
   console.log(e)
 })
 ```
+
+# Referrence
+
+> https://www.npmjs.com/package/tinify
+>
+> https://tinypng.com/developers/reference/nodejs

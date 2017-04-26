@@ -48,3 +48,7 @@ Promise
     console.log(e);
   });
 ```
+
+# Referrence
+
+> https://www.npmjs.com/package/prettier
