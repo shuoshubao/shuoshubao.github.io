@@ -3,8 +3,8 @@
 ```
 const fs = require('fs')
 const glob = require('glob')
-const tinify = require('tinify')
 const chalk = require('chalk')
+const tinify = require('tinify')
 
 tinify.key = 'KckuU929qtv_nPK_czL6HKfcAJO9FCKm'
 
