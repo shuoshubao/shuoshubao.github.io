@@ -1,5 +1,4 @@
 import path from 'path'
-import rimraf from 'rimraf'
 import webpack from 'webpack'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import HtmlWebpackHarddiskPlugin from 'html-webpack-harddisk-plugin'
