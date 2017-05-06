@@ -80,8 +80,15 @@ class App extends Component {
   }
   renderArticle(categories, article) {
     let articleId = [categories, article]
-    let getConten = (content) => categories == 'assemble' ? <div className={style[`p-${article.toLowerCase()}`]} dangerouslySetInnerHTML={{__html: content}} /> : <div className={style.markdown}>
-      <div dangerouslySetInnerHTML={{__html: content}} />
+    let getContent = content => categories == 'assemble'
+    ?
+    <div
+      className={style[`p-${article.toLowerCase()}`]}
+      dangerouslySetInnerHTML={{__html: content}}
+    />
+    :
+    <div className={style.markdown}>
+      <div dangerouslySetInnerHTML={{__html: MarkdownIt().render(content)}} />
       <a target="_blank" href={`${this.props.sourceUrl}${articleId.join('/')}.md`}>源码</a>
     </div>
     fetch(`${this.props.sourceUrl}${articleId.join('/')}.md`)
@@ -90,7 +97,7 @@ class App extends Component {
       this.setState({
         navIndex: this.getIndex(),
         openNav: false,
-        content: getConten(MarkdownIt().render(rs))
+        content: getContent(rs)
       })
     })
   }
