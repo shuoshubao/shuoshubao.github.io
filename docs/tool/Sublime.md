@@ -58,11 +58,13 @@ FCCC7561 8A4A1741 68FA4223 ADCEDE07
 # 插件
 
 * [Emmet](http://shuoshubao.github.io/tool/emmet.html)
+* A File Icon
 * CSS3
 * jQuery
 * LESS
 * SCSS
 * CSScomb
+* JsPrettier
 * JsFormat
 * Quote HTML
 * HTML-CSS-JS Prettify
