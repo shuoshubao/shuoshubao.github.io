@@ -68,6 +68,7 @@
 * pngquant (图片压缩)
 * prettier (代码格式化)
 * qrcode (生成二维码)
+* cheerio `nodejs端的jq）`
 
 
 # 命令行 cli
@@ -81,10 +82,6 @@
 * cliui
 * commander
 * progress
-
-# 爬虫
-
-* cheerio `nodejs端的jq）`
 
 # 数据库
 
