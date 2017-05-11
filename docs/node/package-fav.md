@@ -91,5 +91,7 @@
 
 # 第三方服务
 
-* aws-sdk
-* tinify
+* aws-sdk (亚马逊云)
+* tinify (Tinypng)
+* qiniu (七牛)
+* upyun (又拍云)
