@@ -177,6 +177,10 @@
     {
       "name": "readline",
       "title": "readline"
+    },
+    {
+      "name": "package-fav",
+      "title": "package-fav"
     }
   ],
   "tool": [
