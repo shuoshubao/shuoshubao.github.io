@@ -1,17 +1,3 @@
-# webpack
-
-* assets-webpack-plugin
-* webpack-spritesmith
-* cson-loader
-
-# babel
-
-* babel-plugin-import
-* babel-plugin-transform-object-rest-spread
-* babel-plugin-transform-runtime
-* babel-register
-* babel-runtime
-
 # 异步编程
 
 * async
@@ -22,6 +8,7 @@
 * isomorphic-fetch
 * whatwg-fetch
 * promise
+* q
 * superagent
 
 # nodejs
@@ -88,6 +75,18 @@
 * mongodb
 * mongoose
 * sqlite3
+
+# babel
+
+* babel-plugin-import
+* babel-plugin-transform-object-rest-spread
+* babel-plugin-transform-runtime
+* babel-register
+* babel-runtime
+
+# webpack
+
+* webpack-spritesmith
 
 # 第三方服务
 
