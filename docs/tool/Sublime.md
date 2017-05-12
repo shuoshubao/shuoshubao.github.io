@@ -2,22 +2,57 @@
 
 ```json
 {
-  "font_size": 18,
-  "tab_size": 2,
-  // 自动换行
-  "word_wrap": false,
-  // tab变成空格
-  "translate_tabs_to_spaces": true,
-  // 突出显示当前光标所在的行
-  "highlight_line": true,
-  // 光标样式
   "caret_style": "smooth",
-  // 保存文件时会删除每行结束后多余的空格
-  "trim_trailing_white_space_on_save": true,
-  // ctrl+f时，自动复制到查找面板的文本框里
-  "find_selected_text": true,
-  // 空格、制表符显示点：all、selection、none
+  "detect_indentation": false,
   "draw_white_space": "all",
+  "ensure_newline_at_eof_on_save": false,
+  "file_exclude_patterns":
+  [
+    "*.pyc",
+    "*.pyo",
+    "*.exe",
+    "*.dll",
+    "*.obj",
+    "*.o",
+    "*.a",
+    "*.lib",
+    "*.so",
+    "*.dylib",
+    "*.ncb",
+    "*.sdf",
+    "*.suo",
+    "*.pdb",
+    "*.idb",
+    ".DS_Store",
+    "*.class",
+    "*.psd",
+    "*.db",
+    "*.sublime-workspace",
+    "._*"
+  ],
+  "find_selected_text": true,
+  "folder_exclude_patterns":
+  [
+    ".svn",
+    ".git",
+    ".hg",
+    "CVS",
+    "node_modules"
+  ],
+  "font_size": 18,
+  "highlight_line": true,
+  "ignored_packages":
+  [
+    "Vintage"
+  ],
+  "indent_to_bracket": true,
+  "match_brackets_angle": false,
+  "match_brackets_braces": false,
+  "tab_size": 2,
+  "theme": "Default.sublime-theme",
+  "translate_tabs_to_spaces": true,
+  "trim_trailing_white_space_on_save": true,
+  "word_wrap": false
 }
 ```
 

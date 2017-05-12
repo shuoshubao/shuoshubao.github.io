@@ -29,14 +29,6 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.json$/,
-        use: [
-          {
-            loader: 'json-loader'
-          }
-        ]
-      },
-      {
         test: /\.png|gif|jpg/,
         use: [
           {
