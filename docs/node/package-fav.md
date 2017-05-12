@@ -52,6 +52,7 @@
 * pngquant (图片压缩)
 * prettier (代码格式化)
 * cheerio (nodejs端的jq)
+* http-server (nodejs开启本地服务器)
 
 
 # 命令行 cli
