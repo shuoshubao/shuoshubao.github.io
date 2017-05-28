@@ -8,7 +8,7 @@
   "author": "shuoshubao <759979885@qq.com>",
   "license": "MIT",
   "scripts": {
-    "start": "NODE_ENV=development ./node_modules/.bin/webpack-dev-server . --progress --colors",
+    "start": "NODE_ENV=development ./node_modules/.bin/webpack-dev-server --progress --colors",
     "build": "NODE_ENV=production babel-node webpack.config.babel.js",
     "eslint": "node_modules/.bin/eslint -f table asset ;exit 0"
   },

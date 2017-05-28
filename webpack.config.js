@@ -7,6 +7,7 @@ const {exec} = require('child_process')
 exec('rm build/*')
 const [isDev, isProd] = [process.env.NODE_ENV === 'development', process.env.NODE_ENV === 'production']
 const plugins = [
+  new webpack.HotModuleReplacementPlugin(),
   new HtmlWebpackPlugin({
     alwaysWriteToDisk: true,
     filename: '../index.html',
@@ -57,6 +58,7 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
+        exclude: /node_modules/,
         options: {
           "presets": ["es2015", "stage-2", "react"]
         }
