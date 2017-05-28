@@ -67,7 +67,7 @@ module.exports = {
   devtool: "source-map",
   devServer: {
     inline: true,
-    port: 9090,
+    port: 8080,
     publicPath: '/build/',
     filename: '[name]_[hash].js'
   }
