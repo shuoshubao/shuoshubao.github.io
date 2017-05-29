@@ -5,6 +5,7 @@ const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin')
 const {exec} = require('child_process')
 
 exec('rm build/*')
+
 const [isDev, isProd] = [process.env.NODE_ENV === 'development', process.env.NODE_ENV === 'production']
 const plugins = [
   new webpack.HotModuleReplacementPlugin(),
@@ -72,5 +73,8 @@ module.exports = {
     port: 8080,
     publicPath: '/build/',
     filename: '[name]_[hash].js'
+  },
+  resolve: {
+    modules: ['node_modules']
   }
 }
