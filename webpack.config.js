@@ -14,7 +14,14 @@ const plugins = [
     filename: '../index.html',
     template: 'template/index.html'
   }),
-  new HtmlWebpackHarddiskPlugin()
+  new HtmlWebpackHarddiskPlugin(),
+  new webpack.optimize.CommonsChunkPlugin({
+    name: 'vendor',
+    minChunks: module => module.context && module.context.indexOf('node_modules') !== -1
+  }),
+  new webpack.optimize.CommonsChunkPlugin({
+    name: 'manifest'
+  })
 ]
 
 
@@ -22,9 +29,11 @@ isProd && plugins.push(new webpack.optimize.UglifyJsPlugin())
 
 module.exports = {
   entry: {
-    app: './asset/app'
+    app: './asset/app',
+    vendor: ['react', 'react-dom']
   },
   output: {
+    hashDigestLength: 5,
     path: path.resolve(__dirname, 'build'),
     filename: '[name]_[hash].js'
   },
