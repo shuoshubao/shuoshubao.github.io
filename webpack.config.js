@@ -1,5 +1,6 @@
 const path = require('path')
 const webpack = require('webpack')
+const DashboardPlugin = require('webpack-dashboard/plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin')
 const {exec} = require('child_process')
@@ -39,7 +40,8 @@ const plugins = [
   }),
   new webpack.optimize.CommonsChunkPlugin({
     name: 'manifest'
-  })
+  }),
+  // new DashboardPlugin()
 ]
 
 
@@ -95,18 +97,24 @@ module.exports = {
     ]
   },
   plugins,
-  devtool: 'source-map',
-  devServer: {
-    inline: true,
-    hot: true,
-    port: 8080,
-    publicPath: '/build/',
-    filename: '[name]_[hash].js'
-  },
   resolve: {
     modules: ['node_modules'],
     extensions: ['.js', '.jsx', '.json'],
     mainFields: ['browser', 'main'],
     alias: {}
+  },
+  devtool: 'source-map',
+  devServer: {
+    inline: true,
+    hot: true,
+    port: 8080,
+    // contentBase: '', ?
+    publicPath: '/build',
+    filename: '[name]_[hash].js',
+    historyApiFallback: true,
+    proxy: {
+
+    }
   }
 }
+DashboardPlugin
