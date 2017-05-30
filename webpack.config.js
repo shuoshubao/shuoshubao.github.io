@@ -9,15 +9,33 @@ exec('rm build/*')
 const [isDev, isProd] = [process.env.NODE_ENV === 'development', process.env.NODE_ENV === 'production']
 const plugins = [
   new webpack.HotModuleReplacementPlugin(),
+  new webpack.DefinePlugin({
+    'process.env': {
+      'NODE_ENV': JSON.stringify(isDev ? 'development' : 'production')
+    },
+    ENV: JSON.stringify(isDev ? 'dev' : 'prod')
+  }),
+  new webpack.ProvidePlugin({
+
+  }),
   new HtmlWebpackPlugin({
     alwaysWriteToDisk: true,
     filename: '../index.html',
-    template: 'template/index.html'
+    template: 'template/index.html',
+    title: 'WEB前端开发🐿',
+    favicon: 'favicon.ico',
+    chunks: ['manifest', 'vendor', 'app'],
+    hash: false,
+    minify: {
+      removeComments: isProd,
+      collapseWhitespace: isProd
+    },
+    ENV: isDev ? 'dev' : 'prod'
   }),
   new HtmlWebpackHarddiskPlugin(),
   new webpack.optimize.CommonsChunkPlugin({
     name: 'vendor',
-    minChunks: module => module.context && module.context.indexOf('node_modules') !== -1
+    minChunks: module => module.context && module.context.includes('node_modules')
   }),
   new webpack.optimize.CommonsChunkPlugin({
     name: 'manifest'
@@ -29,12 +47,13 @@ isProd && plugins.push(new webpack.optimize.UglifyJsPlugin())
 
 module.exports = {
   entry: {
-    app: './asset/app',
-    vendor: ['react', 'react-dom']
+    vendor: ['react', 'react-dom'],
+    app: './asset/app'
   },
   output: {
     hashDigestLength: 5,
     path: path.resolve(__dirname, 'build'),
+    publicPath: isProd ? 'https://shuoshubao.github.io/build' : 'http://localhost:8080/build',
     filename: '[name]_[hash].js'
   },
   module: {
@@ -76,14 +95,18 @@ module.exports = {
     ]
   },
   plugins,
-  devtool: "source-map",
+  devtool: 'source-map',
   devServer: {
     inline: true,
+    hot: true,
     port: 8080,
     publicPath: '/build/',
     filename: '[name]_[hash].js'
   },
   resolve: {
-    modules: ['node_modules']
+    modules: ['node_modules'],
+    extensions: ['.js', '.jsx', '.json'],
+    mainFields: ['browser', 'main'],
+    alias: {}
   }
 }
