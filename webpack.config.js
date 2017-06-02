@@ -4,9 +4,10 @@ const DashboardPlugin = require('webpack-dashboard/plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const {exec} = require('child_process')
 
-exec('rm build/*')
-
 const [isDev, isProd] = [process.env.NODE_ENV === 'development', process.env.NODE_ENV === 'production']
+
+isProd && exec('rm build/*')
+
 const plugins = [
   new webpack.HotModuleReplacementPlugin(),
   new webpack.DefinePlugin({
