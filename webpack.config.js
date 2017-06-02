@@ -2,7 +2,6 @@ const path = require('path')
 const webpack = require('webpack')
 const DashboardPlugin = require('webpack-dashboard/plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin')
 const {exec} = require('child_process')
 
 exec('rm build/*')
@@ -20,7 +19,7 @@ const plugins = [
 
   }),
   new HtmlWebpackPlugin({
-    alwaysWriteToDisk: true,
+    alwaysWriteToDisk: false,
     filename: '../index.html',
     template: 'template/index.html',
     title: 'WEB前端开发🐿',
@@ -33,7 +32,6 @@ const plugins = [
     },
     ENV: isDev ? 'dev' : 'prod'
   }),
-  new HtmlWebpackHarddiskPlugin(),
   new webpack.optimize.CommonsChunkPlugin({
     name: 'vendor',
     minChunks: module => module.context && module.context.includes('node_modules')
@@ -55,8 +53,8 @@ module.exports = {
   output: {
     hashDigestLength: 5,
     path: path.resolve(__dirname, 'build'),
-    publicPath: isProd ? 'https://shuoshubao.github.io/build' : 'http://localhost:8080/build',
-    filename: '[name]_[hash].js'
+    publicPath: isProd ? 'https://shuoshubao.github.io/build' : 'http://localhost:9090/build',
+    filename: isDev ? '[name].js' : '[name]_[hash].js'
   },
   module: {
     rules: [
@@ -107,7 +105,7 @@ module.exports = {
   devServer: {
     inline: true,
     hot: true,
-    port: 8080,
+    port: 9090,
     // contentBase: '', ?
     publicPath: '/build',
     filename: '[name]_[hash].js',
