@@ -1,5 +1,21 @@
 .p-nav {
   padding: 10px;
+  > div {
+    // width: 20px;
+    // height: 20px;
+  }
+  > div > span {
+    .sprite(@settings);
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+  }
+  > div > em {
+    .sprite(@settings-hover);
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+  }
   dl:not(:first-child) {
     margin-top: 10px;
   }

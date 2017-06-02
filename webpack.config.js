@@ -2,11 +2,14 @@ const path = require('path')
 const webpack = require('webpack')
 const DashboardPlugin = require('webpack-dashboard/plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin')
+const SpritesmithPlugin = require('webpack-spritesmith')
 const {exec} = require('child_process')
+
+exec('rm build/*')
 
 const [isDev, isProd] = [process.env.NODE_ENV === 'development', process.env.NODE_ENV === 'production']
 
-isProd && exec('rm build/*')
 
 const plugins = [
   new webpack.HotModuleReplacementPlugin(),
@@ -20,7 +23,7 @@ const plugins = [
 
   }),
   new HtmlWebpackPlugin({
-    alwaysWriteToDisk: false,
+    alwaysWriteToDisk: true,
     filename: '../index.html',
     template: 'template/index.html',
     title: 'WEB前端开发🐿',
@@ -33,6 +36,7 @@ const plugins = [
     },
     ENV: isDev ? 'dev' : 'prod'
   }),
+  new HtmlWebpackHarddiskPlugin(),
   new webpack.optimize.CommonsChunkPlugin({
     name: 'vendor',
     minChunks: module => module.context && module.context.includes('node_modules')
@@ -40,6 +44,19 @@ const plugins = [
   new webpack.optimize.CommonsChunkPlugin({
     name: 'manifest'
   }),
+  new SpritesmithPlugin({
+    src: {
+      cwd: path.resolve(__dirname, 'spriteImgSrc'),
+      glob: '*.png'
+    },
+    target: {
+      image: path.resolve(__dirname, 'spriteImgTarget/sprite.png'),
+      css: path.resolve(__dirname, 'spriteImgTarget/sprite.less')
+    },
+    apiOptions: {
+      cssImageRef: 'sprite.png'
+    }
+  })
   // new DashboardPlugin()
 ]
 
@@ -54,7 +71,7 @@ module.exports = {
   output: {
     hashDigestLength: 5,
     path: path.resolve(__dirname, 'build'),
-    publicPath: isProd ? 'https://shuoshubao.github.io/build' : 'http://localhost:9090/build',
+    publicPath: isProd ? 'https://shuoshubao.github.io/build/' : 'http://localhost:9090/build/',
     filename: isDev ? '[name].js' : '[name]_[hash].js'
   },
   module: {
@@ -63,7 +80,11 @@ module.exports = {
         test: /\.png|gif|jpg/,
         use: [
           {
-            loader: 'url-loader'
+            loader: 'url-loader',
+            query: {
+              limit: 1024,
+              name: isDev ? '[name].[ext]' : '[name]_[hash].[ext]'
+            }
           }
         ]
       },
@@ -97,7 +118,7 @@ module.exports = {
   },
   plugins,
   resolve: {
-    modules: ['node_modules'],
+    modules: ['node_modules', 'spriteImgTarget'],
     extensions: ['.js', '.jsx', '.json'],
     mainFields: ['browser', 'main'],
     alias: {}
@@ -108,7 +129,7 @@ module.exports = {
     hot: true,
     port: 9090,
     // contentBase: '', ?
-    publicPath: '/build',
+    publicPath: '/build/',
     filename: '[name]_[hash].js',
     historyApiFallback: true,
     proxy: {
