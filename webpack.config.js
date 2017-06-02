@@ -69,10 +69,9 @@ module.exports = {
     app: './asset/app'
   },
   output: {
-    hashDigestLength: 5,
     path: path.resolve(__dirname, 'build'),
-    publicPath: isProd ? 'https://shuoshubao.github.io/build/' : 'http://localhost:9090/build/',
-    filename: isDev ? '[name].js' : '[name]_[hash].js'
+    publicPath: isProd ? 'https://shuoshubao.github.io/build/' : '/build/',
+    filename: isDev ? '[name].js' : '[name]_[hash:5].js'
   },
   module: {
     rules: [
@@ -83,7 +82,7 @@ module.exports = {
             loader: 'url-loader',
             query: {
               limit: 1024,
-              name: isDev ? '[name].[ext]' : '[name]_[hash].[ext]'
+              name: isDev ? '[name].[ext]' : '[name]_[hash:5].[ext]'
             }
           }
         ]
@@ -98,7 +97,7 @@ module.exports = {
             loader: 'css-loader',
             options: {
               modules: true,
-              localIdentName: '[local]_[hash:base64:5]'
+              localIdentName: '[local]_[hash:5]'
             }
           },
           {
