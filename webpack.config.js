@@ -3,10 +3,13 @@ const webpack = require('webpack')
 const DashboardPlugin = require('webpack-dashboard/plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const SpritesmithPlugin = require('webpack-spritesmith')
 const {exec} = require('child_process')
 
 exec('rm build/*')
+
+const extractLESS = new ExtractTextPlugin('[name].css')
 
 const [isDev, isProd] = [process.env.NODE_ENV === 'development', process.env.NODE_ENV === 'production']
 
@@ -22,6 +25,7 @@ const plugins = [
   new webpack.ProvidePlugin({
 
   }),
+  extractLESS,
   new HtmlWebpackPlugin({
     alwaysWriteToDisk: true,
     filename: '../index.html',
@@ -89,28 +93,28 @@ module.exports = {
       },
       {
         test: /\.less$/,
-        use: [
-          {
-            loader: 'style-loader'
-          },
-          {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-              localIdentName: '[local]_[hash:5]'
+        use: extractLESS.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                modules: true,
+                localIdentName: '[local]_[hash:base64:5]'
+              }
+            },
+            {
+              loader: 'less-loader'
             }
-          },
-          {
-            loader: 'less-loader'
-          }
-        ]
+          ]
+        })
       },
       {
         test: /\.js$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
         options: {
-          "presets": ["es2015", "stage-2", "react"]
+          presets: ['es2015', 'stage-2', 'react']
         }
       }
     ]
