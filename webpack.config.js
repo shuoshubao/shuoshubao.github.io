@@ -9,7 +9,7 @@ const {exec} = require('child_process')
 
 exec('rm build/*')
 
-const extractLESS = new ExtractTextPlugin('[name].css')
+const extractLESS = new ExtractTextPlugin('[name]_[hash:5].css')
 
 const [isDev, isProd] = [process.env.NODE_ENV === 'development', process.env.NODE_ENV === 'production']
 
@@ -33,7 +33,6 @@ const plugins = [
     title: 'WEB前端开发🐿',
     favicon: 'favicon.ico',
     chunks: ['manifest', 'vendor', 'app'],
-    hash: false,
     minify: {
       removeComments: isProd,
       collapseWhitespace: isProd
