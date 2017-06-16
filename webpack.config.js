@@ -73,7 +73,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'build'),
-    publicPath: isProd ? 'http://orn2bxyo7.bkt.clouddn.com/' : '/build/',
+    publicPath: isProd ? 'https://orn2bxyo7.bkt.clouddn.com/' : '/build/',
     filename: isDev ? '[name].js' : '[name]_[hash:5].js'
   },
   module: {
