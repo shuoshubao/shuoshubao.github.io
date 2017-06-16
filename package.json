@@ -10,7 +10,8 @@
   "scripts": {
     "start": "NODE_ENV=development ./node_modules/.bin/webpack-dev-server --progress --colors --open",
     "build": "NODE_ENV=production ./node_modules/.bin/webpack",
-    "eslint": "node_modules/.bin/eslint -f table asset ;exit 0"
+    "eslint": "node_modules/.bin/eslint -f table asset ;exit 0",
+    "qiniu": "node bin/qiniu"
   },
   "dependencies": {
     "babel-core": "^6.18.0",
@@ -29,6 +30,7 @@
     "less-loader": "^2.2.3",
     "markdown-it": "^8.3.1",
     "prop-types": "^15.5.10",
+    "qiniu": "^6.1.13",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "style-loader": "^0.13.1",

@@ -6,13 +6,13 @@ const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const SpritesmithPlugin = require('webpack-spritesmith')
 const {exec} = require('child_process')
+const extractLESS = new ExtractTextPlugin('[name]_[hash:5].css')
+const [isDev, isProd] = [
+  process.env.NODE_ENV === 'development',
+  process.env.NODE_ENV === 'production'
+]
 
 exec('rm build/*')
-
-const extractLESS = new ExtractTextPlugin('[name]_[hash:5].css')
-
-const [isDev, isProd] = [process.env.NODE_ENV === 'development', process.env.NODE_ENV === 'production']
-
 
 const plugins = [
   new webpack.HotModuleReplacementPlugin(),
@@ -73,7 +73,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'build'),
-    publicPath: isProd ? 'https://shuoshubao.github.io/build/' : '/build/',
+    publicPath: isProd ? 'http://orn2bxyo7.bkt.clouddn.com/' : '/build/',
     filename: isDev ? '[name].js' : '[name]_[hash:5].js'
   },
   module: {
@@ -99,7 +99,8 @@ module.exports = {
               loader: 'css-loader',
               options: {
                 modules: true,
-                localIdentName: '[local]_[hash:base64:5]'
+                localIdentName: '[local]_[hash:base64:5]',
+                minimize: isProd
               }
             },
             {
@@ -125,7 +126,7 @@ module.exports = {
     mainFields: ['browser', 'main'],
     alias: {}
   },
-  devtool: 'source-map',
+  devtool: isDev ? 'source-map' : '',
   devServer: {
     inline: true,
     hot: true,
