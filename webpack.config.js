@@ -31,7 +31,6 @@ const plugins = [
     filename: '../index.html',
     template: 'template/index.ejs',
     title: 'WEB前端开发🐿',
-    favicon: 'favicon.ico',
     chunks: ['manifest', 'vendor', 'app'],
     minify: {
       removeComments: isProd,
