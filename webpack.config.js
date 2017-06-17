@@ -15,7 +15,7 @@ const [isDev, isProd] = [
 exec('rm build/*')
 
 const plugins = [
-  new webpack.HotModuleReplacementPlugin(),
+  new webpack.BannerPlugin('硕鼠宝'),
   new webpack.DefinePlugin({
     'process.env': {
       'NODE_ENV': JSON.stringify(isDev ? 'development' : 'production')
@@ -29,7 +29,7 @@ const plugins = [
   new HtmlWebpackPlugin({
     alwaysWriteToDisk: true,
     filename: '../index.html',
-    template: 'template/index.html',
+    template: 'template/index.ejs',
     title: 'WEB前端开发🐿',
     favicon: 'favicon.ico',
     chunks: ['manifest', 'vendor', 'app'],
@@ -64,9 +64,14 @@ const plugins = [
 ]
 
 
-isProd && plugins.push(new webpack.optimize.UglifyJsPlugin())
+if(isDev) {
+  plugins.push(new webpack.HotModuleReplacementPlugin())
+}
+if(isProd) {
+  plugins.push(new webpack.optimize.UglifyJsPlugin())
+}
 
-module.exports = {
+const webpackConfig = {
   entry: {
     vendor: ['react', 'react-dom'],
     app: './asset/app'
@@ -89,6 +94,10 @@ module.exports = {
             }
           }
         ]
+      },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
       },
       {
         test: /\.less$/,
@@ -125,13 +134,15 @@ module.exports = {
     extensions: ['.js', '.jsx', '.json'],
     mainFields: ['browser', 'main'],
     alias: {}
-  },
-  devtool: isDev ? 'source-map' : '',
-  devServer: {
+  }
+}
+
+if(isDev) {
+  webpackConfig.devtool = 'source-map'
+  webpackConfig.devServer = {
     inline: true,
     hot: true,
     port: 9090,
-    // contentBase: '', ?
     publicPath: '/build/',
     filename: '[name]_[hash].js',
     historyApiFallback: true,
@@ -140,3 +151,5 @@ module.exports = {
     }
   }
 }
+
+module.exports = webpackConfig

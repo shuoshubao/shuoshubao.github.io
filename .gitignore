@@ -1,2 +1,5 @@
-node_modules
+.DS_Store
+._*
 npm-debug.log
+node_modules
+webpack-stats.json
