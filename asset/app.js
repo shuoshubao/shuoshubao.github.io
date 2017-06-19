@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {render} from 'react-dom'
 import classnames from 'classnames'
+import MarkdownIt from 'markdown-it'
 import GitHubButton from '../component/GithubButton'
 import {
   DATA_NAV,
@@ -8,8 +9,8 @@ import {
   DATA_META
 } from '../data'
 import '../polyfill'
+import '../less/highlight.css'
 import style from '../less/app.less'
-import MarkdownIt from 'markdown-it'
 
 class App extends Component {
   static defaultProps = {
