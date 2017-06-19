@@ -114,6 +114,10 @@ module.exports = {
         loader: 'babel-loader',
         exclude: /node_modules/,
         options: {
+          plugins: [
+            'transform-object-assign',
+            'transform-decorators-legacy'
+          ],
           presets: ['es2015', 'stage-2', 'react']
         }
       }
