@@ -15,7 +15,10 @@ const [isDev, isProd] = [
 exec('rm build/*')
 
 const plugins = [
-  new webpack.BannerPlugin('硕鼠宝'),
+  new webpack.BannerPlugin([
+    '硕鼠宝',
+    'https://shuoshubao.github.io/'
+  ].join('\n')),
   new webpack.DefinePlugin({
     'process.env': {
       'NODE_ENV': JSON.stringify(isDev ? 'development' : 'production')
@@ -78,6 +81,7 @@ const webpackConfig = {
   output: {
     path: path.resolve(__dirname, 'build'),
     publicPath: isProd ? 'https://orn2bxyo7.bkt.clouddn.com/' : '/build/',
+    jsonpFunction: 'webpackJsonp',
     filename: isDev ? '[name].js' : '[name]_[hash:5].js'
   },
   module: {
