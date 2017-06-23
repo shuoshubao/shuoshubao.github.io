@@ -99,6 +99,10 @@ const webpackConfig = {
         ]
       },
       {
+        test: /\.t[e]?xt$/,
+        use: ['raw-loader']
+      },
+      {
         test: /\.css$/,
         use: ['style-loader', 'css-loader']
       },
