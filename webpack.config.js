@@ -103,6 +103,23 @@ const webpackConfig = {
         use: ['raw-loader']
       },
       {
+        test: /\.vtpl$/,
+        use: ['raw-loader']
+      },
+      {
+        test: /\.ejs/,
+        loader: 'ejs-loader'
+      },
+      {
+        test: /\.tpl/,
+        loader: 'ejs-loader'
+      },
+      {test: /\.woff(\?v=\d+\.\d+\.\d+)?$/, loader: 'file?hash=sha512&digest=hex&name=font/[name].[hash:8].[ext]'},
+      {test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/, loader: 'file?hash=sha512&digest=hex&name=font/[name].[hash:8].[ext]'},
+      {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'file?hash=sha512&digest=hex&name=font/[name].[hash:8].[ext]'},
+      {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file?hash=sha512&digest=hex&name=font/[name].[hash:8].[ext]'},
+      {test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'file?hash=sha512&digest=hex&name=font/[name].[hash:8].[ext]'},
+      {
         test: /\.css$/,
         use: ['style-loader', 'css-loader']
       },
@@ -126,7 +143,7 @@ const webpackConfig = {
         })
       },
       {
-        test: /\.js$/,
+        test: /\.jsx?$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
         options: {
