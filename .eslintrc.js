@@ -36,10 +36,10 @@ module.exports = {
       "before": true,
       "after": true,
       "overrides": {
-        "if": { "after": false },
-        "else": { "before": false },
-        "for": { "after": false },
-        "while": { "after": false }
+        "if": {"after": false},
+        "else": {"before": false},
+        "for": {"after": false},
+        "while": {"after": false}
       }
     }],
     // 一行的最大长度, 默认80
@@ -49,7 +49,7 @@ module.exports = {
     // 一个表达式含有多个运算符
     "no-mixed-operators": [0],
     // 箭头函数的返回值是三目的时候, 用括号包起来
-    "no-confusing-arrow": [2, { "allowParens": true }],
+    "no-confusing-arrow": [2, {"allowParens": true}],
     // react 组件method顺序
     // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/sort-comp.md
     "react/sort-comp": [1],
@@ -76,7 +76,7 @@ module.exports = {
     "arrow-body-style": [2, "as-needed"],
     // 当有多行jsx时, 使用() + 换行
     // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-wrap-multilines.md
-    "react/jsx-wrap-multilines": [2, { "assignment": true }],
+    "react/jsx-wrap-multilines": [2, {"assignment": true}],
     // 为函数指定返回值
     "consistent-return": [0],
     // class的methods中用this
