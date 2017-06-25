@@ -1,18 +1,20 @@
-const path = require('path')
-const webpack = require('webpack')
-const DashboardPlugin = require('webpack-dashboard/plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const SpritesmithPlugin = require('webpack-spritesmith')
-const {exec} = require('child_process')
-const extractLESS = new ExtractTextPlugin('[name]_[hash:5].css')
+import path from 'path'
+import webpack from 'webpack'
+import DashboardPlugin from 'webpack-dashboard/plugin'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
+import HtmlWebpackHarddiskPlugin from 'html-webpack-harddisk-plugin'
+import ExtractTextPlugin from 'extract-text-webpack-plugin'
+import SpritesmithPlugin from 'webpack-spritesmith'
+import {exec} from 'child_process'
+
 const [isDev, isProd] = [
   process.env.NODE_ENV === 'development',
   process.env.NODE_ENV === 'production'
 ]
 
 exec('rm build/*')
+
+const extractLESS = new ExtractTextPlugin(isDev ? '[name].css' : '[name]_[chunkhash:5].css')
 
 const plugins = [
   new webpack.BannerPlugin([
@@ -65,7 +67,6 @@ const plugins = [
   // new DashboardPlugin()
 ]
 
-
 if(isDev) {
   plugins.push(new webpack.HotModuleReplacementPlugin())
 }
@@ -81,7 +82,8 @@ const webpackConfig = {
   output: {
     path: path.resolve(__dirname, 'build'),
     // publicPath: isProd ? 'https://orn2bxyo7.bkt.clouddn.com/' : '/build/',
-    publicPath: isProd ? 'https://shuoshubao.github.io/build/' : '/build/',
+    // publicPath: isProd ? 'https://shuoshubao.github.io/build/' : '/build/',
+    publicPath: '/build/',
     jsonpFunction: 'webpackJsonp',
     filename: isDev ? '[name].js' : '[name]_[chunkhash:5].js'
   },
