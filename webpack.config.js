@@ -80,7 +80,8 @@ const webpackConfig = {
   },
   output: {
     path: path.resolve(__dirname, 'build'),
-    publicPath: isProd ? 'https://orn2bxyo7.bkt.clouddn.com/' : '/build/',
+    // publicPath: isProd ? 'https://orn2bxyo7.bkt.clouddn.com/' : '/build/',
+    publicPath: isProd ? 'https://shuoshubao.github.io/build/' : '/build/',
     jsonpFunction: 'webpackJsonp',
     filename: isDev ? '[name].js' : '[name]_[hash:5].js'
   },
