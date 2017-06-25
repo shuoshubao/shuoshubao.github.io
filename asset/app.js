@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {render} from 'react-dom'
+import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import MarkdownIt from 'markdown-it'
 import GitHubButton from '../component/GithubButton'
@@ -12,32 +13,42 @@ import '../polyfill'
 import '../less/highlight.css'
 import style from '../less/app.less'
 
+const getHash = () => {
+  const hash = window.location.hash.substring(1).split('/')
+  return [hash[0] || 'index', hash[1] || '']
+}
+
+const getIndex = () => {
+  let navIndex = 0
+  const categories = getHash()[0]
+  DATA_NAV.forEach((v, i) => {
+    if(v.categories === categories) {
+      navIndex = i
+      return false
+    }
+  })
+  return navIndex
+}
+
 class App extends Component {
+  static propTypes = {
+    sourceUrl: PropTypes.string.isRequired
+  }
   static defaultProps = {
     sourceUrl: '/docs/'
   }
   constructor() {
     super()
     this.state = {
-      navIndex: this.getIndex(),
+      navIndex: getIndex(),
       content: '',
-      hash: this.getHash()
+      hash: getHash()
     }
   }
-  getHash() {
-    let hash = window.location.hash.substring(1).split('/')
-    return [hash[0] || 'index', hash[1] || '']
-  }
-  getIndex() {
-    let navIndex = 0
-    let categories = this.getHash()[0]
-    DATA_NAV.forEach((v, i) => {
-      if(v.categories === categories) {
-        navIndex = i
-        return false
-      }
-    })
-    return navIndex
+  componentDidMount() {
+    this.init()
+    window.addEventListener('hashchange', this.init.bind(this), false)
+    window.addEventListener('resize', this.winResize.bind(this), false)
   }
   openNav = () => {
     this.setState({
@@ -45,7 +56,7 @@ class App extends Component {
     })
   }
   renderList(categories) {
-    let dataList = []
+    const dataList = []
     if(categories === 'index') {
       Object.entries(DATA_ARTICLE).forEach(v => {
         v[1].forEach(v2 => {
@@ -66,60 +77,54 @@ class App extends Component {
       })
     }
     this.setState({
-      navIndex: this.getIndex(),
+      navIndex: getIndex(),
       openNav: false,
       content: <ul className={style.list}>
         {
-          dataList.map((v, i) => (
-             <li key={i}>
-               <a href={`/#${v.categories}/${v.name}`}>{v.title}</a>
-             </li>
+          dataList.map(v => (
+            <li key={`${v.categories + v.name}`}>
+              <a href={`/#${v.categories}/${v.name}`}>{v.title}</a>
+            </li>
           ))
         }
       </ul>
     })
   }
   renderArticle(categories, article) {
-    let articleId = [categories, article]
-    let getContent = content => categories == 'assemble'
-    ?
-    <div
-      className={style[`p-${article.toLowerCase()}`]}
-      dangerouslySetInnerHTML={{__html: content}}
-    />
+    const articleId = [categories, article]
+    const getContent = content => (
+    categories === 'assemble' ?
+      <div
+        className={style[`p-${article.toLowerCase()}`]}
+        dangerouslySetInnerHTML={{__html: content}}
+      />
     :
-    <div className={style.markdown}>
-      <div dangerouslySetInnerHTML={{__html: MarkdownIt().render(content)}} />
-      <a target="_blank" href={`${this.props.sourceUrl}${articleId.join('/')}.md`}>源码</a>
-    </div>
+      <div className={style.markdown}>
+        <div dangerouslySetInnerHTML={{__html: MarkdownIt().render(content)}} />
+        <a target="_blank" rel="noopener noreferrer" href={`${this.props.sourceUrl}${articleId.join('/')}.md`}>源码</a>
+      </div>
+    )
     fetch(`${this.props.sourceUrl}${articleId.join('/')}.md`)
     .then(rs => rs.text())
     .then(rs => {
       this.setState({
-        navIndex: this.getIndex(),
+        navIndex: getIndex(),
         openNav: false,
         content: getContent(rs)
       })
     })
   }
-  renderView(hash) {
-    this[hash[1] ? 'renderArticle' : 'renderList'](...hash)
-  }
+  renderView = hash => this[hash[1] ? 'renderArticle' : 'renderList'](...hash)
   winResize() {
     this.setState({
       openNav: false
     })
   }
   init() {
-    this.renderView(this.getHash())
-  }
-  componentDidMount() {
-    this.init()
-    window.addEventListener('hashchange', this.init.bind(this), false)
-    window.addEventListener('resize', this.winResize.bind(this), false)
+    this.renderView(getHash())
   }
   render() {
-    let {
+    const {
       openNav,
       navIndex,
       content
@@ -137,36 +142,35 @@ class App extends Component {
               </a>
               <span className={classnames(style.navbar, {[style.active]: openNav})} onClick={this.openNav}>
                 {
-                  Array(4).fill(1).map((v, i) => <span key={i} className={style.bar}></span>)
+                  Array(4).fill(0, 1, 2, 3).map(v => <span key={v} className={style.bar} />)
                 }
               </span>
               <ul style={{height: openNav ? (DATA_NAV.length * 40 + 20) : 0}}>
                 {
-                  DATA_NAV.map((v, i) => {
-                    return <li key={i} className={classnames({[style.active]: navIndex === i})}>
+                  DATA_NAV.map((v, i) => (
+                    <li key={`${v.categories + v.name}`} className={classnames({[style.active]: navIndex === i})}>
                       <a href={`/#${DATA_NAV[i].categories}`}>{v.text}</a>
                     </li>
-                  })
+                  ))
                 }
               </ul>
-              <a className={style.github} target="_blank" href={DATA_META.githubLink}>GitHub</a>
+              <a className={style.github} target="_blank" rel="noopener noreferrer" href={DATA_META.githubLink}>GitHub</a>
             </div>
           </div>
         </nav>
         {
-          typeof content === 'string'
-          ?
-          <article className={style.content} ref="content" dangerouslySetInnerHTML={{__html: content}} />
-          :
-          <article className={style.content} ref="content">{content}</article>
+          typeof content === 'string' ?
+            <article className={style.content} dangerouslySetInnerHTML={{__html: content}} />
+            :
+            <article className={style.content}>{content}</article>
         }
         <footer className={style.footer}>
           <div className={style.outer}>
             <div className={style.wrap}>
               <span>© 2014-{new Date().getFullYear()} Shuoshubao.com 版权所有 {DATA_META.registration}</span>
               <span> Powered by </span>
-              <a target="_blank" href={DATA_META.githubLink}> GitHub </a>
-              <a target="_blank" href="https://facebook.github.io/react/"> React </a>
+              <a target="_blank" rel="noopener noreferrer" href={DATA_META.githubLink}> GitHub </a>
+              <a target="_blank" rel="noopener noreferrer" href="https://facebook.github.io/react/"> React </a>
               <GitHubButton
                 type="stargazers"
                 username="shuoshubao"
@@ -179,4 +183,5 @@ class App extends Component {
     )
   }
 }
+
 render(<App />, document.body.appendChild(document.createElement('div')))

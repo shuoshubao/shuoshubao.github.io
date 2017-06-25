@@ -8,9 +8,9 @@
   "author": "shuoshubao <759979885@qq.com>",
   "license": "MIT",
   "scripts": {
-    "start": "NODE_ENV=development ./node_modules/.bin/webpack-dev-server --progress --colors --open",
-    "build": "NODE_ENV=production ./node_modules/.bin/webpack",
-    "stats": "NODE_ENV=production ./node_modules/.bin/webpack --json > webpack-stats.json",
+    "start": "NODE_ENV=development node_modules/.bin/webpack-dev-server --progress --colors --open",
+    "build": "NODE_ENV=production node_modules/.bin/webpack",
+    "stats": "NODE_ENV=production node_modules/.bin/webpack --json > webpack-stats.json",
     "eslint": "node_modules/.bin/eslint -f table asset ;exit 0",
     "qiniu": "node bin/qiniu"
   },
@@ -49,10 +49,11 @@
     "webpack-spritesmith": "^0.3.3"
   },
   "devDependencies": {
-    "eslint": "^3.17.1",
-    "eslint-config-airbnb": "^14.1.0",
-    "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-jsx-a11y": "^4.0.0",
-    "eslint-plugin-react": "^6.10.0"
+    "babel-eslint": "^7.2.3",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^15.0.1",
+    "eslint-plugin-import": "^2.6.0",
+    "eslint-plugin-jsx-a11y": "^5.0.3",
+    "eslint-plugin-react": "^7.1.0"
   }
 }
