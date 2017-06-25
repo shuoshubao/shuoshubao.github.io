@@ -38,8 +38,16 @@ const plugins = [
     title: 'WEB前端开发🐿',
     chunks: ['manifest', 'vendor', 'app'],
     minify: {
-      removeComments: isProd,
-      collapseWhitespace: isProd
+      useShortDoctype: true,
+      removeComments: true,
+      collapseWhitespace: true,
+      minifyJS: true,
+      minifyCSS: true,
+      removeScriptTypeAttributes: true,
+      removeStyleTypeAttributes: true,
+      sortAttributes: true,
+      sortClassName: true,
+      keepClosingSlash: false
     },
     ENV: isDev ? 'dev' : 'prod'
   }),
@@ -144,6 +152,10 @@ const webpackConfig = {
             }
           ]
         })
+      },
+      {
+        test: /\.styl$/,
+        loader: ['style-loader', 'css-loader', 'autoprefixer-loader', 'stylus-loader']
       },
       {
         test: /\.jsx?$/,
