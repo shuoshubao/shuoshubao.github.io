@@ -83,7 +83,7 @@ const webpackConfig = {
     // publicPath: isProd ? 'https://orn2bxyo7.bkt.clouddn.com/' : '/build/',
     publicPath: isProd ? 'https://shuoshubao.github.io/build/' : '/build/',
     jsonpFunction: 'webpackJsonp',
-    filename: isDev ? '[name].js' : '[name]_[hash:5].js'
+    filename: isDev ? '[name].js' : '[name]_[chunkhash:5].js'
   },
   module: {
     rules: [
@@ -94,7 +94,7 @@ const webpackConfig = {
             loader: 'url-loader',
             query: {
               limit: 1024,
-              name: isDev ? '[name].[ext]' : '[name]_[hash:5].[ext]'
+              name: isDev ? '[name].[ext]' : '[name]_[chunkhash:5].[ext]'
             }
           }
         ]
@@ -133,7 +133,7 @@ const webpackConfig = {
               loader: 'css-loader',
               options: {
                 modules: true,
-                localIdentName: '[local]_[hash:base64:5]',
+                localIdentName: '[local]_[hash:5]',
                 minimize: isProd
               }
             },
