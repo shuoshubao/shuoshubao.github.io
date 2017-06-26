@@ -84,7 +84,7 @@ if(isProd) {
 
 const webpackConfig = {
   entry: {
-    vendor: ['react', 'react-dom'],
+    vendor: ['react', 'react-dom', 'prop-types'],
     app: './asset/app'
   },
   output: {
