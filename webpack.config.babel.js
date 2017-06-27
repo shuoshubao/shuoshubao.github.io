@@ -26,8 +26,12 @@ const plugins = [
     ENV: JSON.stringify(isDev ? 'dev' : 'prod')
   }),
   new webpack.EnvironmentPlugin(['NODE_ENV']),
-  new webpack.ProvidePlugin({}),
+  new webpack.ProvidePlugin({
+    // $: 'jquery',
+    // jQuery: 'jquery'
+  }),
   extractLESS,
+  new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
   new HtmlWebpackPlugin({
     alwaysWriteToDisk: true,
     filename: '../index.html',
