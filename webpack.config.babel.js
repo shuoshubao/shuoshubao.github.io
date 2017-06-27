@@ -5,6 +5,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin'
 import HtmlWebpackHarddiskPlugin from 'html-webpack-harddisk-plugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import SpritesmithPlugin from 'webpack-spritesmith'
+import PrepackWebpackPlugin from 'prepack-webpack-plugin'
 import {exec} from 'child_process'
 
 const [isDev, isProd] = [
@@ -22,14 +23,10 @@ const plugins = [
     'https://shuoshubao.github.io/'
   ].join('\n')),
   new webpack.DefinePlugin({
-    'process.env': {
-      'NODE_ENV': JSON.stringify(isDev ? 'development' : 'production')
-    },
     ENV: JSON.stringify(isDev ? 'dev' : 'prod')
   }),
-  new webpack.ProvidePlugin({
-
-  }),
+  new webpack.EnvironmentPlugin(['NODE_ENV']),
+  new webpack.ProvidePlugin({}),
   extractLESS,
   new HtmlWebpackPlugin({
     alwaysWriteToDisk: true,
@@ -71,7 +68,7 @@ const plugins = [
     apiOptions: {
       cssImageRef: 'sprite.png'
     }
-  })
+  }),
   // new DashboardPlugin()
 ]
 
@@ -79,7 +76,10 @@ if(isDev) {
   plugins.push(new webpack.HotModuleReplacementPlugin())
 }
 if(isProd) {
-  plugins.push(new webpack.optimize.UglifyJsPlugin())
+  plugins.push(...[
+    new PrepackWebpackPlugin(),
+    new webpack.optimize.UglifyJsPlugin()
+  ])
 }
 
 const webpackConfig = {
