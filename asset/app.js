@@ -149,7 +149,7 @@ class App extends React.Component {
               </a>
               <span className={classnames(style.navbar, {[style.active]: openNav})} onClick={this.openNav}>
                 {
-                  Array(4).fill(0, 1, 2, 3).map(v => <span key={v} className={style.bar} />)
+                  [0, 1, 2, 3].map(v => <span key={v} className={style.bar} />)
                 }
               </span>
               <ul style={{height: openNav ? (DATA_NAV.length * 40 + 20) : 0}}>
