@@ -1,6 +1,8 @@
 import path from 'path'
 import webpack from 'webpack'
+import Dashboard from 'webpack-dashboard'
 import DashboardPlugin from 'webpack-dashboard/plugin'
+import WebpackDevServer from 'webpack-dev-server'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import HtmlWebpackHarddiskPlugin from 'html-webpack-harddisk-plugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
@@ -77,12 +79,15 @@ const plugins = [
     apiOptions: {
       cssImageRef: 'sprite.png'
     }
-  }),
-  // new DashboardPlugin()
+  })
 ]
 
 if(isDev) {
-  plugins.push(new webpack.HotModuleReplacementPlugin())
+  const dashboard = new Dashboard()
+  plugins.push(...[
+    new webpack.HotModuleReplacementPlugin(),
+    new DashboardPlugin(dashboard.setData)
+  ])
 }
 if(isProd) {
   plugins.push(...[
