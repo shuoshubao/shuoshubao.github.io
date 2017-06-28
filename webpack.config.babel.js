@@ -45,7 +45,7 @@ const plugins = [
     template: 'template/index.ejs',
     title: 'WEB前端开发🐿',
     chunks: ['manifest', 'vendor', 'app'],
-    minify: {
+    minify: isProd ? {
       useShortDoctype: true,
       removeComments: true,
       collapseWhitespace: true,
@@ -56,7 +56,7 @@ const plugins = [
       sortAttributes: true,
       sortClassName: true,
       keepClosingSlash: false
-    },
+    } : {},
     ENV: isDev ? 'dev' : 'prod'
   }),
   new HtmlWebpackHarddiskPlugin(),
