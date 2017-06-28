@@ -6,8 +6,8 @@ import {
   DATA_META
 } from '../data'
 import '../polyfill'
-import 'style/highlight.css'
-import style from 'style/app.less'
+import 'style/highlight.less'
+import style from './app.module.less'
 
 const getHash = () => {
   const hash = window.location.hash.substring(1).split('/')

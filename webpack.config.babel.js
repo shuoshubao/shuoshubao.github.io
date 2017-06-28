@@ -71,8 +71,8 @@ const plugins = [
       glob: '*.png'
     },
     target: {
-      image: path.resolve(__dirname, 'spriteImgTarget/sprite.png'),
-      css: path.resolve(__dirname, 'spriteImgTarget/sprite.less')
+      image: path.resolve(__dirname, 'style/sprite.png'),
+      css: path.resolve(__dirname, 'style/sprite.less')
     },
     apiOptions: {
       cssImageRef: 'sprite.png'
@@ -134,17 +134,16 @@ const webpackConfig = {
         test: /\.tpl/,
         loader: 'ejs-loader'
       },
-      {test: /\.woff(\?v=\d+\.\d+\.\d+)?$/, loader: 'file?hash=sha512&digest=hex&name=font/[name].[hash:8].[ext]'},
-      {test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/, loader: 'file?hash=sha512&digest=hex&name=font/[name].[hash:8].[ext]'},
-      {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'file?hash=sha512&digest=hex&name=font/[name].[hash:8].[ext]'},
-      {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file?hash=sha512&digest=hex&name=font/[name].[hash:8].[ext]'},
-      {test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'file?hash=sha512&digest=hex&name=font/[name].[hash:8].[ext]'},
+      {
+        test: /\.(eot|woff|woff2|svg|ttf|gif)([\?]?.*)$/,
+        loader: 'file-loader'
+      },
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader']
       },
       {
-        test: /\.less$/,
+        test: /\.module.less$/,
         use: extractLESS.extract({
           fallback: 'style-loader',
           use: [
@@ -163,6 +162,10 @@ const webpackConfig = {
         })
       },
       {
+        test: /^((?!\.module).)*less$/,
+        use: ['style-loader', 'css-loader', 'less-loader']
+      },
+      {
         test: /\.styl$/,
         loader: ['style-loader', 'css-loader', 'autoprefixer-loader', 'stylus-loader']
       },
@@ -173,7 +176,11 @@ const webpackConfig = {
         options: {
           plugins: [
             'transform-object-assign',
-            'transform-decorators-legacy'
+            'transform-decorators-legacy',
+            ['import', {
+              libraryName: 'antd',
+              style: true
+            }]
           ],
           presets: ['es2015', 'stage-2', 'react']
         }
@@ -182,7 +189,7 @@ const webpackConfig = {
   },
   plugins,
   resolve: {
-    modules: ['node_modules', 'spriteImgTarget'],
+    modules: ['node_modules'],
     extensions: ['.js', '.jsx', '.json'],
     mainFields: ['browser', 'main'],
     alias: {

@@ -4,7 +4,7 @@
  * type: oneOf['stargazers', 'watchers', 'forks'] Required
  */
 
-import style from './index.less'
+import style from './index.module.less'
 
 const typeToLabel = {
   stargazers: {
