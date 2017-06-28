@@ -1,17 +1,13 @@
-import React, {Component} from 'react'
-import {render} from 'react-dom'
-import PropTypes from 'prop-types'
-import classnames from 'classnames'
 import MarkdownIt from 'markdown-it'
-import GitHubButton from '../component/GithubButton'
+import GitHubButton from 'component/GithubButton'
 import {
   DATA_NAV,
   DATA_ARTICLE,
   DATA_META
 } from '../data'
 import '../polyfill'
-import '../less/highlight.css'
-import style from '../less/app.less'
+import 'style/highlight.css'
+import style from 'style/app.less'
 
 const getHash = () => {
   const hash = window.location.hash.substring(1).split('/')
@@ -30,7 +26,7 @@ const getIndex = () => {
   return navIndex
 }
 
-class App extends Component {
+class App extends React.Component {
   static propTypes = {
     sourceUrl: PropTypes.string.isRequired
   }
@@ -207,4 +203,4 @@ class App extends Component {
   }
 }
 
-render(<App />, document.body.appendChild(document.createElement('div')))
+ReactDom.render(<App />, document.body.appendChild(document.createElement('div')))

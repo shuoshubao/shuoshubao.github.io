@@ -27,8 +27,12 @@ const plugins = [
   }),
   new webpack.EnvironmentPlugin(['NODE_ENV']),
   new webpack.ProvidePlugin({
-    // $: 'jquery',
-    // jQuery: 'jquery'
+    $: 'jquery',
+    jQuery: 'jquery',
+    classnames: 'classnames',
+    PropTypes: 'prop-types',
+    ReactDom: 'react-dom',
+    React: 'react'
   }),
   extractLESS,
   new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
@@ -88,7 +92,7 @@ if(isProd) {
 
 const webpackConfig = {
   entry: {
-    vendor: ['react', 'react-dom', 'prop-types'],
+    vendor: ['react', 'react-dom', 'prop-types', 'classnames'],
     app: './asset/app'
   },
   output: {
@@ -180,7 +184,13 @@ const webpackConfig = {
     modules: ['node_modules', 'spriteImgTarget'],
     extensions: ['.js', '.jsx', '.json'],
     mainFields: ['browser', 'main'],
-    alias: {}
+    alias: {
+      style: path.join(__dirname, 'style'),
+      component: path.join(__dirname, 'component')
+    }
+  },
+  externals: {
+
   }
 }
 

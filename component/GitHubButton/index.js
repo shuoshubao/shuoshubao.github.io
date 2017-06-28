@@ -4,9 +4,6 @@
  * type: oneOf['stargazers', 'watchers', 'forks'] Required
  */
 
-
-import React, {Component} from 'react'
-import PropTypes from 'prop-types'
 import style from './index.less'
 
 const typeToLabel = {
@@ -24,7 +21,7 @@ const typeToLabel = {
   }
 }
 
-export default class extends Component {
+export default class extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
