@@ -32,7 +32,8 @@ const plugins = [
     React: 'react',
     ReactDom: 'react-dom',
     PropTypes: 'prop-types',
-    classnames: 'classnames'
+    classnames: 'classnames',
+    moment: 'moment'
   }),
   extractLESS,
   new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
