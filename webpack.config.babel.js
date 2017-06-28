@@ -29,10 +29,10 @@ const plugins = [
   new webpack.ProvidePlugin({
     $: 'jquery',
     jQuery: 'jquery',
-    classnames: 'classnames',
-    PropTypes: 'prop-types',
+    React: 'react',
     ReactDom: 'react-dom',
-    React: 'react'
+    PropTypes: 'prop-types',
+    classnames: 'classnames'
   }),
   extractLESS,
   new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
