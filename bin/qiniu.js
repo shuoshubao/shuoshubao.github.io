@@ -1,4 +1,5 @@
 const fs = require('fs')
+const path = require('path')
 const qiniu = require('qiniu')
 const chalk = require('chalk')
 const commander = require('commander')
@@ -17,7 +18,7 @@ const fileList = fs.readdirSync('build').filter(v => v.endsWith('.css') || v.end
 
 Promise.all(fileList.map(v => {
   console.log(chalk.white(`正在上传: ${v}`))
-  return uploadFile(uptoken(bucket, v), v, `./build/${v}`)
+  return uploadFile(uptoken(bucket, v), v, path.join(__dirname, `../build/${v}`))
 }))
 .then(() => {
   console.log(chalk.green('上传成功'))

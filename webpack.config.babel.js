@@ -15,6 +15,8 @@ const [isDev, isProd] = [
   process.env.NODE_ENV === 'production'
 ]
 
+const src = path.join(__dirname, 'src')
+
 exec('rm build/*')
 
 const extractLESS = new ExtractTextPlugin(isDev ? '[name].css' : '[name]_[chunkhash:5].css')
@@ -41,8 +43,8 @@ const plugins = [
   new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
   new HtmlWebpackPlugin({
     alwaysWriteToDisk: true,
-    filename: '../index.html',
-    template: 'template/index.ejs',
+    filename: path.join(__dirname, 'index.html'),
+    template: path.join(src, 'template/index.ejs'),
     title: 'WEB前端开发🐿',
     chunks: ['manifest', 'vendor', 'app'],
     minify: isProd ? {
@@ -69,12 +71,12 @@ const plugins = [
   }),
   new SpritesmithPlugin({
     src: {
-      cwd: path.resolve(__dirname, 'spriteImgSrc'),
+      cwd: path.join(src, 'spriteImgSrc'),
       glob: '*.png'
     },
     target: {
-      image: path.resolve(__dirname, 'style/sprite.png'),
-      css: path.resolve(__dirname, 'style/sprite.less')
+      image: path.join(src, 'style/sprite.png'),
+      css: path.join(src, 'style/sprite.less')
     },
     apiOptions: {
       cssImageRef: 'sprite.png'
@@ -99,10 +101,10 @@ if(isProd) {
 const webpackConfig = {
   entry: {
     vendor: ['react', 'react-dom', 'prop-types', 'classnames'],
-    app: './asset/app'
+    app: './src/asset/app'
   },
   output: {
-    path: path.resolve(__dirname, 'build'),
+    path: path.join(__dirname, 'build'),
     // publicPath: isProd ? 'https://orn2bxyo7.bkt.clouddn.com/' : '/build/',
     // publicPath: isProd ? 'https://shuoshubao.github.io/build/' : '/build/',
     publicPath: '/build/',
@@ -198,8 +200,8 @@ const webpackConfig = {
     extensions: ['.js', '.jsx', '.json'],
     mainFields: ['browser', 'main'],
     alias: {
-      style: path.join(__dirname, 'style'),
-      component: path.join(__dirname, 'component')
+      style: path.join(src, 'style'),
+      component: path.join(src, 'component')
     }
   },
   externals: {

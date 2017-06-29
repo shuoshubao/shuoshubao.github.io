@@ -31,7 +31,7 @@ class App extends React.Component {
     sourceUrl: PropTypes.string.isRequired
   }
   static defaultProps = {
-    sourceUrl: '/docs/'
+    sourceUrl: '/src/docs/'
   }
   constructor() {
     super()
