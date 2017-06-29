@@ -203,4 +203,4 @@ class App extends React.Component {
   }
 }
 
-ReactDom.render(<App />, document.body.appendChild(document.createElement('div')))
+ReactDOM.render(<App />, document.body.appendChild(document.createElement('div')))

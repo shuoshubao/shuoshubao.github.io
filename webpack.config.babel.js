@@ -21,6 +21,19 @@ exec('rm build/*')
 
 const extractLESS = new ExtractTextPlugin(isDev ? '[name].css' : '[name]_[chunkhash:5].css')
 
+const HtmlWebpackPluginMinify = isProd ? {
+  useShortDoctype: true,
+  removeComments: true,
+  collapseWhitespace: true,
+  minifyJS: true,
+  minifyCSS: true,
+  removeScriptTypeAttributes: true,
+  removeStyleTypeAttributes: true,
+  sortAttributes: true,
+  sortClassName: true,
+  keepClosingSlash: false
+} : {}
+
 const plugins = [
   new webpack.BannerPlugin([
     '硕鼠宝',
@@ -34,7 +47,7 @@ const plugins = [
     $: 'jquery',
     jQuery: 'jquery',
     React: 'react',
-    ReactDom: 'react-dom',
+    ReactDOM: 'react-dom',
     PropTypes: 'prop-types',
     classnames: 'classnames',
     moment: 'moment'
@@ -47,18 +60,16 @@ const plugins = [
     template: path.join(src, 'template/index.ejs'),
     title: 'WEB前端开发🐿',
     chunks: ['manifest', 'vendor', 'app'],
-    minify: isProd ? {
-      useShortDoctype: true,
-      removeComments: true,
-      collapseWhitespace: true,
-      minifyJS: true,
-      minifyCSS: true,
-      removeScriptTypeAttributes: true,
-      removeStyleTypeAttributes: true,
-      sortAttributes: true,
-      sortClassName: true,
-      keepClosingSlash: false
-    } : {},
+    minify: HtmlWebpackPluginMinify,
+    ENV: isDev ? 'dev' : 'prod'
+  }),
+  new HtmlWebpackPlugin({
+    alwaysWriteToDisk: true,
+    filename: path.join(__dirname, 'mobx.html'),
+    template: path.join(src, 'template/index.ejs'),
+    title: 'WEB前端开发🐿',
+    chunks: ['manifest', 'vendor', 'mobx'],
+    minify: HtmlWebpackPluginMinify,
     ENV: isDev ? 'dev' : 'prod'
   }),
   new HtmlWebpackHarddiskPlugin(),
@@ -101,7 +112,8 @@ if(isProd) {
 const webpackConfig = {
   entry: {
     vendor: ['react', 'react-dom', 'prop-types', 'classnames'],
-    app: './src/asset/app'
+    app: './src/asset/app',
+    mobx: './src/asset/mobx'
   },
   output: {
     path: path.join(__dirname, 'build'),
@@ -216,8 +228,8 @@ if(isDev) {
     hot: true,
     port: 9090,
     publicPath: '/build/',
-    filename: '[name]_[hash].js',
-    historyApiFallback: true,
+    filename: '[name].js',
+    historyApiFallback: false,
     proxy: {
 
     }
