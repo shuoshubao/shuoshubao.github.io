@@ -1,31 +1,31 @@
 module.exports = [
   {
     text: 'Home',
-    categories: 'index',
+    categories: 'index'
   },
   {
     text: 'HTML',
-    categories: 'html',
+    categories: 'html'
   },
   {
     text: 'CSS',
-    categories: 'css',
+    categories: 'css'
   },
   {
     text: 'JS',
-    categories: 'js',
+    categories: 'js'
   },
   {
     text: 'Node',
-    categories: 'node',
+    categories: 'node'
   },
   {
     text: 'Tool',
     title: '前端工具',
-    categories: 'tool',
+    categories: 'tool'
   },
   {
     text: 'Assemble',
-    categories: 'assemble',
+    categories: 'assemble'
   }
 ]

@@ -44,13 +44,15 @@ class App extends React.Component {
         <div>类别: </div>
         <ul>
           {
-            list.map((v, i) => <li key={v.name}>
-              <div>
-                <span>{`${v.name}: ${v.num}`}</span>
-                <span onClick={this.remove.bind(this, i)}>删除</span>
-              </div>
-              <div>{`${v.text}`}</div>
-            </li>)
+            list.map((v, i) => (
+              <li key={v.name}>
+                <div>
+                  <span>{`${v.name}: ${v.num}`}</span>
+                  <span onClick={this.remove.bind(this, i)}>删除</span>
+                </div>
+                <div>{`${v.text}`}</div>
+              </li>
+            ))
           }
         </ul>
       </div>

@@ -7,6 +7,15 @@ module.exports = {
   "plugins": [
 
   ],
+  "globals": {
+    "React": false,
+    "ReactDOM": false,
+    "PropTypes": false,
+    "classnames": false,
+    "moment": false,
+    "$": false,
+    "jQuery": false
+  },
   "env": {
     "browser": true,
     "node": true
