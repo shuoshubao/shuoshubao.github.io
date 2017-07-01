@@ -7,7 +7,7 @@ import {
 } from '../data'
 import '../polyfill'
 import 'style/highlight.less'
-import style from './app.module.less'
+import style from './app.lesss'
 
 const getHash = () => {
   const hash = window.location.hash.substring(1).split('/')

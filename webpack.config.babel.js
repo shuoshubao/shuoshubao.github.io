@@ -127,23 +127,19 @@ const webpackConfig = {
     rules: [
       {
         test: /\.png|gif|jpg/,
-        use: [
-          {
-            loader: 'url-loader',
-            query: {
-              limit: 1024,
-              name: isDev ? '[name].[ext]' : '[name]_[chunkhash:5].[ext]'
-            }
-          }
-        ]
+        loader: 'url-loader',
+        query: {
+          limit: 1024,
+          name: isDev ? '[name].[ext]' : '[name]_[chunkhash:5].[ext]'
+        }
       },
       {
         test: /\.t[e]?xt$/,
-        use: ['raw-loader']
+        loader: 'raw-loader'
       },
       {
         test: /\.vtpl$/,
-        use: ['raw-loader']
+        loader: 'raw-loader'
       },
       {
         test: /\.ejs/,
@@ -159,10 +155,10 @@ const webpackConfig = {
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+        loader: ['style-loader', 'css-loader']
       },
       {
-        test: /\.module.less$/,
+        test: /\.lesss$/,
         use: extractLESS.extract({
           fallback: 'style-loader',
           use: [
@@ -170,7 +166,7 @@ const webpackConfig = {
               loader: 'css-loader',
               options: {
                 modules: true,
-                localIdentName: '[local]_[hash:5]',
+                localIdentName: '[local]_[name]_[hash:5]',
                 minimize: isProd
               }
             },
@@ -181,8 +177,27 @@ const webpackConfig = {
         })
       },
       {
+        test: /\.module.less$/,
+        use: [
+          {
+            loader: 'style-loader'
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              localIdentName: '[local]_[path]_[name]_[hash:5]',
+              minimize: isProd
+            }
+          },
+          {
+            loader: 'less-loader'
+          }
+        ]
+      },
+      {
         test: /^((?!\.module).)*less$/,
-        use: ['style-loader', 'css-loader', 'less-loader']
+        loader: ['style-loader', 'css-loader', 'less-loader']
       },
       {
         test: /\.styl$/,
@@ -192,6 +207,9 @@ const webpackConfig = {
         test: /\.jsx?$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
+        include: [
+          path.resolve(__dirname, 'src')
+        ],
         options: {
           plugins: [
             'transform-object-assign',
