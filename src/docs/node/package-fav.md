@@ -49,11 +49,18 @@
 * copy-to-clipboard
 * highlight.js (代码语法高亮)
 * prismjs (代码语法高亮)
-* pngquant (图片压缩)
 * prettier (代码格式化)
 * cheerio (nodejs端的jq)
+* file-type
 * http-server (nodejs开启本地服务器)
 
+# 图像处理
+
+* gm (GraphicsMagick + ImageMagick)
+* sharp
+* pngquant (图片压缩)
+* imagemin
+* image-size
 
 # 命令行 cli
 
