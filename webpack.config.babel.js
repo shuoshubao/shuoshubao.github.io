@@ -48,6 +48,7 @@ const plugins = [
     jQuery: 'jquery',
     React: 'react',
     ReactDOM: 'react-dom',
+    PureRenderMixin: 'react-addons-pure-render-mixin',
     PropTypes: 'prop-types',
     classnames: 'classnames',
     moment: 'moment'
