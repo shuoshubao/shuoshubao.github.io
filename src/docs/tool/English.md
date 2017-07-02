@@ -89,3 +89,4 @@
 | dispatch | 分发 |
 | avatar | 头像 |
 | deactivate | 停用 |
+| mount | 安装 |
