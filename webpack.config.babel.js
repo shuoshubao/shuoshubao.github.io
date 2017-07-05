@@ -46,6 +46,7 @@ const plugins = [
   new webpack.ProvidePlugin({
     $: 'jquery',
     jQuery: 'jquery',
+    _: 'lodash',
     React: 'react',
     ReactDOM: 'react-dom',
     PureRenderMixin: 'react-addons-pure-render-mixin',
