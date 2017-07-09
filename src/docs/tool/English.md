@@ -90,3 +90,4 @@
 | avatar | 头像 |
 | deactivate | 停用 |
 | mount | 安装 |
+| omit | 忽略 |

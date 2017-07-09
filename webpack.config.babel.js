@@ -60,7 +60,7 @@ const plugins = [
     alwaysWriteToDisk: true,
     filename: path.join(__dirname, 'index.html'),
     template: path.join(src, 'template/index.ejs'),
-    title: 'WEB前端开发🐿',
+    title: 'WEB前端开发',
     chunks: ['manifest', 'vendor', 'app'],
     minify: HtmlWebpackPluginMinify,
     ENV: isDev ? 'dev' : 'prod'
@@ -69,7 +69,7 @@ const plugins = [
     alwaysWriteToDisk: true,
     filename: path.join(__dirname, 'mobx.html'),
     template: path.join(src, 'template/index.ejs'),
-    title: 'WEB前端开发🐿',
+    title: 'WEB前端开发 - Mobx',
     chunks: ['manifest', 'vendor', 'mobx'],
     minify: HtmlWebpackPluginMinify,
     ENV: isDev ? 'dev' : 'prod'

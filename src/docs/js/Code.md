@@ -29,3 +29,13 @@ var date = dt.getFullYear() + '-' + pad(dt.getMonth() + 1) + '-' + pad(dt.getDat
 date += ' ';
 date += pad(dt.getHours()) + ':' + pad(dt.getMinutes()) + ':' + pad(dt.getSeconds());
 ```
+
+## 生成数组
+
+```javascript
+Array.from(new Array(N), (v, i) => i)
+```
+
+```javascript
+Array.apply(null, {length: N}).map(Function.call, Number)
+```
