@@ -1,4 +1,14 @@
+> 虽然你去百度上搜索 `reduce`, 发现只给了一个求和这一个demo, 别以为reduce的作用就止于求和
+
 # Number
+
+## 求和
+
+```
+const sum = arr => arr.reduce((prev, cur) => prev + cur)
+
+sum([1, 5, 8]) // 14
+```
 
 ## 阶乘
 
