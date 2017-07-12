@@ -18,7 +18,7 @@ arr.reduce((prev, cur) => Math.max(prev, cur))
 ## 阶乘
 
 ```
-const factorial = (N) => Array.from(new Array(N), (v, i) => i + 1).reduce((prev, cur) => prev * cur)
+const factorial = (N) => Array.from(Array(N), (v, i) => i + 1).reduce((prev, cur) => prev * cur)
 
 factorial(5) // 120
 ```

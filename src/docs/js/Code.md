@@ -33,7 +33,7 @@ date += pad(dt.getHours()) + ':' + pad(dt.getMinutes()) + ':' + pad(dt.getSecond
 ## 生成数组
 
 ```javascript
-Array.from(new Array(N), (v, i) => i)
+Array.from(Array(N), (v, i) => i)
 ```
 
 ```javascript
