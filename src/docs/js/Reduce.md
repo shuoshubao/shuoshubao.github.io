@@ -5,9 +5,14 @@
 ## 求和
 
 ```
-const sum = arr => arr.reduce((prev, cur) => prev + cur)
+arr.reduce((prev, cur) => prev + cur)
+```
 
-sum([1, 5, 8]) // 14
+## 极值
+
+```
+arr.reduce((prev, cur) => Math.min(prev, cur))
+arr.reduce((prev, cur) => Math.max(prev, cur))
 ```
 
 ## 阶乘
