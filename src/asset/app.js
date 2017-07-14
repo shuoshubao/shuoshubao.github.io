@@ -13,12 +13,15 @@ import style from './app.lesss'
 const MarkdownItHighlight = MarkdownIt({
   highlight: (str, lang) => {
     lang = lang || 'javascript'
+    const {value} = hljs.highlight(lang, str)
     if (lang && hljs.getLanguage(lang)) {
       try {
-        return `<pre class="hljs ${lang}"><code>${hljs.highlight(lang, str).value}</code></pre>`
-      } catch (__) {}
+        return `<pre class="hljs ${lang}"><code>${value.split('\n').map((v, i) => '<div class="line-numbers" data-index="' + (i+1) + '">' + v + '</div>').join('')}</code></pre>`
+      } catch (e) {
+        throw e
+      }
     }
-    return '';
+    return ''
   }
 })
 
