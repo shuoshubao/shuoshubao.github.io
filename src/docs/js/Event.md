@@ -1,6 +1,6 @@
 # beforeunload
 
-```javascript
+```
 window.onbeforeunload = function() {
   return '真的要关闭么？别后悔！';
 }
@@ -11,7 +11,7 @@ window.onbeforeunload = function() {
 
 # visibility
 
-```javascript
+```
 document.addEventListener("visibilitychange", function() {
   // dosomethings
 }, false);
@@ -28,7 +28,7 @@ document.addEventListener("visibilitychange", function() {
 
 # fullscreenchange
 
-```javascript
+```
 document.addEventListener("fullscreenchange", function( event ) {
   if (document.fullscreenElement) {
     console.log('进入全屏');

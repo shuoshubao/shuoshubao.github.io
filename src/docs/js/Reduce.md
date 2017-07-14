@@ -59,7 +59,7 @@ const ret = convertArrayToJson(data)
 
 ## filter 筛选对象
 
-```javascript
+```
 const filter = (json, attrs) => attrs.reduce((prev, cur) => {
   prev[cur] = json[cur]
   return prev
@@ -77,7 +77,7 @@ const filterData = filter(data, ['name', 'age'])
 
 ## omit 过滤对象
 
-```javascript
+```
 const omit = (json, attrs) => Object.keys(data).filter(v => !attrs.includes(v)).reduce((prev, cur) => {
   prev[cur] = json[cur]
   return prev

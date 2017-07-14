@@ -1,6 +1,6 @@
 # XMLHttpRequest
 
-```javascript
+```
 var xhr = new XMLHttpRequest();
 xhr.open(method, url, asyn);
 xhr.onreadystatechange = () => {}

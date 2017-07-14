@@ -2,7 +2,7 @@
 
 ## ReactDOM.render()
 
-```javascript
+```
 ReactDOM.render(
   <h1>Hello, world!</h1>,
   document.getElementById('app')
@@ -11,7 +11,7 @@ ReactDOM.render(
 
 ## ReactDOM.findDOMNode()
 
-```javascript
+```
 ReactDOM.findDOMNode(this.refs[refName])
 ```
 
@@ -19,7 +19,7 @@ ReactDOM.findDOMNode(this.refs[refName])
 
 ## React.createClass()
 
-```javascript
+```
 React.createClass({
   render: function() {
     return <h1>Hello {this.props.name}</h1>;
@@ -37,7 +37,7 @@ React.createClass({
 
 ### special props
 
-```javascript
+```
 class -> className
 for -> htmlFor
 style{{opacity: .5}}
@@ -96,7 +96,7 @@ dangerouslySetInnerHTML={{__html: ''}}
 * props
 * state
 
-```javascript
+```
 import React, {Component, propTypes} from 'react'
 
 export default class extends Component {
@@ -117,7 +117,7 @@ export default class extends Component {
 
 # PropTypes
 
-```javascript
+```
 React.createClass({
   propTypes: {
     title: React.PropTypes.string.isRequired,

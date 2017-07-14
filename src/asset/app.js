@@ -12,7 +12,6 @@ import style from './app.lesss'
 
 const MarkdownItHighlight = MarkdownIt({
   highlight: (str, lang) => {
-    console.log(`lang: ${lang}`);
     lang = lang || 'javascript'
     if (lang && hljs.getLanguage(lang)) {
       try {
