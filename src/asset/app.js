@@ -15,10 +15,8 @@ const MarkdownItHighlight = MarkdownIt({
     lang = lang || 'javascript'
     if (lang && hljs.getLanguage(lang)) {
       try {
-        return hljs.highlight(lang, str).value;
-      } catch (__) {
-
-      }
+        return `<pre class="hljs ${lang}"><code>${hljs.highlight(lang, str).value}</code></pre>`
+      } catch (__) {}
     }
     return '';
   }
