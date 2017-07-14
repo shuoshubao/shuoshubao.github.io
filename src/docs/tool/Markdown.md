@@ -22,8 +22,8 @@
 
 # 代码框
 
-* ```
-* ```language-name(eg:css, html, js ...)
+* \`\`\`
+* \`\`\`language-name(eg:css, html, js ...)
 
 # 列表
 
