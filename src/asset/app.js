@@ -8,26 +8,23 @@ import 'style/highlight-table.less'
 import style from './app.lesss'
 
 const MarkdownItHighlight = MarkdownIt({
-  highlight: (str, lang) => {
-    lang = lang || 'javascript'
+  highlight: (str, language) => {
+    const lang = language || 'javascript'
     const {value} = hljs.highlight(lang, str)
-    if (lang && hljs.getLanguage(lang)) {
+    if (hljs.getLanguage(lang)) {
       try {
         return [
           `<table class="hljs ${lang}">`,
             `<tbody>`,
-              value.trim().split(`\n`).map((v, i) => {
-                return [
-                  `<tr>`,
-                    `<td style="width: 20px;" data-line-number=${i + 1}></td>`,
-                    `<td>${v}</td>`,
-                  `</tr>`,
-                ].join('')
-              }).join(''),
+              value.trim().split(`\n`).map((v, i) => [
+                `<tr>`,
+                  `<td data-line-number=${i + 1}></td>`,
+                  `<td>${v}</td>`,
+                `</tr>`,
+              ].join('')).join(''),
             `</tbody>`,
           `</table>`
         ].join('')
-        // return `<pre class="hljs ${lang}"><code>${value.split('\n').map((v, i) => '<div class="line-numbers" data-index="' + (i+1) + '">' + v + '</div>').join('')}</code></pre>`
       } catch (e) {
         throw e
       }
