@@ -1,3 +1,4 @@
+import fs from 'fs'
 import path from 'path'
 import webpack from 'webpack'
 import Dashboard from 'webpack-dashboard'
@@ -18,6 +19,11 @@ const [isDev, isProd] = [
 const src = path.join(__dirname, 'src')
 
 exec('rm build/*')
+
+const alias = fs.readdirSync(src).reduce((prev, cur) => {
+  prev[cur] = path.join(src, cur)
+  return prev
+}, {})
 
 const extractLESS = new ExtractTextPlugin(isDev ? '[name].css' : '[name]_[chunkhash:5].css')
 
@@ -231,10 +237,7 @@ const webpackConfig = {
     modules: ['node_modules'],
     extensions: ['.js', '.jsx', '.json'],
     mainFields: ['browser', 'main'],
-    alias: {
-      style: path.join(src, 'style'),
-      component: path.join(src, 'component')
-    }
+    alias
   },
   externals: {
 

@@ -1,0 +1,18 @@
+table.hljs {
+  display: table;
+  background-color: #fff;
+  tr:hover td {
+    background-color: #fff;
+  }
+  td {
+    border: none;
+    height: 20px;
+    padding: 0 10px;
+    &:first-child {
+      text-align: right;
+      &:before {
+        content: attr(data-line-number);
+      }
+    }
+  }
+}

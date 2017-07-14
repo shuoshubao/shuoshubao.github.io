@@ -1,13 +1,10 @@
 import MarkdownIt from 'markdown-it'
 import hljs from 'highlight.js'
 import GitHubButton from 'component/GithubButton'
-import {
-  DATA_NAV,
-  DATA_ARTICLE,
-  DATA_META
-} from '../data'
-import '../polyfill'
+import {DATA_NAV, DATA_ARTICLE, DATA_META} from 'data'
+import 'polyfill'
 import 'style/highlight.less'
+import 'style/highlight-table.less'
 import style from './app.lesss'
 
 const MarkdownItHighlight = MarkdownIt({
@@ -16,7 +13,21 @@ const MarkdownItHighlight = MarkdownIt({
     const {value} = hljs.highlight(lang, str)
     if (lang && hljs.getLanguage(lang)) {
       try {
-        return `<pre class="hljs ${lang}"><code>${value.split('\n').map((v, i) => '<div class="line-numbers" data-index="' + (i+1) + '">' + v + '</div>').join('')}</code></pre>`
+        return [
+          `<table class="hljs ${lang}">`,
+            `<tbody>`,
+              value.trim().split(`\n`).map((v, i) => {
+                return [
+                  `<tr>`,
+                    `<td style="width: 20px;" data-line-number=${i + 1}></td>`,
+                    `<td>${v}</td>`,
+                  `</tr>`,
+                ].join('')
+              }).join(''),
+            `</tbody>`,
+          `</table>`
+        ].join('')
+        // return `<pre class="hljs ${lang}"><code>${value.split('\n').map((v, i) => '<div class="line-numbers" data-index="' + (i+1) + '">' + v + '</div>').join('')}</code></pre>`
       } catch (e) {
         throw e
       }
