@@ -1,4 +1,5 @@
 import MarkdownIt from 'markdown-it'
+import hljs from 'highlight.js'
 import GitHubButton from 'component/GithubButton'
 import {
   DATA_NAV,
@@ -8,6 +9,21 @@ import {
 import '../polyfill'
 import 'style/highlight.less'
 import style from './app.lesss'
+
+const MarkdownItHighlight = MarkdownIt({
+  highlight: (str, lang) => {
+    console.log(`lang: ${lang}`);
+    lang = lang || 'javascript'
+    if (lang && hljs.getLanguage(lang)) {
+      try {
+        return hljs.highlight(lang, str).value;
+      } catch (__) {
+
+      }
+    }
+    return '';
+  }
+})
 
 const getHash = () => {
   const hash = window.location.hash.substring(1).split('/')
@@ -96,7 +112,7 @@ class App extends React.Component {
       />
     :
       <div className={style.markdown}>
-        <div dangerouslySetInnerHTML={{__html: MarkdownIt().render(content)}} />
+        <div dangerouslySetInnerHTML={{__html: MarkdownItHighlight.render(content)}} />
         <a
           target="_blank"
           rel="noopener noreferrer"
