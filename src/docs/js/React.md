@@ -97,9 +97,11 @@ dangerouslySetInnerHTML={{__html: ''}}
 * state
 
 ```
-import React, {Component, propTypes} from 'react'
+import React from 'react'
+import ReactDOM from 'react-dom'
+import PropTypes from 'prop-types'
 
-export default class extends Component {
+export default class extends React.Component {
   static defaultProps = {
 
   }
@@ -113,6 +115,11 @@ export default class extends Component {
     }
   }
 }
+
+ReactDOM.render(
+  <App />,
+  document.querySelector('#root')
+)
 ```
 
 # PropTypes
