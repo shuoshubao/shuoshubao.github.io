@@ -39,3 +39,9 @@ Array.from(Array(N), (v, i) => i)
 ```
 Array.apply(null, {length: N}).map(Function.call, Number)
 ```
+
+## 获取数组的最后一位
+
+```
+arr.slice(-1)[0]
+```
