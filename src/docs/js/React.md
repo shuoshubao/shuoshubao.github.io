@@ -17,45 +17,29 @@ ReactDOM.findDOMNode(this.refs[refName])
 
 # React
 
-## React.createClass()
+## props
 
-```
-React.createClass({
-  render: function() {
-    return <h1>Hello {this.props.name}</h1>;
-  }
-});
-```
-
-> 组件类的第一个字母必须大写 ; 组件类只能包含一个顶层标签
-
-### props
-
-* getDefaultProps: function() { return {} }
-* this.props[propName]
+* static defaultProps = {}
+* this.props[propsName]
 * this.props.children
 
-### special props
+## special props
 
 ```
-class -> className
-for -> htmlFor
-style{{opacity: .5}}
-colspan -> colSpan
-rowspan -> rowSpan
-defaultValue select/input[text]
-defaultChecked input[radio, checkbox]
 key
 ref
 dangerouslySetInnerHTML={{__html: ''}}
 {...props}
 ```
 
-### state
+## state
 
-* getInitialState: function() { return {} } || () => ({})
+* this.state = {}
 * this.state[stateName]
 * this.setState({})
+
+> 1. 组件类的第一个字母必须大写
+> 2. 组件类只能包含一个顶层标签
 
 # Component Lifecycle
 
@@ -124,14 +108,6 @@ ReactDOM.render(
 
 # PropTypes
 
-```
-React.createClass({
-  propTypes: {
-    title: React.PropTypes.string.isRequired,
-  },
-});
-```
-
 * React.PropTypes.array
 * React.PropTypes.bool
 * React.PropTypes.func
@@ -148,7 +124,7 @@ React.createClass({
 * React.PropTypes.shape({color: React.PropTypes.string, fontSize: React.PropTypes.number })
 * React.PropTypes.func.isRequired
 * React.PropTypes.any.isRequired
-* customProp: function(props, propName, componentName) {}
+* customProp: (props, propName, componentName) => {}
 
 # Event
 
@@ -171,7 +147,7 @@ React.createClass({
 
 
 | Event Type | Event names | Properties |
-|-|-|-|
+| - | - | - |
 | Mouse | onClick onContextMenu onDoubleClick onDrag onDragEnd onDragEnter onDragExit onDragLeave onDragOver onDragStart onDrop onMouseDown onMouseEnter onMouseLeave onMouseMove onMouseOut onMouseOver onMouseUp |  altKey button buttons clientX clientY ctrlKey getModifierState(key) metaKey pageX pageY relatedTarget screenX screenY shiftKey |
 | Wheel | onWheel | deltaMode deltaX deltaY deltaZ |
 | Keyboard | onKeyDown onKeyPress onKeyUp | altKey charCode ctrlKey getModifierState(key) key keyCode locale location metaKey repeat shiftKey which |
@@ -216,8 +192,8 @@ React.createClass({
 ## ReactDOM
 
 * ReactDOM.render
-* ReactDOM.unmountComponentAtNode
 * ReactDOM.findDOMNode
+* ReactDOM.unmountComponentAtNode
 
 ## ReactDOMServer
 * ReactDOMServer.renderToString
@@ -229,3 +205,37 @@ React.createClass({
 * Factories
 * React Nodes
 * React Components
+
+# DOM Elements [#](https://facebook.github.io/react/docs/dom-elements.html#all-supported-html-attributes)
+
+## Differences In Attributes
+
+```
+style
+className
+htmlFor
+onChange
+dangerouslySetInnerHTML
+value defaultValue
+checked defaultChecked
+selected
+```
+
+## HTML Attributes
+
+```
+className
+htmlFor
+formAction
+formMethod
+readOnly
+autoComplete
+autoFocus
+maxLength
+minLength
+contentEditable
+colSpan
+rowSpan
+marginHeight
+marginWidth
+```
