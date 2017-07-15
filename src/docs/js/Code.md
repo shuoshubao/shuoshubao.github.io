@@ -5,7 +5,7 @@
 
 ```
 var dt = new Date();
-    dt.toISOString().slice(0, -5).replace(/[T]/g, ' ');
+dt.toISOString().slice(0, -5).replace(/[T]/g, ' ');
 ```
 
 ## RegExp

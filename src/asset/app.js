@@ -14,16 +14,18 @@ const MarkdownItHighlight = MarkdownIt({
     if (hljs.getLanguage(lang)) {
       try {
         return [
-          `<table class="hljs ${lang}">`,
-            `<tbody>`,
-              value.trim().split(`\n`).map((v, i) => [
-                `<tr>`,
-                  `<td data-line-number=${i + 1}></td>`,
-                  `<td>${v}</td>`,
-                `</tr>`,
-              ].join('')).join(''),
-            `</tbody>`,
-          `</table>`
+          `<pre class="hljs language-${lang}">`,
+            `<table>`,
+              `<tbody>`,
+                value.trim().split(`\n`).map((v, i) => [
+                  `<tr>`,
+                    `<td data-line-number=${i + 1}></td>`,
+                    `<td>${v}</td>`,
+                  `</tr>`,
+                ].join('')).join(''),
+              `</tbody>`,
+            `</table>`,
+          `</pre>`
         ].join('')
       } catch (e) {
         throw e
