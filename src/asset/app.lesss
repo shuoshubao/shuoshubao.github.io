@@ -181,7 +181,7 @@ body {
 }
 
 .footer {
-  height: 51px;
+  height: 101px;
   color: #666;
   .outer {
     position: absolute;
