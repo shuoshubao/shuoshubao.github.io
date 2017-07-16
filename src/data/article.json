@@ -184,7 +184,11 @@
     },
     {
       "name": "package-fav",
-      "title": "package-fav"
+      "title": "npm package 收藏夹"
+    },
+    {
+      "name": "package-top",
+      "title": "npm package top200"
     }
   ],
   "tool": [
