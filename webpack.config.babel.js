@@ -86,10 +86,6 @@ const plugins = [
     ENV: isDev ? 'dev' : 'prod'
   }),
   new HtmlWebpackHarddiskPlugin(),
-  /*new webpack.optimize.CommonsChunkPlugin({
-    name: 'vendor',
-    minChunks: module => module.context && module.context.includes('node_modules')
-  }),*/
   new webpack.optimize.CommonsChunkPlugin({
     name: 'manifest'
   }),
@@ -121,10 +117,6 @@ if(isDev) {
 }
 if(isProd) {
   plugins.push(...[
-    /*new CopyWebpackPlugin([{
-      from: path.resolve(__dirname, 'src/lib'),
-      to: path.resolve(__dirname, 'build')
-    }]),*/
     new PrepackWebpackPlugin(),
     new webpack.optimize.UglifyJsPlugin()
   ])
