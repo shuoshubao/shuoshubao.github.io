@@ -30,6 +30,7 @@
     "babel-preset-stage-2": "^6.24.1",
     "babel-register": "^6.24.1",
     "classnames": "^2.2.5",
+    "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.28.4",
     "ejs-loader": "^0.3.0",
     "extract-text-webpack-plugin": "^2.1.2",

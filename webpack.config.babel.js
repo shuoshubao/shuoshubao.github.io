@@ -6,6 +6,7 @@ import DashboardPlugin from 'webpack-dashboard/plugin'
 import WebpackDevServer from 'webpack-dev-server'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import HtmlWebpackHarddiskPlugin from 'html-webpack-harddisk-plugin'
+import CopyWebpackPlugin from 'copy-webpack-plugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import SpritesmithPlugin from 'webpack-spritesmith'
 import PrepackWebpackPlugin from 'prepack-webpack-plugin'
@@ -62,6 +63,10 @@ const plugins = [
   }),
   extractLESS,
   new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+  new CopyWebpackPlugin([{
+    from: path.resolve(__dirname, 'src/lib'),
+    to: path.resolve(__dirname, 'build')
+  }]),
   new HtmlWebpackPlugin({
     alwaysWriteToDisk: true,
     filename: path.join(__dirname, 'index.html'),
@@ -116,6 +121,10 @@ if(isDev) {
 }
 if(isProd) {
   plugins.push(...[
+    /*new CopyWebpackPlugin([{
+      from: path.resolve(__dirname, 'src/lib'),
+      to: path.resolve(__dirname, 'build')
+    }]),*/
     new PrepackWebpackPlugin(),
     new webpack.optimize.UglifyJsPlugin()
   ])
