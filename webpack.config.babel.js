@@ -81,12 +81,16 @@ const plugins = [
     ENV: isDev ? 'dev' : 'prod'
   }),
   new HtmlWebpackHarddiskPlugin(),
-  new webpack.optimize.CommonsChunkPlugin({
+  /*new webpack.optimize.CommonsChunkPlugin({
     name: 'vendor',
     minChunks: module => module.context && module.context.includes('node_modules')
-  }),
+  }),*/
   new webpack.optimize.CommonsChunkPlugin({
     name: 'manifest'
+  }),
+  new webpack.DllReferencePlugin({
+    context: __dirname,
+    manifest: require('./src/lib/manifest.json')
   }),
   new SpritesmithPlugin({
     src: {
@@ -119,7 +123,7 @@ if(isProd) {
 
 const webpackConfig = {
   entry: {
-    vendor: ['react', 'react-dom', 'prop-types', 'classnames'],
+    // vendor: ['react', 'react-dom', 'prop-types', 'classnames'],
     app: './src/asset/app',
     mobx: './src/asset/mobx'
   },
