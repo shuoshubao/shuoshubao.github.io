@@ -10,6 +10,7 @@ import CopyWebpackPlugin from 'copy-webpack-plugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import SpritesmithPlugin from 'webpack-spritesmith'
 import PrepackWebpackPlugin from 'prepack-webpack-plugin'
+import glob from 'glob'
 import {exec} from 'child_process'
 
 const [isDev, isProd] = [
@@ -18,6 +19,8 @@ const [isDev, isProd] = [
 ]
 
 const src = path.join(__dirname, 'src')
+
+const vendorHash = glob.sync(path.resolve(__dirname, 'src/lib/vendor_*.js'))[0].slice(-8, -3)
 
 exec('rm build/*')
 
@@ -72,18 +75,20 @@ const plugins = [
     filename: path.join(__dirname, 'index.html'),
     template: path.join(src, 'template/index.ejs'),
     title: 'WEB前端开发',
-    chunks: ['manifest', 'vendor', 'app'],
+    chunks: ['manifest', 'app'],
     minify: HtmlWebpackPluginMinify,
-    ENV: isDev ? 'dev' : 'prod'
+    ENV: isDev ? 'dev' : 'prod',
+    vendorHash
   }),
   new HtmlWebpackPlugin({
     alwaysWriteToDisk: true,
     filename: path.join(__dirname, 'mobx.html'),
     template: path.join(src, 'template/index.ejs'),
     title: 'WEB前端开发 - Mobx',
-    chunks: ['manifest', 'vendor', 'mobx'],
+    chunks: ['manifest', 'mobx'],
     minify: HtmlWebpackPluginMinify,
-    ENV: isDev ? 'dev' : 'prod'
+    ENV: isDev ? 'dev' : 'prod',
+    vendorHash
   }),
   new HtmlWebpackHarddiskPlugin(),
   new webpack.optimize.CommonsChunkPlugin({

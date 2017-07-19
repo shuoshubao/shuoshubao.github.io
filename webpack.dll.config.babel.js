@@ -11,7 +11,7 @@ module.exports = {
   },
   output: {
     path: path.join(__dirname, 'src/lib'),
-    filename: '[name].js',
+    filename: '[name]_[hash:5].js',
     library: '[name]'
   },
   plugins: [
