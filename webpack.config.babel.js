@@ -259,7 +259,7 @@ if(isDev) {
   webpackConfig.devServer = {
     inline: true,
     hot: true,
-    port: 9090,
+    port: 8080,
     publicPath: '/build/',
     filename: '[name].js',
     historyApiFallback: false,
