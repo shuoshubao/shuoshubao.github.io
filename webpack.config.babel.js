@@ -123,7 +123,11 @@ if(isDev) {
 if(isProd) {
   plugins.push(...[
     new PrepackWebpackPlugin(),
-    new webpack.optimize.UglifyJsPlugin()
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      }
+    })
   ])
 }
 
