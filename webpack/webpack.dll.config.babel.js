@@ -15,14 +15,14 @@ module.exports = {
     ]
   },
   output: {
-    path: path.join(__dirname, 'src/lib'),
+    path: path.join(__dirname, '../src/lib'),
     filename: '[name]_[hash:5].js',
     library: '[name]_[hash:5]'
   },
   plugins: [
     new webpack.DllPlugin({
       context: __dirname,
-      path: path.join(__dirname, 'src/lib', 'manifest.json'),
+      path: path.join(__dirname, '../src/lib', 'manifest.json'),
       name: '[name]_[hash:5]'
     }),
     new webpack.optimize.UglifyJsPlugin()

@@ -13,25 +13,19 @@ import PrepackWebpackPlugin from 'prepack-webpack-plugin'
 import glob from 'glob'
 import {exec} from 'child_process'
 
-const [isDev, isProd] = [
-  process.env.NODE_ENV === 'development',
-  process.env.NODE_ENV === 'production'
-]
-
-const src = path.join(__dirname, 'src')
-
-const vendorHash = glob.sync(path.resolve(__dirname, 'src/lib/vendor_*.js'))[0].slice(-8, -3)
-
 exec('rm build/*')
 
-const alias = fs.readdirSync(src).reduce((prev, cur) => {
-  prev[cur] = path.join(src, cur)
+const isDev = process.env.NODE_ENV === 'development'
+const PATH_ROOT = path.resolve(__dirname, '..')
+const PATH_SRC = path.resolve(PATH_ROOT, 'src')
+const PATH_BUILD = path.resolve(PATH_ROOT, 'build')
+const vendorHash = glob.sync(path.resolve(PATH_SRC, 'lib/vendor_*.js'))[0].slice(-8, -3)
+const alias = fs.readdirSync(PATH_SRC).reduce((prev, cur) => {
+  prev[cur] = path.resolve(PATH_SRC, cur)
   return prev
 }, {})
-
 const extractLESS = new ExtractTextPlugin(isDev ? '[name].css' : '[name]_[chunkhash:5].css')
-
-const HtmlWebpackPluginMinify = isProd ? {
+const HtmlWebpackPluginMinify = isDev ? {} : {
   useShortDoctype: true,
   removeComments: true,
   collapseWhitespace: true,
@@ -42,7 +36,7 @@ const HtmlWebpackPluginMinify = isProd ? {
   sortAttributes: true,
   sortClassName: true,
   keepClosingSlash: false
-} : {}
+}
 
 const plugins = [
   new webpack.BannerPlugin([
@@ -67,13 +61,13 @@ const plugins = [
   extractLESS,
   new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
   new CopyWebpackPlugin([{
-    from: path.resolve(__dirname, 'src/lib'),
-    to: path.resolve(__dirname, 'build')
+    from: `${PATH_SRC}/lib`,
+    to: PATH_BUILD
   }]),
   new HtmlWebpackPlugin({
     alwaysWriteToDisk: true,
-    filename: path.join(__dirname, 'index.html'),
-    template: path.join(src, 'template/index.ejs'),
+    filename: path.resolve(PATH_ROOT, 'index.html'),
+    template: path.resolve(PATH_SRC, 'template/index.ejs'),
     title: 'WEB前端开发',
     chunks: ['manifest', 'app'],
     minify: HtmlWebpackPluginMinify,
@@ -82,8 +76,8 @@ const plugins = [
   }),
   new HtmlWebpackPlugin({
     alwaysWriteToDisk: true,
-    filename: path.join(__dirname, 'mobx.html'),
-    template: path.join(src, 'template/index.ejs'),
+    filename: path.resolve(PATH_ROOT, 'mobx.html'),
+    template: path.resolve(PATH_SRC, 'template/index.ejs'),
     title: 'WEB前端开发 - Mobx',
     chunks: ['manifest', 'mobx'],
     minify: HtmlWebpackPluginMinify,
@@ -96,16 +90,16 @@ const plugins = [
   }),
   new webpack.DllReferencePlugin({
     context: __dirname,
-    manifest: require('./src/lib/manifest.json')
+    manifest: require(`${PATH_SRC}/lib/manifest.json`)
   }),
   new SpritesmithPlugin({
     src: {
-      cwd: path.join(src, 'spriteImgSrc'),
+      cwd: path.resolve(PATH_SRC, 'spriteImgSrc'),
       glob: '*.png'
     },
     target: {
-      image: path.join(src, 'style/sprite.png'),
-      css: path.join(src, 'style/sprite.less')
+      image: path.resolve(PATH_SRC, 'style/sprite.png'),
+      css: path.resolve(PATH_SRC, 'style/sprite.less')
     },
     apiOptions: {
       cssImageRef: 'sprite.png'
@@ -119,8 +113,7 @@ if(isDev) {
     new webpack.HotModuleReplacementPlugin(),
     new DashboardPlugin(dashboard.setData)
   ])
-}
-if(isProd) {
+}else {
   plugins.push(...[
     new PrepackWebpackPlugin(),
     new webpack.optimize.UglifyJsPlugin()
@@ -129,14 +122,12 @@ if(isProd) {
 
 const webpackConfig = {
   entry: {
-    // vendor: ['react', 'react-dom', 'prop-types', 'classnames'],
     app: './src/asset/app',
     mobx: './src/asset/mobx'
   },
   output: {
-    path: path.join(__dirname, 'build'),
-    // publicPath: isProd ? 'https://orn2bxyo7.bkt.clouddn.com/' : '/build/',
-    // publicPath: isProd ? 'https://shuoshubao.github.io/build/' : '/build/',
+    path: PATH_BUILD,
+    publicPath: isDev ? '/build/' : 'https://orn2bxyo7.bkt.clouddn.com/',
     publicPath: '/build/',
     jsonpFunction: 'webpackJsonp',
     filename: isDev ? '[name].js' : '[name]_[chunkhash:5].js'
@@ -185,7 +176,7 @@ const webpackConfig = {
               options: {
                 modules: true,
                 localIdentName: '[local]_[name]_[hash:5]',
-                minimize: isProd
+                minimize: !isDev
               }
             },
             {
@@ -205,7 +196,7 @@ const webpackConfig = {
             options: {
               modules: true,
               localIdentName: '[local]_[path]_[name]_[hash:5]',
-              minimize: isProd
+              minimize: !isDev
             }
           },
           {
@@ -225,9 +216,6 @@ const webpackConfig = {
         test: /\.jsx?$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
-        include: [
-          path.resolve(__dirname, 'src')
-        ],
         options: {
           plugins: [
             'transform-object-assign',
