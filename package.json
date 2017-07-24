@@ -13,7 +13,7 @@
     "build": "NODE_ENV=production node_modules/.bin/webpack --config webpack/webpack.config.babel.js",
     "stats": "NODE_ENV=production node_modules/.bin/webpack --config webpack/webpack.config.babel.js --json > webpack-stats.json",
     "eslint": "node_modules/.bin/eslint -f table src/asset ;exit 0",
-    "qiniu": "node bin/qiniu"
+    "qiniu": "babel-node bin/qiniu bin/qiniu"
   },
   "dependencies": {
     "antd": "^2.11.2",

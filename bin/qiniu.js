@@ -1,23 +1,22 @@
-const fs = require('fs')
-const path = require('path')
-const qiniu = require('qiniu')
-const chalk = require('chalk')
-const commander = require('commander')
+import fs from 'fs'
+import path from 'path'
+import qiniu from 'qiniu'
+import chalk from 'chalk'
+import glob from 'glob'
+
+const fileList = glob.sync('build/*').map(v => v.slice(6))
 
 qiniu.conf.ACCESS_KEY = 'LKMVIJ4M-zOvdOMOFLoohglxHuOkJz21IALeEcMB'
 qiniu.conf.SECRET_KEY = 'ijkKQkeGIvF35rrua-dRtRDd0Uc2Zpwj1jAzP8pZ'
 const bucket = 'shuoshubao'
-
 const uptoken = (bucket, key) => (new qiniu.rs.PutPolicy(`${bucket}:${key}`)).token()
 const uploadFile = (uptoken, key, localFile) => {
   let extra = new qiniu.io.PutExtra()
   return new Promise((resolve, reject) => qiniu.io.putFile(uptoken, key, localFile, extra, (err, ret) => err ? reject(err) : resolve()))
 }
 
-const fileList = fs.readdirSync('build').filter(v => v.endsWith('.css') || v.endsWith('.js'))
-
 Promise.all(fileList.map(v => {
-  console.log(chalk.white(`正在上传: ${v}`))
+  console.log(chalk.cyan(`正在上传: ${v}`))
   return uploadFile(uptoken(bucket, v), v, path.join(__dirname, `../build/${v}`))
 }))
 .then(() => {
