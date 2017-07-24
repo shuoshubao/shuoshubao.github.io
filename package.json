@@ -13,12 +13,13 @@
     "build": "NODE_ENV=production node_modules/.bin/webpack --config webpack/webpack.config.babel.js",
     "stats": "NODE_ENV=production node_modules/.bin/webpack --config webpack/webpack.config.babel.js --json > webpack-stats.json",
     "eslint": "node_modules/.bin/eslint -f table src/asset ;exit 0",
-    "qiniu": "babel-node bin/qiniu bin/qiniu"
+    "qiniu": "node_modules/.bin/babel-node bin/qiniu bin/qiniu"
   },
   "dependencies": {
     "antd": "^2.11.2",
     "autoprefixer": "^7.1.1",
     "autoprefixer-loader": "^3.2.0",
+    "babel-cli": "^6.24.1",
     "babel-core": "^6.25.0",
     "babel-loader": "^7.1.0",
     "babel-plugin-import": "^1.2.1",
