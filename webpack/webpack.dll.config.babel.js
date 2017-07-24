@@ -7,8 +7,9 @@ exec('rm src/lib/*')
 
 const PATH_ROOT = path.resolve(__dirname, '..')
 const PATH_SRC = path.resolve(PATH_ROOT, 'src')
+const FILE_NAME = '[name]_[hash:5]'
 
-module.exports = {
+export default {
   entry: {
     vendor: [
       './node_modules/react/react.js',
@@ -19,14 +20,14 @@ module.exports = {
   },
   output: {
     path: path.resolve(PATH_SRC, 'lib'),
-    filename: '[name]_[hash:5].js',
-    library: '[name]_[hash:5]'
+    filename: `${FILE_NAME}.js`,
+    library: FILE_NAME
   },
   plugins: [
     new webpack.DllPlugin({
       context: __dirname,
       path: path.resolve(PATH_SRC, 'lib/manifest.json'),
-      name: '[name]_[hash:5]'
+      name: FILE_NAME
     }),
     new webpack.optimize.UglifyJsPlugin()
   ]

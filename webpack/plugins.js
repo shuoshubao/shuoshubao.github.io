@@ -77,7 +77,8 @@ const plugins = [
   new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
   new CopyWebpackPlugin([{
     from: `${PATH_SRC}/lib`,
-    to: PATH_BUILD
+    to: PATH_BUILD,
+    ignore: '*.json'
   }]),
   ...HtmlWebpackPluginConfig,
   new HtmlWebpackHarddiskPlugin(),
