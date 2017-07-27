@@ -90,6 +90,7 @@ export default {
       options: {
         plugins: [
           'transform-object-assign',
+          'transform-object-rest-spread',
           'transform-decorators-legacy',
           ['import', {
             libraryName: 'antd',

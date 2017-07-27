@@ -1,8 +1,7 @@
 import {exec} from 'child_process'
 import entry from './entry'
-import output from './output'
 import plugins from './plugins'
-import loader from './loader'
+import module from './module'
 import resolve from './resolve'
 
 exec('rm build/*')
@@ -10,9 +9,8 @@ exec('rm build/*')
 const isDev = process.env.NODE_ENV === 'development'
 
 const webpackConfig = {
-  entry,
-  output,
-  module: loader,
+  ...entry,
+  module,
   plugins,
   resolve,
   externals: {}

@@ -1,4 +1,4 @@
 {
-  "plugins": ["transform-decorators-legacy"],
+  "plugins": ["transform-decorators-legacy", "transform-object-rest-spread"],
   "presets": ["es2015"]
 }
