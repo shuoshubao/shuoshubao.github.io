@@ -26,7 +26,7 @@ export default {
   plugins: [
     new webpack.DllPlugin({
       context: __dirname,
-      path: path.resolve(PATH_SRC, 'lib/manifest.json'),
+      path: path.resolve(PATH_SRC, 'lib/vendor.json'),
       name: FILE_NAME
     }),
     new webpack.optimize.UglifyJsPlugin()

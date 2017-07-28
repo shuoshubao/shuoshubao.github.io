@@ -87,7 +87,7 @@ const plugins = [
   }),
   new webpack.DllReferencePlugin({
     context: __dirname,
-    manifest: require(`${PATH_SRC}/lib/manifest.json`)
+    manifest: require(`${PATH_SRC}/lib/vendor.json`)
   }),
   new SpritesmithPlugin({
     src: {
