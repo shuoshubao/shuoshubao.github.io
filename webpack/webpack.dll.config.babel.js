@@ -1,9 +1,9 @@
 import fs from 'fs'
 import path from 'path'
 import webpack from 'webpack'
-import {exec} from 'child_process'
+import rimraf from 'rimraf'
 
-exec('rm src/lib/*')
+rimraf.sync('src/lib/*')
 
 const PATH_ROOT = path.resolve(__dirname, '..')
 const PATH_SRC = path.resolve(PATH_ROOT, 'src')

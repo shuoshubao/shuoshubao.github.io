@@ -1,10 +1,10 @@
-import {exec} from 'child_process'
+import rimraf from 'rimraf'
 import entry from './entry'
 import plugins from './plugins'
 import module from './module'
 import resolve from './resolve'
 
-exec('rm build/*')
+rimraf.sync('build/*')
 
 const isDev = process.env.NODE_ENV === 'development'
 
