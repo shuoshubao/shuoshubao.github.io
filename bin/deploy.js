@@ -1,11 +1,26 @@
 import fs from 'fs'
+import less from 'less'
+import LessPluginCleanCss from 'less-plugin-clean-css'
 import ejs from 'ejs'
+import chalk from 'chalk'
 import rimraf from 'rimraf'
-import {minify} from 'html-minifier'
+import {minify as minifyHtml} from 'html-minifier'
 import MarkdownIt from 'markdown-it'
 import hljs from 'highlight.js'
 import {DATA_NAV, DATA_ARTICLE, DATA_META} from '../src/data'
 
+const strLess = ['base', 'markdown', 'highlight', 'highlight-table', 'app'].reduce((prev, cur) => {
+  prev.push(fs.readFileSync(`src/style/${cur}.less`))
+  return prev
+}, []).join('').toString()
+
+
+const promiseLess = less.render(strLess, {
+  plugins: [new LessPluginCleanCss({
+    advanced: true
+  })]
+})
+// .then(css => fs.writeFile('build/app.css', css.css, () => {}))
 
 const tempEjs = fs.readFileSync('src/template/deploy.ejs').toString()
 
@@ -40,7 +55,7 @@ const MarkdownItHighlight = MarkdownIt({
   }
 })
 
-const minifyOption = {
+const minifyHtmlOption = {
   collapseInlineTagWhitespace: true,
   collapseWhitespace: true,
   minifyCSS: true,
@@ -79,10 +94,11 @@ const promiseDoc = path => new Promise((resolve, reject) => {
 
 
 Promise.all([
+  promiseLess,
   ...DATA_NAV.map(v => promiseMkdir(`view/${v.categories}`)),
   ...allDetail.map(v => promiseDoc(`src/docs/${v}.md`))
 ])
-.then(([...data]) => {
+.then(([less, ...data]) => {
   const docContent = data.slice(DATA_NAV.length)
   allDetail.map((v, i) => {
     const [categories, name] = v.split('/')
@@ -90,13 +106,14 @@ Promise.all([
       DATA_NAV,
       DATA_ARTICLE,
       DATA_META,
-      title: v.title || v.text,
+      title: DATA_ARTICLE[categories].find(v => v.name == name).title,
+      styleText: less.css,
       type: 'detail',
       categories,
       path: name,
       content: categories == 'assemble' ? docContent[i] : MarkdownItHighlight.render(docContent[i])
     })
-    fs.writeFileSync(`view/${v}.html`, minify(content, minifyOption))
+    fs.writeFileSync(`view/${v}.html`, minifyHtml(content, minifyHtmlOption))
   })
   DATA_NAV.map(v => {
     const {categories} = v
@@ -105,6 +122,7 @@ Promise.all([
       DATA_ARTICLE,
       DATA_META,
       title: v.title || v.text,
+      styleText: less.css,
       type: 'list',
       categories: categories,
       content: (() => {
@@ -119,10 +137,8 @@ Promise.all([
         }
       })()
     })
-    fs.writeFileSync(`view/${categories}/index.html`, minify(content, minifyOption))
+    fs.writeFileSync(`view/${categories}/index.html`, minifyHtml(content, minifyHtmlOption))
   })
 })
-.then(() => {
-  // console.log(11)
-})
 .catch(e => console.log(e))
+
