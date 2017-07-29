@@ -1,38 +1,107 @@
 import fs from 'fs'
+import ejs from 'ejs'
 import rimraf from 'rimraf'
-import {DATA_NAV, DATA_ARTICLE} from '../src/data'
+import MarkdownIt from 'markdown-it'
+import hljs from 'highlight.js'
+import {DATA_NAV, DATA_ARTICLE, DATA_META} from '../src/data'
+
+
+const tempEjs = fs.readFileSync('src/template/deploy.ejs').toString()
 
 rimraf.sync('view')
-
 fs.mkdirSync('view')
 
-const pageList = Object.entries(DATA_ARTICLE).reduce((prev, cur) => {
-  prev.push(...cur[1].map(v => `view/${cur[0]}/${v.name}.html`))
-  prev.push(`view/${cur[0]}/index.html`)
+const MarkdownItHighlight = MarkdownIt({
+  highlight: (str, language) => {
+    const lang = language || 'javascript'
+    const {value} = hljs.highlight(lang, str)
+    if (hljs.getLanguage(lang)) {
+      try {
+        return [
+          `<pre class="hljs language-${lang}">`,
+            `<table>`,
+              `<tbody>`,
+                value.trim().split(`\n`).map((v, i) => [
+                  `<tr>`,
+                    `<td data-line-number=${i + 1}></td>`,
+                    `<td>${v}</td>`,
+                  `</tr>`,
+                ].join('')).join(''),
+              `</tbody>`,
+            `</table>`,
+          `</pre>`
+        ].join('')
+      } catch (e) {
+        throw e
+      }
+    }
+    return ''
+  }
+})
+
+const allDetail = Object.entries(DATA_ARTICLE).reduce((prev, cur) => {
+  prev.push(...cur[1].map(v => `${cur[0]}/${v.name}`))
   return prev
 }, [])
 
-DATA_NAV.forEach(v => fs.mkdirSync(`view/${v.categories}`))
+// mkdir promise
+const promiseMkdir = path => new Promise((resolve, reject) => fs.mkdir(path, err => err ? reject() : resolve()))
 
-const promiseMkdir = path => new Promise((resolve, reject) => {
-  fs.mkdir(path, err => {
+const promiseDoc = path => new Promise((resolve, reject) => {
+  fs.readFile(path, (err, data) => {
     if(err) {
-      resolve()
-    }else {
       reject()
+    }else {
+      resolve(data.toString())
     }
   })
 })
 
-Promise.all(
-  DATA_NAV.map(v => promiseMkdir(`view/${v.categories}`))
-)
-.then(() => {
-  pageList.forEach(v => {
-    fs.writeFileSync(v, '')
+
+
+Promise.all([
+  ...DATA_NAV.map(v => promiseMkdir(`view/${v.categories}`)),
+  ...allDetail.map(v => promiseDoc(`src/docs/${v}.md`))
+])
+.then(([...data]) => {
+  const docContent = data.slice(DATA_NAV.length)
+  allDetail.map((v, i) => {
+    const [categories, name] = v.split('/')
+    fs.writeFileSync(`view/${v}.html`, ejs.render(tempEjs, {
+      DATA_NAV,
+      DATA_ARTICLE,
+      DATA_META,
+      title: v.title || v.text,
+      type: 'detail',
+      categories,
+      path: name,
+      content: categories == 'assemble' ? docContent[i] : MarkdownItHighlight.render(docContent[i])
+    }))
+  })
+  DATA_NAV.map(v => {
+    const {categories} = v
+    fs.writeFileSync(`view/${categories}/index.html`, ejs.render(tempEjs, {
+      DATA_NAV,
+      DATA_ARTICLE,
+      DATA_META,
+      title: v.title || v.text,
+      type: 'list',
+      categories: categories,
+      content: (() => {
+        if(categories == 'index') {
+          return allDetail.map(v => {
+            const [categories, name] = v.split('/')
+            const {title} = DATA_ARTICLE[categories].find(v => v.name == name)
+            return `<li><a href="/#${categories}/${name}">${title}</a></li>`
+          }).join('')
+        }else {
+          return DATA_ARTICLE[categories].map(v => `<li><a href="/#${categories}/${v.name}">${v.title}</a></li>`).join('')
+        }
+      })()
+    }))
   })
 })
-
-
-
-
+.then(() => {
+  // console.log(11)
+})
+.catch(e => console.log(e))

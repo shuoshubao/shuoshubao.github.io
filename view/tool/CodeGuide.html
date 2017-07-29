@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="硕鼠宝,shuoshubao,shubao,FE,html5,css3,js,jquery,jq">
+  <meta name="keywords" content="硕鼠宝,shuoshubao,shubao,FE,html5,css3,js,jquery,jq">
+  <link rel="shortcut icon" href="favicon.ico">
+  <title>WEB前端开发 - </title>
+  <link rel="stylesheet" href="/build/app.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="inner">
+    <div class="wrap">
+      <a class="home" href="/#">
+        <svg
+          class="logo"
+          aria-hidden="true"
+          width="30"
+          height="30"
+          version="1.1"
+          viewBox="0 0 16 16"
+        >
+          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+        </svg>
+        <span class="name">硕鼠宝</span>
+      </a>
+      <ul>
+        
+          <li class="">
+            <a href="/#index">Home</a>
+          </li>
+        
+          <li class="">
+            <a href="/#html">HTML</a>
+          </li>
+        
+          <li class="">
+            <a href="/#css">CSS</a>
+          </li>
+        
+          <li class="">
+            <a href="/#js">JS</a>
+          </li>
+        
+          <li class="">
+            <a href="/#node">Node</a>
+          </li>
+        
+          <li class="active">
+            <a href="/#tool">Tool</a>
+          </li>
+        
+          <li class="">
+            <a href="/#assemble">Assemble</a>
+          </li>
+        
+      </ul>
+      <a
+        class="github"
+        target="_blank" rel="noopener noreferrer"
+        href="https://github.com/shuoshubao/shuoshubao.github.io/"
+      >GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<article class="content">
+  
+    
+      <div class="markdown">
+        <h1>HTML</h1>
+<h2>语法</h2>
+<ul>
+<li>使用4个空格代替缩进</li>
+<li>嵌套的节点应该缩进</li>
+<li>属性值用双引号</li>
+<li>标签名全部小写</li>
+<li>属性名全小写，分隔符为-</li>
+<li>自定义属性全部 data-*</li>
+<li>boolean属性指不要声明属性值</li>
+</ul>
+<h2>基本结构</h2>
+<pre class="hljs language-html"><table><tbody><tr><td data-line-number=1></td><td><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span></td></tr><tr><td data-line-number=2></td><td><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span></td></tr><tr><td data-line-number=3></td><td><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span></td></tr><tr><td data-line-number=4></td><td>  <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Document<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span></td></tr><tr><td data-line-number=5></td><td>  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span></td></tr><tr><td data-line-number=6></td><td>  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">"X-UA-Compatible"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"IE=Edge"</span>&gt;</span></td></tr><tr><td data-line-number=7></td><td><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span></td></tr><tr><td data-line-number=8></td><td><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span></td></tr></tbody></table></pre>
+<h2>标签嵌套规范</h2>
+<ul>
+<li>内联元素不能嵌套块元素</li>
+<li>p, dt, h1 不能嵌套块元素</li>
+<li>块元素与块元素平级、内联元素与内联元素平级</li>
+</ul>
+<h2>属性顺序(荐)</h2>
+<ul>
+<li>id、class、name、data-*</li>
+<li>src、for、type、href、value、max-length、pattern</li>
+<li>placeholder、title、alt</li>
+<li>required、readonly、disabled</li>
+</ul>
+<h2>推荐</h2>
+<ul>
+<li>自闭合标签结尾不加/</li>
+</ul>
+<h1>CSS</h1>
+<h2>语法</h2>
+<ul>
+<li>使用4个空格代替缩进</li>
+<li>每个属性声明独占一行</li>
+<li>选择器嵌套不要超过3层</li>
+<li>注释独占一行</li>
+<li>分组选择器需换行</li>
+<li>嵌套需换行</li>
+<li>每个属性声明末尾都要加分号</li>
+<li>全部双引号</li>
+<li>复合属性尽量简写</li>
+</ul>
+<blockquote>
+<p>常用复合属性: margin padding font background transition animation</p>
+</blockquote>
+<h2>空格</h2>
+<ul>
+<li>属性值前</li>
+<li>选择器'&gt;', '+', '~'前后</li>
+<li>'{'前</li>
+<li>!important '!'前</li>
+<li>属性值中的','后</li>
+<li>注释分隔符前后</li>
+</ul>
+<h2>命名</h2>
+<ul>
+<li>类名使用小写字母，以中划线分隔（参考Bootstrap）</li>
+<li>id采用驼峰式命名</li>
+</ul>
+<h2>顺序(荐)</h2>
+<ul>
+<li>可见性(display, visibilty, overflow)</li>
+<li>浮动(float, clear)</li>
+<li>定位(position, z-index, t-r-b-l)</li>
+<li>盒模型(width, min-width, max-width, margin, padding, border, content)</li>
+<li>字体(font, line-height)</li>
+<li>颜色、背景色(color, background)</li>
+<li>其他(transition, transform, outline, box-shadow)</li>
+</ul>
+<h2>推荐</h2>
+<ul>
+<li>不建议使用类选择器</li>
+<li>样式里面不要出现id</li>
+<li>尽量不用 important</li>
+<li>尽量少用'*'选择器</li>
+<li>zIndex规范: 100, 101, ...</li>
+<li>不要有空的规则</li>
+<li>元素选择器小写</li>
+<li>去掉小数点前面的0</li>
+<li>属性值'0'后面不要加单位</li>
+<li>标准属性写在厂商前缀属性后面</li>
+<li>用 border: 0; 代替 border: none;</li>
+</ul>
+<h1>JS</h1>
+<h2>语法</h2>
+<ul>
+<li>使用4个空格代替缩进</li>
+<li>一行一条语句</li>
+<li>语句末尾加分号</li>
+<li>函数参数之间的逗号后加空格</li>
+<li>用'===', '!=='代替'==', '!='</li>
+<li>同步模块的require import 都放在最前面</li>
+<li>尽量改变className 而不是操作style</li>
+<li>将要用于js操作的元素加className act驼峰(eg: actSubmit)</li>
+<li>注释独占一行</li>
+<li>注释采用DocBlockr风格</li>
+</ul>
+<blockquote>
+<p>Reference
+<a href="http://usejsdoc.org/">usejsdoc</a>
+<a href="http://yuri4ever.github.io/jsdoc/">JSDoc Guide</a></p>
+</blockquote>
+<pre class="hljs language-javascript"><table><tbody><tr><td data-line-number=1></td><td><span class="hljs-comment">// 单行注释</span></td></tr><tr><td data-line-number=2></td><td></td></tr><tr><td data-line-number=3></td><td><span class="hljs-comment">/**</td></tr><tr><td data-line-number=4></td><td> * 多行注释</td></tr><tr><td data-line-number=5></td><td> * 多行注释</td></tr><tr><td data-line-number=6></td><td> */</span></td></tr></tbody></table></pre>
+<h2>换行 空格</h2>
+<ul>
+<li>运算符与操作值之间加空格</li>
+</ul>
+<pre class="hljs language-javascript"><table><tbody><tr><td data-line-number=1></td><td><span class="hljs-comment">// []</span></td></tr><tr><td data-line-number=2></td><td><span class="hljs-keyword">var</span> a = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];</td></tr><tr><td data-line-number=3></td><td><span class="hljs-comment">// {}</span></td></tr><tr><td data-line-number=4></td><td><span class="hljs-keyword">var</span> a = {</td></tr><tr><td data-line-number=5></td><td>  <span class="hljs-attr">a</span>: <span class="hljs-number">1</span>,</td></tr><tr><td data-line-number=6></td><td>  <span class="hljs-attr">b</span>: <span class="hljs-number">2</span></td></tr><tr><td data-line-number=7></td><td>};</td></tr><tr><td data-line-number=8></td><td><span class="hljs-comment">// ()</span></td></tr><tr><td data-line-number=9></td><td><span class="hljs-keyword">var</span> a = (<span class="hljs-number">1</span> + <span class="hljs-number">2</span>) * <span class="hljs-number">3</span>;</td></tr><tr><td data-line-number=10></td><td><span class="hljs-comment">// function</span></td></tr><tr><td data-line-number=11></td><td><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">a</span>(<span class="hljs-params"></span>) </span>{</td></tr><tr><td data-line-number=12></td><td></td></tr><tr><td data-line-number=13></td><td>}</td></tr><tr><td data-line-number=14></td><td><span class="hljs-comment">// 二元运算符</span></td></tr><tr><td data-line-number=15></td><td>x++;</td></tr><tr><td data-line-number=16></td><td>++x;</td></tr><tr><td data-line-number=17></td><td><span class="hljs-comment">// 三目运算符</span></td></tr><tr><td data-line-number=18></td><td><span class="hljs-keyword">var</span> x = a &gt; b ? c : d;</td></tr><tr><td data-line-number=19></td><td><span class="hljs-comment">// if else while catch finally switch case try catch</span></td></tr><tr><td data-line-number=20></td><td><span class="hljs-keyword">if</span>(a &gt; b) {</td></tr><tr><td data-line-number=21></td><td></td></tr><tr><td data-line-number=22></td><td>}<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(c &gt; d) {</td></tr><tr><td data-line-number=23></td><td></td></tr><tr><td data-line-number=24></td><td>}<span class="hljs-keyword">else</span> {</td></tr><tr><td data-line-number=25></td><td></td></tr><tr><td data-line-number=26></td><td>}</td></tr><tr><td data-line-number=27></td><td><span class="hljs-comment">// for while</span></td></tr><tr><td data-line-number=28></td><td><span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">1</span>; i++) {</td></tr><tr><td data-line-number=29></td><td></td></tr><tr><td data-line-number=30></td><td>}</td></tr></tbody></table></pre>
+<h2>引号</h2>
+<blockquote>
+<p>最外层使用单引号, 内层使用双引号</p>
+</blockquote>
+<h2>变量命名</h2>
+<ul>
+<li>标准变量采用驼峰式命名</li>
+<li>常量全大写, 用下划线连接</li>
+<li>构造函数, 首字母大写</li>
+<li>jquery对象以'$'开头命名</li>
+</ul>
+<h2>变量声明</h2>
+<ul>
+<li>一个函数作用域中所有的变量声明尽量提到函数首部</li>
+<li>一个var, 一个变量</li>
+</ul>
+<h2>数组、对象</h2>
+<ul>
+<li>对象的属性名不要加引号</li>
+<li>对象多个属性需换行</li>
+<li>对象不要尾逗号</li>
+<li>数组不要写空位</li>
+</ul>
+<h2>推荐</h2>
+<ul>
+<li>每个js文件头部都应该有个注释(README)</li>
+<li>每个js模块应该分配一个id(命名空间)</li>
+<li>编辑器开启word wrap</li>
+<li>css状态名统一化: active, current, disabled, selected, checked (反义加un)</li>
+<li>不要用关键字作为对象的属性名</li>
+<li>不要给内置对象的原型添加属性或方法</li>
+<li>使用 window.xxx 显式定义全局变量</li>
+<li>变量声明和函数声明手动提升</li>
+<li>for-in里一定要有hasOwnProperty的判断</li>
+<li>不要重复声明变量</li>
+<li>不要使用with</li>
+<li>不要使用eval</li>
+<li>行尾不要有空白字符(编辑器设置)</li>
+</ul>
+
+      </div>
+    
+  
+</article>
+
+<footer class="footer">
+  <div class="outer">
+    <div class="wrap">
+      <span>© 2014-2017 Shuoshubao.com 版权所有 京ICP备15042742号</span>
+      <span> Powered by </span>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://github.com/shuoshubao/shuoshubao.github.io/"
+      > GitHub </a>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://facebook.github.io/react/"
+      > React </a>
+    </div>
+  </div>
+</footer>
+
+<script>
+console.log('deploy')
+</script>
+
+</body>
+</html>

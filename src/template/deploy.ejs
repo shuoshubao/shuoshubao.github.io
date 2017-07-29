@@ -6,7 +6,7 @@
   <meta name="description" content="硕鼠宝,shuoshubao,shubao,FE,html5,css3,js,jquery,jq">
   <meta name="keywords" content="硕鼠宝,shuoshubao,shubao,FE,html5,css3,js,jquery,jq">
   <link rel="shortcut icon" href="favicon.ico">
-  <title>WEB前端开发 - </title>
+  <title><%= DATA_META.title %> - <%= title %></title>
   <link rel="stylesheet" href="/build/app.css">
 </head>
 <body>
@@ -28,107 +28,48 @@
         <span class="name">硕鼠宝</span>
       </a>
       <ul>
-        
-          <li class="">
-            <a href="/#index">Home</a>
+        <% DATA_NAV.forEach(function(v){ %>
+          <li class="<%= categories==v.categories ? 'active' : '' %>">
+            <a href="/#<%= v.categories %>"><%= v.text %></a>
           </li>
-        
-          <li class="">
-            <a href="/#html">HTML</a>
-          </li>
-        
-          <li class="">
-            <a href="/#css">CSS</a>
-          </li>
-        
-          <li class="">
-            <a href="/#js">JS</a>
-          </li>
-        
-          <li class="">
-            <a href="/#node">Node</a>
-          </li>
-        
-          <li class="active">
-            <a href="/#tool">Tool</a>
-          </li>
-        
-          <li class="">
-            <a href="/#assemble">Assemble</a>
-          </li>
-        
+        <% }) %>
       </ul>
       <a
         class="github"
         target="_blank" rel="noopener noreferrer"
-        href="https://github.com/shuoshubao/shuoshubao.github.io/"
+        href="<%= DATA_META.githubLink %>"
       >GitHub</a>
     </div>
   </div>
 </nav>
 
 <article class="content">
-  
-    
-      <div class="markdown">
-        <h1>快捷键</h1>
-<ul>
-<li>
-<p>ctrl+a 行首</p>
-</li>
-<li>
-<p>ctrl+e 行尾</p>
-</li>
-<li>
-<p>ctrl+c 终止</p>
-</li>
-<li>
-<p>ctrl+l 清屏</p>
-</li>
-<li>
-<p>ctrl+b 向前移一位</p>
-</li>
-<li>
-<p>ctrl+f 向后移一位</p>
-</li>
-<li>
-<p>ctrl+d 向后删除一位</p>
-</li>
-<li>
-<p>ctrl+h 向前删除一位</p>
-</li>
-<li></li>
-<li>
-<p>ctrl+k 删除至行尾</p>
-</li>
-<li>
-<p>ctrl+u 删除至行首</p>
-</li>
-<li>
-<p>ctrl+w 删除至词首</p>
-</li>
-<li>
-<p>ctrl+p 上一条命令</p>
-</li>
-<li>
-<p>ctrl+n 下一条命令</p>
-</li>
-</ul>
-
+  <% if (type == 'list') { %>
+    <ul class="list">
+      <%- content %>
+    </ul>
+  <% } else { %>
+    <% if (categories == 'assemble') { %>
+      <div class="p-<%= path.toLocaleLowerCase() %>">
+        <%- content %>
       </div>
-    
-  
+    <% } else { %>
+      <div class="markdown">
+        <%- content %>
+      </div>
+    <% } %>
+  <% } %>
 </article>
 
 <footer class="footer">
   <div class="outer">
     <div class="wrap">
-      <span>© 2014-2017 Shuoshubao.com 版权所有 京ICP备15042742号</span>
+      <span>© 2014-<%= new Date().getFullYear() %> Shuoshubao.com 版权所有 <%= DATA_META.registration %></span>
       <span> Powered by </span>
       <a
         target="_blank"
         rel="noopener noreferrer"
-        href="https://github.com/shuoshubao/shuoshubao.github.io/"
+        href="<%= DATA_META.githubLink %>"
       > GitHub </a>
       <a
         target="_blank"

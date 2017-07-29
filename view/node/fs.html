@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="硕鼠宝,shuoshubao,shubao,FE,html5,css3,js,jquery,jq">
+  <meta name="keywords" content="硕鼠宝,shuoshubao,shubao,FE,html5,css3,js,jquery,jq">
+  <link rel="shortcut icon" href="favicon.ico">
+  <title>WEB前端开发 - </title>
+  <link rel="stylesheet" href="/build/app.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="inner">
+    <div class="wrap">
+      <a class="home" href="/#">
+        <svg
+          class="logo"
+          aria-hidden="true"
+          width="30"
+          height="30"
+          version="1.1"
+          viewBox="0 0 16 16"
+        >
+          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+        </svg>
+        <span class="name">硕鼠宝</span>
+      </a>
+      <ul>
+        
+          <li class="">
+            <a href="/#index">Home</a>
+          </li>
+        
+          <li class="">
+            <a href="/#html">HTML</a>
+          </li>
+        
+          <li class="">
+            <a href="/#css">CSS</a>
+          </li>
+        
+          <li class="">
+            <a href="/#js">JS</a>
+          </li>
+        
+          <li class="active">
+            <a href="/#node">Node</a>
+          </li>
+        
+          <li class="">
+            <a href="/#tool">Tool</a>
+          </li>
+        
+          <li class="">
+            <a href="/#assemble">Assemble</a>
+          </li>
+        
+      </ul>
+      <a
+        class="github"
+        target="_blank" rel="noopener noreferrer"
+        href="https://github.com/shuoshubao/shuoshubao.github.io/"
+      >GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<article class="content">
+  
+    
+      <div class="markdown">
+        <ul>
+<li>读取文件</li>
+</ul>
+<pre class="hljs language-javascript"><table><tbody><tr><td data-line-number=1></td><td>fs.readFile(filename, [options], callback)</td></tr><tr><td data-line-number=2></td><td>fs.readFileSync(filename, [options])</td></tr></tbody></table></pre>
+<ul>
+<li>写入文件</li>
+</ul>
+<pre class="hljs language-javascript"><table><tbody><tr><td data-line-number=1></td><td>* fs.writeFile(filename, data, [options], callback)</td></tr><tr><td data-line-number=2></td><td>* fs.writeFile(filename, data, [options])</td></tr></tbody></table></pre>
+<ul>
+<li>创建目录</li>
+</ul>
+<pre class="hljs language-javascript"><table><tbody><tr><td data-line-number=1></td><td>* fs.mkdir(path, [mode], callback)</td></tr></tbody></table></pre>
+<ul>
+<li>读取目录</li>
+</ul>
+<pre class="hljs language-javascript"><table><tbody><tr><td data-line-number=1></td><td>* fs.readdir(path, (err, files) =&gt; {})</td></tr></tbody></table></pre>
+<ul>
+<li>查看文件/目录信息</li>
+</ul>
+<pre class="hljs language-javascript"><table><tbody><tr><td data-line-number=1></td><td>* fs.stat(path, (err, stats) =&gt; {})</td></tr></tbody></table></pre>
+<ul>
+<li>检查文件/目录是否存在</li>
+</ul>
+<pre class="hljs language-javascript"><table><tbody><tr><td data-line-number=1></td><td>* fs.exists(path, (exists) =&gt; {})</td></tr></tbody></table></pre>
+<ul>
+<li>获取文件的绝对路径</li>
+</ul>
+<pre class="hljs language-javascript"><table><tbody><tr><td data-line-number=1></td><td>* fs.realpath(path, (err, resolvedPath) =&gt; {})</td></tr></tbody></table></pre>
+<ul>
+<li>修改文件时间</li>
+</ul>
+<pre class="hljs language-javascript"><table><tbody><tr><td data-line-number=1></td><td>* fs.utimes(path, atime, mtime, callback)</td></tr></tbody></table></pre>
+<ul>
+<li>修改文件/目录的读取权限</li>
+</ul>
+<pre class="hljs language-javascript"><table><tbody><tr><td data-line-number=1></td><td>* fs.chmod(path, mode, callback)</td></tr></tbody></table></pre>
+<ul>
+<li>修改文件/目录的读取权限</li>
+</ul>
+<pre class="hljs language-javascript"><table><tbody><tr><td data-line-number=1></td><td>fs.chmod(path, mode, callback)</td></tr></tbody></table></pre>
+<ul>
+<li>移动/重命名文件</li>
+</ul>
+<pre class="hljs language-javascript"><table><tbody><tr><td data-line-number=1></td><td>fs.rename(oldPath, newPath, callback)</td></tr></tbody></table></pre>
+<ul>
+<li>创建和删除硬连接</li>
+</ul>
+<pre class="hljs language-javascript"><table><tbody><tr><td data-line-number=1></td><td>fs.link(srcPath, dstPath, callback)</td></tr></tbody></table></pre>
+<ul>
+<li>截断文件</li>
+</ul>
+<pre class="hljs language-javascript"><table><tbody><tr><td data-line-number=1></td><td>fs.truncate(filename, len, callback)</td></tr></tbody></table></pre>
+<ul>
+<li>删除空目录</li>
+</ul>
+<pre class="hljs language-javascript"><table><tbody><tr><td data-line-number=1></td><td>fs.rmdir(path, callback)</td></tr></tbody></table></pre>
+<ul>
+<li>监视文件/目录</li>
+</ul>
+<pre class="hljs language-javascript"><table><tbody><tr><td data-line-number=1></td><td>fs.watchFile(filename, [options], listener)</td></tr><tr><td data-line-number=2></td><td>fs.unwatchFile(filename, [listener])</td></tr></tbody></table></pre>
+
+      </div>
+    
+  
+</article>
+
+<footer class="footer">
+  <div class="outer">
+    <div class="wrap">
+      <span>© 2014-2017 Shuoshubao.com 版权所有 京ICP备15042742号</span>
+      <span> Powered by </span>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://github.com/shuoshubao/shuoshubao.github.io/"
+      > GitHub </a>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://facebook.github.io/react/"
+      > React </a>
+    </div>
+  </div>
+</footer>
+
+<script>
+console.log('deploy')
+</script>
+
+</body>
+</html>

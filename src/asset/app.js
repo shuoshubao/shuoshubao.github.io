@@ -4,7 +4,6 @@ import GitHubButton from 'component/GithubButton'
 import {DATA_NAV, DATA_ARTICLE, DATA_META} from 'data'
 import 'polyfill'
 import 'style/highlight.less'
-import 'style/highlight-table.less'
 import style from './app.lesss'
 
 const MarkdownItHighlight = MarkdownIt({

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="硕鼠宝,shuoshubao,shubao,FE,html5,css3,js,jquery,jq">
+  <meta name="keywords" content="硕鼠宝,shuoshubao,shubao,FE,html5,css3,js,jquery,jq">
+  <link rel="shortcut icon" href="favicon.ico">
+  <title>WEB前端开发 - </title>
+  <link rel="stylesheet" href="/build/app.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="inner">
+    <div class="wrap">
+      <a class="home" href="/#">
+        <svg
+          class="logo"
+          aria-hidden="true"
+          width="30"
+          height="30"
+          version="1.1"
+          viewBox="0 0 16 16"
+        >
+          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+        </svg>
+        <span class="name">硕鼠宝</span>
+      </a>
+      <ul>
+        
+          <li class="">
+            <a href="/#index">Home</a>
+          </li>
+        
+          <li class="">
+            <a href="/#html">HTML</a>
+          </li>
+        
+          <li class="">
+            <a href="/#css">CSS</a>
+          </li>
+        
+          <li class="active">
+            <a href="/#js">JS</a>
+          </li>
+        
+          <li class="">
+            <a href="/#node">Node</a>
+          </li>
+        
+          <li class="">
+            <a href="/#tool">Tool</a>
+          </li>
+        
+          <li class="">
+            <a href="/#assemble">Assemble</a>
+          </li>
+        
+      </ul>
+      <a
+        class="github"
+        target="_blank" rel="noopener noreferrer"
+        href="https://github.com/shuoshubao/shuoshubao.github.io/"
+      >GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<article class="content">
+  
+    
+      <div class="markdown">
+        <h1>语法</h1>
+<pre class="hljs language-javascript"><table><tbody><tr><td data-line-number=1></td><td><span class="hljs-keyword">var</span> patt = <span class="hljs-keyword">new</span> <span class="hljs-built_in">RegExp</span>(pattern,modifiers);</td></tr><tr><td data-line-number=2></td><td><span class="hljs-keyword">var</span> patt = <span class="hljs-regexp">/pattern/m</span>odifiers;</td></tr></tbody></table></pre>
+<table>
+<thead>
+<tr>
+<th>修饰符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>i</td>
+<td>忽略大小写</td>
+</tr>
+<tr>
+<td>g</td>
+<td>全局匹配</td>
+</tr>
+<tr>
+<td>m</td>
+<td>多行匹配</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>方括号</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[abc]</td>
+<td>任意一个括号内字符</td>
+</tr>
+<tr>
+<td>[^abc]</td>
+<td>任何一个不在括号内的字符</td>
+</tr>
+<tr>
+<td>[0-9]</td>
+<td>0-9的数字</td>
+</tr>
+<tr>
+<td>[a-z]</td>
+<td>a-z</td>
+</tr>
+<tr>
+<td>[A-Z]</td>
+<td>A-Z</td>
+</tr>
+<tr>
+<td>[A-z]</td>
+<td>A-z</td>
+</tr>
+<tr>
+<td>(red | blue | green)</td>
+<td>任何一项</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>元字符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>*</td>
+<td>单个字符(除了换行符 结束符)</td>
+</tr>
+<tr>
+<td>\w</td>
+<td>单词字符</td>
+</tr>
+<tr>
+<td>\W</td>
+<td>非单词字符</td>
+</tr>
+<tr>
+<td>\d</td>
+<td>数字</td>
+</tr>
+<tr>
+<td>\D</td>
+<td>非数字</td>
+</tr>
+<tr>
+<td>\s</td>
+<td>空白符</td>
+</tr>
+<tr>
+<td>\S</td>
+<td>非空白符</td>
+</tr>
+<tr>
+<td>\b</td>
+<td>单词边界</td>
+</tr>
+<tr>
+<td>\B</td>
+<td>非单词边界</td>
+</tr>
+<tr>
+<td>\0</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td>\n</td>
+<td>换行符</td>
+</tr>
+<tr>
+<td>\f</td>
+<td>换页符</td>
+</tr>
+<tr>
+<td>\r</td>
+<td>回车符</td>
+</tr>
+<tr>
+<td>\t</td>
+<td>制表符</td>
+</tr>
+<tr>
+<td>\v</td>
+<td>垂直制表符</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>量词</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>n+</td>
+<td>[1, +)</td>
+</tr>
+<tr>
+<td>n*</td>
+<td>[0, +)</td>
+</tr>
+<tr>
+<td>n?</td>
+<td>0或1</td>
+</tr>
+<tr>
+<td>n{x}</td>
+<td>x</td>
+</tr>
+<tr>
+<td>n{x, y}</td>
+<td>[x, y]</td>
+</tr>
+<tr>
+<td>n{x,}</td>
+<td>[x, +)</td>
+</tr>
+<tr>
+<td>n$</td>
+<td>以n结尾</td>
+</tr>
+<tr>
+<td>^n</td>
+<td>以n开头</td>
+</tr>
+<tr>
+<td>?=n</td>
+<td>其后紧接n</td>
+</tr>
+<tr>
+<td>?!n</td>
+<td>其后没紧接n</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>原型</th>
+<th>方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RegExp.prototype</td>
+<td>.test() &lt;br&gt; .exec() &lt;br&gt; .compile()</td>
+</tr>
+<tr>
+<td>String.prototype</td>
+<td>.replace() &lt;br&gt; .split() &lt;br&gt; .search() &lt;br&gt; .match()</td>
+</tr>
+</tbody>
+</table>
+
+      </div>
+    
+  
+</article>
+
+<footer class="footer">
+  <div class="outer">
+    <div class="wrap">
+      <span>© 2014-2017 Shuoshubao.com 版权所有 京ICP备15042742号</span>
+      <span> Powered by </span>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://github.com/shuoshubao/shuoshubao.github.io/"
+      > GitHub </a>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://facebook.github.io/react/"
+      > React </a>
+    </div>
+  </div>
+</footer>
+
+<script>
+console.log('deploy')
+</script>
+
+</body>
+</html>

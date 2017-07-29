@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="硕鼠宝,shuoshubao,shubao,FE,html5,css3,js,jquery,jq">
+  <meta name="keywords" content="硕鼠宝,shuoshubao,shubao,FE,html5,css3,js,jquery,jq">
+  <link rel="shortcut icon" href="favicon.ico">
+  <title>WEB前端开发 - </title>
+  <link rel="stylesheet" href="/build/app.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="inner">
+    <div class="wrap">
+      <a class="home" href="/#">
+        <svg
+          class="logo"
+          aria-hidden="true"
+          width="30"
+          height="30"
+          version="1.1"
+          viewBox="0 0 16 16"
+        >
+          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+        </svg>
+        <span class="name">硕鼠宝</span>
+      </a>
+      <ul>
+        
+          <li class="">
+            <a href="/#index">Home</a>
+          </li>
+        
+          <li class="">
+            <a href="/#html">HTML</a>
+          </li>
+        
+          <li class="">
+            <a href="/#css">CSS</a>
+          </li>
+        
+          <li class="active">
+            <a href="/#js">JS</a>
+          </li>
+        
+          <li class="">
+            <a href="/#node">Node</a>
+          </li>
+        
+          <li class="">
+            <a href="/#tool">Tool</a>
+          </li>
+        
+          <li class="">
+            <a href="/#assemble">Assemble</a>
+          </li>
+        
+      </ul>
+      <a
+        class="github"
+        target="_blank" rel="noopener noreferrer"
+        href="https://github.com/shuoshubao/shuoshubao.github.io/"
+      >GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<article class="content">
+  
+    
+      <div class="markdown">
+        <h1>ReactDOM</h1>
+<h2>ReactDOM.render()</h2>
+<pre class="hljs language-javascript"><table><tbody><tr><td data-line-number=1></td><td>ReactDOM.render(</td></tr><tr><td data-line-number=2></td><td>  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello, world!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>,</td></tr><tr><td data-line-number=3></td><td>  <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'app'</span>)</td></tr><tr><td data-line-number=4></td><td>);</td></tr></tbody></table></pre>
+<h2>ReactDOM.findDOMNode()</h2>
+<pre class="hljs language-javascript"><table><tbody><tr><td data-line-number=1></td><td>ReactDOM.findDOMNode(<span class="hljs-keyword">this</span>.refs[refName])</td></tr></tbody></table></pre>
+<h1>React</h1>
+<h2>props</h2>
+<ul>
+<li>static defaultProps = {}</li>
+<li>this.props[propsName]</li>
+<li>this.props.children</li>
+</ul>
+<h2>special props</h2>
+<pre class="hljs language-javascript"><table><tbody><tr><td data-line-number=1></td><td>key</td></tr><tr><td data-line-number=2></td><td>ref</td></tr><tr><td data-line-number=3></td><td>dangerouslySetInnerHTML={{<span class="hljs-attr">__html</span>: <span class="hljs-string">''</span>}}</td></tr><tr><td data-line-number=4></td><td>{...props}</td></tr></tbody></table></pre>
+<h2>state</h2>
+<ul>
+<li>this.state = {}</li>
+<li>this.state[stateName]</li>
+<li>this.setState({})</li>
+</ul>
+<blockquote>
+<ol>
+<li>组件类的第一个字母必须大写</li>
+<li>组件类只能包含一个顶层标签</li>
+</ol>
+</blockquote>
+<h1>Component Lifecycle</h1>
+<h2>Mounting [已插入真实 DOM]</h2>
+<ul>
+<li>constructor()</li>
+<li>componentWillMount()</li>
+<li>render()</li>
+<li>componentDidMount()</li>
+</ul>
+<h2>Updating [正在被重新渲染]</h2>
+<ul>
+<li>componentWillReceiveProps()</li>
+<li>shouldComponentUpdate()</li>
+<li>componentWillUpdate(object nextProps, object nextState)</li>
+<li>render()</li>
+<li>componentDidUpdate(object prevProps, object prevState)</li>
+</ul>
+<h2>Unmounting [已移出真实 DOM]</h2>
+<ul>
+<li>componentWillUnmount()</li>
+</ul>
+<h1>Other APIs</h1>
+<h2>Component APIs</h2>
+<ul>
+<li>setState()</li>
+<li>forceUpdate()</li>
+</ul>
+<h2>Class Properties</h2>
+<ul>
+<li>defaultProps</li>
+<li>displayName</li>
+<li>propTypes</li>
+</ul>
+<h2>Instance Properties</h2>
+<ul>
+<li>props</li>
+<li>state</li>
+</ul>
+<pre class="hljs language-javascript"><table><tbody><tr><td data-line-number=1></td><td><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span></td></tr><tr><td data-line-number=2></td><td><span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span></td></tr><tr><td data-line-number=3></td><td><span class="hljs-keyword">import</span> PropTypes <span class="hljs-keyword">from</span> <span class="hljs-string">'prop-types'</span></td></tr><tr><td data-line-number=4></td><td></td></tr><tr><td data-line-number=5></td><td><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{</td></tr><tr><td data-line-number=6></td><td>  <span class="hljs-keyword">static</span> defaultProps = {</td></tr><tr><td data-line-number=7></td><td></td></tr><tr><td data-line-number=8></td><td>  }</td></tr><tr><td data-line-number=9></td><td>  <span class="hljs-keyword">static</span> propTypes = {</td></tr><tr><td data-line-number=10></td><td>    <span class="hljs-attr">visible</span>: propTypes.bool.isRequired</td></tr><tr><td data-line-number=11></td><td>  }</td></tr><tr><td data-line-number=12></td><td>  <span class="hljs-keyword">constructor</span>(props) {</td></tr><tr><td data-line-number=13></td><td>    <span class="hljs-keyword">super</span>(props)</td></tr><tr><td data-line-number=14></td><td>    <span class="hljs-keyword">this</span>.state = {</td></tr><tr><td data-line-number=15></td><td></td></tr><tr><td data-line-number=16></td><td>    }</td></tr><tr><td data-line-number=17></td><td>  }</td></tr><tr><td data-line-number=18></td><td>}</td></tr><tr><td data-line-number=19></td><td></td></tr><tr><td data-line-number=20></td><td>ReactDOM.render(</td></tr><tr><td data-line-number=21></td><td>  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">App</span> /&gt;</span>,</td></tr><tr><td data-line-number=22></td><td>  document.querySelector('#root')</td></tr><tr><td data-line-number=23></td><td>)</td></tr><tr><td data-line-number=24></td><td></span></td></tr></tbody></table></pre>
+<h1>PropTypes</h1>
+<ul>
+<li>React.PropTypes.array</li>
+<li>React.PropTypes.bool</li>
+<li>React.PropTypes.func</li>
+<li>React.PropTypes.number</li>
+<li>React.PropTypes.object</li>
+<li>React.PropTypes.string</li>
+<li>React.PropTypes.node</li>
+<li>React.PropTypes.element</li>
+<li>React.PropTypes.instanceOf(Message)</li>
+<li>React.PropTypes.oneOf([])</li>
+<li>React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number, React.PropTypes.instanceOf(Message) ])</li>
+<li>React.PropTypes.arrayOf(React.PropTypes.number)</li>
+<li>React.PropTypes.objectOf(React.PropTypes.number)</li>
+<li>React.PropTypes.shape({color: React.PropTypes.string, fontSize: React.PropTypes.number })</li>
+<li>React.PropTypes.func.isRequired</li>
+<li>React.PropTypes.any.isRequired</li>
+<li>customProp: (props, propName, componentName) =&gt; {}</li>
+</ul>
+<h1>Event</h1>
+<blockquote>
+<p>SyntheticEvent 、 nativeEvent</p>
+</blockquote>
+<ul>
+<li>boolean bubbles</li>
+<li>boolean cancelable</li>
+<li>DOMEventTarget currentTarget</li>
+<li>boolean defaultPrevented</li>
+<li>number eventPhase</li>
+<li>boolean isTrusted</li>
+<li>DOMEvent nativeEvent</li>
+<li>void preventDefault()</li>
+<li>boolean isDefaultPrevented()</li>
+<li>void stopPropagation()</li>
+<li>boolean isPropagationStopped()</li>
+<li>DOMEventTarget target</li>
+<li>number timeStamp</li>
+<li>string type</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Event Type</th>
+<th>Event names</th>
+<th>Properties</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mouse</td>
+<td>onClick onContextMenu onDoubleClick onDrag onDragEnd onDragEnter onDragExit onDragLeave onDragOver onDragStart onDrop onMouseDown onMouseEnter onMouseLeave onMouseMove onMouseOut onMouseOver onMouseUp</td>
+<td>altKey button buttons clientX clientY ctrlKey getModifierState(key) metaKey pageX pageY relatedTarget screenX screenY shiftKey</td>
+</tr>
+<tr>
+<td>Wheel</td>
+<td>onWheel</td>
+<td>deltaMode deltaX deltaY deltaZ</td>
+</tr>
+<tr>
+<td>Keyboard</td>
+<td>onKeyDown onKeyPress onKeyUp</td>
+<td>altKey charCode ctrlKey getModifierState(key) key keyCode locale location metaKey repeat shiftKey which</td>
+</tr>
+<tr>
+<td>Focus</td>
+<td>onFocus onBlur</td>
+<td>DOMEventTarget relatedTarget</td>
+</tr>
+<tr>
+<td>Form</td>
+<td>onChange onInput onSubmit</td>
+<td></td>
+</tr>
+<tr>
+<td>Touch</td>
+<td>onTouchCancel onTouchEnd onTouchMove onTouchStart</td>
+<td>altKey changedTouches ctrlKey getModifierState(key) metaKey shiftKey targetTouches touches</td>
+</tr>
+<tr>
+<td>Selection</td>
+<td>onSelect</td>
+<td></td>
+</tr>
+<tr>
+<td>Clipboard</td>
+<td>onCopy onCut onPaste</td>
+<td>DOMDataTransfer clipboardData</td>
+</tr>
+<tr>
+<td>UI</td>
+<td>onScroll</td>
+<td>detail view</td>
+</tr>
+<tr>
+<td>Image</td>
+<td>onLoad onError</td>
+<td></td>
+</tr>
+<tr>
+<td>Media</td>
+<td>onAbort onCanPlay onCanPlayThrough onDurationChange onEmptied onEncrypted onEnded onError onLoadedData onLoadedMetadata onLoadStart onPause onPlay onPlaying onProgress onRateChange onSeeked onSeeking onStalled onSuspend onTimeUpdate onVolumeChange onWaiting</td>
+<td></td>
+</tr>
+<tr>
+<td>Transition</td>
+<td>onTransitionEnd</td>
+<td>propertyName pseudoElement elapsedTime</td>
+</tr>
+<tr>
+<td>Animation</td>
+<td>onAnimationStart onAnimationEnd onAnimationIteration</td>
+<td>animationName pseudoElement elapsedTime</td>
+</tr>
+<tr>
+<td>Composition</td>
+<td>onCompositionEnd onCompositionStart onCompositionUpdate</td>
+<td>string data</td>
+</tr>
+</tbody>
+</table>
+<h1>Form event</h1>
+<ul>
+<li>event.target.value      input、textarea</li>
+<li>event.target.checked    checkbox、radio</li>
+<li>event.target.selected   option</li>
+</ul>
+<h1>Top-Level API</h1>
+<h2>React</h2>
+<ul>
+<li>React.Component</li>
+<li>React.createClass</li>
+<li>React.createElement</li>
+<li>React.cloneElement</li>
+<li>React.createFactory</li>
+<li>React.isValidElement</li>
+<li>React.DOM</li>
+<li>React.PropTypes</li>
+<li>React.Children
+<ul>
+<li>React.Children.map</li>
+<li>React.Children.forEach</li>
+<li>React.Children.count</li>
+<li>React.Children.only</li>
+<li>React.Children.toArray</li>
+</ul>
+</li>
+</ul>
+<h2>ReactDOM</h2>
+<ul>
+<li>ReactDOM.render</li>
+<li>ReactDOM.findDOMNode</li>
+<li>ReactDOM.unmountComponentAtNode</li>
+</ul>
+<h2>ReactDOMServer</h2>
+<ul>
+<li>ReactDOMServer.renderToString</li>
+<li>ReactDOMServer.renderToStaticMarkup</li>
+</ul>
+<h2>Term</h2>
+<ul>
+<li>React Elements</li>
+<li>Factories</li>
+<li>React Nodes</li>
+<li>React Components</li>
+</ul>
+<h1>DOM Elements <a href="https://facebook.github.io/react/docs/dom-elements.html#all-supported-html-attributes">#</a></h1>
+<h2>Differences In Attributes</h2>
+<pre class="hljs language-javascript"><table><tbody><tr><td data-line-number=1></td><td>style</td></tr><tr><td data-line-number=2></td><td>className</td></tr><tr><td data-line-number=3></td><td>htmlFor</td></tr><tr><td data-line-number=4></td><td>onChange</td></tr><tr><td data-line-number=5></td><td>dangerouslySetInnerHTML</td></tr><tr><td data-line-number=6></td><td>value defaultValue</td></tr><tr><td data-line-number=7></td><td>checked defaultChecked</td></tr><tr><td data-line-number=8></td><td>selected</td></tr></tbody></table></pre>
+<h2>HTML Attributes</h2>
+<pre class="hljs language-javascript"><table><tbody><tr><td data-line-number=1></td><td>className</td></tr><tr><td data-line-number=2></td><td>htmlFor</td></tr><tr><td data-line-number=3></td><td>formAction</td></tr><tr><td data-line-number=4></td><td>formMethod</td></tr><tr><td data-line-number=5></td><td>readOnly</td></tr><tr><td data-line-number=6></td><td>autoComplete</td></tr><tr><td data-line-number=7></td><td>autoFocus</td></tr><tr><td data-line-number=8></td><td>maxLength</td></tr><tr><td data-line-number=9></td><td>minLength</td></tr><tr><td data-line-number=10></td><td>contentEditable</td></tr><tr><td data-line-number=11></td><td>colSpan</td></tr><tr><td data-line-number=12></td><td>rowSpan</td></tr><tr><td data-line-number=13></td><td>marginHeight</td></tr><tr><td data-line-number=14></td><td>marginWidth</td></tr></tbody></table></pre>
+
+      </div>
+    
+  
+</article>
+
+<footer class="footer">
+  <div class="outer">
+    <div class="wrap">
+      <span>© 2014-2017 Shuoshubao.com 版权所有 京ICP备15042742号</span>
+      <span> Powered by </span>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://github.com/shuoshubao/shuoshubao.github.io/"
+      > GitHub </a>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://facebook.github.io/react/"
+      > React </a>
+    </div>
+  </div>
+</footer>
+
+<script>
+console.log('deploy')
+</script>
+
+</body>
+</html>
