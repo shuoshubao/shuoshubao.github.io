@@ -1,11 +1,12 @@
 import path from 'path'
 import webpack from 'webpack'
-import ExtractTextPlugin from 'extract-text-webpack-plugin'
+import CleanWebpackPlugin from 'clean-webpack-plugin'
+import PrepackWebpackPlugin from 'prepack-webpack-plugin'
 import CopyWebpackPlugin from 'copy-webpack-plugin'
+import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import HtmlWebpackHarddiskPlugin from 'html-webpack-harddisk-plugin'
 import SpritesmithPlugin from 'webpack-spritesmith'
-import PrepackWebpackPlugin from 'prepack-webpack-plugin'
 import Dashboard from 'webpack-dashboard'
 import DashboardPlugin from 'webpack-dashboard/plugin'
 import glob from 'glob'
@@ -75,6 +76,7 @@ const plugins = [
   }),
   extractLESS,
   new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+  new CleanWebpackPlugin(['build']),
   new CopyWebpackPlugin([{
     from: `${PATH_SRC}/lib`,
     to: PATH_BUILD,
