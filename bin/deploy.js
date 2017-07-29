@@ -9,23 +9,25 @@ import MarkdownIt from 'markdown-it'
 import hljs from 'highlight.js'
 import {DATA_NAV, DATA_ARTICLE, DATA_META} from '../src/data'
 
+const timeInfo= chalk.green('构建完成, 耗时')
+console.time(timeInfo)
+
 const strLess = ['base', 'markdown', 'highlight', 'highlight-table', 'app'].reduce((prev, cur) => {
   prev.push(fs.readFileSync(`src/style/${cur}.less`))
   return prev
 }, []).join('').toString()
-
 
 const promiseLess = less.render(strLess, {
   plugins: [new LessPluginCleanCss({
     advanced: true
   })]
 })
-// .then(css => fs.writeFile('build/app.css', css.css, () => {}))
 
 const tempEjs = fs.readFileSync('src/template/deploy.ejs').toString()
 
 rimraf.sync('view')
 fs.mkdirSync('view')
+DATA_NAV.forEach(v => fs.mkdirSync(`view/${v.categories}`))
 
 const MarkdownItHighlight = MarkdownIt({
   highlight: (str, language) => {
@@ -78,28 +80,22 @@ const allDetail = Object.entries(DATA_ARTICLE).reduce((prev, cur) => {
   return prev
 }, [])
 
-// mkdir promise
-const promiseMkdir = path => new Promise((resolve, reject) => fs.mkdir(path, err => err ? reject() : resolve()))
-
 const promiseDoc = path => new Promise((resolve, reject) => {
-  fs.readFile(path, (err, data) => {
+  fs.readFile(`src/docs/${path}.md`, (err, data) => {
     if(err) {
       reject()
     }else {
+      console.log(chalk.cyan(`生成文件: view/${path}.html`))
       resolve(data.toString())
     }
   })
 })
 
-
-
 Promise.all([
   promiseLess,
-  ...DATA_NAV.map(v => promiseMkdir(`view/${v.categories}`)),
-  ...allDetail.map(v => promiseDoc(`src/docs/${v}.md`))
+  ...allDetail.map(v => promiseDoc(v))
 ])
-.then(([less, ...data]) => {
-  const docContent = data.slice(DATA_NAV.length)
+.then(([less, ...docContent]) => {
   allDetail.map((v, i) => {
     const [categories, name] = v.split('/')
     let content = ejs.render(tempEjs, {
@@ -139,6 +135,8 @@ Promise.all([
     })
     fs.writeFileSync(`view/${categories}/index.html`, minifyHtml(content, minifyHtmlOption))
   })
+  console.timeEnd(timeInfo)
 })
 .catch(e => console.log(e))
+
 
