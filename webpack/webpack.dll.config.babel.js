@@ -1,9 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 import webpack from 'webpack'
-import rimraf from 'rimraf'
-
-rimraf.sync('src/lib/*')
+import CleanWebpackPlugin from 'clean-webpack-plugin'
 
 const PATH_ROOT = path.resolve(__dirname, '..')
 const PATH_SRC = path.resolve(PATH_ROOT, 'src')
@@ -24,6 +22,7 @@ export default {
     library: FILE_NAME
   },
   plugins: [
+    new CleanWebpackPlugin(['src/lib']),
     new webpack.DllPlugin({
       context: __dirname,
       path: path.resolve(PATH_SRC, 'lib/vendor.json'),
