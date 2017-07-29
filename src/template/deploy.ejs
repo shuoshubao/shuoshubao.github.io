@@ -30,7 +30,7 @@
       <ul>
         <% DATA_NAV.forEach(function(v){ %>
           <li class="<%= categories==v.categories ? 'active' : '' %>">
-            <a href="/#<%= v.categories %>"><%= v.text %></a>
+            <a href="/view/<%= v.categories %>/index.html"><%= v.text %></a>
           </li>
         <% }) %>
       </ul>
@@ -79,10 +79,6 @@
     </div>
   </div>
 </footer>
-
-<script>
-console.log('deploy')
-</script>
 
 </body>
 </html>

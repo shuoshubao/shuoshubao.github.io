@@ -92,10 +92,10 @@ Promise.all([
           return allDetail.map(v => {
             const [categories, name] = v.split('/')
             const {title} = DATA_ARTICLE[categories].find(v => v.name == name)
-            return `<li><a href="/#${categories}/${name}">${title}</a></li>`
+            return `<li><a href="/view/${categories}/${name}.html">${title}</a></li>`
           }).join('')
         }else {
-          return DATA_ARTICLE[categories].map(v => `<li><a href="/#${categories}/${v.name}">${v.title}</a></li>`).join('')
+          return DATA_ARTICLE[categories].map(v => `<li><a href="/view/${categories}/${v.name}.html">${v.title}</a></li>`).join('')
         }
       })()
     }))
