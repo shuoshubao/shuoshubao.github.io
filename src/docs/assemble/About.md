@@ -27,6 +27,6 @@
 <dl>
   <dt>Company</dt>
   <dd>
-    <a href="http://www.lianjia.com">Lianjia.com</a>
+    <a href="http://www.meituan.com/">Meituan.com</a>
   </dd>
 </dl>
