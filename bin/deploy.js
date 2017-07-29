@@ -1,6 +1,7 @@
 import fs from 'fs'
 import ejs from 'ejs'
 import rimraf from 'rimraf'
+import {minify} from 'html-minifier'
 import MarkdownIt from 'markdown-it'
 import hljs from 'highlight.js'
 import {DATA_NAV, DATA_ARTICLE, DATA_META} from '../src/data'
@@ -39,6 +40,24 @@ const MarkdownItHighlight = MarkdownIt({
   }
 })
 
+const minifyOption = {
+  collapseInlineTagWhitespace: true,
+  collapseWhitespace: true,
+  minifyCSS: true,
+  minifyJS: true,
+  removeComments: true,
+  removeEmptyAttributes: true,
+  removeEmptyElements: false,
+  removeRedundantAttributes: true,
+  removeScriptTypeAttributes: true,
+  removeStyleLinkTypeAttributes: true,
+  removeTagWhitespace: false,
+  sortAttributes: true,
+  sortClassName: true,
+  trimCustomFragments: true,
+  useShortDoctype: true
+}
+
 const allDetail = Object.entries(DATA_ARTICLE).reduce((prev, cur) => {
   prev.push(...cur[1].map(v => `${cur[0]}/${v.name}`))
   return prev
@@ -67,7 +86,7 @@ Promise.all([
   const docContent = data.slice(DATA_NAV.length)
   allDetail.map((v, i) => {
     const [categories, name] = v.split('/')
-    fs.writeFileSync(`view/${v}.html`, ejs.render(tempEjs, {
+    let content = ejs.render(tempEjs, {
       DATA_NAV,
       DATA_ARTICLE,
       DATA_META,
@@ -76,11 +95,12 @@ Promise.all([
       categories,
       path: name,
       content: categories == 'assemble' ? docContent[i] : MarkdownItHighlight.render(docContent[i])
-    }))
+    })
+    fs.writeFileSync(`view/${v}.html`, minify(content, minifyOption))
   })
   DATA_NAV.map(v => {
     const {categories} = v
-    fs.writeFileSync(`view/${categories}/index.html`, ejs.render(tempEjs, {
+    let content = ejs.render(tempEjs, {
       DATA_NAV,
       DATA_ARTICLE,
       DATA_META,
@@ -98,7 +118,8 @@ Promise.all([
           return DATA_ARTICLE[categories].map(v => `<li><a href="/view/${categories}/${v.name}.html">${v.title}</a></li>`).join('')
         }
       })()
-    }))
+    })
+    fs.writeFileSync(`view/${categories}/index.html`, minify(content, minifyOption))
   })
 })
 .then(() => {
