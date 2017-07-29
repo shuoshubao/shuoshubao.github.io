@@ -76,7 +76,10 @@ const plugins = [
   }),
   extractLESS,
   new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-  new CleanWebpackPlugin(['build']),
+  new CleanWebpackPlugin(['build'], {
+    root: PATH_ROOT,
+    verbose: false
+  }),
   new CopyWebpackPlugin([{
     from: `${PATH_SRC}/lib`,
     to: PATH_BUILD,
