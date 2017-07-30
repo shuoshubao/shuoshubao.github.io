@@ -84,21 +84,9 @@ export default {
       loader: ['style-loader', 'css-loader', 'autoprefixer-loader', 'stylus-loader']
     },
     {
-      test: /\.jsx?$/,
-      loader: 'babel-loader',
-      exclude: /node_modules/,
-      options: {
-        plugins: [
-          'transform-object-assign',
-          'transform-object-rest-spread',
-          'transform-decorators-legacy',
-          ['import', {
-            libraryName: 'antd',
-            style: true
-          }]
-        ],
-        presets: ['es2015', 'stage-2', 'react']
-      }
+      test: /\.js$/,
+      loader: 'happypack/loader?id=js',
+      exclude: /node_modules/
     }
   ]
 }

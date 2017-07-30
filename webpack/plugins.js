@@ -1,5 +1,7 @@
+import os from 'os'
 import path from 'path'
 import webpack from 'webpack'
+import HappyPack from 'happypack'
 import PrepackWebpackPlugin from 'prepack-webpack-plugin'
 import CleanWebpackPlugin from 'clean-webpack-plugin'
 import CopyWebpackPlugin from 'copy-webpack-plugin'
@@ -54,6 +56,33 @@ const HtmlWebpackPluginConfig = [
   vendorHash
 }))
 
+const babelrc = {
+  plugins: [
+    'transform-object-assign',
+    'transform-object-rest-spread',
+    'transform-decorators-legacy',
+    ['import', {
+      libraryName: 'antd',
+      style: true
+    }]
+  ],
+  presets: ['es2015', 'stage-2', 'react']
+}
+
+const happyThreadPool = HappyPack.ThreadPool({size: os.cpus().length})
+
+const createHappyPlugin = (id, loader, query) => new HappyPack({
+  id: id,
+  loaders: [
+    {
+      loader: `${loader}-loader`,
+      query
+    }
+  ],
+  threadPool: happyThreadPool,
+  verbose: false
+})
+
 const plugins = [
   new webpack.BannerPlugin([
     '硕鼠宝',
@@ -94,6 +123,7 @@ const plugins = [
     context: __dirname,
     manifest: require(`${PATH_SRC}/lib/vendor.json`)
   }),
+  createHappyPlugin('js', 'babel', babelrc),
   new SpritesmithPlugin({
     src: {
       cwd: path.resolve(PATH_SRC, 'spriteImgSrc'),

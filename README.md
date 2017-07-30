@@ -7,3 +7,4 @@
 * npm start
 * npm run build
 * npm run eslint
+* npm run deploy // 生成静态页面 view目录 https://shuoshubao.github.io/view/index/index.html
