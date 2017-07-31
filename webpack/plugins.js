@@ -56,22 +56,9 @@ const HtmlWebpackPluginConfig = [
   vendorHash
 }))
 
-const babelrc = {
-  plugins: [
-    'transform-object-assign',
-    'transform-object-rest-spread',
-    'transform-decorators-legacy',
-    ['import', {
-      libraryName: 'antd',
-      style: true
-    }]
-  ],
-  presets: ['es2015', 'stage-2', 'react']
-}
-
 const happyThreadPool = HappyPack.ThreadPool({size: os.cpus().length})
 
-const createHappyPlugin = (id, loader, query) => new HappyPack({
+const createHappyPlugin = (id, loader, query = {}) => new HappyPack({
   id: id,
   loaders: [
     {
@@ -123,7 +110,18 @@ const plugins = [
     context: __dirname,
     manifest: require(`${PATH_SRC}/lib/vendor.json`)
   }),
-  createHappyPlugin('js', 'babel', babelrc),
+  createHappyPlugin('js', 'babel', {
+    plugins: [
+      'transform-object-assign',
+      'transform-object-rest-spread',
+      'transform-decorators-legacy',
+      ['import', {
+        libraryName: 'antd',
+        style: true
+      }]
+    ],
+    presets: ['es2015', 'stage-2', 'react']
+  }),
   new SpritesmithPlugin({
     src: {
       cwd: path.resolve(PATH_SRC, 'spriteImgSrc'),
