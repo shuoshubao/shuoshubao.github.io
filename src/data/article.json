@@ -33,6 +33,10 @@
   ],
   "js": [
     {
+      "name": "Vue",
+      "title": "Vue文档"
+    },
+    {
       "name": "Reduce",
       "title": "Reduce的应用"
     },
