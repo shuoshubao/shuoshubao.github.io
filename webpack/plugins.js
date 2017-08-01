@@ -5,18 +5,14 @@ import HappyPack from 'happypack'
 import PrepackWebpackPlugin from 'prepack-webpack-plugin'
 import CleanWebpackPlugin from 'clean-webpack-plugin'
 import CopyWebpackPlugin from 'copy-webpack-plugin'
-import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import HtmlWebpackHarddiskPlugin from 'html-webpack-harddisk-plugin'
 import SpritesmithPlugin from 'webpack-spritesmith'
 import Dashboard from 'webpack-dashboard'
 import DashboardPlugin from 'webpack-dashboard/plugin'
-import glob from 'glob'
-import {isDev, PATH_ROOT, PATH_SRC, PATH_BUILD} from './config'
+import {isDev, PATH_ROOT, PATH_SRC, PATH_BUILD, extractLESS} from './common'
 
-const vendorHash = glob.sync(path.resolve(PATH_SRC, 'lib/vendor_*.js'))[0].slice(-23, -3)
-
-const extractLESS = new ExtractTextPlugin(isDev ? '[name].css' : '[name]_[chunkhash:5].css')
+const {name: vendorHash} = require(path.resolve(PATH_SRC, 'lib', 'vendor.json'))
 
 const HtmlWebpackPluginMinify = isDev ? {} : {
   useShortDoctype: true,

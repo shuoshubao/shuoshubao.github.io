@@ -2,7 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import webpack from 'webpack'
 import CleanWebpackPlugin from 'clean-webpack-plugin'
-import {PATH_ROOT, PATH_SRC} from './config'
+import {PATH_ROOT, PATH_SRC} from './common'
 
 const FILE_NAME = '[name]_[hash]'
 const PATH_LIB = path.resolve(PATH_SRC, 'lib')

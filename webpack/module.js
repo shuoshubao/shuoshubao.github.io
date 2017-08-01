@@ -1,7 +1,4 @@
-import ExtractTextPlugin from 'extract-text-webpack-plugin'
-import {isDev} from './config'
-
-const extractLESS = new ExtractTextPlugin(isDev ? '[name].css' : '[name]_[chunkhash:5].css')
+import {isDev, extractLESS} from './common'
 
 export default {
   rules: [

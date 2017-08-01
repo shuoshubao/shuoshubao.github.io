@@ -1,4 +1,4 @@
-import {isDev, PATH_ROOT, PATH_BUILD} from './config'
+import {isDev, PATH_ROOT, PATH_BUILD} from './common'
 
 export default {
   entry: {
