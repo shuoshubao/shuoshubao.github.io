@@ -1,6 +1,6 @@
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
+import {isDev} from './config'
 
-const isDev = process.env.NODE_ENV === 'development'
 const extractLESS = new ExtractTextPlugin(isDev ? '[name].css' : '[name]_[chunkhash:5].css')
 
 export default {

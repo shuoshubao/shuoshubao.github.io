@@ -12,11 +12,8 @@ import SpritesmithPlugin from 'webpack-spritesmith'
 import Dashboard from 'webpack-dashboard'
 import DashboardPlugin from 'webpack-dashboard/plugin'
 import glob from 'glob'
+import {isDev, PATH_ROOT, PATH_SRC, PATH_BUILD} from './config'
 
-const isDev = process.env.NODE_ENV === 'development'
-const PATH_ROOT = path.resolve(__dirname, '..')
-const PATH_SRC = path.resolve(PATH_ROOT, 'src')
-const PATH_BUILD = path.resolve(PATH_ROOT, 'build')
 const vendorHash = glob.sync(path.resolve(PATH_SRC, 'lib/vendor_*.js'))[0].slice(-23, -3)
 
 const extractLESS = new ExtractTextPlugin(isDev ? '[name].css' : '[name]_[chunkhash:5].css')

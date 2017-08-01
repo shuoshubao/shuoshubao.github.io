@@ -1,8 +1,4 @@
-import path from 'path'
-
-const isDev = process.env.NODE_ENV === 'development'
-const PATH_ROOT = path.resolve(__dirname, '..')
-const PATH_BUILD = path.resolve(PATH_ROOT, 'build')
+import {isDev, PATH_ROOT, PATH_BUILD} from './config'
 
 export default {
   entry: {

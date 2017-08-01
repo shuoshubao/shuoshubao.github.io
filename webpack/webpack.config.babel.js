@@ -2,8 +2,7 @@ import entry from './entry'
 import plugins from './plugins'
 import module from './module'
 import resolve from './resolve'
-
-const isDev = process.env.NODE_ENV === 'development'
+import {isDev} from './config'
 
 const webpackConfig = {
   ...entry,
