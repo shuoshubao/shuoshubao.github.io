@@ -65,12 +65,20 @@
       "title": "JS代码片段"
     },
     {
-      "name": "ES5",
-      "title": "ES5"
+      "name": "ES8",
+      "title": "ES8"
+    },
+    {
+      "name": "ES7",
+      "title": "ES7"
     },
     {
       "name": "ES6",
       "title": "ES6"
+    },
+    {
+      "name": "ES5",
+      "title": "ES5"
     },
     {
       "name": "Ajax",

@@ -28,8 +28,6 @@
 * String.prototype.startsWith()
 * String.prototype.endsWith()
 * String.prototype.repeat()
-* String.prototype.padStart() // ES7
-* String.prototype.padEnd() // ES7
 * String.raw()
 * template string
 * tagged template
@@ -57,7 +55,6 @@
 * Array.prototype.keys()
 * Array.prototype.values()
 * Array.prototype.entries()
-* Array.prototype.includes() // es7
 * 数组的空位
 * 数组推导
 
@@ -105,9 +102,6 @@
 * Object.prototype.__proto__
 * Object.setPrototypeOf()
 * Object.getPrototypeOf()
-* Object.values()
-* Object.entries()
-* Object.getOwnPropertyDescriptors()
 * 扩展运算符(...)
 
 # Set [WeakSet]
@@ -158,19 +152,6 @@
 * Set.prototype.entries()
 * Set.prototype.forEach()
 
-# async
-
-```
-const asyncFunc = async function() {
-  await promise
-}
-
-const asyncFunc = async () => {
-  await promise
-}
-
-asyncFunc().then()
-```
 
 # Referrence
 
