@@ -10,10 +10,10 @@ import HtmlWebpackHarddiskPlugin from 'html-webpack-harddisk-plugin'
 import SpritesmithPlugin from 'webpack-spritesmith'
 import Dashboard from 'webpack-dashboard'
 import DashboardPlugin from 'webpack-dashboard/plugin'
-import {isDev, PATH_ROOT, PATH_SRC, PATH_BUILD, extractLESS} from './common'
+import {isDev, PATH_ROOT, PATH_SRC, PATH_LIB, PATH_BUILD, extractLESS} from './common'
 import glob from 'glob'
 
-const vendorHash = glob.sync(path.resolve(PATH_SRC, 'lib/vendor*.js'))[0].split('/').slice(-1)[0]
+const vendorHash = glob.sync(path.resolve(PATH_LIB, 'vendor*.js'))[0].split('/').slice(-1)[0]
 
 const HtmlWebpackPluginMinify = isDev ? {} : {
   useShortDoctype: true,
@@ -87,7 +87,7 @@ const plugins = [
   extractLESS,
   new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
   new CopyWebpackPlugin([{
-    from: `${PATH_SRC}/lib`,
+    from: PATH_LIB,
     to: PATH_BUILD,
     ignore: '*.json'
   }]),
@@ -98,7 +98,7 @@ const plugins = [
   }),
   new webpack.DllReferencePlugin({
     context: __dirname,
-    manifest: require(`${PATH_SRC}/lib/vendor.json`)
+    manifest: require(`${PATH_LIB}/vendor.json`)
   }),
   createHappyPlugin('js', 'babel', {
     plugins: [

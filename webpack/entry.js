@@ -7,7 +7,7 @@ export default {
   },
   output: {
     path: PATH_BUILD,
-    publicPath: isDev ? '/build/' : 'https://orn2bxyo7.bkt.clouddn.com/',
+    // publicPath: isDev ? '/build/' : 'https://orn2bxyo7.bkt.clouddn.com/',
     publicPath: '/build/',
     filename: isDev ? '[name].js' : '[name].[chunkhash].js'
   }
