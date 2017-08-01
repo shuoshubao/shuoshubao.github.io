@@ -4,7 +4,7 @@ import webpack from 'webpack'
 import CleanWebpackPlugin from 'clean-webpack-plugin'
 import {PATH_ROOT, PATH_SRC} from './common'
 
-const FILE_NAME = '[name]_[hash]'
+const FILE_NAME = '[name].[hash]'
 const PATH_LIB = path.resolve(PATH_SRC, 'lib')
 
 export default {
@@ -19,7 +19,7 @@ export default {
   output: {
     path: PATH_LIB,
     filename: `${FILE_NAME}.js`,
-    library: FILE_NAME
+    library: '[name]'
   },
   plugins: [
     new CleanWebpackPlugin([PATH_LIB], {
@@ -28,7 +28,7 @@ export default {
     }),
     new webpack.DllPlugin({
       context: __dirname,
-      name: FILE_NAME,
+      name: '[name]',
       path: path.resolve(PATH_LIB, 'vendor.json')
     }),
     new webpack.optimize.UglifyJsPlugin()
