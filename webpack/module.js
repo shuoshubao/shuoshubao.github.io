@@ -10,7 +10,7 @@ export default {
       loader: 'url-loader',
       query: {
         limit: 1024,
-        name: isDev ? '[name].[ext]' : '[name]_[chunkhash:5].[ext]'
+        name: isDev ? '[name].[ext]' : '[name]_[chunkhash].[ext]'
       }
     },
     {

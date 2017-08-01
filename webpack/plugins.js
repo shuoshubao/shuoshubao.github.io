@@ -17,7 +17,7 @@ const isDev = process.env.NODE_ENV === 'development'
 const PATH_ROOT = path.resolve(__dirname, '..')
 const PATH_SRC = path.resolve(PATH_ROOT, 'src')
 const PATH_BUILD = path.resolve(PATH_ROOT, 'build')
-const vendorHash = glob.sync(path.resolve(PATH_SRC, 'lib/vendor_*.js'))[0].slice(-8, -3)
+const vendorHash = glob.sync(path.resolve(PATH_SRC, 'lib/vendor_*.js'))[0].slice(-23, -3)
 
 const extractLESS = new ExtractTextPlugin(isDev ? '[name].css' : '[name]_[chunkhash:5].css')
 

@@ -13,6 +13,6 @@ export default {
     path: PATH_BUILD,
     publicPath: isDev ? '/build/' : 'https://orn2bxyo7.bkt.clouddn.com/',
     publicPath: '/build/',
-    filename: isDev ? '[name].js' : '[name]_[chunkhash:5].js'
+    filename: isDev ? '[name].js' : '[name].[chunkhash].js'
   }
 }
