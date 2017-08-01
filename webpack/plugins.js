@@ -92,10 +92,6 @@ const plugins = [
   }),
   extractLESS,
   new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-  new CleanWebpackPlugin(['build'], {
-    root: PATH_ROOT,
-    verbose: false
-  }),
   new CopyWebpackPlugin([{
     from: `${PATH_SRC}/lib`,
     to: PATH_BUILD,
@@ -140,11 +136,17 @@ const plugins = [
 if(isDev) {
   const dashboard = new Dashboard()
   plugins.push(...[
+    new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new DashboardPlugin(dashboard.setData)
   ])
 }else {
   plugins.push(...[
+    new CleanWebpackPlugin(['build'], {
+      root: PATH_ROOT,
+      verbose: false
+    }),
+    new webpack.HashedModuleIdsPlugin(),
     new PrepackWebpackPlugin(),
     new webpack.optimize.UglifyJsPlugin()
   ])
