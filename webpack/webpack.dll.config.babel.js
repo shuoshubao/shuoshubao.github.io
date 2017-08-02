@@ -5,9 +5,11 @@ import CleanWebpackPlugin from 'clean-webpack-plugin'
 import AssetsWebpackPlugin from 'assets-webpack-plugin'
 import {PATH_ROOT, PATH_SRC, PATH_LIB} from './common'
 
+const LIB_NAME = 'vendor'
+
 export default {
   entry: {
-    vendor: [
+    [LIB_NAME]: [
       'react',
       'classnames',
       'prop-types',
@@ -27,12 +29,12 @@ export default {
     new AssetsWebpackPlugin({
         path: PATH_LIB,
         filename: 'assets.json',
-        processOutput: rs => JSON.stringify({id: rs.vendor.js}, null, 4)
+        processOutput: rs => JSON.stringify({id: rs[LIB_NAME].js}, null, 4)
     }),
     new webpack.DllPlugin({
       context: __dirname,
       name: '[name]',
-      path: path.resolve(PATH_LIB, 'vendor.json')
+      path: path.resolve(PATH_LIB, `${LIB_NAME}.json`)
     }),
     new webpack.optimize.UglifyJsPlugin()
   ]
