@@ -1,4 +1,4 @@
-import {isDev, PATH_ROOT, PATH_BUILD, PATH_PUBLIC} from './config'
+import {isDev, PATH_ROOT, PATH_BUILD, PATH_PUBLIC, FILENAME} from './config'
 
 export default {
   entry: {
@@ -8,6 +8,6 @@ export default {
   output: {
     path: PATH_BUILD,
     publicPath: PATH_PUBLIC,
-    filename: isDev ? '[name].js' : '[name].[chunkhash].js'
+    filename: FILENAME
   }
 }

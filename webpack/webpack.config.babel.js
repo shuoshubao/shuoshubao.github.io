@@ -2,7 +2,7 @@ import entry from './entry'
 import plugins from './plugins'
 import module from './module'
 import resolve from './resolve'
-import {isDev} from './config'
+import {isDev, PATH_PUBLIC, FILENAME, port} from './config'
 
 const webpackConfig = {
   ...entry,
@@ -15,11 +15,11 @@ const webpackConfig = {
 if(isDev) {
   webpackConfig.devtool = 'source-map'
   webpackConfig.devServer = {
+    publicPath: PATH_PUBLIC,
+    filename: FILENAME,
     inline: true,
     hot: true,
-    port: 8080,
-    publicPath: '/build/',
-    filename: '[name].js',
+    port,
     historyApiFallback: false,
     proxy: {
 

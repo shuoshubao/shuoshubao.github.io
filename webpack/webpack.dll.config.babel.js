@@ -29,7 +29,7 @@ export default {
     new AssetsWebpackPlugin({
       path: PATH_LIB,
       filename: 'asset.json',
-      processOutput: rs => JSON.stringify({ hash: rs[LIB_NAME].js }, null, 4)
+      processOutput: rs => JSON.stringify({hash: rs[LIB_NAME].js}, null, 4)
     }),
     new webpack.DllPlugin({
       path: path.resolve(PATH_LIB, `${LIB_NAME}.json`),
