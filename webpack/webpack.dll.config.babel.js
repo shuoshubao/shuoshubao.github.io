@@ -5,7 +5,7 @@ import CleanWebpackPlugin from 'clean-webpack-plugin'
 import AssetsWebpackPlugin from 'assets-webpack-plugin'
 import {PATH_ROOT, PATH_SRC, PATH_LIB, LIB_NAME} from './config'
 
-const LIBRARY = '[name]_[hash]'
+const LIBRARY_NAME = '__[name]_[hash]'
 
 export default {
   entry: {
@@ -19,7 +19,7 @@ export default {
   output: {
     path: PATH_LIB,
     filename: '[name].[hash].js',
-    library: LIBRARY
+    library: LIBRARY_NAME
   },
   plugins: [
     new CleanWebpackPlugin([PATH_LIB], {
@@ -29,11 +29,11 @@ export default {
     new AssetsWebpackPlugin({
       path: PATH_LIB,
       filename: 'asset.json',
-      processOutput: rs => JSON.stringify({ id: rs[LIB_NAME].js }, null, 4)
+      processOutput: rs => JSON.stringify({ hash: rs[LIB_NAME].js }, null, 4)
     }),
     new webpack.DllPlugin({
       context: __dirname,
-      name: LIBRARY,
+      name: LIBRARY_NAME,
       path: path.resolve(PATH_LIB, `${LIB_NAME}.json`)
     }),
     new webpack.optimize.UglifyJsPlugin({comments: false})

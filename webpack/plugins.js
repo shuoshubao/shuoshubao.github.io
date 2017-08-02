@@ -7,12 +7,12 @@ import CleanWebpackPlugin from 'clean-webpack-plugin'
 import CopyWebpackPlugin from 'copy-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import HtmlWebpackHarddiskPlugin from 'html-webpack-harddisk-plugin'
-import SpritesmithPlugin from 'webpack-spritesmith'
+import WebpackSpritesmith from 'webpack-spritesmith'
 import Dashboard from 'webpack-dashboard'
 import DashboardPlugin from 'webpack-dashboard/plugin'
 import {isDev, PATH_ROOT, PATH_SRC, PATH_LIB, PATH_BUILD, PATH_PUBLIC, LIB_NAME, extractLESS} from './config'
 
-const {id: HASH_LIB} = require(path.resolve(PATH_LIB, 'asset'))
+const {hash: HASH_LIB} = require(path.resolve(PATH_LIB, 'asset'))
 
 const HtmlWebpackPluginMinify = isDev ? {} : {
   useShortDoctype: true,
@@ -111,7 +111,7 @@ const plugins = [
     ],
     presets: ['es2015', 'stage-2', 'react']
   }),
-  new SpritesmithPlugin({
+  new WebpackSpritesmith({
     src: {
       cwd: path.resolve(PATH_SRC, 'spriteImgSrc'),
       glob: '*.png'
