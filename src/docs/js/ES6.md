@@ -50,7 +50,7 @@
 * Array.of()
 * Array.prototype.copyWithin(target, start = 0, end = this.length)
 * Array.prototype.find()
-* Array.prototype.findIndex(function(value, index, arr) {})
+* Array.prototype.findIndex((value, index, arr) => {})
 * Array.prototype.fill()
 * Array.prototype.keys()
 * Array.prototype.values()
@@ -93,15 +93,13 @@
 
 # Object
 
-* ES6允许直接写入变量和函数，作为对象的属性和方法
-* ES6允许字面量定义对象时，将表达式写在方括号中
-* 对象的方法的name属性
+* obj[method].name
 * Object.is()    // +0 != 0, NaN == NaN
 * Object.assign()
 * Object.getOwnPropertyDescriptor()
-* Object.prototype.__proto__
 * Object.setPrototypeOf()
 * Object.getPrototypeOf()
+* Object.prototype.__proto__
 * 扩展运算符(...)
 
 # Set [WeakSet]

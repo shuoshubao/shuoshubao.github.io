@@ -1,3 +1,2 @@
-# 幂运算符 m ** n
-
+* 幂运算符 m ** n
 * Array.prototype.includes()
