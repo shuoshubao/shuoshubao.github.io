@@ -3,9 +3,7 @@ import path from 'path'
 import webpack from 'webpack'
 import CleanWebpackPlugin from 'clean-webpack-plugin'
 import AssetsWebpackPlugin from 'assets-webpack-plugin'
-import {PATH_ROOT, PATH_SRC, PATH_LIB} from './common'
-
-const LIB_NAME = 'vendor'
+import {PATH_ROOT, PATH_SRC, PATH_LIB, LIB_NAME} from './common'
 
 export default {
   entry: {
@@ -28,7 +26,7 @@ export default {
     }),
     new AssetsWebpackPlugin({
         path: PATH_LIB,
-        filename: 'assets.json',
+        filename: 'asset.json',
         processOutput: rs => JSON.stringify({id: rs[LIB_NAME].js}, null, 4)
     }),
     new webpack.DllPlugin({

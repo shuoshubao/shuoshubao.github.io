@@ -10,9 +10,9 @@ import HtmlWebpackHarddiskPlugin from 'html-webpack-harddisk-plugin'
 import SpritesmithPlugin from 'webpack-spritesmith'
 import Dashboard from 'webpack-dashboard'
 import DashboardPlugin from 'webpack-dashboard/plugin'
-import {isDev, PATH_ROOT, PATH_SRC, PATH_LIB, PATH_BUILD, extractLESS} from './common'
+import {isDev, PATH_ROOT, PATH_SRC, PATH_LIB, PATH_BUILD, LIB_NAME, extractLESS} from './common'
 
-const {id: vendorHash} = require(path.resolve(PATH_LIB, 'assets'))
+const {id: HASH_LIB} = require(path.resolve(PATH_LIB, 'asset'))
 
 const HtmlWebpackPluginMinify = isDev ? {} : {
   useShortDoctype: true,
@@ -46,7 +46,7 @@ const HtmlWebpackPluginConfig = [
   chunks: ['manifest', ...v.chunks],
   minify: HtmlWebpackPluginMinify,
   ENV: isDev ? 'dev' : 'prod',
-  vendorHash
+  HASH_LIB
 }))
 
 const happyThreadPool = HappyPack.ThreadPool({size: os.cpus().length})
@@ -97,7 +97,7 @@ const plugins = [
   }),
   new webpack.DllReferencePlugin({
     context: __dirname,
-    manifest: require(`${PATH_LIB}/vendor.json`)
+    manifest: require(`${PATH_LIB}/${LIB_NAME}.json`)
   }),
   createHappyPlugin('js', 'babel', {
     plugins: [
