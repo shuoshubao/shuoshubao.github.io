@@ -10,7 +10,7 @@ import HtmlWebpackHarddiskPlugin from 'html-webpack-harddisk-plugin'
 import SpritesmithPlugin from 'webpack-spritesmith'
 import Dashboard from 'webpack-dashboard'
 import DashboardPlugin from 'webpack-dashboard/plugin'
-import {isDev, PATH_ROOT, PATH_SRC, PATH_LIB, PATH_BUILD, publicPath, LIB_NAME, extractLESS} from './config'
+import {isDev, PATH_ROOT, PATH_SRC, PATH_LIB, PATH_BUILD, PATH_PUBLIC, LIB_NAME, extractLESS} from './config'
 
 const {id: HASH_LIB} = require(path.resolve(PATH_LIB, 'asset'))
 
@@ -46,7 +46,7 @@ const HtmlWebpackPluginConfig = [
   chunks: ['manifest', ...v.chunks],
   minify: HtmlWebpackPluginMinify,
   ENV: isDev ? 'dev' : 'prod',
-  PATH_LIB: `${publicPath}${HASH_LIB}`,
+  PATH_LIB: `${PATH_PUBLIC}${HASH_LIB}`,
 }))
 
 const happyThreadPool = HappyPack.ThreadPool({size: os.cpus().length})
@@ -141,7 +141,7 @@ if(isDev) {
     }),
     new webpack.HashedModuleIdsPlugin(),
     new PrepackWebpackPlugin(),
-    new webpack.optimize.UglifyJsPlugin()
+    new webpack.optimize.UglifyJsPlugin({comments: false})
   ])
 }
 

@@ -36,8 +36,6 @@ export default {
       name: LIBRARY,
       path: path.resolve(PATH_LIB, `${LIB_NAME}.json`)
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      comments: false
-    })
+    new webpack.optimize.UglifyJsPlugin({comments: false})
   ]
 }
