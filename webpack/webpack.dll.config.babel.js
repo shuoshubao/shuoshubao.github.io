@@ -3,7 +3,7 @@ import path from 'path'
 import webpack from 'webpack'
 import CleanWebpackPlugin from 'clean-webpack-plugin'
 import AssetsWebpackPlugin from 'assets-webpack-plugin'
-import {PATH_ROOT, PATH_SRC, PATH_LIB, LIB_NAME} from './config'
+import {PATH_ROOT, PATH_LIB, LIB_NAME} from './config'
 
 const LIBRARY_NAME = '__[name]_[hash]'
 
@@ -32,9 +32,8 @@ export default {
       processOutput: rs => JSON.stringify({ hash: rs[LIB_NAME].js }, null, 4)
     }),
     new webpack.DllPlugin({
-      context: __dirname,
-      name: LIBRARY_NAME,
-      path: path.resolve(PATH_LIB, `${LIB_NAME}.json`)
+      path: path.resolve(PATH_LIB, `${LIB_NAME}.json`),
+      name: LIBRARY_NAME
     }),
     new webpack.optimize.UglifyJsPlugin({comments: false})
   ]

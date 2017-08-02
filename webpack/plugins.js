@@ -96,7 +96,6 @@ const plugins = [
     name: 'manifest'
   }),
   new webpack.DllReferencePlugin({
-    context: __dirname,
     manifest: require(`${PATH_LIB}/${LIB_NAME}.json`)
   }),
   createHappyPlugin('js', 'babel', {
