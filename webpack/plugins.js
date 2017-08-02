@@ -11,9 +11,8 @@ import SpritesmithPlugin from 'webpack-spritesmith'
 import Dashboard from 'webpack-dashboard'
 import DashboardPlugin from 'webpack-dashboard/plugin'
 import {isDev, PATH_ROOT, PATH_SRC, PATH_LIB, PATH_BUILD, extractLESS} from './common'
-import glob from 'glob'
 
-const vendorHash = glob.sync(path.resolve(PATH_LIB, 'vendor*.js'))[0].split('/').slice(-1)[0]
+const {id: vendorHash} = require(path.resolve(PATH_LIB, 'assets'))
 
 const HtmlWebpackPluginMinify = isDev ? {} : {
   useShortDoctype: true,
