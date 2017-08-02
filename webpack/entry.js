@@ -1,4 +1,4 @@
-import {isDev, PATH_ROOT, PATH_BUILD} from './common'
+import {isDev, PATH_ROOT, PATH_BUILD, publicPath} from './config'
 
 export default {
   entry: {
@@ -7,8 +7,7 @@ export default {
   },
   output: {
     path: PATH_BUILD,
-    // publicPath: isDev ? '/build/' : 'https://orn2bxyo7.bkt.clouddn.com/',
-    publicPath: '/build/',
+    publicPath,
     filename: isDev ? '[name].js' : '[name].[chunkhash].js'
   }
 }

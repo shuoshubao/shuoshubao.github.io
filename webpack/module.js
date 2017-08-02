@@ -1,4 +1,4 @@
-import {isDev, extractLESS} from './common'
+import {isDev, extractLESS} from './config'
 
 export default {
   rules: [

@@ -2,7 +2,7 @@ import entry from './entry'
 import plugins from './plugins'
 import module from './module'
 import resolve from './resolve'
-import {isDev} from './common'
+import {isDev} from './config'
 
 const webpackConfig = {
   ...entry,

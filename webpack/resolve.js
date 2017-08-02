@@ -1,6 +1,6 @@
 import fs from 'fs'
 import path from 'path'
-import {PATH_SRC} from './common'
+import {PATH_SRC} from './config'
 
 const alias = fs.readdirSync(PATH_SRC).reduce((prev, cur) => {
   prev[cur] = path.resolve(PATH_SRC, cur)

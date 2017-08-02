@@ -3,7 +3,7 @@ import path from 'path'
 import webpack from 'webpack'
 import CleanWebpackPlugin from 'clean-webpack-plugin'
 import AssetsWebpackPlugin from 'assets-webpack-plugin'
-import {PATH_ROOT, PATH_SRC, PATH_LIB, LIB_NAME} from './common'
+import {PATH_ROOT, PATH_SRC, PATH_LIB, LIB_NAME} from './config'
 
 const LIBRARY = '[name]_[hash]'
 

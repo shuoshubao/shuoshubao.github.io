@@ -2,6 +2,7 @@ import path from 'path'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 
 export const isDev = process.env.NODE_ENV === 'development'
+export const publicPath = isDev ? '/build/' : 'http://orn2bxyo7.bkt.clouddn.com/'
 export const LIB_NAME = 'vendor'
 export const PATH_ROOT = path.resolve(__dirname, '..')
 export const PATH_BUILD = path.resolve(PATH_ROOT, 'build')
