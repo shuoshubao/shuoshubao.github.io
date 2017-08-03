@@ -1,7 +1,9 @@
-var hljs = require('./highlight')
+var hljs = require('./highlight');
 
-const languages = ['xml', 'css', 'javascript', 'php', 'json', 'markdown']
+hljs.registerLanguage('xml', require('./languages/xml'));
+hljs.registerLanguage('css', require('./languages/css'));
+hljs.registerLanguage('markdown', require('./languages/markdown'));
+hljs.registerLanguage('javascript', require('./languages/javascript'));
+hljs.registerLanguage('php', require('./languages/php'));
 
-languages.forEach(v => hljs.registerLanguage(v, require(`./languages/${v}`)))
-
-module.exports = hljs
+module.exports = hljs;
