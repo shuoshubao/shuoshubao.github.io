@@ -1,6 +1,7 @@
 @import '~style/base';
 @import '~style/markdown';
 @import '~style/sprite';
+// @import '~util/highlight.js/styles/github.css';
 
 body {
   height: auto !important;

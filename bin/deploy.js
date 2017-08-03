@@ -6,7 +6,7 @@ import chalk from 'chalk'
 import rimraf from 'rimraf'
 import {minify as minifyHtml} from 'html-minifier'
 import MarkdownIt from 'markdown-it'
-import hljs from 'highlight.js'
+import hljs from '../src/util/highlight.js/lib'
 import {DATA_NAV, DATA_ARTICLE, DATA_META} from '../src/data'
 
 const timeInfo= chalk.green('构建完成, 耗时')

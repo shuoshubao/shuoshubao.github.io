@@ -72,7 +72,8 @@
     "webpack": "^3.4.1",
     "webpack-dashboard": "^0.4.0",
     "webpack-dev-server": "^2.5.0",
-    "webpack-spritesmith": "^0.3.3"
+    "webpack-spritesmith": "^0.3.3",
+    "webpack-uglify-parallel": "^0.1.3"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
