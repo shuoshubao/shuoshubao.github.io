@@ -7,6 +7,7 @@ import CleanWebpackPlugin from 'clean-webpack-plugin'
 import CopyWebpackPlugin from 'copy-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import HtmlWebpackHarddiskPlugin from 'html-webpack-harddisk-plugin'
+import UglifyJsParallelPlugin from 'webpack-uglify-parallel'
 import WebpackSpritesmith from 'webpack-spritesmith'
 import Dashboard from 'webpack-dashboard'
 import DashboardPlugin from 'webpack-dashboard/plugin'
@@ -141,6 +142,7 @@ if(isDev) {
     new webpack.HashedModuleIdsPlugin(),
     new PrepackWebpackPlugin(),
     new webpack.optimize.UglifyJsPlugin({comments: false})
+    // new UglifyJsParallelPlugin({workers: os.cpus().length})
   ])
 }
 
