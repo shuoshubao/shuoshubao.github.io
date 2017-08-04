@@ -94,7 +94,8 @@ const plugins = [
   ...HtmlWebpackPluginConfig,
   new HtmlWebpackHarddiskPlugin(),
   new webpack.optimize.CommonsChunkPlugin({
-    name: 'manifest'
+    name: 'manifest',
+    minChunks: Infinity
   }),
   new webpack.DllReferencePlugin({
     manifest: require(`${PATH_LIB}/${LIB_NAME}.json`)
