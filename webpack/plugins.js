@@ -1,5 +1,5 @@
-import os from 'os'
 import path from 'path'
+import os from 'os'
 import webpack from 'webpack'
 import HappyPack from 'happypack'
 import PrepackWebpackPlugin from 'prepack-webpack-plugin'
