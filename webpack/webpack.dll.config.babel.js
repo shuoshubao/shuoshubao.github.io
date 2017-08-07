@@ -1,8 +1,10 @@
 import fs from 'fs'
 import path from 'path'
+import os from 'os'
 import webpack from 'webpack'
 import CleanWebpackPlugin from 'clean-webpack-plugin'
 import AssetsWebpackPlugin from 'assets-webpack-plugin'
+import WebpackParallelUglifyPlugin from 'webpack-parallel-uglify-plugin'
 import {PATH_ROOT, PATH_LIB, LIB_NAME} from './config'
 
 const LIBRARY_NAME = '__[name]_[hash]'
@@ -35,6 +37,6 @@ export default {
       path: path.resolve(PATH_LIB, `${LIB_NAME}.json`),
       name: LIBRARY_NAME
     }),
-    new webpack.optimize.UglifyJsPlugin({comments: false})
+    new WebpackParallelUglifyPlugin({workerCount: os.cpus().length})
   ]
 }
