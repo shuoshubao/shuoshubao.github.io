@@ -37,7 +37,7 @@
     "classnames": "^2.2.5",
     "clean-webpack-plugin": "^0.1.16",
     "copy-webpack-plugin": "^4.0.1",
-    "css-loader": "^0.28.4",
+    "css-loader": "0.14.4",
     "ejs": "^2.5.6",
     "ejs-loader": "^0.3.0",
     "extract-text-webpack-plugin": "^2.1.2",
