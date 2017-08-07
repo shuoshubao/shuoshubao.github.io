@@ -1,7 +1,7 @@
 import MarkdownIt from 'markdown-it'
 import hljs from 'util/highlight.js/lib'
 import GitHubButton from 'component/GithubButton'
-import {DATA_NAV, DATA_ARTICLE, DATA_META} from 'data'
+import {DATA_NAV, DATA_META} from 'data'
 import 'polyfill'
 import 'style/highlight-table.less'
 import 'util/highlight.js/styles/github.css'
@@ -52,12 +52,14 @@ const getIndex = () => {
   return navIndex
 }
 
+let DATA_ARTICLE = null
+
 class App extends React.Component {
   static propTypes = {
     sourceUrl: PropTypes.string.isRequired
   }
   static defaultProps = {
-    sourceUrl: '/src/docs/'
+    sourceUrl: 'https://raw.githubusercontent.com/shuoshubao/blog/master/article/'
   }
   constructor() {
     super()
@@ -79,38 +81,51 @@ class App extends React.Component {
   }
   renderList(categories) {
     const dataList = []
-    if(categories === 'index') {
-      Object.entries(DATA_ARTICLE).forEach(v => {
-        v[1].forEach(v2 => {
-          dataList.push({
-            categories: v[0],
-            title: v2.title,
-            name: v2.name
+    const render = () => {
+      if(categories === 'index') {
+        Object.entries(DATA_ARTICLE).forEach(v => {
+          v[1].forEach(v2 => {
+            dataList.push({
+              categories: v[0],
+              title: v2.title,
+              name: v2.name
+            })
           })
         })
-      })
-    }else {
-      DATA_ARTICLE[categories].forEach(v => {
-        dataList.push({
-          categories,
-          title: v.title,
-          name: v.name
+      }else {
+        DATA_ARTICLE[categories].forEach(v => {
+          dataList.push({
+            categories,
+            title: v.title,
+            name: v.name
+          })
         })
+      }
+      this.setState({
+        navIndex: getIndex(),
+        openNav: false,
+        content: <ul className={style.list}>
+          {
+            dataList.map(v => (
+              <li key={`${v.categories + v.name}`}>
+                <a href={`/#${v.categories}/${v.name}`}>{v.title}</a>
+              </li>
+            ))
+          }
+        </ul>
       })
     }
-    this.setState({
-      navIndex: getIndex(),
-      openNav: false,
-      content: <ul className={style.list}>
-        {
-          dataList.map(v => (
-            <li key={`${v.categories + v.name}`}>
-              <a href={`/#${v.categories}/${v.name}`}>{v.title}</a>
-            </li>
-          ))
-        }
-      </ul>
-    })
+    if(!DATA_ARTICLE) {
+      fetch('https://raw.githubusercontent.com/shuoshubao/blog/master/data/db.json')
+      .then(rs => rs.json())
+      .then(rs => {
+        DATA_ARTICLE = rs
+        render()
+      })
+
+    }else {
+      render()
+    }
   }
   renderArticle(categories, article) {
     const articleId = [categories, article]
