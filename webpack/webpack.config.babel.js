@@ -17,8 +17,6 @@ if(isDev) {
   webpackConfig.devServer = {
     publicPath: PATH_PUBLIC,
     filename: FILENAME,
-    inline: true,
-    hot: true,
     port,
     historyApiFallback: false,
     proxy: {
