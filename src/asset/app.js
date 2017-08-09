@@ -54,12 +54,14 @@ const getIndex = () => {
 
 let DATA_ARTICLE = null
 
+const urlPrefix = 'https://raw.githubusercontent.com/shuoshubao/blog/master'
+
 class App extends React.Component {
   static propTypes = {
     sourceUrl: PropTypes.string.isRequired
   }
   static defaultProps = {
-    sourceUrl: 'https://raw.githubusercontent.com/shuoshubao/blog/master/article/'
+    sourceUrl: `${urlPrefix}/article/`
   }
   constructor() {
     super()
@@ -116,7 +118,7 @@ class App extends React.Component {
       })
     }
     if(!DATA_ARTICLE) {
-      fetch('https://raw.githubusercontent.com/shuoshubao/blog/master/data/db.json')
+      fetch(`${urlPrefix}/data/db.json`)
       .then(rs => rs.json())
       .then(rs => {
         DATA_ARTICLE = rs
