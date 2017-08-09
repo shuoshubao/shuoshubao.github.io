@@ -2,8 +2,8 @@ import {isDev, PATH_ROOT, PATH_BUILD, PATH_PUBLIC, FILENAME} from './config'
 
 export default {
   entry: {
-    app: './src/asset/app',
-    mobx: './src/asset/mobx'
+    home: './src/view/home',
+    mobx: './src/view/mobx'
   },
   output: {
     path: PATH_BUILD,

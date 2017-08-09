@@ -5,7 +5,7 @@ import {DATA_NAV, DATA_META} from 'data'
 import 'polyfill'
 import 'style/highlight-table.less'
 import 'util/highlight.js/styles/github.css'
-import style from './app.lesss'
+import style from './index.lesss'
 
 const MarkdownItHighlight = MarkdownIt({
   highlight: (str, language) => {
