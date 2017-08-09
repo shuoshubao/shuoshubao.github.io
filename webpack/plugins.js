@@ -136,7 +136,7 @@ if(isDev) {
   ])
 }else {
   plugins.push(...[
-    new CleanWebpackPlugin(['build'], {
+    new CleanWebpackPlugin([PATH_BUILD], {
       root: PATH_ROOT,
       verbose: false
     }),
