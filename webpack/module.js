@@ -3,11 +3,11 @@ import {isDev, extractLESS} from './config'
 export default {
   rules: [
     {
-      test: /\.png|gif|jpg/,
+      test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/,
       loader: 'url-loader',
       query: {
-        limit: 1024,
-        name: isDev ? '[name].[ext]' : '[name]_[chunkhash].[ext]'
+        limit: 10000,
+        name: isDev ? '[name].[ext]' : '[name].[hash:20].[ext]'
       }
     },
     {
@@ -25,10 +25,6 @@ export default {
     {
       test: /\.tpl/,
       loader: 'ejs-loader'
-    },
-    {
-      test: /\.(eot|woff|woff2|svg|ttf|gif)([\?]?.*)$/,
-      loader: 'file-loader'
     },
     {
       test: /\.css$/,
