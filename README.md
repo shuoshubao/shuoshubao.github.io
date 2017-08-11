@@ -3,8 +3,8 @@
 * git clone https://github.com/shuoshubao/shuoshubao.github.io.git
 * cd shuoshubao.github.io
 * npm install
-* npm run dll
-* npm start
-* npm run build
+* npm run dll // webpack.DllPlugin
+* npm start // 开发
+* npm run build // 上线
+* npm run qiniu // 将静态资源发布到cdn上
 * npm run eslint
-* npm run deploy // 生成静态页面 view目录 https://shuoshubao.github.io/view/index/index.html

@@ -13,24 +13,17 @@ const uploadFile = (uptoken, key, localFile) => {
   return new Promise((resolve, reject) => qiniu.io.putFile(uptoken, key, localFile, extra, (err, ret) => err ? reject(err) : resolve()))
 }
 
-const deployToQiniu = (fileList, root) => {
-    Promise.all(fileList.map(v => {
-      console.log(chalk.cyan(`正在上传: ${v}`))
-      return uploadFile(uptoken(bucket, v), v, path.join(__dirname, `../${root}/${v}`))
-    }))
-    .then(() => {
-      console.log(chalk.green('上传成功'))
-      console.log(chalk.green(`共上传${fileList.length}个文件`))
-    })
-    .catch(e => {
-      console.log(chalk.red('上传失败'))
-      console.error(e)
-    })
-}
-
 const fileList = glob.sync('build/*').map(v => v.slice(6))
 
-deployToQiniu(fileList, 'build')
-
-export default deployToQiniu
-
+Promise.all(fileList.map(v => {
+  console.log(chalk.cyan(`正在上传: ${v}`))
+  return uploadFile(uptoken(bucket, v), v, path.join(__dirname, `../build/${v}`))
+}))
+.then(() => {
+  console.log(chalk.green('上传成功'))
+  console.log(chalk.green(`共上传${fileList.length}个文件`))
+})
+.catch(e => {
+  console.log(chalk.red('上传失败'))
+  console.error(e)
+})
