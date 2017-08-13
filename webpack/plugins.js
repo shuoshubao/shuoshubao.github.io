@@ -7,13 +7,16 @@ import CleanWebpackPlugin from 'clean-webpack-plugin'
 import CopyWebpackPlugin from 'copy-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import HtmlWebpackHarddiskPlugin from 'html-webpack-harddisk-plugin'
+import AssetsWebpackPlugin from 'assets-webpack-plugin'
 import WebpackParallelUglifyPlugin from 'webpack-parallel-uglify-plugin'
 import WebpackSpritesmith from 'webpack-spritesmith'
 import Dashboard from 'webpack-dashboard'
 import DashboardPlugin from 'webpack-dashboard/plugin'
-import {isDev, PATH_ROOT, PATH_SRC, PATH_LIB, PATH_BUILD, PATH_PUBLIC, LIB_NAME, extractLESS} from './config'
+import {isDev, PATH_ROOT, PATH_SRC, PATH_ASSET, PATH_LIB, PATH_BUILD, PATH_PUBLIC, LIB_NAME, extractLESS} from './config'
 
-const {[LIB_NAME]: HASH_LIB} = require(path.resolve(PATH_LIB, 'asset'))
+// const {[LIB_NAME]: HASH_LIB} = require(path.resolve(PATH_LIB, 'asset'))
+
+const assetLib = require(path.resolve(PATH_ASSET, LIB_NAME))
 
 const HtmlWebpackPluginMinify = isDev ? {} : {
   useShortDoctype: true,
@@ -39,16 +42,23 @@ const HtmlWebpackPluginConfig = [
     title: 'WEB前端开发 - Mobx',
     chunks: ['mobx']
   }
-].map(v => new HtmlWebpackPlugin({
-  alwaysWriteToDisk: true,
-  filename: path.resolve(PATH_ROOT, `${v.filename}.html`),
-  template: path.resolve(PATH_SRC, `template/index.ejs`),
-  title: v.title,
-  chunks: ['manifest', ...v.chunks],
-  minify: HtmlWebpackPluginMinify,
-  ENV: isDev ? 'dev' : 'prod',
-  PATH_LIB: `${PATH_PUBLIC}${HASH_LIB}`,
-}))
+].map(v => {
+  const asset = require(PATH_ASSET)
+  const chunkList = [LIB_NAME, 'manifest', ...v.chunks]
+  const chunkListCss = chunkList.map(v => asset[v].css)
+  const chunkListJs = chunkList.map(v => asset[v].js)
+  return new HtmlWebpackPlugin({
+    alwaysWriteToDisk: true,
+    filename: path.resolve(PATH_ROOT, `${v.filename}.html`),
+    template: path.resolve(PATH_SRC, `template/index.ejs`),
+    title: v.title,
+    chunks: [],
+    chunkListCss,
+    chunkListJs,
+    minify: HtmlWebpackPluginMinify,
+    ENV: isDev ? 'dev' : 'prod'
+  })
+})
 
 const happyThreadPool = HappyPack.ThreadPool({size: os.cpus().length})
 
@@ -91,6 +101,11 @@ const plugins = [
     to: PATH_BUILD,
     ignore: '*.json'
   }]),
+  new AssetsWebpackPlugin({
+    path: PATH_ASSET,
+    filename: 'index.json',
+    processOutput: rs => JSON.stringify(Object.assign(rs, assetLib), null, 4)
+  }),
   ...HtmlWebpackPluginConfig,
   new HtmlWebpackHarddiskPlugin(),
   new webpack.optimize.CommonsChunkPlugin({
@@ -128,11 +143,11 @@ const plugins = [
 ]
 
 if(isDev) {
-  const dashboard = new Dashboard()
+  // const dashboard = new Dashboard()
   plugins.push(...[
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new DashboardPlugin(dashboard.setData)
+    // new DashboardPlugin(dashboard.setData)
   ])
 }else {
   plugins.push(...[

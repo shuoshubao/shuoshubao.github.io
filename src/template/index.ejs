@@ -7,6 +7,9 @@
   <meta name="keywords" content="硕鼠宝,shuoshubao,shubao,FE,html5,css3,js,jquery,jq">
   <link rel="shortcut icon" href="favicon.ico">
   <title><%= htmlWebpackPlugin.options.title %></title>
+  <% htmlWebpackPlugin.options.chunkListCss.forEach(function(v) { %>
+    <link rel="stylesheet" href="<%= v %>">
+  <% }) %>
 </head>
 <body>
 
@@ -46,6 +49,10 @@
 }
 </style>
 <% } %>
-<script src="<%= htmlWebpackPlugin.options.PATH_LIB %>"></script>
+
+<% htmlWebpackPlugin.options.chunkListJs.forEach(function(v) { %>
+  <script src="<%= v %>"></script>
+<% }) %>
+
 </body>
 </html>

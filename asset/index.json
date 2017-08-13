@@ -1,0 +1,15 @@
+{
+    "home": {
+        "js": "/build/home.ec9161c48af025d69427.js",
+        "css": "/build/home.ec9161c48af025d69427.css"
+    },
+    "mobx": {
+        "js": "/build/mobx.d335b2399ccf091374f6.js"
+    },
+    "manifest": {
+        "js": "/build/manifest.d4e045f594205cde3985.js"
+    },
+    "vendor": {
+        "js": "/build/vendor.39d18a011fdc35a5bfe9.js"
+    }
+}

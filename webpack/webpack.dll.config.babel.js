@@ -5,7 +5,7 @@ import webpack from 'webpack'
 import CleanWebpackPlugin from 'clean-webpack-plugin'
 import AssetsWebpackPlugin from 'assets-webpack-plugin'
 import WebpackParallelUglifyPlugin from 'webpack-parallel-uglify-plugin'
-import {PATH_ROOT, PATH_LIB, LIB_NAME} from './config'
+import {PATH_ASSET, PATH_ROOT, PATH_LIB, LIB_NAME, PATH_PUBLIC} from './config'
 
 const LIBRARY_NAME = '__[name]_[hash]'
 
@@ -29,9 +29,16 @@ export default {
       verbose: false
     }),
     new AssetsWebpackPlugin({
-      path: PATH_LIB,
-      filename: 'asset.json',
-      processOutput: rs => JSON.stringify({[LIB_NAME]: rs[LIB_NAME].js}, null, 4)
+      path: PATH_ASSET,
+      filename: `${LIB_NAME}.json`,
+      processOutput: rs => {
+        Object.entries(rs).forEach(([k, v]) => {
+          Object.entries(v).forEach(([k2, v2]) => {
+            rs[k][k2] = PATH_PUBLIC + rs[k][k2]
+          })
+        })
+        return JSON.stringify(rs, null, 4)
+      }
     }),
     new webpack.DllPlugin({
       path: path.resolve(PATH_LIB, `${LIB_NAME}.json`),
