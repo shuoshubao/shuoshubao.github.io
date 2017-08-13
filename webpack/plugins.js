@@ -13,7 +13,7 @@ import Dashboard from 'webpack-dashboard'
 import DashboardPlugin from 'webpack-dashboard/plugin'
 import {isDev, PATH_ROOT, PATH_SRC, PATH_LIB, PATH_BUILD, PATH_PUBLIC, LIB_NAME, extractLESS} from './config'
 
-const {hash: HASH_LIB} = require(path.resolve(PATH_LIB, 'asset'))
+const {[LIB_NAME]: HASH_LIB} = require(path.resolve(PATH_LIB, 'asset'))
 
 const HtmlWebpackPluginMinify = isDev ? {} : {
   useShortDoctype: true,
