@@ -14,8 +14,6 @@ import Dashboard from 'webpack-dashboard'
 import DashboardPlugin from 'webpack-dashboard/plugin'
 import {isDev, PATH_ROOT, PATH_SRC, PATH_ASSET, PATH_LIB, PATH_BUILD, PATH_PUBLIC, LIB_NAME, extractLESS} from './config'
 
-// const {[LIB_NAME]: HASH_LIB} = require(path.resolve(PATH_LIB, 'asset'))
-
 const assetLib = require(path.resolve(PATH_ASSET, LIB_NAME))
 
 const HtmlWebpackPluginMinify = isDev ? {} : {
@@ -143,11 +141,11 @@ const plugins = [
 ]
 
 if(isDev) {
-  // const dashboard = new Dashboard()
+  const dashboard = new Dashboard()
   plugins.push(...[
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    // new DashboardPlugin(dashboard.setData)
+    new DashboardPlugin(dashboard.setData)
   ])
 }else {
   plugins.push(...[
