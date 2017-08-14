@@ -15,3 +15,10 @@ export const PATH_LIB = path.resolve(PATH_ROOT, 'src/lib')
 export const LIB_NAME = 'vendor'
 
 export const extractLESS = new ExtractTextPlugin(isDev ? '[name].css' : '[name].[chunkhash].css')
+export const uglifyJSConfig = isDev ? {} : {
+  compress: {
+    warnings: false,
+    collapse_vars: true,
+    reduce_vars: true,
+  }
+}

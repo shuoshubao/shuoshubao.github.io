@@ -12,7 +12,7 @@ import WebpackParallelUglifyPlugin from 'webpack-parallel-uglify-plugin'
 import WebpackSpritesmith from 'webpack-spritesmith'
 import Dashboard from 'webpack-dashboard'
 import DashboardPlugin from 'webpack-dashboard/plugin'
-import {isDev, PATH_ROOT, PATH_SRC, PATH_ASSET, PATH_LIB, PATH_BUILD, PATH_PUBLIC, LIB_NAME, extractLESS} from './config'
+import {isDev, PATH_ROOT, PATH_SRC, PATH_ASSET, PATH_LIB, PATH_BUILD, PATH_PUBLIC, LIB_NAME, extractLESS, uglifyJSConfig} from './config'
 
 const assetLib = require(path.resolve(PATH_ASSET, LIB_NAME))
 
@@ -155,7 +155,10 @@ if(isDev) {
     }),
     new webpack.HashedModuleIdsPlugin(),
     new PrepackWebpackPlugin(),
-    new WebpackParallelUglifyPlugin({workerCount: os.cpus().length})
+    new WebpackParallelUglifyPlugin({
+      workerCount: os.cpus().length,
+      uglifyJS: uglifyJSConfig
+    })
   ])
 }
 
