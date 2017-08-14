@@ -114,6 +114,7 @@ const plugins = [
     manifest: require(`${PATH_LIB}/${LIB_NAME}.json`)
   }),
   createHappyPlugin('js', 'babel', {
+    cacheDirectory: true,
     plugins: [
       'transform-object-assign',
       'transform-object-rest-spread',

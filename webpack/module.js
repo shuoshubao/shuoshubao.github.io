@@ -1,4 +1,4 @@
-import {isDev, extractLESS} from './config'
+import {isDev, PATH_SRC, extractLESS} from './config'
 
 export default {
   rules: [
@@ -79,6 +79,7 @@ export default {
     {
       test: /\.js$/,
       loader: 'happypack/loader?id=js',
+      include: PATH_SRC,
       exclude: /node_modules/
     }
   ]

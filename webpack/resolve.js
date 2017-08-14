@@ -1,6 +1,6 @@
 import fs from 'fs'
 import path from 'path'
-import {PATH_SRC} from './config'
+import {PATH_ROOT, PATH_SRC} from './config'
 
 const alias = fs.readdirSync(PATH_SRC).reduce((prev, cur) => {
   prev[cur] = path.resolve(PATH_SRC, cur)
@@ -8,7 +8,7 @@ const alias = fs.readdirSync(PATH_SRC).reduce((prev, cur) => {
 }, {})
 
 const resolve = {
-  modules: ['node_modules'],
+  modules: [path.resolve(PATH_ROOT, 'node_modules')],
   extensions: ['.js', '.jsx', '.json'],
   mainFields: ['browser', 'main'],
   alias
