@@ -82,26 +82,23 @@ class App extends React.Component {
     })
   }
   renderList(categories) {
-    const dataList = []
+    let dataList = []
     const render = () => {
       if(categories === 'index') {
-        Object.entries(DATA_ARTICLE).forEach(v => {
-          v[1].forEach(v2 => {
-            dataList.push({
-              categories: v[0],
-              title: v2.title,
-              name: v2.name
-            })
-          })
-        })
+        dataList = DATA_NAV.filter(v => v.categories !== 'index').reduce((prev, cur) => {
+            prev.push(...DATA_ARTICLE[cur.categories].map(v => ({
+                categories: cur.categories,
+                title: v.title,
+                name: v.name
+            })))
+            return prev
+        }, [])
       }else {
-        DATA_ARTICLE[categories].forEach(v => {
-          dataList.push({
-            categories,
-            title: v.title,
-            name: v.name
-          })
-        })
+          dataList = DATA_ARTICLE[categories].map(v => ({
+              categories,
+              title: v.title,
+              name: v.name
+          }))
       }
       this.setState({
         navIndex: getIndex(),
