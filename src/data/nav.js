@@ -4,20 +4,20 @@ module.exports = [
     categories: 'index'
   },
   {
-    text: 'HTML',
-    categories: 'html'
-  },
-  {
-    text: 'CSS',
-    categories: 'css'
-  },
-  {
     text: 'JS',
     categories: 'js'
   },
   {
     text: 'Node',
     categories: 'node'
+  },
+  {
+    text: 'HTML',
+    categories: 'html'
+  },
+  {
+    text: 'CSS',
+    categories: 'css'
   },
   {
     text: 'Tool',
