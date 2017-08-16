@@ -14,8 +14,6 @@ import Dashboard from 'webpack-dashboard'
 import DashboardPlugin from 'webpack-dashboard/plugin'
 import {isDev, PATH_ROOT, PATH_SRC, PATH_ASSET, PATH_LIB, PATH_BUILD, PATH_PUBLIC, LIB_NAME, extractLESS, uglifyJSConfig} from './config'
 
-const assetLib = require(path.resolve(PATH_ASSET, LIB_NAME))
-
 const HtmlWebpackPluginMinify = isDev ? {} : {
   useShortDoctype: true,
   removeComments: true,
@@ -41,18 +39,13 @@ const HtmlWebpackPluginConfig = [
     chunks: ['mobx']
   }
 ].map(v => {
-  const asset = require(PATH_ASSET)
-  const chunkList = [LIB_NAME, 'manifest', ...v.chunks]
-  const chunkListCss = chunkList.map(v => asset[v].css)
-  const chunkListJs = chunkList.map(v => asset[v].js)
   return new HtmlWebpackPlugin({
     alwaysWriteToDisk: true,
     filename: path.resolve(PATH_ROOT, `${v.filename}.html`),
     template: path.resolve(PATH_SRC, `template/index.ejs`),
     title: v.title,
-    chunks: [],
-    chunkListCss,
-    chunkListJs,
+    chunks: ['manifest', ...v.chunks],
+    asset: require(path.resolve(PATH_ASSET, LIB_NAME)),
     minify: HtmlWebpackPluginMinify,
     ENV: isDev ? 'dev' : 'prod'
   })
@@ -102,7 +95,7 @@ const plugins = [
   new AssetsWebpackPlugin({
     path: PATH_ASSET,
     filename: 'index.json',
-    processOutput: rs => JSON.stringify(Object.assign(rs, assetLib), null, 4)
+    processOutput: rs => JSON.stringify(rs, null, 4)
   }),
   ...HtmlWebpackPluginConfig,
   new HtmlWebpackHarddiskPlugin(),

@@ -8,8 +8,5 @@
     },
     "manifest": {
         "js": "/build/manifest.a63b872682a30f477b2b.js"
-    },
-    "vendor": {
-        "js": "/build/vendor.39d18a011fdc35a5bfe9.js"
     }
 }

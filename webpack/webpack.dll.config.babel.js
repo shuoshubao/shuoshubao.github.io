@@ -32,12 +32,12 @@ export default {
       path: PATH_ASSET,
       filename: `${LIB_NAME}.json`,
       processOutput: rs => {
-        Object.entries(rs).forEach(([k, v]) => {
-          Object.entries(v).forEach(([k2, v2]) => {
-            rs[k][k2] = PATH_PUBLIC + rs[k][k2]
-          })
+        console.log(rs)
+        const data = rs[LIB_NAME]
+        Object.entries(data).forEach(([k, v]) => {
+          data[k] = PATH_PUBLIC + data[k]
         })
-        return JSON.stringify(rs, null, 4)
+        return JSON.stringify(data, null, 4)
       }
     }),
     new webpack.DllPlugin({
