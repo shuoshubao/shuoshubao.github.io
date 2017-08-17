@@ -31,14 +31,7 @@ export default {
     new AssetsWebpackPlugin({
       path: PATH_ASSET,
       filename: `${LIB_NAME}.json`,
-      processOutput: rs => {
-        console.log(rs)
-        const data = rs[LIB_NAME]
-        Object.entries(data).forEach(([k, v]) => {
-          data[k] = PATH_PUBLIC + data[k]
-        })
-        return JSON.stringify(data, null, 4)
-      }
+      processOutput: rs => JSON.stringify(rs, null, 4)
     }),
     new webpack.DllPlugin({
       path: path.resolve(PATH_LIB, `${LIB_NAME}.json`),

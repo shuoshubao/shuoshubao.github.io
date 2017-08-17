@@ -7,9 +7,6 @@
   <meta name="keywords" content="硕鼠宝,shuoshubao,shubao,FE,html5,css3,js,jquery,jq">
   <link rel="shortcut icon" href="favicon.ico">
   <title><%= htmlWebpackPlugin.options.title %></title>
-  <% if (htmlWebpackPlugin.options.asset.css) { %>
-    <link rel="stylesheet" href="<%= htmlWebpackPlugin.options.asset.css %>">
-  <% } %>
 </head>
 <body>
 
@@ -48,10 +45,6 @@
     display: none;
 }
 </style>
-<% } %>
-
-<% if (htmlWebpackPlugin.options.asset.js) { %>
-    <script src="<%= htmlWebpackPlugin.options.asset.js %>"></script>
 <% } %>
 
 </body>

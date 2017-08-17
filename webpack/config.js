@@ -22,3 +22,5 @@ export const uglifyJSConfig = isDev ? {} : {
     reduce_vars: true,
   }
 }
+
+export const assetLib = require(path.resolve(PATH_ASSET, LIB_NAME))
