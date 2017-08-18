@@ -19,6 +19,7 @@ if(isDev) {
     filename: FILENAME,
     port,
     historyApiFallback: false,
+    quiet: true,
     proxy: {
 
     }

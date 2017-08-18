@@ -9,7 +9,7 @@
   "license": "MIT",
   "scripts": {
     "dll": "NODE_ENV=development node_modules/.bin/webpack --config webpack/webpack.dll.config.babel.js --progress",
-    "start": "NODE_ENV=development node_modules/.bin/webpack-dev-server --config webpack/webpack.config.babel.js --quiet",
+    "start": "NODE_ENV=development node_modules/.bin/webpack-dev-server --config webpack/webpack.config.babel.js",
     "build": "NODE_ENV=production node_modules/.bin/webpack --config webpack/webpack.config.babel.js --progress",
     "stats": "NODE_ENV=production node_modules/.bin/webpack --config webpack/webpack.config.babel.js --json > webpack-stats.json",
     "eslint": "node_modules/.bin/eslint -f table src/asset ;exit 0",
