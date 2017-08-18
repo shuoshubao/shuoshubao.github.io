@@ -10,7 +10,6 @@ import HtmlWebpackHarddiskPlugin from 'html-webpack-harddisk-plugin'
 import HtmlWebpackIncludeAssetsPlugin from 'html-webpack-include-assets-plugin'
 import AssetsWebpackPlugin from 'assets-webpack-plugin'
 import WebpackParallelUglifyPlugin from 'webpack-parallel-uglify-plugin'
-import WebpackSpritesmith from 'webpack-spritesmith'
 import Dashboard from 'webpack-dashboard'
 import DashboardPlugin from 'webpack-dashboard/plugin'
 import {isDev, PATH_ROOT, PATH_SRC, PATH_ASSET, PATH_LIB, PATH_BUILD, PATH_PUBLIC, LIB_NAME, extractLESS, uglifyJSConfig, assetLib} from './config'
@@ -126,19 +125,6 @@ const plugins = [
       }]
     ],
     presets: ['es2015', 'stage-2', 'react']
-  }),
-  new WebpackSpritesmith({
-    src: {
-      cwd: path.resolve(PATH_SRC, 'spriteImgSrc'),
-      glob: '*.png'
-    },
-    target: {
-      image: path.resolve(PATH_SRC, 'style/sprite.png'),
-      css: path.resolve(PATH_SRC, 'style/sprite.less')
-    },
-    apiOptions: {
-      cssImageRef: 'sprite.png'
-    }
   })
 ]
 
