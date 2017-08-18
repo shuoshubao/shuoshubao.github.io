@@ -15,14 +15,19 @@ const webpackConfig = {
 if(isDev) {
   webpackConfig.devtool = 'source-map'
   webpackConfig.devServer = {
-    publicPath: PATH_PUBLIC,
-    filename: FILENAME,
     port,
-    historyApiFallback: false,
     quiet: true,
-    proxy: {
-
-    }
+    filename: FILENAME,
+    publicPath: PATH_PUBLIC,
+    stats: {},
+    historyApiFallback: false,
+    proxy: {}
+  },
+  webpackConfig.performance = {
+    hints: false,
+    maxEntrypointSize: 1e2,
+    maxAssetSize: 1e6,
+    assetFilter: assetFilename => !(/\.map$/.test(assetFilename))
   }
 }
 
