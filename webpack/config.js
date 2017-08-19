@@ -19,7 +19,7 @@ export const uglifyJSConfig = isDev ? {} : {
   compress: {
     warnings: false,
     collapse_vars: true,
-    reduce_vars: true,
+    reduce_vars: true
   }
 }
 
