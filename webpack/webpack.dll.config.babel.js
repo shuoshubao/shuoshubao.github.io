@@ -4,7 +4,14 @@ import webpack from 'webpack'
 import CleanWebpackPlugin from 'clean-webpack-plugin'
 import AssetsWebpackPlugin from 'assets-webpack-plugin'
 import WebpackParallelUglifyPlugin from 'webpack-parallel-uglify-plugin'
-import {PATH_ASSET, PATH_ROOT, PATH_LIB, LIB_NAME, PATH_PUBLIC, uglifyJSConfig} from './config'
+import {
+  PATH_ASSET,
+  PATH_ROOT,
+  PATH_LIB,
+  LIB_NAME,
+  PATH_PUBLIC,
+  uglifyJSConfig
+} from './config'
 
 const LIBRARY_NAME = '__[name]_[hash]'
 
