@@ -1,12 +1,12 @@
 {
     "home": {
-        "js": "/build/home.adf2fd9ddd89eedeb10e.js",
-        "css": "/build/home.adf2fd9ddd89eedeb10e.css"
+        "js": "/build/home.48c9635d42b6f1482258.js",
+        "css": "/build/home.48c9635d42b6f1482258.css"
     },
     "mobx": {
-        "js": "/build/mobx.d335b2399ccf091374f6.js"
+        "js": "/build/mobx.06bd592fc625595f9e59.js"
     },
     "manifest": {
-        "js": "/build/manifest.dca47a6eee1153bf7af2.js"
+        "js": "/build/manifest.f9c270e38a4339705fb6.js"
     }
 }

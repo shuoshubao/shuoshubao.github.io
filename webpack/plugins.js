@@ -19,7 +19,6 @@ import {
   PATH_ASSET,
   PATH_LIB,
   PATH_BUILD,
-  PATH_PUBLIC,
   LIB_NAME,
   extractLESS,
   uglifyJSConfig,
@@ -45,7 +44,6 @@ const HtmlWebpackPluginConfig = [
     template: path.resolve(PATH_SRC, `template/index.ejs`),
     title: v.title,
     chunks: ['manifest', ...v.chunks],
-    asset: assetLib,
     minify,
     ENV: isDev ? 'dev' : 'prod'
   })
@@ -99,6 +97,7 @@ const plugins = [
   }),
   new HtmlWebpackIncludeAssetsPlugin({
     append: false,
+    publicPath: '',
     assets: Object.entries(assetLib).map(([k, v]) => Object.values(v)).reduce((prev, cur) => {
         prev.push(...cur)
         return prev
