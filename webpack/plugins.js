@@ -12,20 +12,20 @@ import AssetsWebpackPlugin from 'assets-webpack-plugin'
 import WebpackParallelUglifyPlugin from 'webpack-parallel-uglify-plugin'
 import Dashboard from 'webpack-dashboard'
 import DashboardPlugin from 'webpack-dashboard/plugin'
-import {isDev, PATH_ROOT, PATH_SRC, PATH_ASSET, PATH_LIB, PATH_BUILD, PATH_PUBLIC, LIB_NAME, extractLESS, uglifyJSConfig, assetLib} from './config'
-
-const HtmlWebpackPluginMinify = isDev ? {} : {
-  useShortDoctype: true,
-  removeComments: true,
-  collapseWhitespace: true,
-  minifyJS: true,
-  minifyCSS: true,
-  removeScriptTypeAttributes: true,
-  removeStyleTypeAttributes: true,
-  sortAttributes: true,
-  sortClassName: true,
-  keepClosingSlash: false
-}
+import {
+  isDev,
+  PATH_ROOT,
+  PATH_SRC,
+  PATH_ASSET,
+  PATH_LIB,
+  PATH_BUILD,
+  PATH_PUBLIC,
+  LIB_NAME,
+  extractLESS,
+  uglifyJSConfig,
+  assetLib,
+  minifyHtmlConfig as minify
+} from './config'
 
 const HtmlWebpackPluginConfig = [
   {
@@ -46,7 +46,7 @@ const HtmlWebpackPluginConfig = [
     title: v.title,
     chunks: ['manifest', ...v.chunks],
     asset: assetLib,
-    minify: HtmlWebpackPluginMinify,
+    minify,
     ENV: isDev ? 'dev' : 'prod'
   })
 })
@@ -143,10 +143,7 @@ if(isDev) {
     }),
     new webpack.HashedModuleIdsPlugin(),
     new PrepackWebpackPlugin(),
-    new WebpackParallelUglifyPlugin({
-      workerCount: os.cpus().length,
-      uglifyJS: uglifyJSConfig
-    })
+    new WebpackParallelUglifyPlugin(uglifyJSConfig)
   ])
 }
 

@@ -1,3 +1,4 @@
+import os from 'os'
 import path from 'path'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 
@@ -16,11 +17,27 @@ export const LIB_NAME = 'vendor'
 
 export const extractLESS = new ExtractTextPlugin(`[name]${isDev ? '' : '.[chunkhash]'}.css`)
 export const uglifyJSConfig = isDev ? {} : {
-  compress: {
-    warnings: false,
-    collapse_vars: true,
-    reduce_vars: true
+  workerCount: os.cpus().length,
+  uglifyJS: {
+    compress: {
+      warnings: false,
+      collapse_vars: true,
+      reduce_vars: true
+    }
   }
+}
+
+export const minifyHtmlConfig = isDev ? {} : {
+  useShortDoctype: true,
+  removeComments: true,
+  collapseWhitespace: true,
+  minifyJS: true,
+  minifyCSS: true,
+  removeScriptTypeAttributes: true,
+  removeStyleTypeAttributes: true,
+  sortAttributes: true,
+  sortClassName: true,
+  keepClosingSlash: false
 }
 
 export const assetLib = require(path.resolve(PATH_ASSET, LIB_NAME))
