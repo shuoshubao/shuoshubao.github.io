@@ -22,9 +22,10 @@ import {
   LIB_NAME,
   extractLESS,
   uglifyJSConfig,
-  assetLib,
   minifyHtmlConfig as minify
 } from './config'
+
+const assetLib = require(path.resolve(PATH_ASSET, LIB_NAME))
 
 const HtmlWebpackPluginConfig = [
   {

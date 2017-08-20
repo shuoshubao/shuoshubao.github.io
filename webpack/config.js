@@ -39,5 +39,3 @@ export const minifyHtmlConfig = isDev ? {} : {
   sortClassName: true,
   keepClosingSlash: false
 }
-
-export const assetLib = require(path.resolve(PATH_ASSET, LIB_NAME))
