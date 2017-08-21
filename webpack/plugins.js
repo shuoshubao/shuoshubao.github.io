@@ -131,6 +131,7 @@ if(isDev) {
   const dashboard = new Dashboard()
   plugins.push(...[
     new webpack.NamedModulesPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new DashboardPlugin(dashboard.setData)
   ])
