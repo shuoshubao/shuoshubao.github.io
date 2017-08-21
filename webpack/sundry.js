@@ -1,13 +1,19 @@
 import {isDev, port, FILENAME, PATH_PUBLIC} from './config'
 
+const stats = {
+  modules: false,
+  children: false,
+  hash: false,
+  version: false
+}
+
 export default isDev ? {
   externals: {},
   devServer: {
     port,
-    // quiet: true,
     filename: FILENAME,
     publicPath: PATH_PUBLIC,
-    stats: {children: false},
+    stats,
     historyApiFallback: false,
     proxy: {}
   },
@@ -18,5 +24,5 @@ export default isDev ? {
     assetFilter: assetFileName => !(/\.map$/.test(assetFileName))
   }
 } : {
-  stats: {children: false}
+  stats
 }

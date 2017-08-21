@@ -43,5 +43,11 @@ export default {
       name: LIBRARY_NAME
     }),
     new WebpackParallelUglifyPlugin(uglifyJSConfig)
-  ]
+  ],
+  stats: {
+    modules: false,
+    children: false,
+    hash: false,
+    version: false
+  }
 }
