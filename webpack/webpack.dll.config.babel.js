@@ -9,7 +9,6 @@ import {
   PATH_ROOT,
   PATH_LIB,
   LIB_NAME,
-  PATH_PUBLIC,
   uglifyJSConfig
 } from './config'
 
@@ -26,7 +25,6 @@ export default {
   },
   output: {
     path: PATH_LIB,
-    publicPath: PATH_PUBLIC,
     filename: '[name].[hash].js',
     library: LIBRARY_NAME
   },

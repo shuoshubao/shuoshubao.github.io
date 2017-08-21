@@ -98,7 +98,6 @@ const plugins = [
   }),
   new HtmlWebpackIncludeAssetsPlugin({
     append: false,
-    publicPath: '',
     assets: Object.entries(assetLib).map(([k, v]) => Object.values(v)).reduce((prev, cur) => {
         prev.push(...cur)
         return prev
