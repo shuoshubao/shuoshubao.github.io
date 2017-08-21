@@ -4,10 +4,10 @@ export default isDev ? {
   externals: {},
   devServer: {
     port,
-    quiet: true,
+    // quiet: true,
     filename: FILENAME,
     publicPath: PATH_PUBLIC,
-    stats: {},
+    stats: {children: false},
     historyApiFallback: false,
     proxy: {}
   },
@@ -17,4 +17,6 @@ export default isDev ? {
     maxAssetSize: 1e6,
     assetFilter: assetFileName => !(/\.map$/.test(assetFileName))
   }
-} : {}
+} : {
+  stats: {children: false}
+}
