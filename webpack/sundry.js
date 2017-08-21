@@ -11,6 +11,7 @@ export default isDev ? {
   externals: {},
   devServer: {
     port,
+    quiet: true,
     filename: FILENAME,
     publicPath: PATH_PUBLIC,
     stats,
