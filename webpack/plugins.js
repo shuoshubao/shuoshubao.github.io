@@ -128,13 +128,15 @@ const plugins = [
 ]
 
 if(isDev) {
-  // const dashboard = new Dashboard()
   plugins.push(...[
     new webpack.NamedModulesPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
-    // new DashboardPlugin(dashboard.setData)
+    new webpack.HotModuleReplacementPlugin()
   ])
+  if(!process.argv[1].includes('webpack/dev')) {
+      const dashboard = new Dashboard()
+      plugins.push(new DashboardPlugin(dashboard.setData))
+  }
 }else {
   plugins.push(...[
     new CleanWebpackPlugin([PATH_BUILD], {

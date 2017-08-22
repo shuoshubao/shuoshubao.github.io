@@ -12,6 +12,7 @@ app.use(bodyParser())
 
 // console.log(devConfig)
 // console.log(devConfig.entry)
+// console.log(devConfig.plugins)
 
 devConfig.entry = Object.entries(devConfig.entry).reduce((prev, [k, v]) => {
   prev[k] = ['webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000', v]
