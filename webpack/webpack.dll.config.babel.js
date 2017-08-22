@@ -29,6 +29,7 @@ export default {
     library: LIBRARY_NAME
   },
   plugins: [
+    new webpack.EnvironmentPlugin(['NODE_ENV']),
     new CleanWebpackPlugin([PATH_LIB], {
       root: PATH_ROOT,
       verbose: false
