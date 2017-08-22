@@ -1,6 +1,7 @@
 import {isDev, port, FILENAME, PATH_PUBLIC} from './config'
 
 const stats = {
+  colors: true,
   modules: false,
   children: false,
   hash: false,

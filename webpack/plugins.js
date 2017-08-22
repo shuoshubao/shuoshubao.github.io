@@ -128,12 +128,12 @@ const plugins = [
 ]
 
 if(isDev) {
-  const dashboard = new Dashboard()
+  // const dashboard = new Dashboard()
   plugins.push(...[
     new webpack.NamedModulesPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new DashboardPlugin(dashboard.setData)
+    // new DashboardPlugin(dashboard.setData)
   ])
 }else {
   plugins.push(...[
