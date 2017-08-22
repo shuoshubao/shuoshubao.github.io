@@ -41,7 +41,7 @@ const HtmlWebpackPluginConfig = [
 ].map(v => {
   return new HtmlWebpackPlugin({
     alwaysWriteToDisk: true,
-    filename: path.resolve(PATH_ROOT, `${v.filename}.html`),
+    filename: path.resolve(PATH_BUILD, `${v.filename}.html`),
     template: path.resolve(PATH_SRC, `template/index.ejs`),
     title: v.title,
     chunks: ['manifest', ...v.chunks],

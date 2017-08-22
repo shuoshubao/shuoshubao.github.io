@@ -107,7 +107,7 @@ class App extends React.Component {
           {
             dataList.map(v => (
               <li key={`${v.categories + v.name}`}>
-                <a href={`/#${v.categories}/${v.name}`}>{v.title}</a>
+                <a href={`/build/#${v.categories}/${v.name}`}>{v.title}</a>
               </li>
             ))
           }
@@ -174,7 +174,7 @@ class App extends React.Component {
         <nav className={style.nav}>
           <div className={style.inner}>
             <div className={style.wrap}>
-              <a className={style.home} href="/#">
+              <a className={style.home} href="/build/#">
                 <svg
                   className={style.logo}
                   aria-hidden="true"
@@ -196,7 +196,7 @@ class App extends React.Component {
                 {
                   DATA_NAV.map((v, i) => (
                     <li key={`${v.categories + v.name}`} className={classnames({[style.active]: navIndex === i})}>
-                      <a href={`/#${DATA_NAV[i].categories}`}>{v.text}</a>
+                      <a href={`/build/#${DATA_NAV[i].categories}`}>{v.text}</a>
                     </li>
                   ))
                 }
