@@ -50,8 +50,6 @@
     "jquery": "^3.2.1",
     "koa": "^2.3.0",
     "koa-bodyparser": "^4.2.0",
-    "koa-webpack-dev-middleware": "^2.0.1",
-    "koa-webpack-hot-middleware": "^1.0.3",
     "koa-webpack-middleware": "^1.0.7",
     "less": "^2.7.2",
     "less-loader": "^4.0.4",

@@ -38,17 +38,16 @@ const HtmlWebpackPluginConfig = [
     title: 'WEB前端开发 - Mobx',
     chunks: ['mobx']
   }
-].map(v => {
-  return new HtmlWebpackPlugin({
-    alwaysWriteToDisk: true,
-    filename: path.resolve(PATH_BUILD, `${v.filename}.html`),
-    template: path.resolve(PATH_SRC, `template/index.ejs`),
-    title: v.title,
-    chunks: ['manifest', ...v.chunks],
-    minify,
-    ENV: isDev ? 'dev' : 'prod'
-  })
-})
+].map(v => new HtmlWebpackPlugin({
+  alwaysWriteToDisk: true,
+  filename: path.resolve(PATH_BUILD, `${v.filename}.html`),
+  template: path.resolve(PATH_SRC, `template/index.ejs`),
+  favicon: 'favicon.ico',
+  title: v.title,
+  chunks: ['manifest', ...v.chunks],
+  minify,
+  ENV: isDev ? 'dev' : 'prod'
+}))
 
 const happyThreadPool = HappyPack.ThreadPool({size: os.cpus().length})
 
