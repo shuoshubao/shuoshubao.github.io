@@ -18,9 +18,9 @@ export default {
   entry: {
     [LIB_NAME]: [
       'react',
-      'classnames',
+      'react-dom',
       'prop-types',
-      'react-dom'
+      'classnames'
     ]
   },
   output: {
