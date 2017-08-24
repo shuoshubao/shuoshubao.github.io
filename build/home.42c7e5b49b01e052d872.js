@@ -1,0 +1,1 @@
+(function(){"use strict";var n=this,o=this,i=o.webpackJsonp;if(o.webpackJsonp!==i)throw new Error("Prepack model invariant violation: "+o.webpackJsonp);i([1],{Kcrr:function(o,i,r){n.console.log("index")}},["Kcrr"])}).call(this);
