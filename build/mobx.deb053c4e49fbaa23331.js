@@ -1,1 +1,0 @@
-(function(){"use strict";var o=this,n=this,i=n.webpackJsonp;if(n.webpackJsonp!==i)throw new Error("Prepack model invariant violation: "+n.webpackJsonp);i([0],{MPQZ:function(n,i,t){o.console.log("mobx----1")}},["MPQZ"])}).call(this);
