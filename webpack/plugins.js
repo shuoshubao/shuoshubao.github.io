@@ -10,7 +10,6 @@ import HtmlWebpackHarddiskPlugin from 'html-webpack-harddisk-plugin'
 import HtmlWebpackIncludeAssetsPlugin from 'html-webpack-include-assets-plugin'
 import AssetsWebpackPlugin from 'assets-webpack-plugin'
 import WebpackParallelUglifyPlugin from 'webpack-parallel-uglify-plugin'
-import OptimizeCssAssetsWebpackPlugin from 'optimize-css-assets-webpack-plugin'
 import Dashboard from 'webpack-dashboard'
 import DashboardPlugin from 'webpack-dashboard/plugin'
 import {
@@ -85,12 +84,6 @@ const plugins = [
     moment: 'moment'
   }),
   extractLESS,
-  new OptimizeCssAssetsWebpackPlugin({
-    assetNameRegExp: /\.optimize\.css$/g,
-    cssProcessor: require('cssnano'),
-    cssProcessorOptions: { discardComments: {removeAll: true } },
-    canPrint: true
-  }),
   new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
   new CopyWebpackPlugin([{
     from: PATH_LIB,
