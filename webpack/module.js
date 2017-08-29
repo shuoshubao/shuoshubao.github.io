@@ -18,9 +18,13 @@ export default {
         name: isDev ? '[name].[ext]' : '[name].[hash:5].[ext]'
       }
     },
+    // {
+    //   test: /\.css$/,
+    //   loader: ['style-loader', 'css-loader']
+    // },
     {
       test: /\.css$/,
-      loader: ['style-loader', 'css-loader']
+      loader: 'happypack/loader?id=css'
     },
     {
       test: /\.lesss$/,

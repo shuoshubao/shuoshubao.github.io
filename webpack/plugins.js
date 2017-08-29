@@ -51,14 +51,9 @@ const HtmlWebpackPluginConfig = [
 
 const happyThreadPool = HappyPack.ThreadPool({size: os.cpus().length})
 
-const createHappyPlugin = (id, loader, query = {}) => new HappyPack({
+const createHappyPlugin = (id, loaders) => new HappyPack({
   id: id,
-  loaders: [
-    {
-      loader: `${loader}-loader`,
-      query
-    }
-  ],
+  loaders,
   threadPool: happyThreadPool,
   verbose: false
 })
@@ -111,19 +106,24 @@ const plugins = [
   new webpack.DllReferencePlugin({
     manifest: require(`${PATH_LIB}/${LIB_NAME}.json`)
   }),
-  createHappyPlugin('js', 'babel', {
-    cacheDirectory: true,
-    plugins: [
-      'transform-object-assign',
-      'transform-object-rest-spread',
-      'transform-decorators-legacy',
-      ['import', {
-        libraryName: 'antd',
-        style: true
-      }]
-    ],
-    presets: ['es2015', 'stage-2', 'react']
-  })
+  createHappyPlugin('css', ['style-loader', 'css-loader']),
+  createHappyPlugin('js', [
+    {
+      path: 'babel-loader',
+      query: {
+        plugins: [
+          'transform-object-assign',
+          'transform-object-rest-spread',
+          'transform-decorators-legacy',
+          ['import', {
+            libraryName: 'antd',
+            style: true
+          }]
+        ],
+        presets: ['es2015', 'stage-2', 'react']
+      }
+    }
+  ])
 ]
 
 if(isDev) {
