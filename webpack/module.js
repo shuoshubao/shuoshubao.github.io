@@ -3,19 +3,7 @@ import {isDev, PATH_SRC, extractLESS} from './config'
 export default {
   rules: [
     {
-      test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/,
-      loader: 'url-loader',
-      query: {
-        limit: 10000,
-        name: isDev ? '[name].[ext]' : '[name].[hash:20].[ext]'
-      }
-    },
-    {
       test: /\.t[e]?xt$/,
-      loader: 'raw-loader'
-    },
-    {
-      test: /\.vtpl$/,
       loader: 'raw-loader'
     },
     {
@@ -23,8 +11,12 @@ export default {
       loader: 'ejs-loader'
     },
     {
-      test: /\.tpl/,
-      loader: 'ejs-loader'
+      test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/,
+      loader: 'url-loader',
+      query: {
+        limit: 10000,
+        name: isDev ? '[name].[ext]' : '[name].[hash:5].[ext]'
+      }
     },
     {
       test: /\.css$/,
@@ -71,10 +63,6 @@ export default {
     {
       test: /^((?!\.module).)*less$/,
       loader: ['style-loader', 'css-loader', 'less-loader']
-    },
-    {
-      test: /\.styl$/,
-      loader: ['style-loader', 'css-loader', 'autoprefixer-loader', 'stylus-loader']
     },
     {
       test: /\.js$/,
