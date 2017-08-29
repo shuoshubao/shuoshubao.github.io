@@ -12,7 +12,7 @@ import {
   uglifyJSConfig
 } from './config'
 
-const LIBRARY_NAME = '__[name]_[hash]'
+const LIBRARY_NAME = '__[name]_[chunkhash:5]'
 
 export default {
   entry: {
@@ -25,7 +25,7 @@ export default {
   },
   output: {
     path: PATH_LIB,
-    filename: '[name].[hash].js',
+    filename: '[name].[chunkhash:5].js',
     library: LIBRARY_NAME
   },
   plugins: [
