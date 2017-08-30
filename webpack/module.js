@@ -18,16 +18,13 @@ export default {
         name: isDev ? '[name].[ext]' : '[name].[hash:5].[ext]'
       }
     },
-    // {
-    //   test: /\.css$/,
-    //   loader: ['style-loader', 'css-loader']
-    // },
     {
       test: /\.css$/,
       loader: 'happypack/loader?id=css'
     },
+
     {
-      test: /\.lesss$/,
+      test: /\.module.less$/,
       use: extractLESS.extract({
         fallback: 'style-loader',
         use: [
@@ -35,7 +32,7 @@ export default {
             loader: 'css-loader',
             options: {
               modules: true,
-              localIdentName: '[local]_[name]_[hash:5]',
+              localIdentName: '[local]_[path]_[name]_[hash:5]',
               minimize: !isDev
             }
           },
@@ -46,27 +43,21 @@ export default {
       })
     },
     {
-      test: /\.module.less$/,
-      use: [
-        {
-          loader: 'style-loader'
-        },
-        {
-          loader: 'css-loader',
-          options: {
-            modules: true,
-            localIdentName: '[local]_[path]_[name]_[hash:5]',
-            minimize: !isDev
-          }
-        },
-        {
-          loader: 'less-loader'
-        }
-      ]
-    },
-    {
       test: /^((?!\.module).)*less$/,
-      loader: ['style-loader', 'css-loader', 'less-loader']
+      use: extractLESS.extract({
+        fallback: 'style-loader',
+        use: [
+          {
+            loader: 'css-loader',
+            options: {
+              minimize: !isDev
+            }
+          },
+          {
+            loader: 'less-loader'
+          }
+        ]
+      })
     },
     {
       test: /\.js$/,
