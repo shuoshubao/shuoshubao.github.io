@@ -31,7 +31,7 @@ const HtmlWebpackPluginConfig = [
   {
     filename: 'index',
     title: 'WEB前端开发',
-    chunks: ['home']
+    chunks: ['index']
   },
   {
     filename: 'mobx',
