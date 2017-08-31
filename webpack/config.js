@@ -4,7 +4,7 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin'
 
 export const port = 8080
 export const isDev = process.env.NODE_ENV === 'development'
-export const FILENAME = `[name]${isDev ? '' : '.[chunkhash]'}.js`
+export const FILENAME = `[name]${isDev ? '' : '.[chunkhash:5]'}.js`
 
 export const PATH_ROOT = path.resolve(__dirname, '..')
 export const PATH_SRC = path.resolve(PATH_ROOT, 'src')
@@ -15,7 +15,7 @@ export const PATH_PUBLIC = '/build/'
 export const PATH_LIB = path.resolve(PATH_ROOT, '.dll')
 export const LIB_NAME = 'vendor'
 
-export const extractLESS = new ExtractTextPlugin(`[name]${isDev ? '' : '.[chunkhash]'}.css`)
+export const extractLESS = new ExtractTextPlugin(`[name]${isDev ? '' : '.[chunkhash:5]'}.css`)
 export const uglifyJSConfig = isDev ? {} : {
   workerCount: os.cpus().length,
   uglifyJS: {
