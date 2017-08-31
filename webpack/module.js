@@ -3,7 +3,7 @@ import {isDev, PATH_SRC, extractLESS} from './config'
 export default {
   rules: [
     {
-      test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/,
+      test: /\.(png|jpe?g|gif|svg|woff2?|eot|ttf|otf)(\?.*)?$/,
       loader: 'url-loader',
       query: {
         limit: 10000,
@@ -15,20 +15,12 @@ export default {
       loader: 'raw-loader'
     },
     {
-      test: /\.vtpl$/,
-      loader: 'raw-loader'
-    },
-    {
       test: /\.ejs/,
       loader: 'ejs-loader'
     },
     {
-      test: /\.tpl/,
-      loader: 'ejs-loader'
-    },
-    {
       test: /\.css$/,
-      loader: ['style-loader', 'css-loader']
+      loader: 'happypack/loader?id=css'
     },
     {
       test: /\.lesss$/,
