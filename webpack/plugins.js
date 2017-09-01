@@ -10,7 +10,6 @@ import HtmlWebpackHarddiskPlugin from 'html-webpack-harddisk-plugin'
 import HtmlWebpackIncludeAssetsPlugin from 'html-webpack-include-assets-plugin'
 import AssetsWebpackPlugin from 'assets-webpack-plugin'
 import WebpackParallelUglifyPlugin from 'webpack-parallel-uglify-plugin'
-import OptimizeCssAssetsWebpackPlugin from 'optimize-css-assets-webpack-plugin'
 import Dashboard from 'webpack-dashboard'
 import DashboardPlugin from 'webpack-dashboard/plugin'
 import {
@@ -32,7 +31,7 @@ const HtmlWebpackPluginConfig = [
   {
     filename: 'index',
     title: 'WEB前端开发',
-    chunks: ['home']
+    chunks: ['index']
   },
   {
     filename: 'mobx',
@@ -53,8 +52,8 @@ const HtmlWebpackPluginConfig = [
 const happyThreadPool = HappyPack.ThreadPool({size: os.cpus().length})
 
 const createHappyPlugin = (id, loaders) => new HappyPack({
-  id,
-  loaders: Array.isArray(loaders) ? loaders : [loaders],
+  id: id,
+  loaders,
   threadPool: happyThreadPool,
   verbose: false
 })
@@ -80,12 +79,6 @@ const plugins = [
     moment: 'moment'
   }),
   extractLESS,
-  new OptimizeCssAssetsWebpackPlugin({
-    assetNameRegExp: /\.optimize\.css$/g,
-    cssProcessor: require('cssnano'),
-    cssProcessorOptions: { discardComments: {removeAll: true } },
-    canPrint: true
-  }),
   new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
   new CopyWebpackPlugin([{
     from: PATH_LIB,
@@ -113,41 +106,24 @@ const plugins = [
   new webpack.DllReferencePlugin({
     manifest: require(`${PATH_LIB}/${LIB_NAME}.json`)
   }),
-  createHappyPlugin('css', [
+  createHappyPlugin('css', ['style-loader', 'css-loader']),
+  createHappyPlugin('js', [
     {
-      loader: 'style-loader'
-    },
-    {
-      loader: 'css-loader'
-    },
-  ]),
-  createHappyPlugin('js', {
-    loader: 'babel-loader',
-    query: {
-      plugins: [
-        'transform-object-assign',
-        'transform-object-rest-spread',
-        'transform-decorators-legacy',
-        ['import', {
-          libraryName: 'antd',
-          style: true
-        }]
-      ],
-      presets: ['es2015', 'stage-2', 'react']
+      path: 'babel-loader',
+      query: {
+        plugins: [
+          'transform-object-assign',
+          'transform-object-rest-spread',
+          'transform-decorators-legacy',
+          ['import', {
+            libraryName: 'antd',
+            style: true
+          }]
+        ],
+        presets: ['es2015', 'stage-2', 'react']
+      }
     }
-  })/*,
-  createHappyPlugin('js', 'babel', {
-    plugins: [
-      'transform-object-assign',
-      'transform-object-rest-spread',
-      'transform-decorators-legacy',
-      ['import', {
-        libraryName: 'antd',
-        style: true
-      }]
-    ],
-    presets: ['es2015', 'stage-2', 'react']
-  })*/
+  ])
 ]
 
 if(isDev) {
