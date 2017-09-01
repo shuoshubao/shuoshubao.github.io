@@ -68,8 +68,7 @@
     "stylus": "^0.54.5",
     "url-loader": "^0.5.9",
     "webpack": "^3.5.5",
-    "webpack-dashboard": "^1.0.0-5",
-    "webpack-dev-middleware": "^1.12.0",
+    "webpack-dashboard": "0.3.0",
     "webpack-dev-server": "^2.7.1",
     "webpack-parallel-uglify-plugin": "^1.0.0"
   },
