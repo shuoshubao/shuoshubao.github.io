@@ -2,7 +2,6 @@ import path from 'path'
 import os from 'os'
 import webpack from 'webpack'
 import HappyPack from 'happypack'
-import PrepackWebpackPlugin from 'prepack-webpack-plugin'
 import CleanWebpackPlugin from 'clean-webpack-plugin'
 import CopyWebpackPlugin from 'copy-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
@@ -143,7 +142,6 @@ if(isDev) {
       verbose: false
     }),
     new webpack.HashedModuleIdsPlugin(),
-    new PrepackWebpackPlugin(),
     new WebpackParallelUglifyPlugin(uglifyJSConfig)
   ])
 }
