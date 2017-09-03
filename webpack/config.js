@@ -10,6 +10,7 @@ export const PATH_ROOT = path.resolve(__dirname, '..')
 export const PATH_SRC = path.resolve(PATH_ROOT, 'src')
 export const PATH_ASSET = path.resolve(PATH_ROOT, '.temp/asset')
 export const PATH_BUILD = path.resolve(PATH_ROOT, 'build')
+export const PATH_VIEW = path.resolve(PATH_SRC, 'view')
 export const PATH_PUBLIC = '/build/'
 // export const PATH_PUBLIC = isDev ? '/build/' : 'http://orn2bxyo7.bkt.clouddn.com/'
 export const PATH_LIB = path.resolve(PATH_ROOT, '.temp/dll')

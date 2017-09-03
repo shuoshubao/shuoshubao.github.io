@@ -66,6 +66,7 @@
     "style-loader": "^0.18.2",
     "stylus": "^0.54.5",
     "url-loader": "^0.5.9",
+    "vue-loader": "^13.0.4",
     "webpack": "^3.5.5",
     "webpack-dashboard": "0.3.0",
     "webpack-dev-server": "^2.7.1",

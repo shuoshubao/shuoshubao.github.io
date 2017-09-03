@@ -1,6 +1,7 @@
 import path from 'path'
 import os from 'os'
 import webpack from 'webpack'
+import {entry} from './entry-output'
 import HappyPack from 'happypack'
 import CleanWebpackPlugin from 'clean-webpack-plugin'
 import CopyWebpackPlugin from 'copy-webpack-plugin'
@@ -26,27 +27,17 @@ import {
 
 const assetLib = require(path.resolve(PATH_ASSET, LIB_NAME))
 
-const HtmlWebpackPluginConfig = [
-  {
-    filename: 'index',
-    title: 'WEB前端开发',
-    chunks: ['index']
-  },
-  {
-    filename: 'mobx',
-    title: 'WEB前端开发 - Mobx',
-    chunks: ['mobx']
-  }
-].map(v => new HtmlWebpackPlugin({
+const HtmlWebpackPluginConfig = Object.entries(entry).map(([k, v]) => new HtmlWebpackPlugin({
   alwaysWriteToDisk: true,
-  filename: path.resolve(PATH_BUILD, `${v.filename}.html`),
+  filename: path.resolve(PATH_BUILD, `${k}.html`),
   template: path.resolve(PATH_SRC, `template/index.ejs`),
+  title: 'WEB前端开发',
   favicon: 'favicon.ico',
-  title: v.title,
-  chunks: ['manifest', ...v.chunks],
+  chunks: ['manifest', k],
   minify,
   ENV: isDev ? 'dev' : 'prod'
 }))
+
 
 const happyThreadPool = HappyPack.ThreadPool({size: os.cpus().length})
 
