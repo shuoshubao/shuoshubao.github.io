@@ -9,7 +9,7 @@ const alias = fs.readdirSync(PATH_SRC).reduce((prev, cur) => {
 
 const resolve = {
   modules: [path.resolve(PATH_ROOT, 'node_modules')],
-  extensions: ['.js', '.jsx', '.json'],
+  extensions: ['.js', '.jsx', '.json', '.vue'],
   mainFields: ['browser', 'main'],
   alias
 }

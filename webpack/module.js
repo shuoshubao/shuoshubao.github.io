@@ -63,6 +63,12 @@ export default {
       loader: 'happypack/loader?id=js',
       include: PATH_SRC,
       exclude: /node_modules/
+    },
+    {
+      test: /\.vue$/,
+      loader: 'vue-loader',
+      include: PATH_SRC,
+      exclude: /node_modules/
     }
   ]
 }

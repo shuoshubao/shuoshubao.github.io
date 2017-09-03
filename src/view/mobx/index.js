@@ -18,7 +18,7 @@ class App extends React.Component {
     this.store.number -= 1
   }
   search = () => {
-    fetch('https://shuoshubao.github.io/src/data/article.json')
+    fetch('https://raw.githubusercontent.com/shuoshubao/blog/master/data/db.json')
     .then(rs => rs.json())
     .then(rs => {
       this.store.list = Object.entries(rs).map(([k, v]) => ({
@@ -60,7 +60,4 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(
-  <App />,
-  document.body.appendChild(document.createElement('div'))
-)
+ReactDOM.render(<App />, document.querySelector('#app'))

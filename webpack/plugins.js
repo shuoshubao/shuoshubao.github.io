@@ -61,12 +61,13 @@ const plugins = [
     $: 'jquery',
     jQuery: 'jquery',
     _: 'lodash',
+    moment: 'moment',
     React: 'react',
     ReactDOM: 'react-dom',
     PureRenderMixin: 'react-addons-pure-render-mixin',
     PropTypes: 'prop-types',
     classnames: 'classnames',
-    moment: 'moment'
+    Vue: 'vue'
   }),
   extractLESS,
   new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
