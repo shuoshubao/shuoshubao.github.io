@@ -6,7 +6,7 @@ export const port = 8080
 export const isDev = process.env.NODE_ENV === 'development'
 export const FILENAME = `[name]${isDev ? '' : '.[chunkhash:5]'}.js`
 
-export const PATH_ROOT = path.resolve(__dirname, '..')
+export const PATH_ROOT = process.cwd()
 export const PATH_SRC = path.resolve(PATH_ROOT, 'src')
 export const PATH_ASSET = path.resolve(PATH_ROOT, '.temp/asset')
 export const PATH_BUILD = path.resolve(PATH_ROOT, 'build')
