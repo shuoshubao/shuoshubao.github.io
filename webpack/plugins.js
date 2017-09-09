@@ -17,6 +17,7 @@ import {
   pathConfig,
   dllEntry,
   extractLESS,
+  webpackProvideConfig,
   uglifyJSConfig,
   minifyHtmlConfig as minify
 } from './config'
@@ -51,18 +52,7 @@ const plugins = [
     ENV: JSON.stringify(isDev ? 'dev' : 'prod')
   }),
   new webpack.EnvironmentPlugin(['NODE_ENV']),
-  new webpack.ProvidePlugin({
-    $: 'jquery',
-    jQuery: 'jquery',
-    _: 'lodash',
-    moment: 'moment',
-    React: 'react',
-    ReactDOM: 'react-dom',
-    PureRenderMixin: 'react-addons-pure-render-mixin',
-    PropTypes: 'prop-types',
-    classnames: 'classnames',
-    Vue: 'vue'
-  }),
+  new webpack.ProvidePlugin(webpackProvideConfig),
   extractLESS,
   new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
   new CopyWebpackPlugin([{

@@ -27,6 +27,20 @@ export const dllEntry = {
 }
 
 export const extractLESS = new ExtractTextPlugin(`[name]${isDev ? '' : '.[chunkhash:5]'}.css`)
+
+export const webpackProvideConfig = {
+  $: 'jquery',
+  jQuery: 'jquery',
+  _: 'lodash',
+  moment: 'moment',
+  React: 'react',
+  ReactDOM: 'react-dom',
+  PureRenderMixin: 'react-addons-pure-render-mixin',
+  PropTypes: 'prop-types',
+  classnames: 'classnames',
+  Vue: 'vue'
+}
+
 export const uglifyJSConfig = isDev ? {} : {
   uglifyJS: {
     compress: {
