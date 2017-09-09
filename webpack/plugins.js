@@ -15,13 +15,11 @@ import DashboardPlugin from 'webpack-dashboard/plugin'
 import {
   isDev,
   pathConfig,
-  LIB_NAME,
+  dllEntry,
   extractLESS,
   uglifyJSConfig,
   minifyHtmlConfig as minify
 } from './config'
-
-const assetDll = require(resolve(pathConfig.asset, 'dll'))
 
 const HtmlWebpackPluginConfig = Object.entries(entry).map(([k, v]) => new HtmlWebpackPlugin({
   alwaysWriteToDisk: true,
@@ -75,11 +73,11 @@ const plugins = [
   new AssetsWebpackPlugin({
     path: pathConfig.asset,
     filename: 'entry.json',
-    processOutput: rs => JSON.stringify(rs, null, 4)
+    prettyPrint: true
   }),
   new HtmlWebpackIncludeAssetsPlugin({
     append: false,
-    assets: Object.entries(assetDll).map(([k, v]) => Object.values(v)).reduce((prev, cur) => {
+    assets: Object.entries(require(pathConfig.dll)).map(([k, v]) => Object.values(v)).reduce((prev, cur) => {
         prev.push(...cur)
         return prev
     }, [])
@@ -90,9 +88,9 @@ const plugins = [
     name: 'manifest',
     minChunks: Infinity
   }),
-  new webpack.DllReferencePlugin({
-    manifest: require(`${pathConfig.dll}/${LIB_NAME}`)
-  }),
+  ...Object.keys(dllEntry).map(v => new webpack.DllReferencePlugin({
+    manifest: require(`${pathConfig.dll}/${v}`)
+  })),
   createHappyPlugin('css', ['style-loader', 'css-loader']),
   createHappyPlugin('js', [
     {

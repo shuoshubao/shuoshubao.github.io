@@ -6,21 +6,14 @@ import AssetsWebpackPlugin from 'assets-webpack-plugin'
 import WebpackParallelUglifyPlugin from 'webpack-parallel-uglify-plugin'
 import {
   pathConfig,
-  LIB_NAME,
+  dllEntry as entry,
   uglifyJSConfig
 } from './config'
 
 const LIBRARY_NAME = '__[name]_[chunkhash:5]'
 
 export default {
-  entry: {
-    [LIB_NAME]: [
-      'react',
-      'react-dom',
-      'prop-types',
-      'classnames'
-    ]
-  },
+  entry,
   output: {
     path: pathConfig.dll,
     filename: '[name].[chunkhash:5].js',
@@ -33,8 +26,8 @@ export default {
       verbose: false
     }),
     new AssetsWebpackPlugin({
-      path: pathConfig.asset,
-      filename: 'dll.json',
+      path: pathConfig.dll,
+      filename: 'index.json',
       prettyPrint: true
     }),
     new webpack.DllPlugin({

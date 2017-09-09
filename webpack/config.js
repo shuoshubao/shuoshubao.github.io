@@ -18,7 +18,14 @@ export const pathConfig = {
   asset: resolve(ROOT, '.temp/asset')
 }
 
-export const LIB_NAME = 'vendor'
+export const dllEntry = {
+  react: [
+    'react',
+    'react-dom',
+    'prop-types'
+  ],
+  tools: ['classnames']
+}
 
 export const extractLESS = new ExtractTextPlugin(`[name]${isDev ? '' : '.[chunkhash:5]'}.css`)
 export const uglifyJSConfig = isDev ? {} : {
