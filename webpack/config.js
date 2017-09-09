@@ -1,21 +1,21 @@
 import os from 'os'
-import path from 'path'
+import {resolve} from 'path'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 
 export const port = 8080
 export const isDev = process.env.NODE_ENV === 'development'
 export const FILENAME = `[name]${isDev ? '' : '.[chunkhash:5]'}.js`
 
-
 const ROOT = process.cwd()
+
 export const pathConfig = {
   root: process.cwd(),
   public: '/build/',
-  src: path.resolve(ROOT, 'src'),
-  asset: path.resolve(ROOT, '.temp/asset'),
-  build: path.resolve(ROOT, 'build'),
-  view: path.resolve(ROOT, 'src/view'),
-  lib: path.resolve(ROOT, '.temp/dll')
+  src: resolve(ROOT, 'src'),
+  build: resolve(ROOT, 'build'),
+  view: resolve(ROOT, 'src/view'),
+  dll: resolve(ROOT, '.temp/dll'),
+  asset: resolve(ROOT, '.temp/asset')
 }
 
 export const LIB_NAME = 'vendor'

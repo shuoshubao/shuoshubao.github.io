@@ -1,4 +1,4 @@
-import path from 'path'
+import {resolve} from 'path'
 import os from 'os'
 import webpack from 'webpack'
 import entry from './entry'
@@ -21,12 +21,12 @@ import {
   minifyHtmlConfig as minify
 } from './config'
 
-const assetLib = require(path.resolve(pathConfig.asset, LIB_NAME))
+const assetDll = require(resolve(pathConfig.asset, 'dll'))
 
 const HtmlWebpackPluginConfig = Object.entries(entry).map(([k, v]) => new HtmlWebpackPlugin({
   alwaysWriteToDisk: true,
-  filename: path.resolve(pathConfig.build, `${k}.html`),
-  template: path.resolve(pathConfig.src, `template/index.ejs`),
+  filename: resolve(pathConfig.build, `${k}.html`),
+  template: resolve(pathConfig.src, `template/index.ejs`),
   title: 'WEB前端开发',
   favicon: 'favicon.ico',
   chunks: ['manifest', k],
@@ -68,18 +68,18 @@ const plugins = [
   extractLESS,
   new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
   new CopyWebpackPlugin([{
-    from: pathConfig.lib,
+    from: pathConfig.dll,
     to: pathConfig.build,
     ignore: '*.json'
   }]),
   new AssetsWebpackPlugin({
     path: pathConfig.asset,
-    filename: 'index.json',
+    filename: 'entry.json',
     processOutput: rs => JSON.stringify(rs, null, 4)
   }),
   new HtmlWebpackIncludeAssetsPlugin({
     append: false,
-    assets: Object.entries(assetLib).map(([k, v]) => Object.values(v)).reduce((prev, cur) => {
+    assets: Object.entries(assetDll).map(([k, v]) => Object.values(v)).reduce((prev, cur) => {
         prev.push(...cur)
         return prev
     }, [])
@@ -91,7 +91,7 @@ const plugins = [
     minChunks: Infinity
   }),
   new webpack.DllReferencePlugin({
-    manifest: require(`${pathConfig.lib}/${LIB_NAME}`)
+    manifest: require(`${pathConfig.dll}/${LIB_NAME}`)
   }),
   createHappyPlugin('css', ['style-loader', 'css-loader']),
   createHappyPlugin('js', [

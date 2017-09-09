@@ -1,5 +1,5 @@
 import fs from 'fs'
-import path from 'path'
+import {resolve} from 'path'
 import webpack from 'webpack'
 import CleanWebpackPlugin from 'clean-webpack-plugin'
 import AssetsWebpackPlugin from 'assets-webpack-plugin'
@@ -22,23 +22,23 @@ export default {
     ]
   },
   output: {
-    path: pathConfig.lib,
+    path: pathConfig.dll,
     filename: '[name].[chunkhash:5].js',
     library: LIBRARY_NAME
   },
   plugins: [
     new webpack.EnvironmentPlugin(['NODE_ENV']),
-    new CleanWebpackPlugin([pathConfig.lib], {
+    new CleanWebpackPlugin([pathConfig.dll], {
       root: pathConfig.root,
       verbose: false
     }),
     new AssetsWebpackPlugin({
       path: pathConfig.asset,
-      filename: `${LIB_NAME}.json`,
-      processOutput: rs => JSON.stringify(rs, null, 4)
+      filename: 'dll.json',
+      prettyPrint: true
     }),
     new webpack.DllPlugin({
-      path: path.resolve(pathConfig.lib, `${LIB_NAME}.json`),
+      path: resolve(pathConfig.dll, '[name].json'),
       name: LIBRARY_NAME
     }),
     new WebpackParallelUglifyPlugin(uglifyJSConfig)
