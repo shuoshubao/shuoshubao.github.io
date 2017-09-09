@@ -1,4 +1,3 @@
-import os from 'os'
 import {resolve} from 'path'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 
@@ -29,7 +28,6 @@ export const dllEntry = {
 
 export const extractLESS = new ExtractTextPlugin(`[name]${isDev ? '' : '.[chunkhash:5]'}.css`)
 export const uglifyJSConfig = isDev ? {} : {
-  workerCount: os.cpus().length,
   uglifyJS: {
     compress: {
       warnings: false,
