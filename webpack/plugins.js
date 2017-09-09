@@ -14,23 +14,19 @@ import Dashboard from 'webpack-dashboard'
 import DashboardPlugin from 'webpack-dashboard/plugin'
 import {
   isDev,
-  PATH_ROOT,
-  PATH_SRC,
-  PATH_ASSET,
-  PATH_LIB,
-  PATH_BUILD,
+  pathConfig,
   LIB_NAME,
   extractLESS,
   uglifyJSConfig,
   minifyHtmlConfig as minify
 } from './config'
 
-const assetLib = require(path.resolve(PATH_ASSET, LIB_NAME))
+const assetLib = require(path.resolve(pathConfig.asset, LIB_NAME))
 
 const HtmlWebpackPluginConfig = Object.entries(entry).map(([k, v]) => new HtmlWebpackPlugin({
   alwaysWriteToDisk: true,
-  filename: path.resolve(PATH_BUILD, `${k}.html`),
-  template: path.resolve(PATH_SRC, `template/index.ejs`),
+  filename: path.resolve(pathConfig.build, `${k}.html`),
+  template: path.resolve(pathConfig.src, `template/index.ejs`),
   title: 'WEB前端开发',
   favicon: 'favicon.ico',
   chunks: ['manifest', k],
@@ -72,12 +68,12 @@ const plugins = [
   extractLESS,
   new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
   new CopyWebpackPlugin([{
-    from: PATH_LIB,
-    to: PATH_BUILD,
+    from: pathConfig.lib,
+    to: pathConfig.build,
     ignore: '*.json'
   }]),
   new AssetsWebpackPlugin({
-    path: PATH_ASSET,
+    path: pathConfig.asset,
     filename: 'index.json',
     processOutput: rs => JSON.stringify(rs, null, 4)
   }),
@@ -95,7 +91,7 @@ const plugins = [
     minChunks: Infinity
   }),
   new webpack.DllReferencePlugin({
-    manifest: require(`${PATH_LIB}/${LIB_NAME}`)
+    manifest: require(`${pathConfig.lib}/${LIB_NAME}`)
   }),
   createHappyPlugin('css', ['style-loader', 'css-loader']),
   createHappyPlugin('js', [
@@ -129,8 +125,8 @@ if(isDev) {
   }
 }else {
   plugins.push(...[
-    new CleanWebpackPlugin([PATH_BUILD], {
-      root: PATH_ROOT,
+    new CleanWebpackPlugin([pathConfig.build], {
+      root: pathConfig.root,
       verbose: false
     }),
     new webpack.HashedModuleIdsPlugin(),

@@ -1,4 +1,4 @@
-import {isDev, port, FILENAME, PATH_PUBLIC} from './config'
+import {isDev, port, FILENAME, pathConfig} from './config'
 
 const stats = {
   colors: true,
@@ -15,7 +15,7 @@ export default isDev ? {
     quiet: true,
     hot: true,
     filename: FILENAME,
-    publicPath: PATH_PUBLIC,
+    publicPath: pathConfig.public,
     stats,
     historyApiFallback: false,
     proxy: {}

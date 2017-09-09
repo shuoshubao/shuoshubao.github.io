@@ -6,14 +6,18 @@ export const port = 8080
 export const isDev = process.env.NODE_ENV === 'development'
 export const FILENAME = `[name]${isDev ? '' : '.[chunkhash:5]'}.js`
 
-export const PATH_ROOT = process.cwd()
-export const PATH_SRC = path.resolve(PATH_ROOT, 'src')
-export const PATH_ASSET = path.resolve(PATH_ROOT, '.temp/asset')
-export const PATH_BUILD = path.resolve(PATH_ROOT, 'build')
-export const PATH_VIEW = path.resolve(PATH_SRC, 'view')
-export const PATH_PUBLIC = '/build/'
-// export const PATH_PUBLIC = isDev ? '/build/' : 'http://orn2bxyo7.bkt.clouddn.com/'
-export const PATH_LIB = path.resolve(PATH_ROOT, '.temp/dll')
+
+const ROOT = process.cwd()
+export const pathConfig = {
+  root: process.cwd(),
+  public: '/build/',
+  src: path.resolve(ROOT, 'src'),
+  asset: path.resolve(ROOT, '.temp/asset'),
+  build: path.resolve(ROOT, 'build'),
+  view: path.resolve(ROOT, 'src/view'),
+  lib: path.resolve(ROOT, '.temp/dll')
+}
+
 export const LIB_NAME = 'vendor'
 
 export const extractLESS = new ExtractTextPlugin(`[name]${isDev ? '' : '.[chunkhash:5]'}.css`)

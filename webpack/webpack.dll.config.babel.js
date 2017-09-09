@@ -5,9 +5,7 @@ import CleanWebpackPlugin from 'clean-webpack-plugin'
 import AssetsWebpackPlugin from 'assets-webpack-plugin'
 import WebpackParallelUglifyPlugin from 'webpack-parallel-uglify-plugin'
 import {
-  PATH_ASSET,
-  PATH_ROOT,
-  PATH_LIB,
+  pathConfig,
   LIB_NAME,
   uglifyJSConfig
 } from './config'
@@ -24,23 +22,23 @@ export default {
     ]
   },
   output: {
-    path: PATH_LIB,
+    path: pathConfig.lib,
     filename: '[name].[chunkhash:5].js',
     library: LIBRARY_NAME
   },
   plugins: [
     new webpack.EnvironmentPlugin(['NODE_ENV']),
-    new CleanWebpackPlugin([PATH_LIB], {
-      root: PATH_ROOT,
+    new CleanWebpackPlugin([pathConfig.lib], {
+      root: pathConfig.root,
       verbose: false
     }),
     new AssetsWebpackPlugin({
-      path: PATH_ASSET,
+      path: pathConfig.asset,
       filename: `${LIB_NAME}.json`,
       processOutput: rs => JSON.stringify(rs, null, 4)
     }),
     new webpack.DllPlugin({
-      path: path.resolve(PATH_LIB, `${LIB_NAME}.json`),
+      path: path.resolve(pathConfig.lib, `${LIB_NAME}.json`),
       name: LIBRARY_NAME
     }),
     new WebpackParallelUglifyPlugin(uglifyJSConfig)

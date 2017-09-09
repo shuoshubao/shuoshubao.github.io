@@ -1,4 +1,4 @@
-import {isDev, PATH_SRC, extractLESS} from './config'
+import {isDev, pathConfig, extractLESS} from './config'
 
 export default {
   rules: [
@@ -61,13 +61,13 @@ export default {
     {
       test: /\.js$/,
       loader: 'happypack/loader?id=js',
-      include: PATH_SRC,
+      include: pathConfig.src,
       exclude: /node_modules/
     },
     {
       test: /\.vue$/,
       loader: 'vue-loader',
-      include: PATH_SRC,
+      include: pathConfig.src,
       exclude: /node_modules/
     }
   ]

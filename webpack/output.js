@@ -1,12 +1,11 @@
 import glob from 'glob'
 import {
-  PATH_BUILD,
-  PATH_PUBLIC,
+  pathConfig,
   FILENAME
 } from './config'
 
 export default {
-  path: PATH_BUILD,
-  publicPath: PATH_PUBLIC,
+  path: pathConfig.build,
+  publicPath: pathConfig.public,
   filename: FILENAME
 }
