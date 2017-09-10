@@ -1,3 +1,4 @@
+import fs from 'fs'
 import {resolve} from 'path'
 import os from 'os'
 import webpack from 'webpack'
@@ -6,7 +7,6 @@ import HappyPack from 'happypack'
 import CleanWebpackPlugin from 'clean-webpack-plugin'
 import CopyWebpackPlugin from 'copy-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
-import HtmlWebpackHarddiskPlugin from 'html-webpack-harddisk-plugin'
 import HtmlWebpackIncludeAssetsPlugin from 'html-webpack-include-assets-plugin'
 import AssetsWebpackPlugin from 'assets-webpack-plugin'
 import WebpackParallelUglifyPlugin from 'webpack-parallel-uglify-plugin'
@@ -17,15 +17,15 @@ import {
   pathConfig,
   dllEntry,
   extractLESS,
+  templateContent,
   webpackProvideConfig,
   uglifyJSConfig,
   minifyHtmlConfig as minify
 } from './config'
 
 const HtmlWebpackPluginConfig = Object.entries(entry).map(([k, v]) => new HtmlWebpackPlugin({
-  alwaysWriteToDisk: true,
   filename: resolve(pathConfig.build, `${k}.html`),
-  template: resolve(pathConfig.src, `template/index.ejs`),
+  templateContent,
   title: 'WEB前端开发',
   favicon: 'favicon.ico',
   chunks: ['manifest', k],
@@ -73,7 +73,6 @@ const plugins = [
     }, [])
   }),
   ...HtmlWebpackPluginConfig,
-  new HtmlWebpackHarddiskPlugin(),
   new webpack.optimize.CommonsChunkPlugin({
     name: 'manifest',
     minChunks: Infinity

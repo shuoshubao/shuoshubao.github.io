@@ -28,6 +28,35 @@ export const dllEntry = {
 
 export const extractLESS = new ExtractTextPlugin(`[name]${isDev ? '' : '.[chunkhash:5]'}.css`)
 
+export const templateContent = ({htmlWebpackPlugin}) => {
+  return `
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>${htmlWebpackPlugin.options.title}</title>
+    </head>
+    <body>
+      <div id="app"></div>
+    </body>
+    </html>
+  `
+}
+
+export const minifyHtmlConfig = {
+  useShortDoctype: true,
+  removeComments: true,
+  collapseWhitespace: true,
+  minifyJS: true,
+  minifyCSS: true,
+  removeScriptTypeAttributes: true,
+  removeStyleTypeAttributes: true,
+  sortAttributes: true,
+  sortClassName: true,
+  keepClosingSlash: false
+}
+
 export const webpackProvideConfig = {
   $: 'jquery',
   jQuery: 'jquery',
@@ -49,17 +78,4 @@ export const uglifyJSConfig = isDev ? {} : {
       reduce_vars: true
     }
   }
-}
-
-export const minifyHtmlConfig = isDev ? {} : {
-  useShortDoctype: true,
-  removeComments: true,
-  collapseWhitespace: true,
-  minifyJS: true,
-  minifyCSS: true,
-  removeScriptTypeAttributes: true,
-  removeStyleTypeAttributes: true,
-  sortAttributes: true,
-  sortClassName: true,
-  keepClosingSlash: false
 }

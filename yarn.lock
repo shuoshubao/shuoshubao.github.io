@@ -3119,12 +3119,6 @@ html-minifier@^3.2.3:
     relateurl "0.2.x"
     uglify-js "3.0.x"
 
-html-webpack-harddisk-plugin@^0.1.0:
-  version "0.1.0"
-  resolved "http://registry.npm.taobao.org/html-webpack-harddisk-plugin/download/html-webpack-harddisk-plugin-0.1.0.tgz#432024961a21ac668fa2b5dfe24629c60b9c58d7"
-  dependencies:
-    mkdirp "^0.5.1"
-
 html-webpack-include-assets-plugin@^0.0.7:
   version "0.0.7"
   resolved "http://registry.npm.taobao.org/html-webpack-include-assets-plugin/download/html-webpack-include-assets-plugin-0.0.7.tgz#74552e41bb368931be5f609b563cde811d1e7a26"
