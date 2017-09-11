@@ -72,7 +72,6 @@ const plugins = [
         return prev
     }, [])
   }),
-  ...HtmlWebpackPluginConfig,
   new webpack.optimize.CommonsChunkPlugin({
     name: 'manifest',
     minChunks: Infinity
@@ -99,6 +98,10 @@ const plugins = [
     }
   ])
 ]
+
+if(!process.argv[1].includes('webpack/dev')) {
+    plugins.push(...HtmlWebpackPluginConfig)
+}
 
 if(isDev) {
   plugins.push(...[
