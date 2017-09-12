@@ -38,6 +38,7 @@ export default {
     new WebpackParallelUglifyPlugin(uglifyJSConfig)
   ],
   stats: {
+    colors: true,
     modules: false,
     children: false,
     hash: false,

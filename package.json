@@ -16,7 +16,10 @@
     "eslint": "eslint -f table src/asset ;exit 0",
     "deploy": "babel-node bin/deploy",
     "qiniu": "babel-node bin/qiniu",
-    "deploy-qiniu": "babel-node bin/deploy-qiniu"
+    "deploy-qiniu": "babel-node bin/deploy-qiniu",
+
+    "run-dll": "NODE_ENV=production babel-node bin/index.js --task dll",
+    "run-build": "NODE_ENV=production babel-node bin/index.js --task build"
   },
   "dependencies": {
     "antd": "^2.12.8",
