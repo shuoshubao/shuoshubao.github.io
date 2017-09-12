@@ -44,6 +44,7 @@ const createHappyPlugin = (id, loaders) => new HappyPack({
 })
 
 const plugins = [
+  new webpack.ProgressPlugin(),
   new webpack.BannerPlugin([
     '硕鼠宝',
     'https://shuoshubao.github.io/'

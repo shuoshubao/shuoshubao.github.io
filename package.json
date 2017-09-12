@@ -8,10 +8,10 @@
   "author": "shuoshubao <759979885@qq.com>",
   "license": "MIT",
   "scripts": {
-    "dll": "NODE_ENV=production webpack --config webpack/webpack.dll.config.babel.js --progress",
+    "dll": "NODE_ENV=production webpack --config webpack/webpack.dll.config.babel.js",
     "start": "NODE_ENV=development babel-node webpack/dev",
     "dev": "NODE_ENV=development webpack-dev-server --config webpack/webpack.config.babel.js",
-    "build": "NODE_ENV=production webpack --config webpack/webpack.config.babel.js --progress",
+    "build": "NODE_ENV=production webpack --config webpack/webpack.config.babel.js",
     "stats": "NODE_ENV=production webpack --config webpack/webpack.config.babel.js --json > webpack-stats.json",
     "eslint": "eslint -f table src/asset ;exit 0",
     "deploy": "babel-node bin/deploy",
