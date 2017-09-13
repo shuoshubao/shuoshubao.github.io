@@ -75,7 +75,7 @@ const plugins = [
   }),
   new webpack.optimize.CommonsChunkPlugin({
     name: 'manifest',
-    minChunks: Infinity
+    minChunks: 2
   }),
   ...Object.keys(dllEntry).map(v => new webpack.DllReferencePlugin({
     manifest: require(`${pathConfig.dll}/${v}`)
