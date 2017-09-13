@@ -1,12 +1,4 @@
-import {isDev, port, FILENAME, pathConfig} from './config'
-
-const stats = {
-  colors: true,
-  modules: false,
-  children: false,
-  hash: false,
-  version: false
-}
+import {isDev, port, FILENAME, pathConfig, stats} from './config'
 
 export default isDev ? {
   externals: {},

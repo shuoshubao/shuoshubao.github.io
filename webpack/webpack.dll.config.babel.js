@@ -7,6 +7,7 @@ import WebpackParallelUglifyPlugin from 'webpack-parallel-uglify-plugin'
 import {
   pathConfig,
   dllEntry as entry,
+  stats,
   uglifyJSConfig
 } from './config'
 
@@ -37,11 +38,5 @@ export default {
     }),
     new WebpackParallelUglifyPlugin(uglifyJSConfig)
   ],
-  stats: {
-    colors: true,
-    modules: false,
-    children: false,
-    hash: false,
-    version: false
-  }
+  stats
 }

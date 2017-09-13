@@ -26,6 +26,15 @@ export const dllEntry = {
   tools: ['classnames']
 }
 
+export const stats = {
+  colors: true,
+  modules: false,
+  children: false,
+  chunks: false,
+  hash: false,
+  version: false
+}
+
 export const extractLESS = new ExtractTextPlugin(`[name]${isDev ? '' : '.[chunkhash:5]'}.css`)
 
 export const templateContent = ({htmlWebpackPlugin}) => {
