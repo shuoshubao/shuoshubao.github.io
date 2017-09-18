@@ -68,7 +68,7 @@ const plugins = [
   }),
   new HtmlWebpackIncludeAssetsPlugin({
     append: false,
-    assets: Object.entries(require(pathConfig.dll)).map(([k, v]) => Object.values(v)).reduce((prev, cur) => {
+    assets: Object.entries(require(`${pathConfig.dll}/index.json`)).map(([k, v]) => Object.values(v)).reduce((prev, cur) => {
         prev.push(...cur)
         return prev
     }, [])
@@ -78,7 +78,7 @@ const plugins = [
     minChunks: 2
   }),
   ...Object.keys(dllEntry).map(v => new webpack.DllReferencePlugin({
-    manifest: require(`${pathConfig.dll}/${v}`)
+    manifest: require(`${pathConfig.dll}/${v}.json`)
   })),
   createHappyPlugin('css', ['style-loader', 'css-loader']),
   createHappyPlugin('js', [
