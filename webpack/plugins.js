@@ -61,11 +61,6 @@ const plugins = [
     to: pathConfig.build,
     ignore: '*.json'
   }]),
-  new AssetsWebpackPlugin({
-    path: pathConfig.asset,
-    filename: 'entry.json',
-    prettyPrint: true
-  }),
   new HtmlWebpackIncludeAssetsPlugin({
     append: false,
     assets: Object.entries(require(`${pathConfig.dll}/index.json`)).map(([k, v]) => Object.values(v)).reduce((prev, cur) => {
@@ -121,6 +116,11 @@ if(isDev) {
       verbose: false
     }),
     new webpack.HashedModuleIdsPlugin(),
+    new AssetsWebpackPlugin({
+      path: pathConfig.asset,
+      filename: 'entry.json',
+      prettyPrint: true
+    }),
     new WebpackParallelUglifyPlugin(uglifyJSConfig)
   ])
 }
