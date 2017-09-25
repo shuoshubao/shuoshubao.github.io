@@ -89,7 +89,7 @@ const plugins = [
             style: true
           }]
         ],
-        presets: ['es2015', 'stage-2', 'react']
+        presets: ['env', 'stage-1', 'react']
       }
     }
   ])
