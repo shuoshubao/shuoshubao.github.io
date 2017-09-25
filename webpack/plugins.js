@@ -81,8 +81,6 @@ const plugins = [
       path: 'babel-loader',
       query: {
         plugins: [
-          'transform-object-assign',
-          'transform-object-rest-spread',
           'transform-decorators-legacy',
           ['import', {
             libraryName: 'antd',
