@@ -1,6 +1,6 @@
 import webpack from 'webpack'
 import filesize from 'filesize'
-import table from 'table'
+import cliui from 'cliui'
 import chalk from 'chalk'
 
 // 打印带颜色的信息
@@ -14,7 +14,17 @@ export const uniq = arr => Array.from(new Set(arr))
 
 // 格式化webpack stats
 const formatStats = stats => {
-    const {assets} = stats.compilation
+    const {
+        startTime,
+        endTime,
+        compilation: {assets}
+    } = stats
+    const ui = cliui({width: 50})
+    ui.div({
+        text: `${chalk.green('统计:')} 耗时${chalk.cyan(endTime - startTime)}ms`,
+        padding: [1, 0, 1, 0]
+    })
+    const renderTable = arr => ui.div(...arr.map(v => ({text: v})))
     const data = Object.keys(assets).reduce((prev, cur) => {
         prev.push({
             name: cur,
@@ -23,22 +33,19 @@ const formatStats = stats => {
         })
         return prev
     }, [])
-    const tableData = [['类型', '数量', '文件大小']]
-    tableData.push(...uniq(data.map(v => v.type)).map(v => {
-        const files = data.filter(v2 => v2.type === v)
+    const tableThead = ['类型', '数量', '文件大小'].map(v => chalk.cyan(v))
+    renderTable(tableThead)
+    uniq(data.map(v => v.type)).map(type => {
+        const files = data.filter(v2 => v2.type === type)
         const {length: len} = files
-        const size = filesize(sum(files.map(v => v.size)))
-        return [v, len, size]
-    }))
-    tableData.push(['总计', data.length, filesize(sum(data.map(v => v.size)))])
-    const tableConfig = {
-        columns: {
-            0: {width: 10},
-            1: {width: 5},
-            2: {width: 20}
-        }
-    }
-    log(table(tableData, tableConfig))
+        const size = sum(files.map(v => v.size))
+        return {type, len, size}
+    })
+    .sort((a, b) => a.len - b.len)
+    .forEach(({type, len, size}) => renderTable([type, len, filesize(size)]))
+    const tableFoot = ['总计', data.length, filesize(sum(data.map(v => v.size)))].map(v => chalk.green(v))
+    renderTable(tableFoot)
+    log(ui.toString())
 }
 
 // webpackCompiler
