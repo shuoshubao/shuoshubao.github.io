@@ -2,19 +2,11 @@ import { isDev, pathConfig, extractLESS } from './config'
 
 export default [
   {
-    test: /\.t[e]?xt$/,
-    loader: 'raw-loader'
-  },
-  {
-    test: /\.ejs/,
-    loader: 'ejs-loader'
-  },
-  {
     test: /\.(png|jpe?g|gif|svg|woff2?|eot|ttf|otf)(\?.*)?$/,
     loader: 'url-loader',
     query: {
       limit: 10000,
-      name: isDev ? '[name].[ext]' : '[name].[hash:5].[ext]'
+      name: isDev ? '[name].[ext]' : '[name].[hash].[ext]'
     }
   },
   {
@@ -29,7 +21,7 @@ export default [
           loader: 'css-loader',
           options: {
             modules: true,
-            localIdentName: '[local]_[path]_[name]_[hash:5]',
+            localIdentName: '[local]_[path]_[name]_[hash]',
             minimize: !isDev
           }
         },

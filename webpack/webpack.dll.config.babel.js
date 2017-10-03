@@ -11,13 +11,13 @@ import {
   uglifyJSConfig
 } from './config'
 
-const LIBRARY_NAME = '__[name]_[chunkhash:5]'
+const LIBRARY_NAME = '__[name]_[chunkhash]'
 
 export default {
   entry,
   output: {
     path: pathConfig.dll,
-    filename: '[name].[chunkhash:5].js',
+    filename: '[name].[chunkhash].js',
     library: LIBRARY_NAME
   },
   plugins: [

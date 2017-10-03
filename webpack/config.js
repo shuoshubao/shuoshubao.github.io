@@ -3,7 +3,7 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin'
 
 export const port = 8080
 export const isDev = process.env.NODE_ENV === 'development'
-export const FILENAME = `[name]${isDev ? '' : '.[chunkhash:5]'}.js`
+export const FILENAME = `[name]${isDev ? '' : '.[chunkhash]'}.js`
 
 const ROOT = process.cwd()
 
@@ -35,7 +35,7 @@ export const stats = {
   version: false
 }
 
-export const extractLESS = new ExtractTextPlugin(`[name]${isDev ? '' : '.[chunkhash:5]'}.css`)
+export const extractLESS = new ExtractTextPlugin(`[name]${isDev ? '' : '.[chunkhash]'}.css`)
 
 export const templateContent = ({htmlWebpackPlugin}) => {
   return `
