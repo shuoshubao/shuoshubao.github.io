@@ -10,8 +10,6 @@ import HtmlWebpackPlugin from 'html-webpack-plugin'
 import HtmlWebpackIncludeAssetsPlugin from 'html-webpack-include-assets-plugin'
 import AssetsWebpackPlugin from 'assets-webpack-plugin'
 import WebpackParallelUglifyPlugin from 'webpack-parallel-uglify-plugin'
-import Dashboard from 'webpack-dashboard'
-import DashboardPlugin from 'webpack-dashboard/plugin'
 import {
   isDev,
   pathConfig,
@@ -103,10 +101,6 @@ if(isDev) {
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.HotModuleReplacementPlugin()
   ])
-  if(!process.argv[1].includes('webpack/dev')) {
-      const dashboard = new Dashboard()
-      plugins.push(new DashboardPlugin(dashboard.setData))
-  }
 }else {
   plugins.push(...[
     new CleanWebpackPlugin([pathConfig.build], {

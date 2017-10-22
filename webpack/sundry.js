@@ -4,7 +4,6 @@ export default isDev ? {
   externals: {},
   devServer: {
     port,
-    quiet: true,
     hot: true,
     filename: FILENAME,
     publicPath: pathConfig.public,

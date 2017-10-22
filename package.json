@@ -60,7 +60,6 @@
     "vue-loader": "^13.0.4",
     "vue-template-compiler": "^2.4.2",
     "webpack": "^3.5.5",
-    "webpack-dashboard": "0.3.0",
     "webpack-dev-server": "^2.7.1",
     "webpack-parallel-uglify-plugin": "^1.0.0"
   },
