@@ -4,10 +4,10 @@ import glob from 'glob'
 import { isDev, port, FILENAME, pathConfig, stats } from './config'
 
 export const entry = glob.sync(`${pathConfig.view}/**/index.js`)
-    .reduce((prev, cur) => {
-        prev[relative(pathConfig.view, cur).split('/').slice(0, -1).join('/')] = cur
-        return prev
-    }, {})
+.reduce((prev, cur) => {
+    prev[relative(pathConfig.view, cur).split('/').slice(0, -1).join('/')] = cur
+    return prev
+}, {})
 
 const alias = fs.readdirSync(pathConfig.src).reduce((prev, cur) => {
     prev[cur] = resolve(pathConfig.src, cur)
@@ -17,7 +17,7 @@ const alias = fs.readdirSync(pathConfig.src).reduce((prev, cur) => {
 const webpackConfig = {
     entry,
     output: {
-        path: pathConfig.build,
+        path: pathConfig.static,
         publicPath: pathConfig.public,
         filename: FILENAME
     },

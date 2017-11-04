@@ -56,7 +56,7 @@ const plugins = [
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new CopyWebpackPlugin([{
         from: pathConfig.dll,
-        to: pathConfig.build,
+        to: pathConfig.static,
         ignore: '*.json'
     }]),
     new HtmlWebpackIncludeAssetsPlugin({
