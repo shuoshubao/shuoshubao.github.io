@@ -12,7 +12,7 @@ export const pathConfig = {
     src: resolve(ROOT, 'src'),
     build: resolve(ROOT, 'build'),
     public: '/build/static',
-    static: resolve(ROOT, '/build/static'),
+    static: resolve(ROOT, 'build/static'),
     view: resolve(ROOT, 'src/view'),
     dll: resolve(ROOT, '.temp/dll'),
     asset: resolve(ROOT, '.temp/asset')
