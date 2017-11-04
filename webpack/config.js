@@ -9,10 +9,10 @@ const ROOT = process.cwd()
 
 export const pathConfig = {
     root: process.cwd(),
-    public: '/build/',
     src: resolve(ROOT, 'src'),
     build: resolve(ROOT, 'build'),
-    static: resolve(ROOT, 'build/static'),
+    public: '/build/static',
+    static: resolve(ROOT, '/build/static'),
     view: resolve(ROOT, 'src/view'),
     dll: resolve(ROOT, '.temp/dll'),
     asset: resolve(ROOT, '.temp/asset')
