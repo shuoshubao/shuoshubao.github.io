@@ -7,7 +7,9 @@ export const entry = glob.sync(`${pathConfig.view}/**/index.js`)
 .reduce((prev, cur) => {
     prev[relative(pathConfig.view, cur).split('/').slice(0, -1).join('/')] = cur
     return prev
-}, {})
+}, {
+    common: pathConfig.common
+})
 
 const alias = fs.readdirSync(pathConfig.src).reduce((prev, cur) => {
     prev[cur] = resolve(pathConfig.src, cur)

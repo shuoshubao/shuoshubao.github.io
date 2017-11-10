@@ -10,6 +10,8 @@ const ROOT = process.cwd()
 export const pathConfig = {
     root: process.cwd(),
     src: resolve(ROOT, 'src'),
+    template: resolve(__dirname, 'util/template.ejs'),
+    common: resolve(ROOT, 'src/common/index.js'),
     build: resolve(ROOT, 'build'),
     public: '/build/static',
     static: resolve(ROOT, 'build/static'),
