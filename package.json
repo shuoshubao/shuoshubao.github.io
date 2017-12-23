@@ -14,7 +14,7 @@
   "scripts": {
     "init": "parce init",
     "dll": "NODE_ENV=production parce dll",
-    "dev": "parce dev",
+    "dev": "NODE_ENV=development parce dev",
     "build": "NODE_ENV=production parce build"
   }
 }
