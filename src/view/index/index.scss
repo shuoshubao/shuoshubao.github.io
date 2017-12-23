@@ -1,16 +1,21 @@
+@import '~style/base.scss';
+@import '~style/markdown.scss';
+// @import '~util/highlight.js/styles/github.css';
+
 body {
   height: auto !important;
 }
 
-.clear() {
+.clear {
   &:after {
     content: "";
     display: block;
     clear: both;
   }
 }
-.f-center() {
-  .clear;
+
+.f-center {
+  @extend .clear;
   margin-left: auto;
   margin-right: auto;
   padding-left: 10px;
@@ -40,7 +45,7 @@ body {
     border-bottom: 1px solid #e5e5e5;
   }
   .wrap {
-    .f-center;
+    @extend .f-center;
   }
   .home {
     float: left;
@@ -157,7 +162,7 @@ body {
 .content {
   padding-top: 10px;
   padding-bottom: 10px;
-  .f-center;
+  @extend .f-center;
   .markdown > div {
     padding-bottom: 20px;
   }
@@ -189,7 +194,7 @@ body {
     background-color: #f5f5f5;
   }
   .wrap {
-    .f-center;
+    @extend .f-center;
   }
   a {
     color: #6cc;

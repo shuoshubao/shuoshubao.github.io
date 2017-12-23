@@ -3,9 +3,9 @@ import hljs from 'util/highlight.js/lib'
 import GitHubButton from 'component/GithubButton'
 import {DATA_NAV, DATA_META} from 'data'
 import 'polyfill'
-import 'style/highlight-table.less'
+import 'style/highlight-table.scss'
 import 'util/highlight.js/styles/github.css'
-import style from './index.module.less'
+import './index.scss'
 
 const MarkdownItHighlight = MarkdownIt({
   highlight: (str, language) => {
@@ -103,11 +103,11 @@ class App extends React.Component {
       this.setState({
         navIndex: getIndex(),
         openNav: false,
-        content: <ul className={style.list}>
+        content: <ul className="list">
           {
             dataList.map(v => (
               <li key={`${v.categories + v.name}`}>
-                <a href={`/build/#${v.categories}/${v.name}`}>{v.title}</a>
+                <a href={`#${v.categories}/${v.name}`}>{v.title}</a>
               </li>
             ))
           }
@@ -131,11 +131,11 @@ class App extends React.Component {
     const getContent = content => (
     categories === 'assemble' ?
       <div
-        className={style[`p-${article.toLowerCase()}`]}
+        className={`p-${article.toLowerCase()}`}
         dangerouslySetInnerHTML={{__html: content}}
       />
     :
-      <div className={style.markdown}>
+      <div className="markdown">
         <div dangerouslySetInnerHTML={{__html: MarkdownItHighlight.render(content)}} />
         <a
           target="_blank"
@@ -171,12 +171,12 @@ class App extends React.Component {
     } = this.state
     return (
       <div>
-        <nav className={style.nav}>
-          <div className={style.inner}>
-            <div className={style.wrap}>
-              <a className={style.home} href="/build/#">
+        <nav className="nav">
+          <div className="inner">
+            <div className="wrap">
+              <a className="home" href="#">
                 <svg
-                  className={style.logo}
+                  className="logo"
                   aria-hidden="true"
                   width="30"
                   height="30"
@@ -185,24 +185,24 @@ class App extends React.Component {
                 >
                   <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
                 </svg>
-                <span className={style.name}>硕鼠宝</span>
+                <span className="name">硕鼠宝</span>
               </a>
-              <span className={classnames(style.navbar, {[style.active]: openNav})} onClick={this.openNav}>
+              <span className={classnames('navbar', {active: openNav})} onClick={this.openNav}>
                 {
-                  [0, 1, 2, 3].map(v => <span key={v} className={style.bar} />)
+                  [0, 1, 2, 3].map(v => <span key={v} className="bar" />)
                 }
               </span>
               <ul style={{height: openNav ? (DATA_NAV.length * 40 + 20) : 0}}>
                 {
                   DATA_NAV.map((v, i) => (
-                    <li key={`${v.categories + v.name}`} className={classnames({[style.active]: navIndex === i})}>
-                      <a href={`/build/#${DATA_NAV[i].categories}`}>{v.text}</a>
+                    <li key={`${v.categories + v.name}`} className={classnames({active: navIndex === i})}>
+                      <a href={`#${DATA_NAV[i].categories}`}>{v.text}</a>
                     </li>
                   ))
                 }
               </ul>
               <a
-                className={style.github}
+                className="github"
                 target="_blank" rel="noopener noreferrer"
                 href={DATA_META.githubLink}
               >GitHub</a>
@@ -211,13 +211,13 @@ class App extends React.Component {
         </nav>
         {
           typeof content === 'string' ?
-            <article className={style.content} dangerouslySetInnerHTML={{__html: content}} />
+            <article className="content" dangerouslySetInnerHTML={{__html: content}} />
             :
-            <article className={style.content}>{content}</article>
+            <article className="content">{content}</article>
         }
-        <footer className={style.footer}>
-          <div className={style.outer}>
-            <div className={style.wrap}>
+        <footer className="footer">
+          <div className="outer">
+            <div className="wrap">
               <span>© 2014-{new Date().getFullYear()} Shuoshubao.com 版权所有 {DATA_META.registration}</span>
               <span> Powered by </span>
               <a
