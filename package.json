@@ -8,6 +8,10 @@
   "author": "shuoshubao <759979885@qq.com>",
   "license": "MIT",
   "dependencies": {
+    "koa": "^2.4.1",
+    "koa-bodyparser": "^4.2.0",
+    "koa-send": "^4.1.2",
+    "koa-static": "^4.0.2",
     "markdown-it": "^8.4.0",
     "parce": "0.0.9"
   },
