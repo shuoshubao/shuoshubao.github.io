@@ -8,6 +8,7 @@
   "author": "shuoshubao <759979885@qq.com>",
   "license": "MIT",
   "dependencies": {
+    "markdown-it": "^8.4.0",
     "parce": "0.0.9"
   },
   "scripts": {

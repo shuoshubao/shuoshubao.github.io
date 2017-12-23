@@ -1,3 +1,7 @@
+@import '~style/base.scss';
+@import '~style/markdown.scss';
+// @import '~util/highlight.js/styles/github.css';
+
 body {
   height: auto !important;
 }
@@ -9,6 +13,7 @@ body {
     clear: both;
   }
 }
+
 .f-center {
   @extend .clear;
   margin-left: auto;
