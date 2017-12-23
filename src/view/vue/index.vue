@@ -14,7 +14,7 @@
   }
 </script>
 
-<style lang="less" scope>
+<style lang="scss" scope>
   p {
     margin: 0;
     em {

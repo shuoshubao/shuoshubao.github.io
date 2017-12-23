@@ -1,4 +1,4 @@
 {
-  "plugins": ["transform-runtime"],
-  "presets": ["env", "stage-1"]
+  "presets": ["env", "stage-1"],
+  "plugins": ["transform-runtime", "transform-vue-jsx", "transform-decorators-legacy"]
 }
