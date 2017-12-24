@@ -8,17 +8,14 @@
   "author": "shuoshubao <759979885@qq.com>",
   "license": "MIT",
   "dependencies": {
-    "koa": "^2.4.1",
-    "koa-bodyparser": "^4.2.0",
-    "koa-send": "^4.1.2",
-    "koa-static": "^4.0.2",
     "markdown-it": "^8.4.0",
-    "parce": "0.0.9"
+    "parce": "^0.0.10"
   },
   "scripts": {
     "init": "parce init",
     "dll": "NODE_ENV=production parce dll",
     "dev": "NODE_ENV=development parce dev",
-    "build": "NODE_ENV=production parce build"
+    "build": "NODE_ENV=production parce build",
+    "server": "parce server"
   }
 }

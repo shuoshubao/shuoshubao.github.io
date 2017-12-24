@@ -3465,7 +3465,7 @@ koa-is-json@^1.0.0:
   version "1.0.0"
   resolved "http://registry.npm.taobao.org/koa-is-json/download/koa-is-json-1.0.0.tgz#273c07edcdcb8df6a2c1ab7d59ee76491451ec14"
 
-koa-send@^4.1.0, koa-send@^4.1.2:
+koa-send@^4.1.2:
   version "4.1.2"
   resolved "http://registry.npm.taobao.org/koa-send/download/koa-send-4.1.2.tgz#92861d184c4d8458a54f92e6708e09b14d64111c"
   dependencies:
@@ -3473,13 +3473,6 @@ koa-send@^4.1.0, koa-send@^4.1.2:
     http-errors "^1.6.1"
     mz "^2.6.0"
     resolve-path "^1.3.3"
-
-koa-static@^4.0.2:
-  version "4.0.2"
-  resolved "http://registry.npm.taobao.org/koa-static/download/koa-static-4.0.2.tgz#6cda92d88d771dcaad9f0d825cd94a631c861a1a"
-  dependencies:
-    debug "^2.6.8"
-    koa-send "^4.1.0"
 
 koa@^2.4.1:
   version "2.4.1"
@@ -4321,9 +4314,9 @@ param-case@2.1.x:
   dependencies:
     no-case "^2.2.0"
 
-parce@0.0.9:
-  version "0.0.9"
-  resolved "http://registry.npm.taobao.org/parce/download/parce-0.0.9.tgz#594c25e4851d01c6cedd40b845f011d908b279cc"
+parce@^0.0.10:
+  version "0.0.10"
+  resolved "http://registry.npm.taobao.org/parce/download/parce-0.0.10.tgz#e208074592d05cc027d07fc5980c44864634961e"
   dependencies:
     antd "^3.0.3"
     assets-webpack-plugin "^3.5.1"
@@ -4348,6 +4341,9 @@ parce@0.0.9:
     happypack "^4.0.0"
     html-webpack-include-assets-plugin "^1.0.2"
     html-webpack-plugin "^2.30.1"
+    koa "^2.4.1"
+    koa-bodyparser "^4.2.0"
+    koa-send "^4.1.2"
     node-sass "^4.7.2"
     react "^16.2.0"
     react-addons-pure-render-mixin "^15.6.2"
