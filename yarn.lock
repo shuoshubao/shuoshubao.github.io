@@ -4314,9 +4314,9 @@ param-case@2.1.x:
   dependencies:
     no-case "^2.2.0"
 
-parce@^0.0.10:
-  version "0.0.10"
-  resolved "http://registry.npm.taobao.org/parce/download/parce-0.0.10.tgz#e208074592d05cc027d07fc5980c44864634961e"
+parce@^0.0.12:
+  version "0.0.12"
+  resolved "http://registry.npm.taobao.org/parce/download/parce-0.0.12.tgz#a98e4fe234e79d0a1d2dc46b43044c7e035ca24d"
   dependencies:
     antd "^3.0.3"
     assets-webpack-plugin "^3.5.1"
