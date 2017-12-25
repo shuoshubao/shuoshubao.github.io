@@ -14,7 +14,7 @@
   }
 </script>
 
-<style lang="scss" scope>
+<style lang="scss" scoped>
   p {
     margin: 0;
     em {
