@@ -9,7 +9,7 @@
   "license": "MIT",
   "dependencies": {
     "markdown-it": "^8.4.0",
-    "parce": "^0.0.17"
+    "parce": "^0.0.19"
   },
   "scripts": {
     "init": "parce init",
