@@ -1,5 +1,5 @@
 module.exports = {
-    title: '',
+    title: 'WEB前端开发',
     port: 9000,
     pathConfig: {
 
