@@ -128,20 +128,14 @@ class App extends React.Component {
   renderArticle(categories, article) {
     const articleId = [categories, article]
     const getContent = content => (
-    categories === 'assemble' ?
-      <div
-        className={`p-${article.toLowerCase()}`}
-        dangerouslySetInnerHTML={{__html: content}}
-      />
-    :
-      <div className="markdown">
-        <div dangerouslySetInnerHTML={{__html: MarkdownItHighlight.render(content)}} />
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href={`${this.props.sourceUrl}${articleId.join('/')}.md`}
-        >源码</a>
-      </div>
+        <div className="markdown">
+          <div dangerouslySetInnerHTML={{__html: MarkdownItHighlight.render(content)}} />
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href={`${this.props.sourceUrl}${articleId.join('/')}.md`}
+          >源码</a>
+        </div>
     )
     fetch(`${this.props.sourceUrl}${articleId.join('/')}.md`)
     .then(rs => rs.text())
