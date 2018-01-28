@@ -9,11 +9,12 @@
   "license": "MIT",
   "dependencies": {
     "markdown-it": "^8.4.0",
-    "parce": "^0.0.25"
+    "parce": "^0.0.30"
   },
   "scripts": {
     "init": "parce init",
-    "dll": "NODE_ENV=production parce dll",
+    "dll-dev": "NODE_ENV=development parce dll",
+    "dll-prod": "NODE_ENV=production parce dll",
     "dev": "NODE_ENV=development parce dev",
     "build": "NODE_ENV=production parce build",
     "server": "parce server"
