@@ -5,7 +5,7 @@ module.exports = {
         'react',
         'react-dom',
         'prop-types',
-        'antd',
+        // 'antd',
         'babel-polyfill',
         'classnames'
     ],

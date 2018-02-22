@@ -13,8 +13,7 @@
   },
   "scripts": {
     "init": "parce init",
-    "dll-dev": "NODE_ENV=development parce dll",
-    "dll-prod": "NODE_ENV=production parce dll",
+    "dll": "NODE_ENV=development parce dll && NODE_ENV=production parce dll",
     "dev": "NODE_ENV=development parce dev",
     "build": "NODE_ENV=production parce build",
     "server": "parce server"
