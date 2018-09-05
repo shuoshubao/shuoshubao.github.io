@@ -6,19 +6,6 @@ import 'style/highlight-table.scss'
 import 'util/highlight.js/styles/github.css'
 import './index.scss'
 
-import 'gitment/style/default.css'
-
-import Gitment from 'gitment'
-
-const gitment = new Gitment({
-    owner: 'shuoshubao',
-    repo: 'https://github.com/shuoshubao/blog.git',
-    oauth: {
-        client_id: '1dc0f2b1fefec490a35f',
-        client_secret: '82263bd75bde0c3d3938b5772992440c300c9c5f',
-    }
-});
-
 const MarkdownItHighlight = MarkdownIt({
   highlight: (str, language) => {
     const lang = language || 'javascript'
@@ -169,10 +156,6 @@ class App extends React.Component {
   }
   init() {
     this.renderView(getHash())
-
-    setTimeout(() => {
-        gitment.render('comments')
-    }, 3e3);
   }
   render() {
     const {
