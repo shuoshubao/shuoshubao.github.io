@@ -1,44 +1,44 @@
 .GitHubButton-box {
-  display: inline-block;
-  .left,
-  .right {
-    color: #333;
-    padding: 2px 5px;
-    border: 1px solid #d5d5d5;
-    border-radius: 3px;
-    background-image: linear-gradient(to bottom, #fcfcfc 0, #eee 100%);
-    cursor: pointer;
-  }
-  svg {
-    position: relative;
-    top: 2px;
     display: inline-block;
-    width: 14px;
-    height: 14px;
-  }
-  .text {
-    display: inline-block;
-    line-height: 14px;
-    margin-left: 5px;
-  }
-  .right {
-    margin-left: 8px;
-    min-width: 20px;
-  }
-  .num {
-    position: relative;
-    &:after {
-      content: "";
-      position: absolute;
-      left: -9px;
-      top: 5px;
-      width: 5px;
-      height: 5px;
-      border-color: #d4d4d4;
-      border-style: solid;
-      border-width: 0 0 1px 1px;
-      transform: rotateZ(45deg);
-      background: #eee;
+    .left,
+    .right {
+        color: #333;
+        padding: 2px 5px;
+        border: 1px solid #d5d5d5;
+        border-radius: 3px;
+        background-image: linear-gradient(to bottom, #fcfcfc 0, #eee 100%);
+        cursor: pointer;
     }
-  }
+    svg {
+        position: relative;
+        top: 2px;
+        display: inline-block;
+        width: 14px;
+        height: 14px;
+    }
+    .text {
+        display: inline-block;
+        line-height: 14px;
+        margin-left: 5px;
+    }
+    .right {
+        margin-left: 8px;
+        min-width: 20px;
+    }
+    .num {
+        position: relative;
+        &:after {
+            content: "";
+            position: absolute;
+            left: -9px;
+            top: 5px;
+            width: 5px;
+            height: 5px;
+            border-color: #d4d4d4;
+            border-style: solid;
+            border-width: 0 0 1px 1px;
+            transform: rotateZ(45deg);
+            background: #eee;
+        }
+    }
 }

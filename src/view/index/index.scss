@@ -1,248 +1,248 @@
-@import '~style/base.scss';
-@import '~style/markdown.scss';
+@import "~style/base.scss";
+@import "~style/markdown.scss";
 // @import '~util/highlight.js/styles/github.css';
 
 body {
-  height: auto !important;
+    height: auto !important;
 }
 
 .clear {
-  &:after {
-    content: "";
-    display: block;
-    clear: both;
-  }
+    &:after {
+        content: "";
+        display: block;
+        clear: both;
+    }
 }
 
 .f-center {
-  @extend .clear;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 10px;
-  padding-right: 10px;
-  @media (min-width:1000px) {
-    width: 1000px;
-  }
-  @media (min-width:1200px) {
-    width: 1200px;
-  }
-  @media (min-width:1600px) {
-    width: 1500px;
-  }
+    @extend .clear;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+    @media (min-width: 1000px) {
+        width: 1000px;
+    }
+    @media (min-width: 1200px) {
+        width: 1200px;
+    }
+    @media (min-width: 1600px) {
+        width: 1500px;
+    }
 }
 
 .nav {
-  height: 50px;
-  .inner {
-    position: fixed;
-    z-index: 100;
-    top: 0;
-    right: 0;
-    left: 0;
-    font-size: 16px;
-    line-height: 50px;
-    background-color: #f5f5f5;
-    border-bottom: 1px solid #e5e5e5;
-  }
-  .wrap {
-    @extend .f-center;
-  }
-  .home {
-    float: left;
-    line-height: 50px;
-    .logo {
-      float: left;
-      width: 30px;
-      height: 30px;
-      position: relative;
-      top: (50px-30px)/2;
-    }
-    .name {
-      float: left;
-      margin-left: 5px;
-      font-size: 20px;
-    }
-  }
-  ul {
-    float: left;
-    margin-left: 20px;
-  }
-  li {
-    float: left;
-    &.active{
-      a {
-        color: #26c6da;
-      }
-    }
-    a {
-      display: block;
-      padding: 0 15px;
-      cursor: pointer;
-    }
-  }
-  a {
-    color: #333;
-    &.active,
-    &:hover {
-      color: #26c6da;
-    }
-  }
-  .github {
-    float: right;
-    padding: 0 10px;
-  }
-}
-@media (max-width:1000px) {
-  .nav {
+    height: 50px;
     .inner {
-      background-color: #fff;
-      line-height: 40px;
-      box-shadow: inset 0 -1px 0 #e9e9e9,0 1px 0 rgba(0,0,0,0.05);
+        position: fixed;
+        z-index: 100;
+        top: 0;
+        right: 0;
+        left: 0;
+        font-size: 16px;
+        line-height: 50px;
+        background-color: #f5f5f5;
+        border-bottom: 1px solid #e5e5e5;
     }
     .wrap {
-      padding: 0;
+        @extend .f-center;
     }
     .home {
-      margin-left: 10px;
-    }
-    .navbar {
-      position: absolute;
-      right: 5px;
-      top: 5px;
-      width: 40px;
-      height: 40px;
-      padding: 9px;
-      border: 1px solid  #e5e5e5;
-      cursor: pointer;
-      &.active {
-        border-color: #0aa284;
-      }
-      .bar {
-        display: block;
-        width: 18px;
-        height: 2px;
-        margin-right: 0;
-        background-color: #333;
-        border-radius: 1px;
-        &:not(:first-child) {
-          margin-top: 3px;
+        float: left;
+        line-height: 50px;
+        .logo {
+            float: left;
+            width: 30px;
+            height: 30px;
+            position: relative;
+            top: (50px-30px)/2;
         }
-      }
-    }
-    .github {
-      display: none;
+        .name {
+            float: left;
+            margin-left: 5px;
+            font-size: 20px;
+        }
     }
     ul {
-      margin-left: 0;
-      width: 100%;
-      height: 0;
-      overflow: hidden;
-      transition: height 400ms linear;
-      &.active {
-        padding: 10px;
-        height: auto;
-      }
+        float: left;
+        margin-left: 20px;
     }
     li {
-      width: 100%;
-      &.active,
-      &:hover {
-        a {
-          color: #26c6da;
+        float: left;
+        &.active {
+            a {
+                color: #26c6da;
+            }
         }
-      }
-      a {
-        color: #555;
-        padding: 0 10px;
-      }
+        a {
+            display: block;
+            padding: 0 15px;
+            cursor: pointer;
+        }
     }
-  }
+    a {
+        color: #333;
+        &.active,
+        &:hover {
+            color: #26c6da;
+        }
+    }
+    .github {
+        float: right;
+        padding: 0 10px;
+    }
+}
+@media (max-width: 1000px) {
+    .nav {
+        .inner {
+            background-color: #fff;
+            line-height: 40px;
+            box-shadow: inset 0 -1px 0 #e9e9e9, 0 1px 0 rgba(0, 0, 0, 0.05);
+        }
+        .wrap {
+            padding: 0;
+        }
+        .home {
+            margin-left: 10px;
+        }
+        .navbar {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            width: 40px;
+            height: 40px;
+            padding: 9px;
+            border: 1px solid #e5e5e5;
+            cursor: pointer;
+            &.active {
+                border-color: #0aa284;
+            }
+            .bar {
+                display: block;
+                width: 18px;
+                height: 2px;
+                margin-right: 0;
+                background-color: #333;
+                border-radius: 1px;
+                &:not(:first-child) {
+                    margin-top: 3px;
+                }
+            }
+        }
+        .github {
+            display: none;
+        }
+        ul {
+            margin-left: 0;
+            width: 100%;
+            height: 0;
+            overflow: hidden;
+            transition: height 400ms linear;
+            &.active {
+                padding: 10px;
+                height: auto;
+            }
+        }
+        li {
+            width: 100%;
+            &.active,
+            &:hover {
+                a {
+                    color: #26c6da;
+                }
+            }
+            a {
+                color: #555;
+                padding: 0 10px;
+            }
+        }
+    }
 }
 
 .content {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  @extend .f-center;
-  .markdown > div {
-    padding-bottom: 20px;
-  }
+    padding-top: 10px;
+    padding-bottom: 10px;
+    @extend .f-center;
+    .markdown > div {
+        padding-bottom: 20px;
+    }
 }
 .list {
-  line-height: 40px;
-  color: #26c6da;
-  li {
-    overflow: hidden;
-  }
-  .title {
-    float: left;
-  }
-  .time {
-    float: right;
-  }
+    line-height: 40px;
+    color: #26c6da;
+    li {
+        overflow: hidden;
+    }
+    .title {
+        float: left;
+    }
+    .time {
+        float: right;
+    }
 }
 
 .footer {
-  height: 101px;
-  color: #666;
-  .outer {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 15px 10px;
-    border-top: 1px solid #ddd;
-    background-color: #f5f5f5;
-  }
-  .wrap {
-    @extend .f-center;
-  }
-  a {
-    color: #6cc;
-  }
+    height: 101px;
+    color: #666;
+    .outer {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 15px 10px;
+        border-top: 1px solid #ddd;
+        background-color: #f5f5f5;
+    }
+    .wrap {
+        @extend .f-center;
+    }
+    a {
+        color: #6cc;
+    }
 }
 
 .p-nav {
-  padding: 10px;
-  dl:not(:first-child) {
-    margin-top: 10px;
-  }
-  dd {
-    overflow: hidden;
-    margin: 0 -10px;
-    padding-bottom: 5px;
-  }
-  a {
-    float: left;
-    text-align: center;
-    line-height: 28px;
-    padding: 0 20px;
-    margin: 10px 5px 0 5px;
-    border: 1px solid #ddd;
-    border-radius: 3px;
-    transition:all 400ms linear;
-    &:hover {
-      border-color: #26c6da;
-      color: #333;
-      box-shadow: inset 0 0 3px #26c6da;
+    padding: 10px;
+    dl:not(:first-child) {
+        margin-top: 10px;
     }
-  }
+    dd {
+        overflow: hidden;
+        margin: 0 -10px;
+        padding-bottom: 5px;
+    }
+    a {
+        float: left;
+        text-align: center;
+        line-height: 28px;
+        padding: 0 20px;
+        margin: 10px 5px 0 5px;
+        border: 1px solid #ddd;
+        border-radius: 3px;
+        transition: all 400ms linear;
+        &:hover {
+            border-color: #26c6da;
+            color: #333;
+            box-shadow: inset 0 0 3px #26c6da;
+        }
+    }
 }
 .p-about {
-  padding: 10px;
-  dl {
-    overflow: hidden;
-    &:not(:first-child) {
-      margin-top: 10px;
+    padding: 10px;
+    dl {
+        overflow: hidden;
+        &:not(:first-child) {
+            margin-top: 10px;
+        }
     }
-  }
-  dt {
-    font-weight: 700;
-    float: left;
-    width: 100px;
-    text-align: right;
-    padding-right: 20px;
-  }
-  dd {
-    margin-left: 100px;
-  }
+    dt {
+        font-weight: 700;
+        float: left;
+        width: 100px;
+        text-align: right;
+        padding-right: 20px;
+    }
+    dd {
+        margin-left: 100px;
+    }
 }

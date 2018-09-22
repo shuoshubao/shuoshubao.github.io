@@ -1,7 +1,4 @@
-import DATA_NAV from './nav'
-import DATA_META from './meta'
+import DATA_NAV from './nav';
+import DATA_META from './meta';
 
-export {
-  DATA_NAV,
-  DATA_META
-}
+export {DATA_NAV, DATA_META};
