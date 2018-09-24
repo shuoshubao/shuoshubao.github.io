@@ -1,10 +1,7 @@
 <template>
     <el-container class="ss-container" v-loading="loading">
         <el-aside width="150px" class="ss-aside">
-            <el-menu
-                :default-active="defaultActive"
-                @select="onSelectMenu"
-            >
+            <el-menu :default-active="defaultActive" @select="onSelectMenu">
                 <el-menu-item v-for="(item, index) in DATA_NAV" :key="index" :index="item.categorie">
                     <i class="el-icon-menu"></i>
                     <span slot="title">{{item.text}}</span>
@@ -40,25 +37,30 @@ export default {
             validHashList: [],
             defaultActive: '',
             categorie: '',
-            pageType: '', // list detail error
-        }
+            pageType: '' // list detail error
+        };
     },
     methods: {
         onSelectMenu(index, indexPath) {
             window.location.hash = indexPath[0] === 'index' ? '' : indexPath[0];
         },
         async fetchData() {
-            return fetch('https://raw.githubusercontent.com/shuoshubao/blog/master/data/db.json').then(res => res.json()).then(res => {
-                this.DATA_ARTICLE = res;
-                this.loading = false;
-            })
+            return fetch('https://raw.githubusercontent.com/shuoshubao/blog/master/data/db.json')
+                .then(res => res.json())
+                .then(res => {
+                    this.DATA_ARTICLE = res;
+                    this.loading = false;
+                });
         },
         validateUrl() {
             const {DATA_NAV, DATA_ARTICLE} = this;
-            this.validHashList = Object.entries(DATA_ARTICLE).reduce((prev, [k, v]) => {
-                prev.push(k, ...v.map(v2 => [k, v2.name].join('/')));
-                return prev;
-            }, ['', 'index']);
+            this.validHashList = Object.entries(DATA_ARTICLE).reduce(
+                (prev, [k, v]) => {
+                    prev.push(k, ...v.map(v2 => [k, v2.name].join('/')));
+                    return prev;
+                },
+                ['', 'index']
+            );
         },
         onHashchange() {
             const hash = window.location.hash.substring(1);
@@ -101,7 +103,8 @@ export default {
         display: flex;
         height: 100%;
         border-right: 1px solid #e6e6e6;
-        box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .1);
+        box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+        position: relative;
         /deep/ .el-menu {
             width: 100%;
             border-right: none;

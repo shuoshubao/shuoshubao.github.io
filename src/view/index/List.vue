@@ -14,15 +14,19 @@ export default {
         const {categorie, listData} = this;
         let list = [];
         if (['index', ''].includes(categorie)) {
-            list = DATA_NAV.map(v => v.categorie).filter(v => v !== 'index').reduce((prev, cur) => {
-                prev.push(...listData[cur].map(v => {
-                    return {
-                        ...v,
-                        categorie: cur
-                    };
-                }))
-                return prev;
-            }, [])
+            list = DATA_NAV.map(v => v.categorie)
+                .filter(v => v !== 'index')
+                .reduce((prev, cur) => {
+                    prev.push(
+                        ...listData[cur].map(v => {
+                            return {
+                                ...v,
+                                categorie: cur
+                            };
+                        })
+                    );
+                    return prev;
+                }, []);
         } else {
             list = listData[categorie];
         }

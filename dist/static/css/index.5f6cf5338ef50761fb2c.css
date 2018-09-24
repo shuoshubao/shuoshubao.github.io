@@ -1,33 +1,34 @@
 
-.ss-container[data-v-e122f16a] {
+.ss-container[data-v-7345ffae] {
   height: 100%;
 }
-.ss-container .ss-aside[data-v-e122f16a] {
+.ss-container .ss-aside[data-v-7345ffae] {
     display: flex;
     height: 100%;
     border-right: 1px solid #e6e6e6;
     box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+    position: relative;
 }
-.ss-container .ss-aside[data-v-e122f16a] .el-menu {
+.ss-container .ss-aside[data-v-7345ffae] .el-menu {
       width: 100%;
       border-right: none;
 }
-.ss-container .ss-main[data-v-e122f16a] {
+.ss-container .ss-main[data-v-7345ffae] {
     height: 100%;
     overflow-y: auto;
 }
 
-.dialog-markdown[data-v-0ebd465c] {
+.dialog-markdown[data-v-39cd788c] {
   overflow: hidden;
 }
-.dialog-markdown[data-v-0ebd465c] .el-dialog {
+.dialog-markdown[data-v-39cd788c] .el-dialog {
     margin-top: 50px !important;
     width: 95% !important;
 }
-.dialog-markdown[data-v-0ebd465c] .el-dialog__header {
+.dialog-markdown[data-v-39cd788c] .el-dialog__header {
     height: 50px;
 }
-.dialog-markdown[data-v-0ebd465c] .el-dialog__body {
+.dialog-markdown[data-v-39cd788c] .el-dialog__body {
     max-height: calc(100vh - 150px);
     overflow: auto;
     padding: 20px;

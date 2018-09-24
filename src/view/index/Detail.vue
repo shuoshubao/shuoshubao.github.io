@@ -62,11 +62,17 @@ export default {
     methods: {
         fetchData() {
             const {categorie} = this;
-            fetch(`https://raw.githubusercontent.com/shuoshubao/blog/master/article/${categorie.join('/')}.md`).then(res => res.text()).then(res => {
-                this.sourceCode = res;
-                this.MarkdownHtml = MarkdownItHighlight.render(res);
-                this.loading = false;
-            });
+            fetch(
+                `https://raw.githubusercontent.com/shuoshubao/blog/master/article/${categorie.join(
+                    '/'
+                )}.md`
+            )
+                .then(res => res.text())
+                .then(res => {
+                    this.sourceCode = res;
+                    this.MarkdownHtml = MarkdownItHighlight.render(res);
+                    this.loading = false;
+                });
         },
         showCode() {
             this.dialogData.visible = true;
@@ -85,18 +91,25 @@ export default {
                     <div slot="header" style="display: flex; justify-content: space-between;">
                         <span>{articleTitle}</span>
                         <el-tooltip effect="dark" content="Markdown源码" placement="top-start">
-                            <i class="el-icon-share" onClick={this.showCode}></i>
+                            <i class="el-icon-share" onClick={this.showCode} />
                         </el-tooltip>
                     </div>
-                    <div domProps-innerHTML={MarkdownHtml} class="markdown"></div>
+                    <div domProps-innerHTML={MarkdownHtml} class="markdown" />
                 </el-card>
-                <el-dialog width="95%" top="50px" class="dialog-markdown" title={dialogData.title} visible={dialogData.visible}  {...{
-                    on: {
-                        'update:visible': val => {
-                            this.dialogData.visible = val;
+                <el-dialog
+                    width="95%"
+                    top="50px"
+                    class="dialog-markdown"
+                    title={dialogData.title}
+                    visible={dialogData.visible}
+                    {...{
+                        on: {
+                            'update:visible': val => {
+                                this.dialogData.visible = val;
+                            }
                         }
-                    }
-                }}>
+                    }}
+                >
                     <pre domProps-innerHTML={this.sourceCode}></pre>
                 </el-dialog>
             </div>
@@ -109,8 +122,8 @@ export default {
 .dialog-markdown {
     overflow: hidden;
     /deep/ .el-dialog {
-        margin-top: 50px!important;
-        width: 95%!important;
+        margin-top: 50px !important;
+        width: 95% !important;
     }
     /deep/ .el-dialog__header {
         height: 50px;
