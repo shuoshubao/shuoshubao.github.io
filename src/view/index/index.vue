@@ -1,5 +1,5 @@
 <template>
-    <el-container class="ss-container">
+    <el-container class="ss-container" v-loading="loading">
         <el-aside width="150px" class="ss-aside">
             <el-menu
                 :default-active="defaultActive"
@@ -33,6 +33,7 @@ export default {
     },
     data() {
         return {
+            loading: true,
             DATA_META,
             DATA_NAV,
             DATA_ARTICLE: {},
@@ -49,6 +50,7 @@ export default {
         async fetchData() {
             return fetch('https://raw.githubusercontent.com/shuoshubao/blog/master/data/db.json').then(res => res.json()).then(res => {
                 this.DATA_ARTICLE = res;
+                this.loading = false;
             })
         },
         validateUrl() {
@@ -99,6 +101,7 @@ export default {
         display: flex;
         height: 100%;
         border-right: 1px solid #e6e6e6;
+        box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .1);
         /deep/ .el-menu {
             width: 100%;
             border-right: none;

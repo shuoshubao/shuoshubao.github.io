@@ -1,34 +1,36 @@
 
-.ss-container[data-v-636dbdba] {
+.ss-container[data-v-e122f16a] {
   height: 100%;
 }
-.ss-container .ss-aside[data-v-636dbdba] {
+.ss-container .ss-aside[data-v-e122f16a] {
     display: flex;
     height: 100%;
     border-right: 1px solid #e6e6e6;
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 }
-.ss-container .ss-aside[data-v-636dbdba] .el-menu {
+.ss-container .ss-aside[data-v-e122f16a] .el-menu {
       width: 100%;
       border-right: none;
 }
-.ss-container .ss-main[data-v-636dbdba] {
+.ss-container .ss-main[data-v-e122f16a] {
     height: 100%;
     overflow-y: auto;
 }
 
-.dialog-markdown[data-v-474bbdfa] {
+.dialog-markdown[data-v-0ebd465c] {
   overflow: hidden;
 }
-.dialog-markdown[data-v-474bbdfa] .el-dialog {
+.dialog-markdown[data-v-0ebd465c] .el-dialog {
     margin-top: 50px !important;
     width: 95% !important;
 }
-.dialog-markdown[data-v-474bbdfa] .el-dialog__header {
+.dialog-markdown[data-v-0ebd465c] .el-dialog__header {
     height: 50px;
 }
-.dialog-markdown[data-v-474bbdfa] .el-dialog__body {
+.dialog-markdown[data-v-0ebd465c] .el-dialog__body {
     max-height: calc(100vh - 150px);
     overflow: auto;
+    padding: 20px;
 }
 /*
 

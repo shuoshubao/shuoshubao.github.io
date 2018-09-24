@@ -1,4 +1,6 @@
 <script>
+import {DATA_NAV} from 'data';
+
 export default {
     props: {
         categorie: {
@@ -12,10 +14,15 @@ export default {
         const {categorie, listData} = this;
         let list = [];
         if (['index', ''].includes(categorie)) {
-            list = Object.entries(listData).reduce((prev, [k, v]) => {
-                prev.push(...v);
+            list = DATA_NAV.map(v => v.categorie).filter(v => v !== 'index').reduce((prev, cur) => {
+                prev.push(...listData[cur].map(v => {
+                    return {
+                        ...v,
+                        categorie: cur
+                    };
+                }))
                 return prev;
-            }, []);
+            }, [])
         } else {
             list = listData[categorie];
         }
@@ -30,7 +37,7 @@ export default {
                     list.map((v, i) => {
                         return (
                             <div>
-                                <a href={`#${[categorie, v.name].join('/')}`}>
+                                <a href={`#${[v.categorie || categorie, v.name].join('/')}`}>
                                     <el-button type="text">{v.title}</el-button>
                                 </a>
                             </div>

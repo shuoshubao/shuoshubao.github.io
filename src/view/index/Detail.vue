@@ -50,6 +50,7 @@ export default {
     },
     data() {
         return {
+            loading: true,
             sourceCode: '',
             MarkdownHtml: '',
             dialogData: {
@@ -64,6 +65,7 @@ export default {
             fetch(`https://raw.githubusercontent.com/shuoshubao/blog/master/article/${categorie.join('/')}.md`).then(res => res.text()).then(res => {
                 this.sourceCode = res;
                 this.MarkdownHtml = MarkdownItHighlight.render(res);
+                this.loading = false;
             });
         },
         showCode() {
@@ -79,7 +81,7 @@ export default {
         const articleTitle = listData[categorie].find(v => v.name === articleName).title;
         return (
             <div>
-                <el-card>
+                <el-card v-loading={this.loading}>
                     <div slot="header" style="display: flex; justify-content: space-between;">
                         <span>{articleTitle}</span>
                         <el-tooltip effect="dark" content="Markdown源码" placement="top-start">
@@ -116,6 +118,7 @@ export default {
     /deep/ .el-dialog__body {
         max-height: calc(100vh - 150px);
         overflow: auto;
+        padding: 20px;
     }
 }
 </style>
