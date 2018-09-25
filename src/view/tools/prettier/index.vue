@@ -2,6 +2,7 @@
     <div class="wrap-content">
         <el-row :gutter="20">
             <el-col :span="12">
+                <div>源码</div>
                 <el-input
                     spellcheck="false"
                     type="textarea"
@@ -13,6 +14,7 @@
                 </el-input>
             </el-col>
             <el-col :span="12">
+                <div>格式化后的代码</div>
                 <el-input
                     type="textarea"
                     :rows="20"
@@ -24,7 +26,7 @@
         </el-row>
         <el-row style="margin-top: 10px;">
             <el-col :span="24">
-                <el-card>
+                <el-card header="代码 Diff">
                     <div v-html="diffCode"></div>
                 </el-card>
             </el-col>
