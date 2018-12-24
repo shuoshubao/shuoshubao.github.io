@@ -1,0 +1,12 @@
+{
+  "common": {
+    "js": "/dist/static/js/common.beda6913722b07884b95.js"
+  },
+  "index": {
+    "js": "/dist/static/js/index.7c6e19b61b1f2e2c17fd.js",
+    "css": "/dist/static/css/index.7c6e19b61b1f2e2c17fd.css"
+  },
+  "manifest": {
+    "js": "/dist/static/js/manifest.b62fccd208ef66cb1344.js"
+  }
+}
