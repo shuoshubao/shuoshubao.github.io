@@ -1,5 +1,5 @@
 {
-  "vendor": {
-    "js": "static/js/vendor.3c3fe3cabd597e08526f.js"
-  }
+    "__vendor": {
+        "js": "/static/js/__vendor.63ad516d225d3b488063.js"
+    }
 }

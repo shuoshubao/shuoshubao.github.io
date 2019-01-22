@@ -1,15 +1,10 @@
 module.exports = {
     title: 'WEB前端开发',
     port: 9000,
+    enableEslint: false,
     styles: ['scss'],
-    dllEntry: [
-        'react',
-        'react-dom',
-        'prop-types',
-        'classnames'
-    ],
     pathConfig: {
-
+        global: 'src/common.js'
     },
     devServer: {
         /*proxy: {

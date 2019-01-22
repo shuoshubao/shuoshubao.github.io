@@ -8,17 +8,13 @@
   "author": "shuoshubao <759979885@qq.com>",
   "license": "MIT",
   "dependencies": {
-    "classnames": "^2.2.6",
     "diff": "^3.5.0",
+    "element-ui": "^2.4.11",
     "json5": "^2.1.0",
     "markdown-it": "^8.4.0",
-    "node-sass": "^4.9.3",
-    "parce": "0.0.47-alpha",
-    "prop-types": "^15.6.2",
-    "react": "^16.5.2",
-    "react-dom": "^16.5.2",
-    "sass-loader": "^7.1.0",
-    "vue-loader": "13.6.0"
+    "parce": "0.0.46-beta.11",
+    "vue": "^2.5.22",
+    "vue-template-compiler": "^2.5.22"
   },
   "scripts": {
     "init": "parce init",
