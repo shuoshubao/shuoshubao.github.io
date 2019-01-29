@@ -4,15 +4,15 @@
         "js": "/static/js/__common.83633cd275a57b620e8e.js"
     },
     "index": {
-        "css": "/static/css/index.625f03d1aba01dd4c756.css",
-        "js": "/static/js/index.625f03d1aba01dd4c756.js"
+        "css": "/static/css/index.b1c61962e5b2b4ab7379.css",
+        "js": "/static/js/index.b1c61962e5b2b4ab7379.js"
     },
     "pretty/json": {
-        "css": "/static/css/pretty/json.e74d2ed2fb98309b5a6a.css",
-        "js": "/static/js/pretty/json.e74d2ed2fb98309b5a6a.js"
+        "css": "/static/css/pretty/json.15b60c321079d4a00b9f.css",
+        "js": "/static/js/pretty/json.15b60c321079d4a00b9f.js"
     },
     "tools/prettier": {
-        "css": "/static/css/tools/prettier.282cd812a85e86c030bc.css",
-        "js": "/static/js/tools/prettier.282cd812a85e86c030bc.js"
+        "css": "/static/css/tools/prettier.a072be86e3714841543f.css",
+        "js": "/static/js/tools/prettier.a072be86e3714841543f.js"
     }
 }

@@ -4,7 +4,8 @@ module.exports = {
     enableEslint: false,
     styles: ['scss'],
     pathConfig: {
-        global: 'src/common.js'
+        global: 'src/common.js',
+        build: 'dist'
     },
     devServer: {
         /*proxy: {
