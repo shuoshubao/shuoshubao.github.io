@@ -1,9 +1,0 @@
-{
-    "fetch-detector": "1.0.1",
-    "fetch-ie8": "1.5.0",
-    "es5-shim": "4.5.12",
-    "@babel/polyfill": "7.2.5",
-    "query-string": "5.1.1",
-    "vue": "2.5.22",
-    "element-ui": "2.4.11"
-}

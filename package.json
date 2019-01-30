@@ -7,20 +7,51 @@
   },
   "author": "shuoshubao <759979885@qq.com>",
   "license": "MIT",
-  "dependencies": {
-    "diff": "^3.5.0",
-    "element-ui": "^2.4.11",
-    "json5": "^2.1.0",
-    "markdown-it": "^8.4.0",
-    "parce": "0.0.46-beta.11",
-    "vue": "^2.5.22",
-    "vue-template-compiler": "^2.5.22"
-  },
   "scripts": {
     "init": "parce init",
     "dll": "NODE_ENV=development parce dll && NODE_ENV=production parce dll",
     "dev": "NODE_ENV=development parce dev",
     "build": "NODE_ENV=production parce build",
     "server": "parce server"
+  },
+  "dependencies": {
+    "diff": "^3.5.0",
+    "element-ui": "^2.4.11",
+    "json5": "^2.1.0",
+    "markdown-it": "^8.4.0",
+    "parce": "0.0.48",
+    "vue": "^2.5.22",
+    "vue-template-compiler": "^2.5.22"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.11.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-loader": "^2.1.1",
+    "eslint-plugin-html": "^5.0.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-prettier": "^3.0.1",
+    "eslint-plugin-vue": "^5.0.0",
+    "husky": "^1.3.1",
+    "inquirer": "^6.2.1",
+    "inquirer-fuzzy-path": "^1.0.0",
+    "inquirer-path": "^1.0.0-beta5",
+    "lint-staged": "^8.1.1",
+    "opn": "^5.4.0",
+    "ora": "^3.0.0",
+    "progress": "^2.0.3",
+    "tinify": "^1.6.0-beta.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "linters": {
+      "*.{js,json}": ["prettier --write", "git add"],
+      "*.js": ["eslint -f table", "git add"]
+    },
+    "ignore": ["dist/**"]
   }
 }

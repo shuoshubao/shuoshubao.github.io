@@ -1,0 +1,25 @@
+module.exports = {
+    parser: 'babylon',
+    arrowParens: 'avoid',
+    bracketSpacing: true,
+    insertPragma: false,
+    jsxBracketSameLine: false,
+    jsxSingleQuote: false,
+    printWidth: 160,
+    proseWrap: 'never',
+    requirePragma: false,
+    semi: true,
+    singleQuote: true,
+    tabWidth: 4,
+    trailingComma: 'all',
+    useTabs: false,
+    overrides: [
+        {
+            files: '*.json',
+            options: {
+                parser: 'json',
+                tabWidth: 2,
+            },
+        },
+    ],
+};
