@@ -38,13 +38,12 @@
 import format from './format';
 import diff from './diff';
 
-
 export default {
     data() {
         return {
             sourceCode: '',
             formatCode: '',
-            diffCode: ''
+            diffCode: '',
         };
     },
     methods: {
@@ -52,13 +51,13 @@ export default {
             try {
                 this.formatCode = format(this.sourceCode);
                 this.diffCode = diff(this.sourceCode, this.formatCode);
-            } catch(e) {
+            } catch (e) {
                 console.log(e);
                 this.formatCode = e;
                 this.diffCode = '';
             }
-        }
-    }
+        },
+    },
 };
 </script>
 

@@ -8,7 +8,7 @@ import 'style/markdown.scss';
 const MarkdownItHighlight = MarkdownIt({
     highlight: (str, language) => {
         const lang = language || 'javascript';
-        const {value} = hljs.highlight(lang, str);
+        const { value } = hljs.highlight(lang, str);
         if (hljs.getLanguage(lang)) {
             try {
                 return [
@@ -18,35 +18,28 @@ const MarkdownItHighlight = MarkdownIt({
                     value
                         .trim()
                         .split(`\n`)
-                        .map((v, i) =>
-                            [
-                                `<tr>`,
-                                `<td data-line-number=${i + 1}></td>`,
-                                `<td>${v}</td>`,
-                                `</tr>`
-                            ].join('')
-                        )
+                        .map((v, i) => [`<tr>`, `<td data-line-number=${i + 1}></td>`, `<td>${v}</td>`, `</tr>`].join(''))
                         .join(''),
                     `</tbody>`,
                     `</table>`,
-                    `</pre>`
+                    `</pre>`,
                 ].join('');
             } catch (e) {
                 throw e;
             }
         }
         return '';
-    }
+    },
 });
 
 export default {
     props: {
         categorie: {
-            type: Array
+            type: Array,
         },
         listData: {
-            type: Object
-        }
+            type: Object,
+        },
     },
     data() {
         return {
@@ -55,18 +48,14 @@ export default {
             MarkdownHtml: '',
             dialogData: {
                 title: 'Markdown源码',
-                visible: false
-            }
+                visible: false,
+            },
         };
     },
     methods: {
         fetchData() {
-            const {categorie} = this;
-            fetch(
-                `https://raw.githubusercontent.com/shuoshubao/blog/master/article/${categorie.join(
-                    '/'
-                )}.md`
-            )
+            const { categorie } = this;
+            fetch(`https://raw.githubusercontent.com/shuoshubao/blog/master/article/${categorie.join('/')}.md`)
                 .then(res => res.text())
                 .then(res => {
                     this.sourceCode = res;
@@ -76,13 +65,13 @@ export default {
         },
         showCode() {
             this.dialogData.visible = true;
-        }
+        },
     },
     created() {
         this.fetchData();
     },
     render() {
-        const {MarkdownHtml, categorie: categories, listData, dialogData} = this;
+        const { MarkdownHtml, categorie: categories, listData, dialogData } = this;
         const [categorie, articleName] = categories;
         const articleTitle = listData[categorie].find(v => v.name === articleName).title;
         return (
@@ -106,15 +95,15 @@ export default {
                         on: {
                             'update:visible': val => {
                                 this.dialogData.visible = val;
-                            }
-                        }
+                            },
+                        },
                     }}
                 >
-                    <pre domProps-innerHTML={this.sourceCode}></pre>
+                    <pre domProps-innerHTML={this.sourceCode} />
                 </el-dialog>
             </div>
         );
-    }
+    },
 };
 </script>
 

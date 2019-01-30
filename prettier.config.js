@@ -21,5 +21,18 @@ module.exports = {
                 tabWidth: 2,
             },
         },
+        {
+            files: '*.scss',
+            options: {
+                parser: 'css',
+                singleQuote: false,
+            },
+        },
+        {
+            files: '*.vue',
+            options: {
+                parser: 'vue',
+            },
+        },
     ],
 };

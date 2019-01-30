@@ -19,14 +19,14 @@
 </template>
 
 <script>
-import {DATA_META, DATA_NAV} from 'data';
+import { DATA_META, DATA_NAV } from 'data';
 import List from './List';
 import Detail from './Detail';
 
 export default {
     components: {
         List,
-        Detail
+        Detail,
     },
     data() {
         return {
@@ -37,7 +37,7 @@ export default {
             validHashList: [],
             defaultActive: '',
             categorie: '',
-            pageType: '' // list detail error
+            pageType: '', // list detail error
         };
     },
     methods: {
@@ -53,13 +53,13 @@ export default {
                 });
         },
         validateUrl() {
-            const {DATA_NAV, DATA_ARTICLE} = this;
+            const { DATA_NAV, DATA_ARTICLE } = this;
             this.validHashList = Object.entries(DATA_ARTICLE).reduce(
                 (prev, [k, v]) => {
                     prev.push(k, ...v.map(v2 => [k, v2.name].join('/')));
                     return prev;
                 },
-                ['', 'index']
+                ['', 'index'],
             );
         },
         onHashchange() {
@@ -85,14 +85,14 @@ export default {
         },
         renderError() {
             this.pageType = 'error';
-        }
+        },
     },
     async created() {
         await this.fetchData();
         this.validateUrl();
         window.addEventListener('hashchange', this.onHashchange, false);
         this.onHashchange();
-    }
+    },
 };
 </script>
 

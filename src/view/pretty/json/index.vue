@@ -27,14 +27,14 @@ export default {
     data() {
         return {
             sourceCode: '',
-            errMsg: ''
+            errMsg: '',
         };
     },
     methods: {
         handlePretty() {
             try {
                 this.sourceCode = JSON.stringify(JSON5.parse(this.sourceCode), null, 4);
-            } catch(e) {
+            } catch (e) {
                 console.log(e);
                 console.log(e.message);
                 this.errMsg = e.message;
@@ -42,8 +42,8 @@ export default {
         },
         clearError() {
             this.errMsg = '';
-        }
-    }
+        },
+    },
 };
 </script>
 
