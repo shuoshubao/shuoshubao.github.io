@@ -3,7 +3,8 @@ module.exports = {
     port: 9000,
     enableEslint: false,
     styles: ['scss'],
-    staticPrefix: '/dist',
+    // staticPrefix: '/dist',
+    staticPrefix: 'https://raw.githubusercontent.com/shuoshubao/shuoshubao.github.io/master/dist',
     pathConfig: {
         global: 'src/common.js',
         build: 'dist',
