@@ -19,7 +19,7 @@
     "element-ui": "^2.4.11",
     "json5": "^2.1.0",
     "markdown-it": "^8.4.0",
-    "parce": "0.0.48",
+    "parce": "0.0.50",
     "vue": "^2.5.22",
     "vue-template-compiler": "^2.5.22"
   },
