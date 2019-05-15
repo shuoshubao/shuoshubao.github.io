@@ -5317,9 +5317,9 @@ param-case@2.1.x:
   dependencies:
     no-case "^2.2.0"
 
-parce@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.npm.taobao.org/parce/download/parce-1.2.1.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fparce%2Fdownload%2Fparce-1.2.1.tgz#934196ed916101ab80b9740a9d13fb214afe4987"
+parce@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.npm.taobao.org/parce/download/parce-1.2.2.tgz#0b95306dde6895051ed3835bef8d684775594e69"
   dependencies:
     "@babel/core" "^7.4.4"
     "@babel/plugin-proposal-export-default-from" "^7.2.0"

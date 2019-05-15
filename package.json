@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "markdown-it": "^8.4.0",
-    "parce": "^1.2.1",
+    "parce": "^1.2.2",
     "vue-template-compiler": "2.6.10"
   },
   "devDependencies": {
