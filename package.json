@@ -15,13 +15,9 @@
     "server": "parce server"
   },
   "dependencies": {
-    "diff": "^3.5.0",
-    "element-ui": "^2.4.11",
-    "json5": "^2.1.0",
     "markdown-it": "^8.4.0",
-    "parce": "^1.1.1",
-    "vue": "^2.5.22",
-    "vue-template-compiler": "^2.5.22"
+    "parce": "^1.2.1",
+    "vue-template-compiler": "2.6.10"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
