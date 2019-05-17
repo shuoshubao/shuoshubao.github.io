@@ -1,3 +1,4 @@
+const isDevelopment = process.env.NODE_ENV === 'development';
 module.exports = {
     title: 'WEB前端开发',
     port: 9000,
@@ -7,7 +8,7 @@ module.exports = {
     unpkgConfigList: {
         script: [
             'https://unpkg.com/babel-polyfill@6.26.0/dist/polyfill.min.js',
-            'https://unpkg.com/vue@2.6.10/dist/vue.min.js',
+            isDevelopment ? 'https://unpkg.com/vue@2.6.10/dist/vue.js' : 'https://unpkg.com/vue@2.6.10/dist/vue.min.js',
             'https://unpkg.com/element-ui@2.8.2/lib/index.js',
         ],
         style: ['https://unpkg.com/element-ui@2.8.2/lib/theme-chalk/index.css'],
