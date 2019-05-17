@@ -563,13 +563,6 @@
     "@babel/helper-regex" "^7.4.4"
     regexpu-core "^4.5.4"
 
-"@babel/polyfill@^7.4.4":
-  version "7.4.4"
-  resolved "https://registry.npm.taobao.org/@babel/polyfill/download/@babel/polyfill-7.4.4.tgz#78801cf3dbe657844eeabf31c1cae3828051e893"
-  dependencies:
-    core-js "^2.6.5"
-    regenerator-runtime "^0.13.2"
-
 "@babel/preset-env@^7.4.4":
   version "7.4.4"
   resolved "https://registry.npm.taobao.org/@babel/preset-env/download/@babel/preset-env-7.4.4.tgz#b6f6825bfb27b3e1394ca3de4f926482722c1d6f"
@@ -5317,9 +5310,9 @@ param-case@2.1.x:
   dependencies:
     no-case "^2.2.0"
 
-parce@^1.2.2:
-  version "1.2.2"
-  resolved "https://registry.npm.taobao.org/parce/download/parce-1.2.2.tgz#0b95306dde6895051ed3835bef8d684775594e69"
+parce@^1.2.4:
+  version "1.2.4"
+  resolved "https://registry.npm.taobao.org/parce/download/parce-1.2.4.tgz#35585de0cad734aaf51881f4134b229eae9db0d6"
   dependencies:
     "@babel/core" "^7.4.4"
     "@babel/plugin-proposal-export-default-from" "^7.2.0"
@@ -5327,7 +5320,6 @@ parce@^1.2.2:
     "@babel/plugin-syntax-dynamic-import" "^7.2.0"
     "@babel/plugin-syntax-jsx" "^7.2.0"
     "@babel/plugin-transform-runtime" "^7.4.4"
-    "@babel/polyfill" "^7.4.4"
     "@babel/preset-env" "^7.4.4"
     "@babel/runtime-corejs2" "^7.4.4"
     "@vue/babel-preset-jsx" "^1.0.0-beta.3"
