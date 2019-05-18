@@ -7,12 +7,14 @@
         </div>
         <el-container class="ss-container">
             <el-aside width="150px" :class="['ss-aside', {open: mobileOpen}]" @click="onClickTopbar">
-                <el-menu :default-active="defaultActive" @select="onSelectMenu">
-                    <el-menu-item v-for="(item, index) in DATA_NAV" :key="index" :index="item.categorie">
-                        <i class="el-icon-menu"></i>
-                        <span slot="title">{{item.text}}</span>
-                    </el-menu-item>
-                </el-menu>
+                <div class="aside-inner">
+                    <el-menu :default-active="defaultActive" @select="onSelectMenu">
+                        <el-menu-item v-for="(item, index) in DATA_NAV" :key="index" :index="item.categorie">
+                            <i class="el-icon-menu"></i>
+                            <span slot="title">{{item.text}}</span>
+                        </el-menu-item>
+                    </el-menu>
+                </div>
             </el-aside>
             <el-main class="ss-main">
                 <List v-if="pageType === 'list'" :categorie="categorie" :list-data="DATA_ARTICLE"></List>
@@ -123,11 +125,13 @@ export default {
 
     }
     .ss-aside {
-        display: flex;
-        height: 100%;
         border-right: 1px solid #e6e6e6;
         box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
         position: relative;
+        .aside-inner {
+            position: sticky;
+            top: 0;
+        }
         /deep/ .el-menu {
             width: 100%;
             border-right: none;
@@ -135,6 +139,7 @@ export default {
     }
     .ss-main {
         height: 100%;
+        padding: 10px;
         overflow-y: auto;
     }
 }
@@ -154,6 +159,12 @@ export default {
         background-color: #fff;
     }
 }
+@media screen and (min-width: 900px) {
+    .ss-aside {
+        overflow: initial;
+    }
+}
+
 @media screen and (max-width: 900px) {
     .ss-topbar-mobile {
         display: block;
