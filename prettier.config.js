@@ -1,5 +1,5 @@
 module.exports = {
-    parser: 'babylon',
+    parser: 'babel',
     arrowParens: 'avoid',
     bracketSpacing: true,
     insertPragma: false,

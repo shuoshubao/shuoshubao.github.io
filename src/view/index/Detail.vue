@@ -5,6 +5,8 @@ import 'util/highlight.js/styles/github.css';
 import 'style/highlight-table.scss';
 import 'style/markdown.scss';
 
+const svgUrl = require('img/mac-toolsbar.svg');
+
 const MarkdownItHighlight = MarkdownIt({
     highlight: (str, language) => {
         const lang = language || 'javascript';
@@ -12,7 +14,10 @@ const MarkdownItHighlight = MarkdownIt({
         if (hljs.getLanguage(lang)) {
             try {
                 return [
-                    `<pre class="hljs language-${lang}">`,
+                    `<pre class="hljs language-${lang} theme-monokai">`,
+                    '<div class="mac-toolsbar">',
+                    `<img src="${svgUrl}">`,
+                    '</div>',
                     `<table>`,
                     `<tbody>`,
                     value
@@ -83,7 +88,7 @@ export default {
                             <i class="el-icon-share" onClick={this.showCode} />
                         </el-tooltip>
                     </div>
-                    <div domProps-innerHTML={MarkdownHtml} class="markdown" />
+                    <div domProps-innerHTML={MarkdownHtml} class="markdown-container" />
                 </el-card>
                 <el-dialog
                     width="95%"
