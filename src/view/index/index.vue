@@ -1,5 +1,5 @@
 <template>
-    <div v-loading="loading">
+    <div v-loading="loading" style="height: 100%;">
         <div class="ss-topbar-mobile">
             <div class="topbar-inner">
                 <span class="el-icon-s-operation" @click="onClickOpen"></span>
