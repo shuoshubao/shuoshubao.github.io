@@ -11,28 +11,40 @@ module.exports = {
     semi: true,
     singleQuote: true,
     tabWidth: 4,
-    trailingComma: 'all',
+    trailingComma: 'none',
     useTabs: false,
     overrides: [
         {
             files: '*.json',
             options: {
                 parser: 'json',
-                tabWidth: 2,
-            },
-        },
-        {
-            files: '*.scss',
-            options: {
-                parser: 'css',
-                singleQuote: false,
-            },
+                tabWidth: 2
+            }
         },
         {
             files: '*.vue',
             options: {
-                parser: 'vue',
-            },
+                parser: 'vue'
+            }
         },
-    ],
+        {
+            files: '*.{css,scss,less}',
+            options: {
+                parser: 'css',
+                singleQuote: false
+            }
+        },
+        {
+            files: '*.md',
+            options: {
+                parser: 'markdown'
+            }
+        },
+        {
+            files: '*.{yml,yaml}',
+            options: {
+                parser: 'yaml'
+            }
+        }
+    ]
 };

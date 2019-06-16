@@ -4,11 +4,11 @@ import { DATA_NAV } from 'data';
 export default {
     props: {
         categorie: {
-            type: String,
+            type: String
         },
         listData: {
-            type: Object,
-        },
+            type: Object
+        }
     },
     render() {
         const { categorie, listData } = this;
@@ -21,9 +21,9 @@ export default {
                         ...listData[cur].map(v => {
                             return {
                                 ...v,
-                                categorie: cur,
+                                categorie: cur
                             };
-                        }),
+                        })
                     );
                     return prev;
                 }, []);
@@ -48,6 +48,6 @@ export default {
                 })}
             </el-card>
         );
-    },
+    }
 };
 </script>

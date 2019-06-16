@@ -27,24 +27,24 @@ const MarkdownItHighlight = MarkdownIt({
                         .join(''),
                     `</tbody>`,
                     `</table>`,
-                    `</pre>`,
+                    `</pre>`
                 ].join('');
             } catch (e) {
                 throw e;
             }
         }
         return '';
-    },
+    }
 });
 
 export default {
     props: {
         categorie: {
-            type: Array,
+            type: Array
         },
         listData: {
-            type: Object,
-        },
+            type: Object
+        }
     },
     data() {
         return {
@@ -53,8 +53,8 @@ export default {
             MarkdownHtml: '',
             dialogData: {
                 title: 'Markdown源码',
-                visible: false,
-            },
+                visible: false
+            }
         };
     },
     methods: {
@@ -70,7 +70,7 @@ export default {
         },
         showCode() {
             this.dialogData.visible = true;
-        },
+        }
     },
     created() {
         this.fetchData();
@@ -100,15 +100,15 @@ export default {
                         on: {
                             'update:visible': val => {
                                 this.dialogData.visible = val;
-                            },
-                        },
+                            }
+                        }
                     }}
                 >
                     <pre domProps-innerHTML={this.sourceCode} />
                 </el-dialog>
             </div>
         );
-    },
+    }
 };
 </script>
 

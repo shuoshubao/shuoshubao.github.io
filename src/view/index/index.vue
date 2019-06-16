@@ -6,12 +6,12 @@
             </div>
         </div>
         <el-container class="ss-container">
-            <el-aside width="150px" :class="['ss-aside', {open: mobileOpen}]" @click="onClickTopbar">
+            <el-aside width="150px" :class="['ss-aside', { open: mobileOpen }]" @click="onClickTopbar">
                 <div class="aside-inner">
                     <el-menu :default-active="defaultActive" @select="onSelectMenu">
                         <el-menu-item v-for="(item, index) in DATA_NAV" :key="index" :index="item.categorie">
                             <i class="el-icon-menu"></i>
-                            <span slot="title">{{item.text}}</span>
+                            <span slot="title">{{ item.text }}</span>
                         </el-menu-item>
                     </el-menu>
                 </div>
@@ -35,7 +35,7 @@ import Detail from './Detail';
 export default {
     components: {
         List,
-        Detail,
+        Detail
     },
     data() {
         return {
@@ -47,7 +47,7 @@ export default {
             validHashList: [],
             defaultActive: '',
             categorie: '',
-            pageType: '', // list detail error
+            pageType: '' // list detail error
         };
     },
     methods: {
@@ -76,7 +76,7 @@ export default {
                     prev.push(k, ...v.map(v2 => [k, v2.name].join('/')));
                     return prev;
                 },
-                ['', 'index'],
+                ['', 'index']
             );
         },
         onHashchange() {
@@ -102,7 +102,7 @@ export default {
         },
         renderError() {
             this.pageType = 'error';
-        },
+        }
     },
     mounted() {
         document.body.addEventListener('click', event => {
@@ -114,7 +114,7 @@ export default {
         this.validateUrl();
         window.addEventListener('hashchange', this.onHashchange, false);
         this.onHashchange();
-    },
+    }
 };
 </script>
 
@@ -122,7 +122,6 @@ export default {
 .ss-container {
     height: 100%;
     .ss-aside-mobile {
-
     }
     .ss-aside {
         border-right: 1px solid #e6e6e6;
@@ -155,7 +154,7 @@ export default {
         height: 40px;
         padding: 5px;
         line-height: 30px;
-        box-shadow: 0 0 2px rgba(0,0,0,0.25);
+        box-shadow: 0 0 2px rgba(0, 0, 0, 0.25);
         background-color: #fff;
     }
 }
