@@ -84,7 +84,7 @@ export default {
             const [categorie, articleName = ''] = hash.split('/');
             if (this.validHashList.includes(hash)) {
                 if (hash.includes('/')) {
-                    this.renderDetail(categorie, articleName);
+                    this.renderDetail(categorie, articleName.split('?')[0]);
                 } else {
                     this.renderList(categorie);
                 }
