@@ -1,10 +1,11 @@
 const isDevelopment = process.env.NODE_ENV === 'development';
+
 module.exports = {
     title: 'WEB前端开发',
     port: 9000,
     enableEslint: false,
     styles: ['scss'],
-    staticPrefix: '/dist',
+    staticPrefix: isDevelopment ? '/dist' : 'https://shuoshubao.github.io/dist/',
     unpkgConfigList: {
         script: [
             'https://unpkg.com/babel-polyfill@6.26.0/dist/polyfill.min.js',

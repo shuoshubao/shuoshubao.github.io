@@ -10,8 +10,8 @@
   "scripts": {
     "init": "parce init",
     "dll": "NODE_ENV=development parce dll && NODE_ENV=production parce dll",
-    "dev": "NODE_ENV=development parce dev",
-    "build": "NODE_ENV=production parce build",
+    "start": "NODE_ENV=development parce dev",
+    "build": "NODE_ENV=production parce build && cp dist/index.html index.html",
     "server": "parce server"
   },
   "dependencies": {
