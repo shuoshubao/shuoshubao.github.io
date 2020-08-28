@@ -1,5 +1,5 @@
 <template>
-    <div v-loading="loading" style="height: 100%;">
+    <div v-loading="loading" style="height: 100%">
         <div class="ss-topbar-mobile">
             <div class="topbar-inner">
                 <span class="el-icon-s-operation" @click="onClickOpen"></span>
@@ -70,7 +70,7 @@ export default {
                 });
         },
         validateUrl() {
-            const { DATA_NAV, DATA_ARTICLE } = this;
+            const { DATA_ARTICLE } = this;
             this.validHashList = Object.entries(DATA_ARTICLE).reduce(
                 (prev, [k, v]) => {
                     prev.push(k, ...v.map(v2 => [k, v2.name].join('/')));
@@ -105,7 +105,7 @@ export default {
         }
     },
     mounted() {
-        document.body.addEventListener('click', event => {
+        document.body.addEventListener('click', () => {
             this.mobileOpen = false;
         });
     },

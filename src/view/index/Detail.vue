@@ -18,16 +18,18 @@ const MarkdownItHighlight = MarkdownIt({
                     '<div class="mac-toolsbar">',
                     `<img src="${svgUrl}">`,
                     '</div>',
-                    `<table>`,
-                    `<tbody>`,
+                    '<table>',
+                    '<tbody>',
                     value
                         .trim()
-                        .split(`\n`)
-                        .map((v, i) => [`<tr>`, `<td data-line-number=${i + 1}></td>`, `<td>${v}</td>`, `</tr>`].join(''))
+                        .split('\n')
+                        .map((v, i) => {
+                            return ['<tr>', `<td data-line-number=${i + 1}></td>`, `<td>${v}</td>`, '</tr>'].join('');
+                        })
                         .join(''),
-                    `</tbody>`,
-                    `</table>`,
-                    `</pre>`
+                    '</tbody>',
+                    '</table>',
+                    '</pre>'
                 ].join('');
             } catch (e) {
                 throw e;

@@ -1,37 +1,74 @@
 {
-  "name": "shuoshubao.github.io",
-  "version": "1.0.0",
-  "repository": {
-    "url": "https://github.com/shuoshubao/shuoshubao.github.io.git",
-    "type": "git"
-  },
-  "author": "shuoshubao <759979885@qq.com>",
-  "license": "MIT",
-  "scripts": {
-    "init": "parce init",
-    "dll": "NODE_ENV=development parce dll && NODE_ENV=production parce dll",
-    "start": "NODE_ENV=development parce dev",
-    "build": "NODE_ENV=production parce build && cp dist/index.html index.html",
-    "server": "parce server"
-  },
-  "dependencies": {
-    "@nbfe/parce": "^1.0.0",
-    "markdown-it": "^8.4.0",
-    "vue-template-compiler": "2.6.10"
-  },
-  "devDependencies": {
-    "@nbfe/eslint": "^1.0.0"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "linters": {
-      "*.{js,json}": ["prettier --write", "git add"],
-      "*.js": ["eslint -f table", "git add"]
+    "name": "shuoshubao.github.io",
+    "version": "1.0.0",
+    "repository": {
+        "url": "https://github.com/shuoshubao/shuoshubao.github.io.git",
+        "type": "git"
     },
-    "ignore": ["dist/**"]
-  }
+    "author": "shuoshubao <759979885@qq.com>",
+    "license": "MIT",
+    "scripts": {
+        "init": "parce init",
+        "dll": "NODE_ENV=development parce dll && NODE_ENV=production parce dll",
+        "start": "NODE_ENV=development parce dev",
+        "build": "NODE_ENV=production parce build && cp dist/index.html index.html",
+        "server": "parce server",
+        "commit": "npx git-cz",
+        "prettier": "npx prettier --write",
+        "lint": "npx eslint --ext .ts,.tsx,.js,.jsx,.vue -f html -o ESLintReport.html",
+        "release:patch": "standard-version --release-as patch",
+        "release:minor": "standard-version --release-as minor",
+        "release:major": "standard-version --release-as major",
+        "release": "npm publish && git push && git push --follow-tags origin"
+    },
+    "dependencies": {
+        "@nbfe/parce": "^1.0.0",
+        "markdown-it": "^8.4.0",
+        "vue-template-compiler": "2.6.10"
+    },
+    "devDependencies": {
+        "@nbfe/config": "^0.1.7",
+        "@nbfe/flow": "^0.1.4"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": [
+                "lint-staged"
+            ],
+            "commit-msg": "commitlint -e $GIT_PARAMS"
+        }
+    },
+    "lint-staged": {
+        "linters": {
+            "*.{js,jsx,ts,tsx,json}": [
+                "prettier --write",
+                "git add"
+            ],
+            "*.js": [
+                "eslint -f table",
+                "git add"
+            ],
+            "*.{ts,tsx,js,jsx,vue,less,scss,sass,json,md}": [
+                "prettier --write",
+                "git add"
+            ],
+            "*.{ts,tsx,js,jsx,vue}": [
+                "eslint -f table",
+                "git add"
+            ]
+        },
+        "ignore": [
+            "CHANGELOG.md"
+        ]
+    },
+    "config": {
+        "commitizen": {
+            "path": "./node_modules/cz-conventional-changelog"
+        }
+    },
+    "commitlint": {
+        "extends": [
+            "@commitlint/config-conventional"
+        ]
+    }
 }
