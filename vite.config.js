@@ -6,8 +6,10 @@ import { createVuePlugin } from 'vite-plugin-vue2';
 export default ({ command, mode }) => {
     const isDevelopment = mode === 'development';
     return {
-        root: isDevelopment ? __dirname : resolve(__dirname, 'docs'),
         base: isDevelopment ? '/' : 'https://shuoshubao.github.io/dist/',
+        build: {
+            manifest: true
+        },
         resolve: {
             alias: {
                 '@': resolve(__dirname, 'src')

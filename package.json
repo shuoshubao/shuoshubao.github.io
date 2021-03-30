@@ -9,7 +9,7 @@
     "license": "MIT",
     "scripts": {
         "start": "npx vite",
-        "build": "npx vite build",
+        "build": "npx vite build && cp -R dist/ docs/",
         "commit": "npx git-cz",
         "prettier": "npx prettier --write",
         "lint": "npx eslint --ext .ts,.tsx,.js,.jsx,.vue -f html -o ESLintReport.html"
