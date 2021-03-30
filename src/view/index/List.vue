@@ -1,5 +1,19 @@
+<template>
+    <el-card>
+        <div slot="header">
+            <span>共</span>
+            <el-button type="text">{{ list.length }}</el-button>
+            <span>篇文章</span>
+        </div>
+        <div v-for="(v, i) in list">
+            <a :href="`#${[v.categorie || categorie, v.name].join('/')}`">
+                <el-button type="text">{{ v.title }}</el-button>
+            </a>
+        </div>
+    </el-card>
+</template>
 <script>
-import { DATA_NAV } from 'data';
+import { DATA_NAV } from '@/data';
 
 export default {
     props: {
@@ -10,7 +24,7 @@ export default {
             type: Object
         }
     },
-    render() {
+    data() {
         const { categorie, listData } = this;
         let list = [];
         if (['index', ''].includes(categorie)) {
@@ -30,24 +44,9 @@ export default {
         } else {
             list = listData[categorie];
         }
-        return (
-            <el-card>
-                <div slot="header">
-                    <span>共</span>
-                    <el-button type="text">{list.length}</el-button>
-                    <span>篇文章</span>
-                </div>
-                {list.map((v, i) => {
-                    return (
-                        <div>
-                            <a href={`#${[v.categorie || categorie, v.name].join('/')}`}>
-                                <el-button type="text">{v.title}</el-button>
-                            </a>
-                        </div>
-                    );
-                })}
-            </el-card>
-        );
+        return {
+            list
+        };
     }
 };
 </script>

@@ -8,27 +8,28 @@
     "author": "shuoshubao <759979885@qq.com>",
     "license": "MIT",
     "scripts": {
-        "init": "parce init",
-        "dll": "NODE_ENV=development parce dll && NODE_ENV=production parce dll",
-        "start": "NODE_ENV=development parce dev",
-        "build": "NODE_ENV=production parce build && cp dist/index.html index.html",
-        "server": "parce server",
+        "start": "npx vite",
+        "build": "npx vite build",
         "commit": "npx git-cz",
         "prettier": "npx prettier --write",
-        "lint": "npx eslint --ext .ts,.tsx,.js,.jsx,.vue -f html -o ESLintReport.html",
-        "release:patch": "standard-version --release-as patch",
-        "release:minor": "standard-version --release-as minor",
-        "release:major": "standard-version --release-as major",
-        "release": "npm publish && git push && git push --follow-tags origin"
+        "lint": "npx eslint --ext .ts,.tsx,.js,.jsx,.vue -f html -o ESLintReport.html"
     },
     "dependencies": {
-        "@nbfe/parce": "^1.0.0",
+        "element-ui": "2.8.2",
         "markdown-it": "^8.4.0",
+        "vue": "2.6.10",
         "vue-template-compiler": "2.6.10"
     },
     "devDependencies": {
         "@nbfe/config": "^0.1.7",
-        "@nbfe/flow": "^0.1.4"
+        "@nbfe/flow": "^0.1.4",
+        "@vue/babel-plugin-jsx": "^1.0.3",
+        "@vue/compiler-sfc": "^3.0.5",
+        "node-sass": "^5.0.0",
+        "sass": "^1.32.8",
+        "sass-loader": "^11.0.1",
+        "vite": "^2.1.0",
+        "vite-plugin-vue2": "^1.4.2"
     },
     "husky": {
         "hooks": {

@@ -28,9 +28,9 @@
 </template>
 
 <script>
-import { DATA_META, DATA_NAV } from 'data';
-import List from './List';
-import Detail from './Detail';
+import { DATA_META, DATA_NAV } from '@/data';
+import List from './List.vue';
+import Detail from './Detail.vue';
 
 export default {
     components: {
@@ -131,7 +131,7 @@ export default {
             position: sticky;
             top: 0;
         }
-        /deep/ .el-menu {
+        .el-menu {
             width: 100%;
             border-right: none;
         }

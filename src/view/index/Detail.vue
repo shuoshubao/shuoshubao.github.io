@@ -1,9 +1,38 @@
+<template>
+    <div>
+        <el-card v-loading={this.loading}>
+            <div slot="header" style="display: flex; justify-content: space-between;">
+                <span>{articleTitle}</span>
+                <el-tooltip effect="dark" content="Markdown源码" placement="top-start">
+                    <i class="el-icon-share" onClick={this.showCode} />
+                </el-tooltip>
+            </div>
+            <div domProps-innerHTML={MarkdownHtml} class="markdown-container" />
+        </el-card>
+        <el-dialog
+            width="95%"
+            top="50px"
+            class="dialog-markdown"
+            title={dialogData.title}
+            visible={dialogData.visible}
+            {...{
+                on: {
+                    'update:visible': val => {
+                        this.dialogData.visible = val;
+                    }
+                }
+            }}
+        >
+            <pre domProps-innerHTML={this.sourceCode} />
+        </el-dialog>
+    </div>
+</template>
 <script>
 import MarkdownIt from 'markdown-it';
-import hljs from 'util/highlight.js/lib';
-import 'util/highlight.js/styles/github.css';
-import 'style/highlight-table.scss';
-import 'style/markdown.scss';
+import hljs from '@/util/highlight.js/lib';
+import '@/util/highlight.js/styles/github.css';
+import '@/style/highlight-table.scss';
+import '@/style/markdown.scss';
 
 const svgUrl = require('img/mac-toolsbar.svg');
 
@@ -49,6 +78,8 @@ export default {
         }
     },
     data() {
+        const { categorie: categories, listData } = this.props;
+        const articleTitle = listData[categorie].find(v => v.name === articleName).title;
         return {
             loading: true,
             sourceCode: '',
@@ -56,7 +87,8 @@ export default {
             dialogData: {
                 title: 'Markdown源码',
                 visible: false
-            }
+            },
+
         };
     },
     methods: {
@@ -77,54 +109,29 @@ export default {
     created() {
         this.fetchData();
     },
-    render() {
-        const { MarkdownHtml, categorie: categories, listData, dialogData } = this;
-        const [categorie, articleName] = categories;
-        const articleTitle = listData[categorie].find(v => v.name === articleName).title;
-        return (
-            <div>
-                <el-card v-loading={this.loading}>
-                    <div slot="header" style="display: flex; justify-content: space-between;">
-                        <span>{articleTitle}</span>
-                        <el-tooltip effect="dark" content="Markdown源码" placement="top-start">
-                            <i class="el-icon-share" onClick={this.showCode} />
-                        </el-tooltip>
-                    </div>
-                    <div domProps-innerHTML={MarkdownHtml} class="markdown-container" />
-                </el-card>
-                <el-dialog
-                    width="95%"
-                    top="50px"
-                    class="dialog-markdown"
-                    title={dialogData.title}
-                    visible={dialogData.visible}
-                    {...{
-                        on: {
-                            'update:visible': val => {
-                                this.dialogData.visible = val;
-                            }
-                        }
-                    }}
-                >
-                    <pre domProps-innerHTML={this.sourceCode} />
-                </el-dialog>
-            </div>
-        );
-    }
+
+    // render() {
+    //     const { MarkdownHtml, categorie: categories, listData, dialogData } = this;
+    //     const [categorie, articleName] = categories;
+    //     const articleTitle = listData[categorie].find(v => v.name === articleName).title;
+    //     return (
+
+    //     );
+    // }
 };
 </script>
 
 <style lang="scss" scoped>
 .dialog-markdown {
     overflow: hidden;
-    /deep/ .el-dialog {
+    .el-dialog {
         margin-top: 50px !important;
         width: 95% !important;
     }
-    /deep/ .el-dialog__header {
+    .el-dialog__header {
         height: 50px;
     }
-    /deep/ .el-dialog__body {
+    .el-dialog__body {
         max-height: calc(100vh - 150px);
         overflow: auto;
         padding: 20px;
