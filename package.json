@@ -25,7 +25,7 @@
         "@nbfe/flow": "^0.1.4",
         "@vue/babel-plugin-jsx": "^1.0.3",
         "@vue/compiler-sfc": "^3.0.5",
-        "node-sass": "^5.0.0",
+        "node-sass": "^4.13.1",
         "sass": "^1.32.8",
         "sass-loader": "^11.0.1",
         "vite": "^2.1.0",
