@@ -1,4 +1,4 @@
-.hljs {
+.highlight {
     line-height: 18px;
     overflow: auto;
     padding: 0 12px 12px 12px;
@@ -46,5 +46,8 @@
     }
     table {
         display: table;
+        thead th {
+            display: none;
+        }
     }
 }

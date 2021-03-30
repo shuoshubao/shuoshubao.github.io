@@ -16,7 +16,7 @@
                     </el-menu>
                 </div>
             </el-aside>
-            <el-main class="ss-main">
+            <el-main class="ss-main" :key="[pageType, categorie].join('_')">
                 <List v-if="pageType === 'list'" :categorie="categorie" :list-data="DATA_ARTICLE"></List>
                 <Detail v-if="pageType === 'detail'" :categorie="categorie" :list-data="DATA_ARTICLE"></Detail>
                 <div v-if="pageType === 'error'">
@@ -66,6 +66,9 @@ export default {
                 .then(res => res.json())
                 .then(res => {
                     this.DATA_ARTICLE = res;
+                    this.loading = false;
+                })
+                .catch(() => {
                     this.loading = false;
                 });
         },

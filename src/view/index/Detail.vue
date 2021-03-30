@@ -1,70 +1,59 @@
 <template>
     <div>
-        <el-card v-loading={this.loading}>
-            <div slot="header" style="display: flex; justify-content: space-between;">
-                <span>{articleTitle}</span>
+        <el-card v-loading="loading">
+            <div slot="header" style="display: flex; justify-content: space-between">
+                <span>{{ articleTitle }}</span>
                 <el-tooltip effect="dark" content="Markdown源码" placement="top-start">
-                    <i class="el-icon-share" onClick={this.showCode} />
+                    <i class="el-icon-share" @click="showCode" />
                 </el-tooltip>
             </div>
-            <div domProps-innerHTML={MarkdownHtml} class="markdown-container" />
+            <div v-html="MarkdownHtml" class="markdown-container" />
         </el-card>
         <el-dialog
+            :visible.sync="dialogData.visible"
             width="95%"
             top="50px"
             class="dialog-markdown"
-            title={dialogData.title}
-            visible={dialogData.visible}
-            {...{
-                on: {
-                    'update:visible': val => {
-                        this.dialogData.visible = val;
-                    }
-                }
-            }}
+            :title="dialogData.title"
         >
-            <pre domProps-innerHTML={this.sourceCode} />
+            <pre v-html="sourceCode" />
         </el-dialog>
     </div>
 </template>
+
 <script>
 import MarkdownIt from 'markdown-it';
-import hljs from '@/util/highlight.js/lib';
-import '@/util/highlight.js/styles/github.css';
+import Prism from 'prismjs';
+import { createElement, generateTable } from '@nbfe/js2html';
+import 'prismjs/themes/prism.css';
 import '@/style/highlight-table.scss';
 import '@/style/markdown.scss';
-
-const svgUrl = require('img/mac-toolsbar.svg');
+import '@/style/prism.scss';
 
 const MarkdownItHighlight = MarkdownIt({
     highlight: (str, language) => {
         const lang = language || 'javascript';
-        const { value } = hljs.highlight(lang, str);
-        if (hljs.getLanguage(lang)) {
-            try {
-                return [
-                    `<pre class="hljs language-${lang} theme-monokai">`,
-                    '<div class="mac-toolsbar">',
-                    `<img src="${svgUrl}">`,
-                    '</div>',
-                    '<table>',
-                    '<tbody>',
-                    value
-                        .trim()
-                        .split('\n')
-                        .map((v, i) => {
-                            return ['<tr>', `<td data-line-number=${i + 1}></td>`, `<td>${v}</td>`, '</tr>'].join('');
-                        })
-                        .join(''),
-                    '</tbody>',
-                    '</table>',
-                    '</pre>'
-                ].join('');
-            } catch (e) {
-                throw e;
-            }
-        }
-        return '';
+        const content = Prism.highlight(str, Prism.languages[lang], lang).trim();
+        const data = content.split('\n').map((v, i) => {
+            return {
+                index: i + 1,
+                text: v
+            };
+        });
+        const tableHtml = generateTable(
+            [
+                { prop: 'index', label: '索引' },
+                { prop: 'text', label: '内容' }
+            ],
+            data
+        );
+        return createElement({
+            tagName: 'pre',
+            attrs: {
+                class: `highlight language-${lang}`
+            },
+            children: [tableHtml]
+        });
     }
 });
 
@@ -78,17 +67,15 @@ export default {
         }
     },
     data() {
-        const { categorie: categories, listData } = this.props;
-        const articleTitle = listData[categorie].find(v => v.name === articleName).title;
         return {
             loading: true,
+            articleTitle: '',
             sourceCode: '',
             MarkdownHtml: '',
             dialogData: {
                 title: 'Markdown源码',
                 visible: false
-            },
-
+            }
         };
     },
     methods: {
@@ -106,22 +93,17 @@ export default {
             this.dialogData.visible = true;
         }
     },
-    created() {
-        this.fetchData();
-    },
-
-    // render() {
-    //     const { MarkdownHtml, categorie: categories, listData, dialogData } = this;
-    //     const [categorie, articleName] = categories;
-    //     const articleTitle = listData[categorie].find(v => v.name === articleName).title;
-    //     return (
-
-    //     );
-    // }
+    async created() {
+        await this.fetchData();
+        const { listData } = this;
+        const [categorie, articleName] = this.categorie;
+        const articleTitle = listData[categorie].find(v => v.name === articleName).title;
+        this.articleTitle = articleTitle;
+    }
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .dialog-markdown {
     overflow: hidden;
     .el-dialog {
