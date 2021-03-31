@@ -26,9 +26,9 @@ import MarkdownIt from 'markdown-it';
 import Prism from 'prismjs';
 import { createElement, generateTable } from '@nbfe/js2html';
 import 'prismjs/themes/prism.css';
-import '@/style/highlight-table.scss';
-import '@/style/markdown.scss';
-import '@/style/prism.scss';
+import '@/assets/styles/highlight-table.scss';
+import '@/assets/styles/markdown.scss';
+import '@/assets/styles/prism.scss';
 
 const MarkdownItHighlight = MarkdownIt({
     highlight: (str, language) => {

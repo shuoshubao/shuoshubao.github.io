@@ -13,7 +13,7 @@
     </el-card>
 </template>
 <script>
-import { DATA_NAV } from '@/data';
+import { DATA_NAV } from '@/config';
 
 export default {
     props: {

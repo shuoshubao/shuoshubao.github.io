@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import { DATA_META, DATA_NAV } from '@/data';
+import { DATA_META, DATA_NAV } from '@/config';
 import List from './List.vue';
 import Detail from './Detail.vue';
 
