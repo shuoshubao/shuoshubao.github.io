@@ -9,7 +9,7 @@
     "license": "MIT",
     "scripts": {
         "start": "npx vite",
-        "build": "npx vite build && cp -R dist/ docs/",
+        "build": "npx vite build && rm -rf docs && cp -R dist/ docs/ && rm -rf dist",
         "commit": "npx git-cz",
         "prettier": "npx prettier --write",
         "lint": "npx eslint --ext .ts,.tsx,.js,.jsx,.vue -f html -o ESLintReport.html"
@@ -19,15 +19,15 @@
         "element-ui": "2.8.2",
         "markdown-it": "^12.0.4",
         "prismjs": "^1.23.0",
-        "vue": "2.6.10",
-        "vue-template-compiler": "2.6.10"
+        "vue": "2.6.10"
     },
     "devDependencies": {
         "@nbfe/config": "^0.1.7",
         "@nbfe/flow": "^0.1.4",
         "sass": "^1.32.8",
         "vite": "^2.1.0",
-        "vite-plugin-vue2": "^1.4.2"
+        "vite-plugin-vue2": "^1.4.2",
+        "vue-template-compiler": "2.6.10"
     },
     "husky": {
         "hooks": {
