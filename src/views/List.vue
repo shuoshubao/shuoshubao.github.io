@@ -2,13 +2,11 @@
     <el-card>
         <div slot="header">
             <span>共</span>
-            <el-button type="text">{{ list.length }}</el-button>
+            <el-link type="primary">{{ list.length }}</el-link>
             <span>篇文章</span>
         </div>
-        <div v-for="(v, i) in list">
-            <a :href="`#${[v.categorie || categorie, v.name].join('/')}`">
-                <el-button type="text">{{ v.title }}</el-button>
-            </a>
+        <div v-for="(v, i) in list" style="padding: 10px 0; line-height: 20px" :key="i">
+            <el-link :href="`#${[v.categorie || categorie, v.name].join('/')}`" type="primary">{{ v.title }}</el-link>
         </div>
     </el-card>
 </template>

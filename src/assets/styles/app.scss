@@ -46,3 +46,10 @@ table {
     height: 4px;
     background-color: #fcf8e3;
 }
+
+.el-card {
+    .el-card__header,
+    .el-card__body {
+        padding: 10px;
+    }
+}

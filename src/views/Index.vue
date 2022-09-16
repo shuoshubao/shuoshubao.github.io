@@ -124,8 +124,6 @@ export default {
 <style lang="scss" scoped>
 .ss-container {
     height: 100%;
-    .ss-aside-mobile {
-    }
     .ss-aside {
         border-right: 1px solid #e6e6e6;
         box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
