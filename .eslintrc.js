@@ -1,8 +1,3 @@
-const EslintConfig = require('@nbfe/config/eslint-vue');
+const { getESLintConfig } = require('@nbfe/standard')
 
-module.exports = {
-    ...EslintConfig,
-    rules: {
-        ...EslintConfig.rules
-    }
-};
+module.exports = getESLintConfig(['vue'])

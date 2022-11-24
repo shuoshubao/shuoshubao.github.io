@@ -1,53 +1,63 @@
 .highlight {
-    line-height: 18px;
-    overflow: auto;
-    padding: 0 12px 12px 12px;
-    transition: border-color 0.2s;
-    border-radius: 3px;
-    background-color: #fff;
-    box-shadow: inset 0 0 2px rgba(2, 128, 174, 0.3);
-    .mac-toolsbar {
-        padding: 12px 0;
+  padding: 0 12px 12px;
+  overflow: auto;
+  line-height: 18px;
+  background-color: #fff;
+  border-radius: 3px;
+  box-shadow: inset 0 0 2px rgb(2 128 174 / 30%);
+  transition: border-color 0.2s;
+
+  .mac-toolsbar {
+    padding: 12px 0;
+  }
+
+  tr:hover td {
+    background-color: transparent;
+  }
+
+  td {
+    height: 20px;
+    padding: 0 !important;
+    border: none !important;
+
+    &:first-child {
+      width: 20px;
+      padding: 0 10px !important;
+      color: rgb(27 31 35 / 30%);
+      text-align: right;
+
+      &::before {
+        content: attr(data-line-number);
+      }
     }
-    tr:hover td {
-        background-color: transparent;
+  }
+
+  &:hover {
+    border-color: rgb(2 128 174);
+    box-shadow: 0 0 5px 0 rgb(0 0 0 / 40%);
+  }
+
+  &,
+  code {
+    font-size: 12px;
+    font-family: Consolas, 'Liberation Mono', Courier, monospace;
+  }
+
+  code {
+    margin: 0;
+    padding: 0;
+    padding: 1px 3px;
+    color: #555;
+    background: transparent;
+    background-color: rgb(0 0 0 / 4%);
+    border: none;
+  }
+
+  table {
+    display: table;
+
+    thead th {
+      display: none;
     }
-    td {
-        height: 20px;
-        padding: 0 !important;
-        border: none !important;
-        &:first-child {
-            width: 20px;
-            text-align: right;
-            color: rgba(27, 31, 35, 0.3);
-            padding: 0 10px !important;
-            &:before {
-                content: attr(data-line-number);
-            }
-        }
-    }
-    &:hover {
-        border-color: rgb(2, 128, 174);
-        box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.4);
-    }
-    &,
-    code {
-        font-family: Consolas, 'Liberation Mono', Courier, monospace;
-        font-size: 12px;
-    }
-    code {
-        margin: 0;
-        padding: 0;
-        padding: 1px 3px;
-        color: #555;
-        border: none;
-        background: transparent;
-        background-color: rgba(0, 0, 0, 0.04);
-    }
-    table {
-        display: table;
-        thead th {
-            display: none;
-        }
-    }
+  }
 }

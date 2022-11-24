@@ -1,73 +1,67 @@
 {
-    "name": "shuoshubao.github.io",
-    "version": "1.0.0",
-    "repository": {
-        "url": "https://github.com/shuoshubao/shuoshubao.github.io.git",
-        "type": "git"
-    },
-    "author": "shuoshubao <759979885@qq.com>",
-    "license": "MIT",
-    "scripts": {
-        "start": "npx vite",
-        "build": "npx vite build && rm -rf docs && cp -R dist/ docs/ && rm -rf dist",
-        "commit": "npx git-cz",
-        "prettier": "npx prettier --write",
-        "lint": "npx eslint --ext .ts,.tsx,.js,.jsx,.vue -f html -o ESLintReport.html"
-    },
-    "dependencies": {
-        "@nbfe/js2html": "^1.1.6",
-        "element-ui": "2.8.2",
-        "markdown-it": "^12.0.4",
-        "prismjs": "^1.23.0",
-        "vue": "2.6.10"
-    },
-    "devDependencies": {
-        "@nbfe/config": "^0.1.7",
-        "@nbfe/flow": "^0.1.4",
-        "sass": "^1.32.8",
-        "vite": "^2.1.0",
-        "vite-plugin-vue2": "^1.4.2",
-        "vue-template-compiler": "2.6.10"
-    },
-    "husky": {
-        "hooks": {
-            "pre-commit": [
-                "lint-staged"
-            ],
-            "commit-msg": "commitlint -e $GIT_PARAMS"
-        }
-    },
-    "lint-staged": {
-        "linters": {
-            "*.{js,jsx,ts,tsx,json}": [
-                "prettier --write",
-                "git add"
-            ],
-            "*.js": [
-                "eslint -f table",
-                "git add"
-            ],
-            "*.{ts,tsx,js,jsx,vue,less,scss,sass,json,md}": [
-                "prettier --write",
-                "git add"
-            ],
-            "*.{ts,tsx,js,jsx,vue}": [
-                "eslint -f table",
-                "git add"
-            ]
-        },
-        "ignore": [
-            "CHANGELOG.md"
-        ]
-    },
-    "config": {
-        "commitizen": {
-            "path": "./node_modules/cz-conventional-changelog"
-        }
-    },
-    "commitlint": {
-        "extends": [
-            "@commitlint/config-conventional"
-        ]
+  "name": "shuoshubao.github.io",
+  "version": "1.0.0",
+  "private": true,
+  "repository": {
+    "url": "https://github.com/shuoshubao/shuoshubao.github.io.git",
+    "type": "git"
+  },
+  "author": "shuoshubao <759979885@qq.com>",
+  "scripts": {
+    "start": "npx vite",
+    "build": "npx vite build && rm -rf docs && cp -R dist/ docs/ && rm -rf dist",
+    "commit": "npx git-cz",
+    "prettier": "npx prettier --write",
+    "lint": "npx eslint --ext .ts,.tsx,.js,.jsx,.vue -f html -o ESLintReport.html",
+    "lint:style": "npx stylelint --fix -o StyleLintReport.html --aei --custom-formatter node_modules/stylelint-formatters-html **/*.{css,less,scss,sass}"
+  },
+  "dependencies": {
+    "@nbfe/js2html": "^1.1.6",
+    "element-ui": "2.8.2",
+    "markdown-it": "^12.0.4",
+    "prismjs": "^1.23.0",
+    "vue": "2.6.10"
+  },
+  "devDependencies": {
+    "@nbfe/standard": "^1.0.6",
+    "sass": "^1.32.8",
+    "vite": "^2.1.0",
+    "vite-plugin-vue2": "1.4.2",
+    "vue-template-compiler": "2.6.10"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -e $GIT_PARAMS",
+      "pre-commit": "lint-staged"
     }
+  },
+  "lint-staged": {
+    "linters": {
+      "*.{ts,tsx,js,jsx,vue,css,less,scss,sass,json,md}": [
+        "prettier --write",
+        "git add"
+      ],
+      "*.{css,less,scss,sass}": [
+        "npx stylelint --fix",
+        "git add"
+      ],
+      "*.{ts,tsx,js,jsx,vue}": [
+        "eslint -f table",
+        "git add"
+      ]
+    },
+    "ignore": [
+      "CHANGELOG.md"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  }
 }

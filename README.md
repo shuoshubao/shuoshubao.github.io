@@ -1,9 +1,4 @@
-# shuoshubao.github.io
+# 简介
 
-* git clone https://github.com/shuoshubao/shuoshubao.github.io.git
-* cd shuoshubao.github.io
-* yarn // 安装依赖
-* yarn run dll // webpack.dll
-* yarn run dev // 开发
-* yarn run build // 上线
-* yarn run server // 上线
+- 网站: https://shuoshubao.github.io
+- 数据源: https://github.com/shuoshubao/blog

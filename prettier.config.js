@@ -1,5 +1,3 @@
-const PrettierConfig = require('@nbfe/config/prettier.config');
+const PrettierConfig = require('@nbfe/standard/prettier.config')
 
-module.exports = {
-    ...PrettierConfig
-};
+module.exports = PrettierConfig
