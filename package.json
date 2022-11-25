@@ -9,7 +9,7 @@
   "author": "shuoshubao <759979885@qq.com>",
   "scripts": {
     "start": "npx vite",
-    "build": "npx vite build && rm -rf docs && cp -R dist/ docs/ && rm -rf dist",
+    "build": "npx vite build && rm -rf docs && cp -R dist/ docs/ && rm -rf dist && prettier -w docs/index.html",
     "commit": "npx git-cz",
     "prettier": "npx prettier --write",
     "lint": "npx eslint --ext .ts,.tsx,.js,.jsx,.vue -f html -o ESLintReport.html",
