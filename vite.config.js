@@ -5,7 +5,6 @@ import { createVuePlugin } from 'vite-plugin-vue2'
 export default ({ mode }) => {
   const isDevelopment = mode === 'development'
   return {
-    base: isDevelopment ? '/' : 'https://shuoshubao.github.io/',
     build: {
       manifest: true,
       polyfillDynamicImport: false
