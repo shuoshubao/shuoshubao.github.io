@@ -16,10 +16,11 @@
     "lint:style": "npx stylelint --fix -o StyleLintReport.html --aei --custom-formatter node_modules/stylelint-formatters-html **/*.{css,less,scss,sass}"
   },
   "dependencies": {
-    "@nbfe/js2html": "^1.1.6",
+    "@nbfe/tools": "^0.2.16",
     "element-ui": "2.8.2",
-    "markdown-it": "^12.0.4",
-    "prismjs": "^1.23.0",
+    "highlight.js": "^11.7.0",
+    "markdown-it": "^13.0.1",
+    "pako": "^2.1.0",
     "vue": "2.6.10"
   },
   "devDependencies": {

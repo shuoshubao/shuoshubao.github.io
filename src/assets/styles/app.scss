@@ -19,6 +19,11 @@ table {
   border-spacing: 0;
 }
 
+iframe {
+  display: block;
+  border: 0;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -45,11 +50,4 @@ table {
   width: 4px;
   height: 4px;
   background-color: #fcf8e3;
-}
-
-.el-card {
-  .el-card__header,
-  .el-card__body {
-    padding: 10px;
-  }
 }

@@ -4,10 +4,10 @@
       <div slot="header" style="display: flex; justify-content: space-between">
         <span>{{ articleTitle }}</span>
         <el-tooltip effect="dark" content="Markdown源码" placement="top-start">
-          <i class="el-icon-share" @click="showCode" />
+          <i class="el-icon-view" @click="showCode" />
         </el-tooltip>
       </div>
-      <div v-html="MarkdownHtml" class="markdown-container" />
+      <div v-html="MarkdownHtml" class="markdown-body" />
     </el-card>
     <el-dialog
       :visible.sync="dialogData.visible"
@@ -16,44 +16,35 @@
       class="dialog-markdown"
       :title="dialogData.title"
     >
-      <pre v-html="sourceCode" />
+      <pre v-html="sourceCode" style="margin: 0" />
     </el-dialog>
   </div>
 </template>
 
 <script>
 import MarkdownIt from 'markdown-it'
-import Prism from 'prismjs'
-import { createElement, generateTable } from '@nbfe/js2html'
-import 'prismjs/themes/prism.css'
-import '@/assets/styles/highlight-table.scss'
+import hljs from 'highlight.js'
+import { copyText } from '@nbfe/tools'
+import 'highlight.js/styles/github.css'
 import '@/assets/styles/markdown.scss'
-import '@/assets/styles/prism.scss'
 
 const MarkdownItHighlight = MarkdownIt({
-  highlight: (str, language) => {
-    const lang = language || 'javascript'
-    const content = Prism.highlight(str, Prism.languages[lang], lang).trim()
-    const data = content.split('\n').map((v, i) => {
-      return {
-        index: i + 1,
-        text: v
-      }
-    })
-    const tableHtml = generateTable(
-      [
-        { prop: 'index', label: '索引' },
-        { prop: 'text', label: '内容' }
-      ],
-      data
-    )
-    return createElement({
-      tagName: 'pre',
-      attrs: {
-        class: `highlight language-${lang}`
-      },
-      children: [tableHtml]
-    })
+  highlight: (str, lang) => {
+    if (lang && hljs.getLanguage(lang)) {
+      try {
+        const { code, value } = hljs.highlight(str, { language: lang })
+        return [
+          '<pre>',
+          `<code class="hljs language-${lang}" lang="${lang}">`,
+          value,
+          `<span class="btn-copycode" data-code="${btoa(encodeURIComponent(code))}">复制代码</span>`,
+          '</code>',
+          '</pre>'
+        ].join('')
+      } catch (__) {}
+    }
+
+    return ''
   }
 })
 
@@ -79,15 +70,27 @@ export default {
     }
   },
   methods: {
-    fetchData() {
+    async fetchData() {
       const { categorie } = this
-      fetch(`https://raw.githubusercontent.com/shuoshubao/blog/master/article/${categorie.join('/')}.md`)
-        .then(res => res.text())
-        .then(res => {
-          this.sourceCode = res
-          this.MarkdownHtml = MarkdownItHighlight.render(res)
-          this.loading = false
+      const md = await fetch(
+        `https://raw.githubusercontent.com/shuoshubao/blog/master/article/${categorie.join('/')}.md`
+      ).then(res => res.text())
+      this.sourceCode = md
+      this.MarkdownHtml = MarkdownItHighlight.render(md)
+      this.loading = false
+      await this.$nextTick()
+      document.querySelectorAll('.btn-copycode').forEach(v => {
+        v.addEventListener('click', () => {
+          const code = decodeURIComponent(atob(v.dataset.code))
+          copyText(code)
+          this.$message({
+            message: '代码复制成功',
+            type: 'success',
+            duration: 2000
+          })
+          return false
         })
+      })
     },
     showCode() {
       this.dialogData.visible = true
@@ -109,14 +112,12 @@ export default {
   .el-dialog {
     margin-top: 50px !important;
     width: 95% !important;
-  }
-  .el-dialog__header {
-    height: 50px;
-  }
-  .el-dialog__body {
-    max-height: calc(100vh - 150px);
-    overflow: auto;
-    padding: 20px;
+    .el-dialog__body {
+      max-height: calc(100vh - 154px);
+      overflow: auto;
+      padding: 10px;
+      background-color: #f8f8f8;
+    }
   }
 }
 </style>
