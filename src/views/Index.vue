@@ -20,7 +20,7 @@
         <List v-if="pageType === 'list'" :categorie="categorie" :list-data="DATA_ARTICLE"></List>
         <Detail v-if="pageType === 'detail'" :categorie="categorie" :list-data="DATA_ARTICLE"></Detail>
         <div v-if="pageType === 'error'">
-          <el-alert title="您访问的博客不存在" type="error" :closable="false"></el-alert>
+          <el-empty description="您访问的博客不存在"></el-empty>
         </div>
       </el-main>
     </el-container>

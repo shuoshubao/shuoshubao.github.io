@@ -1,20 +1,20 @@
 {
   "index.html": {
-    "file": "assets/index.94064d7c.js",
+    "file": "assets/index.433be6c1.js",
     "src": "index.html",
     "isEntry": true,
     "imports": [
-      "_vendor.c92154d8.js"
+      "_vendor.259618d5.js"
     ],
     "css": [
-      "assets/index.37e7376c.css"
+      "assets/index.c40f1986.css"
     ],
     "assets": [
       "assets/element-icons.ab40a589.woff",
       "assets/element-icons.a30f5b3b.ttf"
     ]
   },
-  "_vendor.c92154d8.js": {
-    "file": "assets/vendor.c92154d8.js"
+  "_vendor.259618d5.js": {
+    "file": "assets/vendor.259618d5.js"
   }
 }
