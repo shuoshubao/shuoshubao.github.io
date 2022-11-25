@@ -25,19 +25,24 @@
 import MarkdownIt from 'markdown-it'
 import hljs from 'highlight.js'
 import { copyText } from '@nbfe/tools'
-import 'highlight.js/styles/github.css'
+import 'highlight.js/styles/vs2015.css'
 import '@/assets/styles/markdown.scss'
 
 const MarkdownItHighlight = MarkdownIt({
   highlight: (str, lang) => {
     if (lang && hljs.getLanguage(lang)) {
       try {
-        const { code, value } = hljs.highlight(str, { language: lang })
+        const { code, value } = hljs.highlight(str.trim(), { language: lang })
         return [
           '<pre>',
           `<code class="hljs language-${lang}" lang="${lang}">`,
-          value,
-          `<span class="btn-copycode" data-code="${btoa(encodeURIComponent(code))}">复制代码</span>`,
+          ...value.split('\n').map(v => {
+            return `<div class="line">${v}</div>`
+          }),
+          '<span class="markdown-code-btns">',
+          `<span class="btn-lang">${lang}</span>`,
+          `<span class="el-icon-document-copy btn-copycode" data-code="${btoa(encodeURIComponent(code))}"></span>`,
+          '</span>',
           '</code>',
           '</pre>'
         ].join('')

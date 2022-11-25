@@ -2,35 +2,52 @@
   & > *:first-child {
     margin-top: 0;
   }
-
   pre {
     position: relative;
-
+    line-height: 20px;
     code {
       display: block;
       margin: 0;
       padding: 16px 12px;
       overflow-x: auto;
       word-break: normal;
-      background-color: #f8f8f8;
+      background: rgb(24, 24, 27);
+      counter-reset: line;
 
-      &.hljs[lang]::before {
-        position: absolute;
-        top: 2px;
-        right: 70px;
-        color: hsl(0deg 0% 54.9% / 80%);
-        content: attr(lang);
+      .line {
+        &::before {
+          margin-right: 1rem;
+          display: inline-block;
+          width: 1rem;
+          text-align: right;
+          color: rgb(82 82 82);
+          counter-increment: line;
+          content: counter(line);
+        }
       }
 
-      .btn-copycode {
+      .markdown-code-btns {
         position: absolute;
-        top: 6px;
-        right: 15px;
+        top: 5px;
+        right: 10px;
         color: hsl(0deg 0% 54.9% / 80%);
-        font-size: 12px;
-        line-height: 1;
-        cursor: pointer;
-        transition: color 0.1s;
+        line-height: 20px;
+        font-size: 0;
+        .btn-lang {
+          display: inline-block;
+          padding: 0 5px;
+          line-height: 20px;
+          cursor: default;
+          font-size: 14px;
+        }
+        .btn-copycode {
+          font-size: 14px;
+          line-height: 20px;
+          padding: 0 5px;
+          font-size: 14px;
+          cursor: pointer;
+          transition: color 0.1s;
+        }
       }
     }
   }
