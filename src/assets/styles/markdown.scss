@@ -2,27 +2,29 @@
   & > *:first-child {
     margin-top: 0;
   }
+
   pre {
     position: relative;
     line-height: 20px;
+
     code {
       display: block;
       margin: 0;
       padding: 16px 12px;
       overflow-x: auto;
       word-break: normal;
-      background: rgb(24, 24, 27);
+      background: rgb(24 24 27);
       counter-reset: line;
 
       .line {
         &::before {
-          margin-right: 1rem;
           display: inline-block;
           width: 1rem;
-          text-align: right;
+          margin-right: 1rem;
           color: rgb(82 82 82);
-          counter-increment: line;
+          text-align: right;
           content: counter(line);
+          counter-increment: line;
         }
       }
 
@@ -31,20 +33,21 @@
         top: 5px;
         right: 10px;
         color: hsl(0deg 0% 54.9% / 80%);
-        line-height: 20px;
         font-size: 0;
+        line-height: 20px;
+
         .btn-lang {
           display: inline-block;
           padding: 0 5px;
+          font-size: 14px;
           line-height: 20px;
           cursor: default;
-          font-size: 14px;
         }
+
         .btn-copycode {
-          font-size: 14px;
-          line-height: 20px;
           padding: 0 5px;
           font-size: 14px;
+          line-height: 20px;
           cursor: pointer;
           transition: color 0.1s;
         }
@@ -67,6 +70,14 @@
     & > p {
       margin: 10px 0;
     }
+  }
+
+  a {
+    color: #409eff;
+  }
+
+  ul {
+    line-height: 20px;
   }
 
   table {
