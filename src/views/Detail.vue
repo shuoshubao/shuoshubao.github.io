@@ -23,10 +23,36 @@
 
 <script>
 import MarkdownIt from 'markdown-it'
-import hljs from 'highlight.js'
-import { copyText } from '@nbfe/tools'
-import 'highlight.js/styles/vs2015.css'
+import hljs from 'highlight.js/lib/core'
+import javascript from 'highlight.js/lib/languages/javascript'
+import typescript from 'highlight.js/lib/languages/typescript'
+import xml from 'highlight.js/lib/languages/xml'
+import css from 'highlight.js/lib/languages/css'
+import scss from 'highlight.js/lib/languages/scss'
+import less from 'highlight.js/lib/languages/less'
+import json from 'highlight.js/lib/languages/json'
+import shell from 'highlight.js/lib/languages/shell'
+import php from 'highlight.js/lib/languages/php'
 import '@/assets/styles/markdown.scss'
+
+const copyText = (text = '') => {
+  const textarea = document.createElement('textarea')
+  textarea.value = text
+  document.body.appendChild(textarea)
+  textarea.select()
+  document.execCommand('copy')
+  document.body.removeChild(textarea)
+}
+
+hljs.registerLanguage('javascript', javascript)
+hljs.registerLanguage('typescript', typescript)
+hljs.registerLanguage('xml', xml)
+hljs.registerLanguage('css', css)
+hljs.registerLanguage('scss', scss)
+hljs.registerLanguage('less', less)
+hljs.registerLanguage('json', json)
+hljs.registerLanguage('shell', shell)
+hljs.registerLanguage('php', php)
 
 const MarkdownItHighlight = MarkdownIt({
   highlight: (str, lang) => {

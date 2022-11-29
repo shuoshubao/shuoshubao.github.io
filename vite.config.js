@@ -14,6 +14,17 @@ export default ({ mode }) => {
         '@': resolve(__dirname, 'src')
       }
     },
+    configureWebpack: {
+      externals: {
+        vue: 'Vue',
+        'element-ui': 'ElementUI',
+        lodash: {
+          commonjs: 'lodash',
+          amd: 'lodash',
+          root: '_'
+        }
+      }
+    },
     plugins: [createVuePlugin()]
   }
 }
