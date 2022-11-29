@@ -31,7 +31,9 @@ import css from 'highlight.js/lib/languages/css'
 import scss from 'highlight.js/lib/languages/scss'
 import less from 'highlight.js/lib/languages/less'
 import json from 'highlight.js/lib/languages/json'
+import plaintext from 'highlight.js/lib/languages/plaintext'
 import shell from 'highlight.js/lib/languages/shell'
+import bash from 'highlight.js/lib/languages/bash'
 import php from 'highlight.js/lib/languages/php'
 import '@/assets/styles/markdown.scss'
 
@@ -51,7 +53,9 @@ hljs.registerLanguage('css', css)
 hljs.registerLanguage('scss', scss)
 hljs.registerLanguage('less', less)
 hljs.registerLanguage('json', json)
+hljs.registerLanguage('plaintext', plaintext)
 hljs.registerLanguage('shell', shell)
+hljs.registerLanguage('bash', bash)
 hljs.registerLanguage('php', php)
 
 const MarkdownItHighlight = MarkdownIt({
