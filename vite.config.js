@@ -1,13 +1,15 @@
 import { resolve } from 'path'
-import { createVuePlugin } from 'vite-plugin-vue2'
+import react from '@vitejs/plugin-react'
 
 // https://vitejs.dev/config/
-export default ({ mode }) => {
-  const isDevelopment = mode === 'development'
+export default () => {
   return {
     build: {
       manifest: true,
-      polyfillDynamicImport: false
+      polyfillDynamicImport: false,
+      loader: {
+        '.js': 'jsx'
+      }
     },
     resolve: {
       alias: {
@@ -15,16 +17,8 @@ export default ({ mode }) => {
       }
     },
     configureWebpack: {
-      externals: {
-        vue: 'Vue',
-        'element-ui': 'ElementUI',
-        lodash: {
-          commonjs: 'lodash',
-          amd: 'lodash',
-          root: '_'
-        }
-      }
+      externals: {}
     },
-    plugins: [createVuePlugin()]
+    plugins: [react()]
   }
 }

@@ -1,12 +1,14 @@
 {
+  "index.css": {
+    "file": "assets/index-0b8ddbec.css",
+    "src": "index.css"
+  },
   "index.html": {
-    "file": "assets/index.e0abfe14.js",
+    "file": "assets/index-3e62d3bc.js",
     "src": "index.html",
     "isEntry": true,
-    "imports": ["_vendor.2676359c.js"],
-    "css": ["assets/index.d4bd5e54.css"]
-  },
-  "_vendor.2676359c.js": {
-    "file": "assets/vendor.2676359c.js"
+    "css": [
+      "assets/index-0b8ddbec.css"
+    ]
   }
 }

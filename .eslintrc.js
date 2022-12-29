@@ -1,3 +1,3 @@
 const { getESLintConfig } = require('@nbfe/standard')
 
-module.exports = getESLintConfig(['vue'])
+module.exports = getESLintConfig(['react'])
