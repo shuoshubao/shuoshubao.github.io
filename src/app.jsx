@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Layout, Skeleton, Menu, Result, theme } from 'antd'
 import { CaretLeftOutlined, CaretRightOutlined } from '@ant-design/icons'
 import '@/assets/styles/index.scss'
@@ -20,14 +20,14 @@ export default () => {
   const [selectedClassification, setSelectedClassification] = useState(getHashs()[0])
 
   const fetchData = async () => {
-    const data = await fetch('https://raw.githubusercontent.com/shuoshubao/blog/master/data/db.json').then(res =>
-      res.json()
-    )
+    const data = await fetch('https://raw.githubusercontent.com/shuoshubao/blog/master/data/db.json').then(res => {
+      return res.json()
+    })
     setCategoryData(data)
   }
 
   useEffect(() => {
-    window.addEventListener('hashchange', event => {
+    window.addEventListener('hashchange', () => {
       setSelectedClassification(getHashs()[0])
       setPageType(getPageType())
     })
@@ -45,8 +45,8 @@ export default () => {
         collapsible
         collapsedWidth={0}
         collapsed={collapsed}
-        onCollapse={collapsed => {
-          setCollapsed(collapsed)
+        onCollapse={value => {
+          setCollapsed(value)
         }}
         style={{
           height: '100vh',
@@ -59,7 +59,6 @@ export default () => {
           fontSize: 12,
           insetInlineEnd: collapsed ? -12 : -6,
           border: `1px solid ${token.colorBorderSecondary}`,
-          borderLeftWidth: collapsed ? 0 : 1,
           borderRadius: collapsed ? '0 6px 6px 0' : 6,
           overflow: 'hidden'
         }}
@@ -77,7 +76,7 @@ export default () => {
           })}
           onClick={({ key }) => {
             if (key === 'index') {
-              window.location.hash = `#`
+              window.location.hash = '#'
               return
             }
             window.location.hash = `#${key}`

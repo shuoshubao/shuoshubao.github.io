@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Modal, Result, Card, Button } from 'antd'
 import { CodeOutlined } from '@ant-design/icons'
 import { map, find } from 'lodash-es'
@@ -66,7 +66,7 @@ export default props => {
         }}
         footer={null}
       >
-        <pre className="markdown-source" contenteditable="true">
+        <pre className="markdown-source" contentEditable="true">
           {content}
         </pre>
       </Modal>

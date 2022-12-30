@@ -1,5 +1,5 @@
+import React from 'react'
 import { Card, List, Space, Typography, Button } from 'antd'
-import { map } from 'lodash-es'
 import { getHashs } from '@/utils'
 
 const { Text } = Typography
@@ -30,7 +30,7 @@ export default props => {
             </List.Item>
           )
         }}
-      ></List>
+      />
     </Card>
   )
 }

@@ -1,3 +1,4 @@
+import React from 'react'
 import { Card, List, Space, Typography, Button } from 'antd'
 import { map } from 'lodash-es'
 import { NavData } from '@/utils'
@@ -5,7 +6,7 @@ import { NavData } from '@/utils'
 const { Text } = Typography
 
 export default props => {
-  const { loading, data } = props
+  const { data } = props
   const AllArticles = map(NavData.slice(1), 'value')
     .map(v => data[v])
     .flat()
@@ -34,7 +35,7 @@ export default props => {
             )
           })
         }}
-      ></List>
+      />
     </Card>
   )
 }

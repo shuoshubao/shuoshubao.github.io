@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { createRoot } from 'react-dom/client'
 import { ConfigProvider, theme } from 'antd'
 import { isDark, addListenerPrefersColorScheme } from '@/utils'
