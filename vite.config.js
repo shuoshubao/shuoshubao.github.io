@@ -5,7 +5,8 @@ import react from '@vitejs/plugin-react'
 export default () => {
   return {
     build: {
-      manifest: true
+      manifest: true,
+      outDir: 'docs',
     },
     resolve: {
       alias: {
