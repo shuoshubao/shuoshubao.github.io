@@ -6,7 +6,7 @@ export default () => {
   return {
     build: {
       manifest: true,
-      outDir: 'docs',
+      outDir: 'docs'
     },
     resolve: {
       alias: {
