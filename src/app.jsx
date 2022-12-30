@@ -76,7 +76,7 @@ export default () => {
           }}
         />
       </Sider>
-      <Content style={{ padding: 12 }}>
+      <Content style={{ padding: 12, height: '100vh', overflowY: 'auto' }}>
         <Skeleton loading={Object.keys(categoryData).length === 0}>
           {pageType === 'index' && <Home data={categoryData} />}
           {pageType === 'list' && <Category data={categoryData[selectedClassification]} />}

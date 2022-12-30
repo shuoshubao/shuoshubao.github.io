@@ -1,18 +1,15 @@
 import { useState, useEffect } from 'react'
 import { Modal, Result, Card, Button } from 'antd'
 import { CodeOutlined } from '@ant-design/icons'
-import { map, find, isNull } from 'lodash-es'
-import ReactMarkdown from 'react-markdown'
-import rehypeHighlight from 'rehype-highlight'
-import remarkGfm from 'remark-gfm'
-import rehypeRaw from 'rehype-raw'
+import { map, find } from 'lodash-es'
 import 'github-markdown-css/github-markdown.css'
-import { getHashs } from '@/utils'
+import 'highlight.js/styles/vs2015.css'
+import { getHashs, MarkdownItHighlight } from '@/utils'
 
 export default props => {
   const { data } = props
 
-  const [content, setContent] = useState(null)
+  const [content, setContent] = useState('')
 
   const [isModalOpen, setIsModalOpen] = useState(false)
 
@@ -50,11 +47,9 @@ export default props => {
             }}
           />
         }
-        loading={isNull(content)}
+        loading={!content}
       >
-        <div className="markdown-body">
-          <ReactMarkdown rehypePlugins={[rehypeHighlight, rehypeRaw, remarkGfm]}>{content}</ReactMarkdown>
-        </div>
+        <div className="markdown-body" dangerouslySetInnerHTML={{ __html: MarkdownItHighlight.render(content) }} />
       </Card>
       <Modal
         title="Markdown 源码"
@@ -71,7 +66,9 @@ export default props => {
         }}
         footer={null}
       >
-        <pre style={{ margin: 0 }}>{content}</pre>
+        <pre className="markdown-source" contenteditable="true">
+          {content}
+        </pre>
       </Modal>
     </>
   )

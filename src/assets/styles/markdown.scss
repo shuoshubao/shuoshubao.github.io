@@ -1,61 +1,92 @@
 body .markdown-body {
+  & > *:first-child {
+    margin-top: 0;
+  }
+
   pre {
-    font-size: 14px;
-    .hljs-keyword {
-      color: #cf222e;
-    }
+    position: relative;
+    line-height: 20px;
+    padding: 0;
+    code {
+      display: block;
+      margin: 0;
+      padding: 16px 12px;
+      overflow-x: auto;
+      word-break: normal;
+      background: rgb(24 24 27);
+      counter-reset: line;
+      .line {
+        &::before {
+          display: inline-block;
+          width: 1rem;
+          margin-right: 1rem;
+          color: rgb(82 82 82);
+          text-align: right;
+          content: counter(line);
+          counter-increment: line;
+        }
+      }
+      .markdown-code-btns {
+        position: absolute;
+        top: 5px;
+        right: 10px;
+        color: hsl(0deg 0% 54.9% / 80%);
+        line-height: 20px;
 
-    .hljs-title,
-    .hljs-built_in {
-      color: #8250df;
-    }
+        .btn-lang {
+          display: inline-block;
+          padding: 0 5px;
+          line-height: 20px;
+          cursor: default;
+        }
 
-    .hljs-string {
-      color: #a03069;
-    }
-
-    .hljs-variable {
-      color: #953800;
-    }
-
-    .hljs-property,
-    .hljs-number,
-    .hljs-literal {
-      color: #5050ae;
-    }
-
-    .hljs-attr {
-      color: #0550ae;
-    }
-
-    .hljs-name {
-      color: #116329;
-    }
-
-    .hljs-tag {
-    }
-
-    .hljs-function {
-    }
-
-    .hljs-params {
-    }
-
-    .hljs-punctuation {
+        .anticon-copy {
+          padding: 0 5px;
+          line-height: 20px;
+          cursor: pointer;
+          transition: color 0.1s;
+        }
+      }
     }
   }
 
-  table {
-    display: table;
-    width: 100%;
+  blockquote {
+    margin: 22px 0;
+    padding: 1px 23px;
+    color: #666;
+    background-color: #f8f8f8;
+    border-left: 4px solid #cbcbcb;
 
-    th {
-      text-align: left;
-      background-color: #f6f8fa;
+    &::after {
+      display: block;
+      content: '';
     }
 
-    tbody tr:nth-child(2n) {
-      background-color: inherit;
+    & > p {
+      margin: 10px 0;
+    }
+  }
+
+  a {
+    color: #409eff;
+  }
+
+  ul {
+    line-height: 20px;
+  }
+
+  table {
+    width: 100%;
+
+    th,
+    td {
+      padding: 12px 10px;
+      text-align: left;
+      border: 1px solid #ebeef5;
+    }
+
+    th {
+      background-color: #f5f7fa;
     }
   }
 }

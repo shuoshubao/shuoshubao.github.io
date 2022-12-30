@@ -18,14 +18,11 @@
   "dependencies": {
     "antd": "^5.1.1",
     "github-markdown-css": "^5.1.0",
+    "highlight.js": "^11.7.0",
     "lodash-es": "^4.17.21",
     "markdown-it": "^13.0.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-markdown": "^8.0.4",
-    "rehype-highlight": "^6.0.0",
-    "rehype-raw": "^6.1.1",
-    "remark-gfm": "^3.0.1"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@nbfe/standard": "^1.0.8",
