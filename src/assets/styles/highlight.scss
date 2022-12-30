@@ -1,0 +1,71 @@
+body .markdown-body {
+  pre {
+    padding: 16px;
+    overflow: auto;
+    line-height: 20px;
+    background-color: #f6f8fa;
+    border-radius: 6px;
+
+    code.hljs {
+      padding: 0;
+      background-color: inherit;
+
+      .hljs-keyword {
+        color: #cf222e;
+      }
+
+      .hljs-title,
+      .hljs-built_in {
+        color: #8250df;
+      }
+
+      .hljs-string {
+        color: #a03069;
+      }
+
+      .hljs-variable {
+        color: #953800;
+      }
+
+      .hljs-property,
+      .hljs-number,
+      .hljs-literal {
+        color: #5050ae;
+      }
+
+      .hljs-attr {
+        color: #0550ae;
+      }
+
+      .hljs-name {
+        color: #116329;
+      }
+
+      .hljs-tag {
+      }
+
+      .hljs-function {
+      }
+
+      .hljs-params {
+      }
+
+      .hljs-punctuation {
+      }
+    }
+  }
+
+  table {
+    display: table;
+    width: 100%;
+
+    th {
+      text-align: left;
+      background-color: #f6f8fa;
+    }
+
+    tbody tr:nth-child(2n) {
+      background-color: inherit;
+    }
+  }
+}

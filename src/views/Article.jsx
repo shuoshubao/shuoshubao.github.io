@@ -4,6 +4,9 @@ import { CodeOutlined } from '@ant-design/icons'
 import { map, find, isNull } from 'lodash-es'
 import ReactMarkdown from 'react-markdown'
 import rehypeHighlight from 'rehype-highlight'
+import remarkGfm from 'remark-gfm'
+import rehypeRaw from 'rehype-raw'
+import 'github-markdown-css/github-markdown.css'
 import { getHashs } from '@/utils'
 
 export default props => {
@@ -49,7 +52,9 @@ export default props => {
         }
         loading={isNull(content)}
       >
-        <ReactMarkdown rehypePlugins={[rehypeHighlight]}>{content}</ReactMarkdown>
+        <div className="markdown-body">
+          <ReactMarkdown rehypePlugins={[rehypeHighlight, rehypeRaw, remarkGfm]}>{content}</ReactMarkdown>
+        </div>
       </Card>
       <Modal
         title="Markdown 源码"
@@ -60,9 +65,13 @@ export default props => {
         maskClosable
         width="90%"
         style={{ top: 20 }}
+        bodyStyle={{
+          maxHeight: 'calc(100vh - 110px)',
+          overflowY: 'auto'
+        }}
         footer={null}
       >
-        <pre>{content}</pre>
+        <pre style={{ margin: 0 }}>{content}</pre>
       </Modal>
     </>
   )

@@ -36,6 +36,7 @@ export default () => {
   return (
     <Layout>
       <Sider
+        width={120}
         theme="light"
         collapsible
         collapsedWidth={0}
