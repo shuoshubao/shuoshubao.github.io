@@ -5,11 +5,7 @@ import react from '@vitejs/plugin-react'
 export default () => {
   return {
     build: {
-      manifest: true,
-      polyfillDynamicImport: false,
-      loader: {
-        '.js': 'jsx'
-      }
+      manifest: true
     },
     resolve: {
       alias: {
