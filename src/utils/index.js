@@ -65,7 +65,7 @@ export const getHashs = () => {
 
 export const getPageType = () => {
   const hashs = getHashs()
-  const [category, articleName] = hashs
+  const [category] = hashs
   if (hashs.length === 0) {
     return 'index'
   }
@@ -97,7 +97,7 @@ export const MarkdownItHighlight = MarkdownIt({
   highlight: (str, lang) => {
     if (lang && hljs.getLanguage(lang)) {
       try {
-        const { code, value } = hljs.highlight(str.trim(), { language: lang })
+        const { value } = hljs.highlight(str.trim(), { language: lang })
         return [
           '<pre>',
           `<code class="hljs language-${lang}" lang="${lang}">`,
