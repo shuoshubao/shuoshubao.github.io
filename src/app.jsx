@@ -1,5 +1,5 @@
-import React, { useRef, useState, useEffect } from 'react'
-import { Layout, Skeleton, Menu, Result } from 'antd'
+import { useRef, useState, useEffect } from 'react'
+import { Layout, Skeleton, Menu, Result, theme } from 'antd'
 import { CaretLeftOutlined, CaretRightOutlined } from '@ant-design/icons'
 import '@/assets/styles/index.scss'
 import Home from '@/views/Home'
@@ -9,7 +9,11 @@ import { NavData, getHashs, getPageType } from '@/utils'
 
 const { Sider, Content } = Layout
 
+const { useToken } = theme
+
 export default () => {
+  const { token } = useToken()
+
   const [pageType, setPageType] = useState(getPageType())
   const [collapsed, setCollapsed] = useState(false)
   const [categoryData, setCategoryData] = useState({})
@@ -44,16 +48,20 @@ export default () => {
         onCollapse={collapsed => {
           setCollapsed(collapsed)
         }}
-        style={{ height: '100vh', borderRight: '1px solid #f5f5f5' }}
+        style={{
+          height: '100vh',
+          borderRight: `1px solid ${token.colorBorderSecondary}`
+        }}
         zeroWidthTriggerStyle={{
           top: 'calc(50% - 22px)',
           width: 12,
           height: 44,
           fontSize: 12,
           insetInlineEnd: collapsed ? -12 : -6,
-          border: '1px solid #f5f5f5',
+          border: `1px solid ${token.colorBorderSecondary}`,
           borderLeftWidth: collapsed ? 0 : 1,
-          borderRadius: collapsed ? '0 6px 6px 0' : 6
+          borderRadius: collapsed ? '0 6px 6px 0' : 6,
+          overflow: 'hidden'
         }}
         trigger={collapsed ? <CaretRightOutlined /> : <CaretLeftOutlined />}
       >

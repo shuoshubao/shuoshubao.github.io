@@ -13,17 +13,20 @@ import shell from 'highlight.js/lib/languages/shell'
 import bash from 'highlight.js/lib/languages/bash'
 import php from 'highlight.js/lib/languages/php'
 
-hljs.registerLanguage('javascript', javascript)
-hljs.registerLanguage('typescript', typescript)
-hljs.registerLanguage('xml', xml)
-hljs.registerLanguage('css', css)
-hljs.registerLanguage('scss', scss)
-hljs.registerLanguage('less', less)
-hljs.registerLanguage('json', json)
-hljs.registerLanguage('plaintext', plaintext)
-hljs.registerLanguage('shell', shell)
-hljs.registerLanguage('bash', bash)
-hljs.registerLanguage('php', php)
+export const isDark = () => {
+  const { matchMedia } = window
+  return matchMedia('(prefers-color-scheme: dark)').matches
+}
+
+export const addListenerPrefersColorScheme = callback => {
+  const { matchMedia } = window
+  matchMedia('(prefers-color-scheme: dark)').addListener(mediaQueryList => {
+    callback(mediaQueryList.matches)
+  })
+  matchMedia('(prefers-color-scheme: light)').addListener(mediaQueryList => {
+    callback(!mediaQueryList.matches)
+  })
+}
 
 export const NavData = [
   {
@@ -77,6 +80,18 @@ export const getPageType = () => {
   }
   return '404'
 }
+
+hljs.registerLanguage('javascript', javascript)
+hljs.registerLanguage('typescript', typescript)
+hljs.registerLanguage('xml', xml)
+hljs.registerLanguage('css', css)
+hljs.registerLanguage('scss', scss)
+hljs.registerLanguage('less', less)
+hljs.registerLanguage('json', json)
+hljs.registerLanguage('plaintext', plaintext)
+hljs.registerLanguage('shell', shell)
+hljs.registerLanguage('bash', bash)
+hljs.registerLanguage('php', php)
 
 export const MarkdownItHighlight = MarkdownIt({
   highlight: (str, lang) => {
