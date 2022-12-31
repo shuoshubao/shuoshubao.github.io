@@ -40,7 +40,7 @@ export default () => {
   return (
     <Layout>
       <Sider
-        width={120}
+        width={150}
         theme="light"
         collapsible
         collapsedWidth={0}
@@ -68,10 +68,11 @@ export default () => {
           key={selectedClassification}
           defaultSelectedKeys={[selectedClassification]}
           items={NavData.map(v => {
-            const { label, value } = v
+            const { label, value, icon } = v
             return {
               key: value,
-              label
+              label,
+              icon
             }
           })}
           onClick={({ key }) => {
