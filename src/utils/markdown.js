@@ -36,8 +36,8 @@ export const MarkdownItHighlight = MarkdownIt({
         return [
           '<pre style="background: rgb(24, 24, 27);">',
           `<code class="hljs language-${lang}" lang="${lang}">`,
-          ...value.split('\n').map(v => {
-            return `<div class="line">${v}</div>`
+          ...value.split('\n').map((v, i, arr) => {
+            return `<div ${arr.length < 5 ? '' : 'class="line"'}>${v}</div>`
           }),
           '<span class="markdown-code-btns">',
           `<span class="btn-lang">${lang}</span>`,
