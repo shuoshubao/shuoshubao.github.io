@@ -1,16 +1,17 @@
 body .markdown-body {
   pre {
     position: relative;
-    line-height: 20px;
     padding: 0;
+    line-height: 20px;
+
     code {
       display: block;
       margin: 0;
       padding: 16px 12px;
       overflow-x: auto;
       word-break: normal;
-      background: rgb(24 24 27);
       counter-reset: line;
+
       .line {
         &::before {
           display: inline-block;
@@ -22,6 +23,7 @@ body .markdown-body {
           counter-increment: line;
         }
       }
+
       .markdown-code-btns {
         position: absolute;
         top: 5px;
