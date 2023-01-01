@@ -27,6 +27,7 @@ hljs.registerLanguage('bash', bash)
 hljs.registerLanguage('php', php)
 
 export const MarkdownItHighlight = MarkdownIt({
+  html: true,
   highlight: (str, lang) => {
     if (lang && hljs.getLanguage(lang)) {
       try {
