@@ -1,4 +1,5 @@
 import MarkdownIt from 'markdown-it'
+import TaskLists from 'markdown-it-task-lists'
 import hljs from 'highlight.js/lib/core'
 import javascript from 'highlight.js/lib/languages/javascript'
 import typescript from 'highlight.js/lib/languages/typescript'
@@ -50,4 +51,4 @@ export const MarkdownItHighlight = MarkdownIt({
 
     return `<pre><code class="language-${lang}">${str.trim()}</code></pre>`
   }
-})
+}).use(TaskLists)
