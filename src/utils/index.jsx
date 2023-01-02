@@ -86,7 +86,8 @@ export const NavData = [
 ]
 
 export const getHashs = () => {
-  return window.location.hash.slice(1).split('/').filter(Boolean)
+  const hash = window.location.hash.slice(1)
+  return hash.split('#')[0].split('/').filter(Boolean)
 }
 
 export const getPageType = () => {
