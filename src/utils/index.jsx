@@ -50,6 +50,16 @@ export const NavData = [
     )
   },
   {
+    label: 'Tool',
+    value: 'tool',
+    icon: <ToolOutlined />
+  },
+  {
+    label: 'Assemble',
+    value: 'assemble',
+    icon: <BulbOutlined />
+  },
+  {
     label: 'HTML',
     value: 'html',
     icon: (
@@ -72,16 +82,6 @@ export const NavData = [
         />
       </svg>
     )
-  },
-  {
-    label: 'Tool',
-    value: 'tool',
-    icon: <ToolOutlined />
-  },
-  {
-    label: 'Assemble',
-    value: 'assemble',
-    icon: <BulbOutlined />
   }
 ]
 

@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from 'react'
-import { Layout, Skeleton, Menu, Result, theme } from 'antd'
+import { Layout, Skeleton, Menu, Result, FloatButton, theme } from 'antd'
 import { CaretLeftOutlined, CaretRightOutlined } from '@ant-design/icons'
 import '@/assets/styles/index.scss'
 import Home from '@/views/Home'
 import Category from '@/views/Category'
 import Article from '@/views/Article'
-import { NavData, getHashs, getPageType } from '@/utils'
+import { isDark, NavData, getHashs, getPageType } from '@/utils'
 
 const { Sider, Content } = Layout
+const { BackTop } = FloatButton
 
 const { useToken } = theme
+
+const SiderWidth = 150
 
 export default () => {
   const { token } = useToken()
@@ -40,7 +43,7 @@ export default () => {
   return (
     <Layout>
       <Sider
-        width={150}
+        width={SiderWidth}
         theme="light"
         collapsible
         collapsedWidth={0}
@@ -53,38 +56,50 @@ export default () => {
           borderRight: `1px solid ${token.colorBorderSecondary}`
         }}
         zeroWidthTriggerStyle={{
+          position: 'fixed',
           top: 'calc(50% - 22px)',
           width: 12,
           height: 44,
           fontSize: 12,
-          insetInlineEnd: collapsed ? -12 : -6,
+          insetInlineStart: collapsed ? 0 : SiderWidth - 12 / 2,
           border: `1px solid ${token.colorBorderSecondary}`,
           borderRadius: collapsed ? '0 6px 6px 0' : 6,
           overflow: 'hidden'
         }}
         trigger={collapsed ? <CaretRightOutlined /> : <CaretLeftOutlined />}
       >
-        <Menu
-          key={selectedClassification}
-          defaultSelectedKeys={[selectedClassification]}
-          items={NavData.map(v => {
-            const { label, value, icon } = v
-            return {
-              key: value,
-              label,
-              icon
-            }
-          })}
-          onClick={({ key }) => {
-            if (key === 'index') {
-              window.location.hash = '#'
-              return
-            }
-            window.location.hash = `#${key}`
+        <div
+          style={{
+            position: 'fixed',
+            width: SiderWidth,
+            left: 0,
+            top: 0,
+            bottom: 0,
+            background: isDark() ? '#141414' : '#ffffff'
           }}
-        />
+        >
+          <Menu
+            key={selectedClassification}
+            defaultSelectedKeys={[selectedClassification]}
+            items={NavData.map(v => {
+              const { label, value, icon } = v
+              return {
+                key: value,
+                label,
+                icon
+              }
+            })}
+            onClick={({ key }) => {
+              if (key === 'index') {
+                window.location.hash = '#'
+                return
+              }
+              window.location.hash = key
+            }}
+          />
+        </div>
       </Sider>
-      <Content style={{ padding: 12, height: '100vh', overflowY: 'auto' }}>
+      <Content style={{ padding: token.paddingContentVertical, minHeight: '100vh', overflowY: 'auto' }}>
         <Skeleton loading={Object.keys(categoryData).length === 0}>
           {pageType === 'index' && <Home data={categoryData} />}
           {pageType === 'list' && <Category data={categoryData[selectedClassification]} />}
@@ -93,6 +108,7 @@ export default () => {
             <Result status="404" title="404" subTitle="Sorry, the page you visited does not exist." />
           )}
         </Skeleton>
+        <BackTop />
       </Content>
     </Layout>
   )
