@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { createRoot } from 'react-dom/client'
 import { ConfigProvider, theme } from 'antd'
 import { isDark, addListenerPrefersColorScheme } from '@/utils'
-import App from './app'
+import App from './App'
 
 const { defaultAlgorithm, darkAlgorithm } = theme
 
