@@ -71,7 +71,7 @@ export default () => {
         <div
           style={{
             position: 'fixed',
-            width: SiderWidth,
+            width: SiderWidth - 1,
             left: 0,
             top: 0,
             bottom: 0,
@@ -89,6 +89,7 @@ export default () => {
                 icon
               }
             })}
+            style={{ borderInlineEnd: 'none' }}
             onClick={({ key }) => {
               if (key === 'index') {
                 window.location.hash = '#'

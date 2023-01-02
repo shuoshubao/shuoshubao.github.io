@@ -37,7 +37,7 @@ p {
   margin-bottom: 1em;
 }
 
-@import './markdown.scss';
+@import url('./markdown.scss');
 
 .markdown-source {
   margin: 0;
@@ -55,6 +55,6 @@ p {
 
 @media (prefers-color-scheme: light) {
   html {
-    background: #ffffff;
+    background: #fff;
   }
 }
