@@ -1,15 +1,22 @@
 import React, { useState, useEffect } from 'react'
-import { Modal, Result, Card, Button } from 'antd'
+import { Modal, Result, Card, Button, Typography, Tag, Space } from 'antd'
 import { CodeOutlined } from '@ant-design/icons'
 import { map, find } from 'lodash-es'
+import ms from 'ms'
 import 'github-markdown-css/github-markdown.css'
 import 'highlight.js/styles/vs2015.css'
 import { getHashs, MarkdownItHighlight } from '@/utils'
 
+const { Text } = Typography
+
 export default props => {
   const { data } = props
 
+  const [parserTime, setParserTime] = useState(null)
+
   const [content, setContent] = useState('')
+
+  const [html, setHtml] = useState('')
 
   const [isModalOpen, setIsModalOpen] = useState(false)
 
@@ -25,7 +32,10 @@ export default props => {
     const md = await fetch(
       `https://raw.githubusercontent.com/shuoshubao/blog/master/article/${[category, name].join('/')}.md`
     ).then(res => res.text())
-
+    const timeStamp = Date.now()
+    const htmlStr = MarkdownItHighlight.render(md)
+    setParserTime(Date.now() - timeStamp)
+    setHtml(htmlStr)
     setContent(md)
   }
 
@@ -38,7 +48,12 @@ export default props => {
   return (
     <>
       <Card
-        title={title}
+        title={
+          <Space>
+            <Text>{title}</Text>
+            {parserTime && <Tag color="success">{ms(parserTime, { long: true })}</Tag>}
+          </Space>
+        }
         extra={
           <Button
             icon={<CodeOutlined />}
@@ -49,7 +64,7 @@ export default props => {
         }
         loading={!content}
       >
-        <div className="markdown-body" dangerouslySetInnerHTML={{ __html: MarkdownItHighlight.render(content) }} />
+        <div className="markdown-body" dangerouslySetInnerHTML={{ __html: html }} />
       </Card>
       <Modal
         title="Markdown 源码"
