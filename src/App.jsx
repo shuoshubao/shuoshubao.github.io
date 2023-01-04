@@ -24,7 +24,7 @@ export default () => {
   const [selectedClassification, setSelectedClassification] = useState(getHashs()[0])
 
   const fetchData = async () => {
-    const data = await fetch(`${getFetchPrefix()}/data/db.json`).then(res => {
+    const data = await fetch(`${getFetchPrefix()}data/db.json`).then(res => {
       return res.json()
     })
     Object.entries(data).forEach(([k, v]) => {
