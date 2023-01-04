@@ -163,6 +163,9 @@ export default props => {
                   window.location.hash = selectedKeys[0]
                 }
               }}
+              onExpand={expandedKeysValue => {
+                setExpandedKeys(expandedKeysValue)
+              }}
             />
           </div>
         </div>
