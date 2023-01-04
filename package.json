@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "@babel/preset-react": "^7.18.6",
-    "@nbfe/standard": "^1.0.10",
+    "@nbfe/standard": "^1.1.1",
     "@vitejs/plugin-react": "^3.0.0",
     "sass": "^1.57.1",
     "vite": "^4.0.3"

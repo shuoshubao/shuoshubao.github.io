@@ -1,7 +1,7 @@
 import React from 'react'
 import { Card, List, Space, Typography, Button } from 'antd'
 import { map } from 'lodash-es'
-import { NavData } from '@/utils'
+import { NavData } from '@/configs'
 
 const { Text } = Typography
 

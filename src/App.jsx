@@ -5,7 +5,8 @@ import '@/assets/styles/index.scss'
 import Home from '@/views/Home'
 import Category from '@/views/Category'
 import Article from '@/views/Article'
-import { getFetchPrefix, isDark, NavData, getHashs, getPageType } from '@/utils'
+import { NavData } from '@/configs'
+import { getFetchPrefix, isDark, getHashs, getPageType } from '@/utils'
 
 const { Sider, Content } = Layout
 const { BackTop } = FloatButton

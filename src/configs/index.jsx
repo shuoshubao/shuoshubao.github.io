@@ -1,32 +1,5 @@
 import React from 'react'
 import { HomeOutlined, ToolOutlined, BulbOutlined } from '@ant-design/icons'
-import { map } from 'lodash-es'
-
-export * from './markdown'
-
-const isDevelopment = !!window.location.port
-
-export const getFetchPrefix = () => {
-  if (isDevelopment) {
-    return 'http://localhost:3000/'
-  }
-  return 'https://raw.githubusercontent.com/shuoshubao/blog/master/'
-}
-
-export const isDark = () => {
-  const { matchMedia } = window
-  return matchMedia('(prefers-color-scheme: dark)').matches
-}
-
-export const addListenerPrefersColorScheme = callback => {
-  const { matchMedia } = window
-  matchMedia('(prefers-color-scheme: dark)').addListener(mediaQueryList => {
-    callback(mediaQueryList.matches)
-  })
-  matchMedia('(prefers-color-scheme: light)').addListener(mediaQueryList => {
-    callback(!mediaQueryList.matches)
-  })
-}
 
 const IconFontSize = 16
 
@@ -117,26 +90,3 @@ export const NavData = [
     )
   }
 ]
-
-export const getHashs = () => {
-  const hash = window.location.hash.slice(1)
-  return hash.split('#')[0].split('/').filter(Boolean)
-}
-
-export const getPageType = () => {
-  const hashs = getHashs()
-  const [category] = hashs
-  if (hashs.length === 0) {
-    return 'index'
-  }
-  if (!map(NavData.slice(1), 'value').includes(category)) {
-    return '404'
-  }
-  if (hashs.length === 1) {
-    return 'list'
-  }
-  if (hashs.length === 2) {
-    return 'detail'
-  }
-  return '404'
-}
