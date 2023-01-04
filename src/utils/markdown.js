@@ -99,6 +99,15 @@ const getHeaders = (content, type) => {
 export const getTocData = ({ content, type }) => {
   const headers = getHeaders(content, type)
 
+  if (!headers.length) {
+    return {
+      list: [],
+      markdown: '',
+      html: '',
+      treeData: []
+    }
+  }
+
   const headersMd = headers
     .map(v => {
       const { level, title } = v
