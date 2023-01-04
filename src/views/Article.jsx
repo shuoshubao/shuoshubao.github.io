@@ -5,7 +5,7 @@ import { map, find } from 'lodash-es'
 import ms from 'ms'
 import 'github-markdown-css/github-markdown.css'
 import 'highlight.js/styles/vs2015.css'
-import { getHashs, MarkdownItHighlight, slugify, getTocData } from '@/utils'
+import { getHashs, MarkdownItHighlight, getTocData } from '@/utils'
 
 const { Text } = Typography
 const { useToken } = theme
@@ -51,11 +51,7 @@ export default props => {
     const timeStamp = Date.now()
     const htmlStr = MarkdownItHighlight.render(md)
     const TocData = getTocData({ content: htmlStr, type: 'html' })
-    setExpandedKeys(
-      TocData.list.map(v => {
-        return slugify(v.title)
-      })
-    )
+    setExpandedKeys(map(TocData.list, 'slug'))
     setHtml(htmlStr)
     setContent(md)
     setTocData(TocData)
@@ -148,11 +144,7 @@ export default props => {
                     <UnorderedListOutlined
                       onClick={() => {
                         if (collapsed) {
-                          setExpandedKeys(
-                            tocData.list.map(v => {
-                              return slugify(v.title)
-                            })
-                          )
+                          setExpandedKeys(map(tocData.list, 'slug'))
                         } else {
                           setExpandedKeys([])
                         }

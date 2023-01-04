@@ -91,7 +91,8 @@ const getHeaders = (content, type) => {
       const level = Number(tagName.slice(1))
       return {
         level,
-        title: innerText
+        title: innerText,
+        slug: slugify(innerText)
       }
     })
 }
