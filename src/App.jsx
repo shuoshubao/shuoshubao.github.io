@@ -5,7 +5,7 @@ import '@/assets/styles/index.scss'
 import Home from '@/views/Home'
 import Category from '@/views/Category'
 import Article from '@/views/Article'
-import { isDark, NavData, getHashs, getPageType } from '@/utils'
+import { getFetchPrefix, isDark, NavData, getHashs, getPageType } from '@/utils'
 
 const { Sider, Content } = Layout
 const { BackTop } = FloatButton
@@ -23,7 +23,7 @@ export default () => {
   const [selectedClassification, setSelectedClassification] = useState(getHashs()[0])
 
   const fetchData = async () => {
-    const data = await fetch('https://raw.githubusercontent.com/shuoshubao/blog/master/data/db.json').then(res => {
+    const data = await fetch(`${getFetchPrefix()}/data/db.json`).then(res => {
       return res.json()
     })
     setCategoryData(data)

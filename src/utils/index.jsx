@@ -4,6 +4,15 @@ import { map } from 'lodash-es'
 
 export * from './markdown'
 
+const isDevelopment = !!window.location.port
+
+export const getFetchPrefix = () => {
+  if (isDevelopment) {
+    return 'http://localhost:3000/'
+  }
+  return 'https://raw.githubusercontent.com/shuoshubao/blog/master/'
+}
+
 export const isDark = () => {
   const { matchMedia } = window
   return matchMedia('(prefers-color-scheme: dark)').matches

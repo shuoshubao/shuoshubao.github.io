@@ -5,7 +5,7 @@ import { map, find } from 'lodash-es'
 import ms from 'ms'
 import 'github-markdown-css/github-markdown.css'
 import 'highlight.js/styles/vs2015.css'
-import { getHashs, MarkdownItHighlight, getTocData } from '@/utils'
+import { getFetchPrefix, getHashs, MarkdownItHighlight, getTocData } from '@/utils'
 
 const { Text } = Typography
 const { useToken } = theme
@@ -45,9 +45,7 @@ export default props => {
   }
 
   const fetchData = async () => {
-    const md = await fetch(
-      `https://raw.githubusercontent.com/shuoshubao/blog/master/article/${[category, name].join('/')}.md`
-    ).then(res => res.text())
+    const md = await fetch(`${getFetchPrefix()}article/${[category, name].join('/')}.md`).then(res => res.text())
     const timeStamp = Date.now()
     const htmlStr = MarkdownItHighlight.render(md)
     const TocData = getTocData({ content: htmlStr, type: 'html' })
@@ -87,7 +85,7 @@ export default props => {
               }}
             />
             {
-              <Tooltip title="显示大纲">
+              <Tooltip title={visibleToc ? '隐藏大纲' : '显示大纲'}>
                 <Button
                   icon={visibleToc ? <EyeInvisibleOutlined /> : <EyeOutlined />}
                   onClick={() => {
