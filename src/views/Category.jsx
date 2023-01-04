@@ -19,6 +19,7 @@ export default props => {
     >
       <List
         dataSource={data}
+        grid={{ column: 2, xs: 1, lg: 3, xl: 4, xxl: 5 }}
         renderItem={item => {
           const { name, title } = item
           const path = [category, name].join('/')

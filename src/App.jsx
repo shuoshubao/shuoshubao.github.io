@@ -27,6 +27,11 @@ export default () => {
     const data = await fetch(`${getFetchPrefix()}/data/db.json`).then(res => {
       return res.json()
     })
+    Object.entries(data).forEach(([k, v]) => {
+      v.forEach(v2 => {
+        v2.category = k
+      })
+    })
     setCategoryData(data)
   }
 

@@ -21,19 +21,18 @@ export default props => {
       }
     >
       <List
-        dataSource={map(NavData.slice(1), 'value')}
+        dataSource={AllArticles}
+        grid={{ column: 2, xs: 1, lg: 3, xl: 4, xxl: 5 }}
         renderItem={item => {
-          return data[item].map(v => {
-            const { name, title } = v
-            const path = [item, name].join('/')
-            return (
-              <List.Item key={name} style={{ paddingLeft: 0, paddingRight: 0 }}>
-                <Button type="link" href={`#${path}`}>
-                  {title}
-                </Button>
-              </List.Item>
-            )
-          })
+          const { category, name, title } = item
+          const path = [category, name].join('/')
+          return (
+            <List.Item key={path} style={{ paddingLeft: 0, paddingRight: 0 }}>
+              <Button type="link" href={`#${path}`}>
+                {title}
+              </Button>
+            </List.Item>
+          )
         }}
       />
     </Card>
