@@ -49,7 +49,7 @@ export default () => {
   return (
     <Layout>
       <Sider
-        width={collapsed ? 0 : SiderWidth}
+        width={SiderWidth}
         theme="light"
         collapsible
         collapsedWidth={0}
@@ -78,7 +78,7 @@ export default () => {
         <div
           style={{
             position: 'fixed',
-            width: SiderWidth - 1,
+            width: collapsed ? 0 : SiderWidth - 1,
             left: 0,
             top: 0,
             bottom: 0,
