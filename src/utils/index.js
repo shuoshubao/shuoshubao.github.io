@@ -1,5 +1,4 @@
 export * from './markdown'
-export * from './toc'
 export * from './route'
 
 const isDevelopment = !!window.location.port

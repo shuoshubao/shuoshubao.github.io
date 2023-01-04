@@ -3,9 +3,10 @@ import { Modal, Result, Card, Tree, Button, Typography, Tag, Space, Tooltip, the
 import { CodeOutlined, EyeOutlined, EyeInvisibleOutlined, UnorderedListOutlined } from '@ant-design/icons'
 import { map, find } from 'lodash-es'
 import ms from 'ms'
+import getTocData from 'mdx-toc'
 import 'github-markdown-css/github-markdown.css'
 import 'highlight.js/styles/vs2015.css'
-import { getFetchPrefix, getHashs, MarkdownItHighlight, getTocData } from '@/utils'
+import { getFetchPrefix, getHashs, MarkdownItHighlight, slugify } from '@/utils'
 
 const { Text } = Typography
 const { useToken } = theme
@@ -48,7 +49,7 @@ export default props => {
     const md = await fetch(`${getFetchPrefix()}article/${[category, name].join('/')}.md`).then(res => res.text())
     const timeStamp = Date.now()
     const htmlStr = MarkdownItHighlight.render(md)
-    const TocData = getTocData({ content: htmlStr, type: 'html' })
+    const TocData = getTocData(htmlStr, { type: 'html', slugify })
     setExpandedKeys(map(TocData.list, 'slug'))
     setHtml(htmlStr)
     setContent(md)
