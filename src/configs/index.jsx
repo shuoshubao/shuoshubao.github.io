@@ -49,11 +49,6 @@ export const NavData = [
     icon: <ToolOutlined style={{ fontSize: IconFontSize }} />
   },
   {
-    label: 'Assemble',
-    value: 'assemble',
-    icon: <BulbOutlined style={{ fontSize: IconFontSize }} />
-  },
-  {
     label: 'HTML',
     value: 'html',
     icon: (
@@ -88,5 +83,10 @@ export const NavData = [
         />
       </svg>
     )
+  },
+  {
+    label: 'Assemble',
+    value: 'assemble',
+    icon: <BulbOutlined style={{ fontSize: IconFontSize }} />
   }
 ]
