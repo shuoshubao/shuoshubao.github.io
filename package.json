@@ -57,7 +57,8 @@
       ]
     },
     "ignore": [
-      "CHANGELOG.md"
+      "CHANGELOG.md",
+      "docs"
     ]
   },
   "config": {
