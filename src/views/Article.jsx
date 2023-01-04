@@ -86,15 +86,16 @@ export default props => {
                 setIsModalOpen(true)
               }}
             />
-            {!visibleToc && (
+            {
               <Tooltip title="显示大纲">
-                <EyeOutlined
+                <Button
+                  icon={visibleToc ? <EyeInvisibleOutlined /> : <EyeOutlined />}
                   onClick={() => {
-                    setVisibleToc(true)
+                    setVisibleToc(!visibleToc)
                   }}
                 />
               </Tooltip>
-            )}
+            }
           </Space>
         }
         loading={!content}

@@ -31,7 +31,7 @@ hljs.registerLanguage('shell', shell)
 hljs.registerLanguage('bash', bash)
 hljs.registerLanguage('php', php)
 
-export const slugify = str => {
+const slugify = str => {
   return [getHashs().join('/'), encodeURIComponent(kebabCase(str))].join('#')
 }
 
