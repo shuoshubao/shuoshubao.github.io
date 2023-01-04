@@ -10,7 +10,7 @@ const stringToFragment = string => {
 const getHeaders = (content, type) => {
   const html = type === 'html' ? content : MarkdownIt().render(content)
 
-  const fragment = stringToFragment(html.trim())
+  const fragment = stringToFragment(html)
 
   return [...fragment.children]
     .filter(v => {
@@ -45,16 +45,16 @@ export const getTocData = ({ content, type }) => {
   const headersMd = headers
     .map(v => {
       const { level, title } = v
-      return ['  '.repeat(level), '*', title].join(' ')
+      return ['  '.repeat(level - 1), '*', title].join(' ')
     })
     .join('\n')
 
-  const toc = MarkdownIt().render(headersMd).trim()
+  const toc = MarkdownIt().render(headersMd)
 
   const recursion = node => {
     const children = [...node.children]
     if (children.filter(v => v.nodeType === 1).length) {
-      const title = node.firstChild.nodeValue.trim()
+      const title = node.firstChild.nodeValue?.trim()
       return {
         title,
         key: slugify(title),
