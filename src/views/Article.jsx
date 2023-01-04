@@ -60,6 +60,9 @@ export default props => {
     setContent(md)
     setTocData(TocData)
     setParserTime(Date.now() - timeStamp)
+    setTimeout(() => {
+      document.querySelector(`[id="${window.location.hash.slice(1)}"]`)?.scrollIntoView()
+    }, 0)
   }
 
   useEffect(() => {
