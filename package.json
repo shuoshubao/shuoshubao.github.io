@@ -24,7 +24,7 @@
     "markdown-it-anchor": "^8.6.6",
     "markdown-it-attrs": "^4.1.6",
     "markdown-it-task-lists": "^2.1.1",
-    "mdx-toc": "^1.0.0",
+    "mdx-toc": "^0.1.0",
     "ms": "^2.1.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
