@@ -1,6 +1,8 @@
 import React from 'react'
 import { HomeOutlined, ToolOutlined, BulbOutlined } from '@ant-design/icons'
 
+export const CollapsedKey = 'collapsed'
+
 const IconFontSize = 16
 
 export const NavData = [

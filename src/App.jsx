@@ -5,7 +5,7 @@ import '@/assets/styles/index.scss'
 import Home from '@/views/Home'
 import Category from '@/views/Category'
 import Article from '@/views/Article'
-import { NavData } from '@/configs'
+import { NavData, CollapsedKey } from '@/configs'
 import { getFetchPrefix, isDark, getHashs, getPageType } from '@/utils'
 
 const { Sider, Content } = Layout
@@ -19,7 +19,7 @@ export default () => {
   const { token } = useToken()
 
   const [pageType, setPageType] = useState(getPageType())
-  const [collapsed, setCollapsed] = useState(false)
+  const [collapsed, setCollapsed] = useState(JSON.parse(window.localStorage.getItem(CollapsedKey) || 'false'))
   const [categoryData, setCategoryData] = useState({})
   const [selectedClassification, setSelectedClassification] = useState(getHashs()[0])
 
@@ -49,13 +49,14 @@ export default () => {
   return (
     <Layout>
       <Sider
-        width={SiderWidth}
+        width={collapsed ? 0 : SiderWidth}
         theme="light"
         collapsible
         collapsedWidth={0}
         collapsed={collapsed}
         onCollapse={value => {
           setCollapsed(value)
+          window.localStorage.setItem(CollapsedKey, JSON.stringify(value))
         }}
         style={{
           height: '100vh',
@@ -84,26 +85,28 @@ export default () => {
             background: isDark() ? '#141414' : '#ffffff'
           }}
         >
-          <Menu
-            key={selectedClassification}
-            defaultSelectedKeys={[selectedClassification]}
-            items={NavData.map(v => {
-              const { label, value, icon } = v
-              return {
-                key: value,
-                label,
-                icon
-              }
-            })}
-            style={{ borderInlineEnd: 'none' }}
-            onClick={({ key }) => {
-              if (key === 'index') {
-                window.location.hash = '#'
-                return
-              }
-              window.location.hash = key
-            }}
-          />
+          {!collapsed && (
+            <Menu
+              key={selectedClassification}
+              defaultSelectedKeys={[selectedClassification]}
+              items={NavData.map(v => {
+                const { label, value, icon } = v
+                return {
+                  key: value,
+                  label,
+                  icon
+                }
+              })}
+              style={{ borderInlineEnd: 'none' }}
+              onClick={({ key }) => {
+                if (key === 'index') {
+                  window.location.hash = '#'
+                  return
+                }
+                window.location.hash = key
+              }}
+            />
+          )}
         </div>
       </Sider>
       <Content style={{ padding: token.paddingContentVertical, minHeight: '100vh', overflowY: 'auto' }}>
