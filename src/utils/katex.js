@@ -175,7 +175,7 @@ export default (md, options = {}) => {
   const katexBlock = latex => {
     options.displayMode = true
     try {
-      return `<p>${KaTeX.renderToString(latex, options)}</p>`
+      return `<div>${KaTeX.renderToString(latex, options)}</div>`
     } catch (error) {
       if (options.throwOnError) {
         console.log(error)
