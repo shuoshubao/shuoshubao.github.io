@@ -17,6 +17,7 @@ import shell from 'highlight.js/lib/languages/shell'
 import bash from 'highlight.js/lib/languages/bash'
 import php from 'highlight.js/lib/languages/php'
 import { getHashs } from './route'
+import MarkdownItMermaid from './mermaid'
 
 hljs.registerLanguage('javascript', javascript)
 hljs.registerLanguage('typescript', typescript)
@@ -38,9 +39,10 @@ export const slugify = str => {
 export const MarkdownItHighlight = MarkdownIt({
   html: true,
   highlight: (str, lang) => {
+    const trimedStr = str.trim()
     if (lang && hljs.getLanguage(lang)) {
       try {
-        const { value } = hljs.highlight(str.trim(), { language: lang })
+        const { value } = hljs.highlight(trimedStr, { language: lang })
         return [
           '<pre style="background: rgb(24, 24, 27);">',
           `<code class="hljs language-${lang}" lang="${lang}">`,
@@ -58,8 +60,7 @@ export const MarkdownItHighlight = MarkdownIt({
           .join('')
       } catch (__) {}
     }
-
-    return `<pre><code class="language-${lang}">${str.trim()}</code></pre>`
+    return `<pre><code class="language-${lang}">${trimedStr}</code></pre>`
   }
 })
   .use(TaskLists)
@@ -67,3 +68,4 @@ export const MarkdownItHighlight = MarkdownIt({
   .use(MarkdownItAnchor, {
     slugify
   })
+  .use(MarkdownItMermaid)
