@@ -16,7 +16,7 @@ export default props => {
 
   const { data } = props
 
-  const [visibleToc, setVisibleToc] = useState(true)
+  const [visibleToc, setVisibleToc] = useState(false)
 
   const [collapsed, setCollapsed] = useState(false)
 
@@ -50,10 +50,12 @@ export default props => {
     const timeStamp = Date.now()
     const htmlStr = MarkdownItHighlight.render(md)
     const TocData = getTocData(htmlStr, { type: 'html', slugify })
-    setExpandedKeys(map(TocData.list, 'slug'))
+    const { list } = TocData
+    setExpandedKeys(map(list, 'slug'))
     setHtml(htmlStr)
     setContent(md)
     setTocData(TocData)
+    setVisibleToc(!!list.length)
     setParserTime(Date.now() - timeStamp)
     setTimeout(() => {
       document.querySelector(`[id="${window.location.hash.slice(1)}"]`)?.scrollIntoView()
@@ -107,22 +109,22 @@ export default props => {
               position: 'fixed',
               zIndex: 1,
               width: 300,
-              right: 12,
+              right: token.paddingContentVertical,
               top: 50 + 10,
-              paddingBottom: 12,
+              paddingBottom: token.paddingContentVertical,
               maxHeight: 'calc(100vh - 50px - 10px - 12px)',
               overflow: 'auto',
               border: `1px solid ${token.colorBorderSecondary}`,
-              background: token.colorBgBase,
               boxShadow: token.boxShadow
             }}
           >
             <div
               style={{
-                padding: '6px 10px 6px 28px',
                 position: 'sticky',
                 top: 0,
                 zIndex: 1,
+                padding: '6px 10px 6px 28px',
+                marginBottom: token.paddingContentVertical,
                 background: token.colorBgBase
               }}
             >
