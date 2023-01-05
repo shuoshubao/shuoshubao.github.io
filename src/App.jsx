@@ -60,7 +60,7 @@ export default () => {
         }}
         style={{
           height: '100vh',
-          borderRight: `1px solid ${token.colorBorderSecondary}`
+          borderRight: collapsed ? 'none' : `1px solid ${token.colorBorderSecondary}`
         }}
         zeroWidthTriggerStyle={{
           position: 'fixed',
