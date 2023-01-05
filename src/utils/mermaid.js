@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import Mermaid from 'mermaid'
 import Murmur from 'murmurhash-js/murmurhash3_gc'
 
@@ -30,7 +32,7 @@ const defaultOpts = {
   }
 }
 
-const MermaidPlugIn = (md, options) => {
+export default (md, options) => {
   const option = {
     ...defaultOpts,
     ...options
@@ -56,5 +58,3 @@ const MermaidPlugIn = (md, options) => {
     return defaultRenderer(tokens, idx, opts, env, self)
   }
 }
-
-export default MermaidPlugIn

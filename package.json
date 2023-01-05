@@ -19,6 +19,7 @@
     "antd": "^5.1.1",
     "github-markdown-css": "^5.1.0",
     "highlight.js": "^11.7.0",
+    "katex": "^0.16.4",
     "lodash-es": "^4.17.21",
     "markdown-it": "^13.0.1",
     "markdown-it-anchor": "^8.6.6",
