@@ -62,7 +62,7 @@
     },
     "ignore": [
       "CHANGELOG.md",
-      "docs"
+      "docs/**"
     ]
   },
   "config": {
