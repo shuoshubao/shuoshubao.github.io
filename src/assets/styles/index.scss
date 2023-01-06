@@ -60,8 +60,16 @@ p {
   }
 }
 
+.ant-modal.algolia-modal {
+  padding-bottom: 0;
+  .ant-modal-close {
+    display: none !important;
+  }
+}
+
 .algolia-container {
-  max-height: calc(100vh - 120px);
+  min-height: 200px;
+  max-height: calc(100vh - 100px);
   overflow-y: auto;
 
   & > div {
@@ -71,6 +79,7 @@ p {
   .ant-select-dropdown {
     position: static !important;
     display: block !important;
+    box-shadow: none !important;
   }
 
   .rc-virtual-list-holder {

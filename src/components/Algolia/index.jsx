@@ -1,21 +1,11 @@
 import React, { useRef, useState, useEffect } from 'react'
 import { Modal, AutoComplete, Input, Tag, Typography, Space, Divider, List, Empty } from 'antd'
 import { SearchOutlined } from '@ant-design/icons'
-import { debounce } from 'lodash-es'
+import { debounce, once } from 'lodash-es'
+import HighlightText from '@/components/HighlightText'
 import { getFetchPrefix } from '@/utils'
 
 const { Link, Text } = Typography
-
-const HighlightText = ({ value, query }) => {
-  const [left, ...right] = value.split(query)
-  return (
-    <>
-      <Text>{left}</Text>
-      <Text type="danger">{query}</Text>
-      <Text>{right.join('')}</Text>
-    </>
-  )
-}
 
 export default () => {
   const autoCompleteRef = useRef()
@@ -95,9 +85,7 @@ export default () => {
     setAllData(data)
   }
 
-  useEffect(() => {
-    fetchData()
-  }, [setAllData])
+  const onceFetchData = once(fetchData)
 
   const keydownListener = e => {
     const { metaKey, key } = e
@@ -108,6 +96,7 @@ export default () => {
         }, 100)
       }
       setIsModalOpen(!isModalOpen)
+      onceFetchData()
     }
   }
 
@@ -121,13 +110,14 @@ export default () => {
   return (
     <>
       <Input
-        style={{ padding: '5px 10px', margin: 10, width: 130 }}
+        style={{ position: 'absolute', bottom: 0, padding: '5px 10px', margin: 12, width: 150 - 12 * 2 }}
         prefix={<SearchOutlined />}
         suffix={<Tag style={{ margin: 0 }}>⌘K</Tag>}
         placeholder="Search"
         readOnly
         onClick={() => {
           setIsModalOpen(true)
+          onceFetchData()
           setTimeout(() => {
             autoCompleteRef?.current?.focus()
           }, 100)
@@ -137,7 +127,7 @@ export default () => {
         open={isModalOpen}
         width="90%"
         style={{ top: 12 }}
-        closeIcon={' '}
+        className="algolia-modal"
         footer={null}
         onCancel={() => {
           setIsModalOpen(false)
