@@ -27,7 +27,7 @@ export default props => {
           const { category, name, title } = item
           const path = [category, name].join('/')
           return (
-            <List.Item key={path} style={{ paddingLeft: 0, paddingRight: 0 }}>
+            <List.Item style={{ paddingLeft: 0, paddingRight: 0 }}>
               <Button type="link" href={`#${path}`}>
                 {title}
               </Button>

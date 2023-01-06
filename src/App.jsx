@@ -5,6 +5,7 @@ import '@/assets/styles/index.scss'
 import Home from '@/views/Home'
 import Category from '@/views/Category'
 import Article from '@/views/Article'
+import Algolia from '@/components/Algolia'
 import { NavData, CollapsedKey } from '@/configs'
 import { getFetchPrefix, isDark, getHashs, getPageType } from '@/utils'
 
@@ -24,7 +25,7 @@ export default () => {
   const [selectedClassification, setSelectedClassification] = useState(getHashs()[0])
 
   const fetchData = async () => {
-    const data = await fetch(`${getFetchPrefix()}data/db.json`).then(res => {
+    const data = await fetch(`${getFetchPrefix()}store/db.json`).then(res => {
       return res.json()
     })
     Object.entries(data).forEach(([k, v]) => {
@@ -86,26 +87,29 @@ export default () => {
           }}
         >
           {!collapsed && (
-            <Menu
-              key={selectedClassification}
-              defaultSelectedKeys={[selectedClassification]}
-              items={NavData.map(v => {
-                const { label, value, icon } = v
-                return {
-                  key: value,
-                  label,
-                  icon
-                }
-              })}
-              style={{ borderInlineEnd: 'none' }}
-              onClick={({ key }) => {
-                if (key === 'index') {
-                  window.location.hash = '#'
-                  return
-                }
-                window.location.hash = key
-              }}
-            />
+            <>
+              <Menu
+                key={selectedClassification}
+                defaultSelectedKeys={[selectedClassification]}
+                items={NavData.map(v => {
+                  const { label, value, icon } = v
+                  return {
+                    key: value,
+                    label,
+                    icon
+                  }
+                })}
+                style={{ borderInlineEnd: 'none' }}
+                onClick={({ key }) => {
+                  if (key === 'index') {
+                    window.location.hash = '#'
+                    return
+                  }
+                  window.location.hash = key
+                }}
+              />
+              <Algolia />
+            </>
           )}
         </div>
       </Sider>

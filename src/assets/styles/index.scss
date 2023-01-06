@@ -59,3 +59,21 @@ p {
     background: #fff;
   }
 }
+
+.algolia-container {
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+
+  & > div {
+    position: static !important;
+  }
+
+  .ant-select-dropdown {
+    position: static !important;
+    display: block !important;
+  }
+
+  .rc-virtual-list-holder {
+    max-height: none !important;
+  }
+}
