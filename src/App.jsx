@@ -17,12 +17,12 @@ const { useToken } = theme
 const SiderWidth = 150
 
 export default () => {
-  const { token } = useToken()
-
   const [pageType, setPageType] = useState(getPageType())
   const [collapsed, setCollapsed] = useState(JSON.parse(window.localStorage.getItem(CollapsedKey) || 'false'))
   const [categoryData, setCategoryData] = useState({})
   const [selectedClassification, setSelectedClassification] = useState(getHashs()[0])
+
+  const { token } = useToken()
 
   const fetchData = async () => {
     const data = await fetch(`${getFetchPrefix()}store/db.json`).then(res => {
@@ -72,7 +72,8 @@ export default () => {
           insetInlineStart: collapsed ? 0 : SiderWidth - 12 / 2,
           border: `1px solid ${token.colorBorderSecondary}`,
           borderRadius: collapsed ? '0 6px 6px 0' : 6,
-          overflow: 'hidden'
+          overflow: 'hidden',
+          boxShadow: token.boxShadow
         }}
         trigger={collapsed ? <CaretRightOutlined /> : <CaretLeftOutlined />}
       >
