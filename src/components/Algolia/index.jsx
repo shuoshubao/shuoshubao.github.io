@@ -99,18 +99,23 @@ export default () => {
     fetchData()
   }, [setAllData])
 
-  useEffect(() => {
-    window.addEventListener('keydown', e => {
-      const { metaKey, key } = e
-      if (metaKey && key === 'k') {
-        if (!isModalOpen) {
-          setTimeout(() => {
-            autoCompleteRef?.current?.focus()
-          }, 100)
-        }
-        setIsModalOpen(!isModalOpen)
+  const keydownListener = e => {
+    const { metaKey, key } = e
+    if (metaKey && key === 'k') {
+      if (!isModalOpen) {
+        setTimeout(() => {
+          autoCompleteRef?.current?.focus()
+        }, 100)
       }
-    })
+      setIsModalOpen(!isModalOpen)
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener('keydown', keydownListener)
+    return () => {
+      window.removeEventListener('keydown', keydownListener)
+    }
   }, [isModalOpen, setIsModalOpen])
 
   return (
