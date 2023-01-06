@@ -20,6 +20,7 @@ export default props => {
 
   const [collapsed, setCollapsed] = useState(false)
 
+  const [selectedKeys, setSelectedKeys] = useState([])
   const [expandedKeys, setExpandedKeys] = useState([])
 
   const [parserTime, setParserTime] = useState(null)
@@ -45,6 +46,12 @@ export default props => {
     return <Result status="404" title="404" subTitle="Sorry, the page you visited does not exist." />
   }
 
+  const updateSelectedKeys = () => {
+    document.querySelector(`[id="${window.location.hash.slice(1)}"]`)?.scrollIntoView()
+    document.querySelector('.ant-tree-node-selected')?.scrollIntoView()
+    setSelectedKeys([window.location.hash.slice(1)])
+  }
+
   const fetchData = async () => {
     const md = await fetch(`${getFetchPrefix()}article/${[category, name].join('/')}.md`).then(res => res.text())
     const timeStamp = Date.now()
@@ -58,13 +65,21 @@ export default props => {
     setVisibleToc(!!list.length)
     setParserTime(Date.now() - timeStamp)
     setTimeout(() => {
-      document.querySelector(`[id="${window.location.hash.slice(1)}"]`)?.scrollIntoView()
+      updateSelectedKeys()
     }, 0)
   }
 
   useEffect(() => {
     fetchData()
-  }, [setContent])
+  }, [setExpandedKeys, setHtml, setContent, setTocData, setVisibleToc, setParserTime, setSelectedKeys])
+
+  useEffect(() => {
+    window.addEventListener('hashchange', updateSelectedKeys)
+
+    return () => {
+      window.removeEventListener('hashchange', updateSelectedKeys)
+    }
+  }, [setSelectedKeys])
 
   const { title } = find(AllArticles, { name })
 
@@ -157,10 +172,11 @@ export default props => {
             </div>
             <Tree
               treeData={tocData.treeData}
+              selectedKeys={selectedKeys}
               expandedKeys={expandedKeys}
-              onSelect={selectedKeys => {
-                if (selectedKeys[0]) {
-                  window.location.hash = selectedKeys[0]
+              onSelect={keys => {
+                if (keys[0]) {
+                  window.location.hash = keys[0]
                 }
               }}
               onExpand={expandedKeysValue => {
