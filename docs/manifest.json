@@ -9,14 +9,8 @@
   "_katex-589a4957.js": {
     "file": "assets/katex-589a4957.js"
   },
-  "_mermaid-b0dc975e.js": {
-    "file": "assets/mermaid-b0dc975e.js",
-    "imports": [
-      "_markdown-a3de1f47.js"
-    ]
-  },
   "index.html": {
-    "file": "assets/index-ee9a9cf0.js",
+    "file": "assets/index-376b0a18.js",
     "src": "index.html",
     "isEntry": true,
     "imports": [
@@ -26,6 +20,12 @@
     ],
     "css": [
       "assets/index-03863cc4.css"
+    ]
+  },
+  "_mermaid-b0dc975e.js": {
+    "file": "assets/mermaid-b0dc975e.js",
+    "imports": [
+      "_markdown-a3de1f47.js"
     ]
   }
 }

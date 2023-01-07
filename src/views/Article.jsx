@@ -43,9 +43,6 @@ export default props => {
 
   const { title } = find(AllArticles, { name })
 
-  console.log(111, title, name)
-  console.log(AllArticles)
-
   return (
     <>
       <Card
