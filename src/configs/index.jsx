@@ -3,6 +3,8 @@ import { HomeOutlined, ToolOutlined, BulbOutlined } from '@ant-design/icons'
 
 export const CollapsedKey = 'collapsed'
 
+export const TocCollapsedKey = ['collapsed', 'toc'].join('-')
+
 const IconFontSize = 16
 
 export const NavData = [

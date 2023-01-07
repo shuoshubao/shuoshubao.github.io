@@ -21,7 +21,7 @@ export const memoizeFetch = (url = '', options = {}) => {
   if (item) {
     return item.request
   }
-  const request = fetch(getFetchPrefix() + url, options)
+  const request = fetch(getFetchPrefix() + url, options).then(res => res.text())
   CacheFetchList.push({
     url,
     options,

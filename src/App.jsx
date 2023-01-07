@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react'
-import { Layout, Skeleton, Menu, Result, FloatButton, theme } from 'antd'
+import { Layout, Skeleton, Menu, Result, theme } from 'antd'
 import { CaretLeftOutlined, CaretRightOutlined } from '@ant-design/icons'
 import '@/assets/styles/index.scss'
 import Home from '@/views/Home'
 import Category from '@/views/Category'
 import Article from '@/views/Article'
 import Algolia from '@/components/Algolia'
+import MarkdownToc from '@/components/MarkdownToc'
 import { NavData, CollapsedKey } from '@/configs'
 import { memoizeFetch, isDark, getHashs, getPageType } from '@/utils'
 
 const { Sider, Content } = Layout
-const { BackTop } = FloatButton
 
 const { useToken } = theme
 
@@ -25,9 +25,8 @@ export default () => {
   const { token } = useToken()
 
   const fetchData = async () => {
-    const data = await memoizeFetch('store/db.json').then(res => {
-      return res.json()
-    })
+    const text = await memoizeFetch('store/db.json')
+    const data = JSON.parse(text)
     Object.entries(data).forEach(([k, v]) => {
       v.forEach(v2 => {
         v2.category = k
@@ -114,7 +113,7 @@ export default () => {
           )}
         </div>
       </Sider>
-      <Content style={{ padding: token.paddingContentVertical, minHeight: '100vh', overflowY: 'auto' }}>
+      <Content style={{ padding: token.paddingContentVertical, height: '100vh', overflowY: 'auto' }}>
         <Skeleton loading={Object.keys(categoryData).length === 0}>
           {pageType === 'index' && <Home data={categoryData} />}
           {pageType === 'list' && <Category data={categoryData[selectedClassification]} />}
@@ -123,8 +122,8 @@ export default () => {
             <Result status="404" title="404" subTitle="Sorry, the page you visited does not exist." />
           )}
         </Skeleton>
-        <BackTop />
       </Content>
+      {pageType === 'detail' && <MarkdownToc />}
     </Layout>
   )
 }

@@ -79,10 +79,8 @@ export default () => {
   }
 
   const fetchData = async () => {
-    const data = await memoizeFetch('store/all.json').then(res => {
-      return res.json()
-    })
-    setAllData(data)
+    const data = await memoizeFetch('store/all.json')
+    setAllData(JSON.parse(data))
   }
 
   const onceFetchData = once(fetchData)
