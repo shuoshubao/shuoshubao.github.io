@@ -25,7 +25,7 @@ export default () => {
   const { token } = useToken()
 
   const fetchData = async () => {
-    const text = await memoizeFetch('store/db.json')
+    const text = await memoizeFetch('data/db.json')
     const data = JSON.parse(text)
     Object.entries(data).forEach(([k, v]) => {
       v.forEach(v2 => {
