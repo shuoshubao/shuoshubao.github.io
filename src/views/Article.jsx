@@ -6,7 +6,7 @@ import ms from 'ms'
 import getTocData from 'mdx-toc'
 import 'github-markdown-css/github-markdown.css'
 import 'highlight.js/styles/vs2015.css'
-import { getFetchPrefix, getHashs, MarkdownItHighlight, slugify } from '@/utils'
+import { memoizeFetch, getHashs, MarkdownItHighlight, slugify } from '@/utils'
 
 const { Text } = Typography
 const { useToken } = theme
@@ -53,7 +53,7 @@ export default props => {
   }
 
   const fetchData = async () => {
-    const md = await fetch(`${getFetchPrefix()}article/${[category, name].join('/')}.md`).then(res => res.text())
+    const md = await memoizeFetch(`article/${[category, name].join('/')}.md`).then(res => res.text())
     const timeStamp = Date.now()
     const htmlStr = MarkdownItHighlight.render(md)
     const TocData = getTocData(htmlStr, { type: 'html', slugify })

@@ -7,7 +7,7 @@ import Category from '@/views/Category'
 import Article from '@/views/Article'
 import Algolia from '@/components/Algolia'
 import { NavData, CollapsedKey } from '@/configs'
-import { getFetchPrefix, isDark, getHashs, getPageType } from '@/utils'
+import { memoizeFetch, isDark, getHashs, getPageType } from '@/utils'
 
 const { Sider, Content } = Layout
 const { BackTop } = FloatButton
@@ -25,7 +25,7 @@ export default () => {
   const { token } = useToken()
 
   const fetchData = async () => {
-    const data = await fetch(`${getFetchPrefix()}store/db.json`).then(res => {
+    const data = await memoizeFetch('store/db.json').then(res => {
       return res.json()
     })
     Object.entries(data).forEach(([k, v]) => {

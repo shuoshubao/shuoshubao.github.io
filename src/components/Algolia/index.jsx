@@ -3,7 +3,7 @@ import { Modal, AutoComplete, Input, Tag, Typography, Space, Divider, List, Empt
 import { SearchOutlined } from '@ant-design/icons'
 import { debounce, once } from 'lodash-es'
 import HighlightText from '@/components/HighlightText'
-import { getFetchPrefix } from '@/utils'
+import { memoizeFetch } from '@/utils'
 
 const { Link, Text } = Typography
 
@@ -79,7 +79,7 @@ export default () => {
   }
 
   const fetchData = async () => {
-    const data = await fetch(`${getFetchPrefix()}store/all.json`).then(res => {
+    const data = await memoizeFetch('store/all.json').then(res => {
       return res.json()
     })
     setAllData(data)

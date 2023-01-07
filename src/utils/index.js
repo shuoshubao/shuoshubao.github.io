@@ -1,3 +1,5 @@
+import { isEqual, pick } from 'lodash-es'
+
 export * from './markdown'
 export * from './route'
 
@@ -8,6 +10,24 @@ export const getFetchPrefix = () => {
     return 'http://localhost:3000/'
   }
   return 'https://raw.githubusercontent.com/shuoshubao/blog/master/'
+}
+
+const CacheFetchList = []
+
+export const memoizeFetch = (url = '', options = {}) => {
+  const item = CacheFetchList.find(v => {
+    return isEqual(pick(v, 'url', 'options'), { url, options })
+  })
+  if (item) {
+    return item.request
+  }
+  const request = fetch(getFetchPrefix() + url, options)
+  CacheFetchList.push({
+    url,
+    options,
+    request
+  })
+  return request
 }
 
 export const isDark = () => {
