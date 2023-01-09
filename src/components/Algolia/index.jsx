@@ -1,11 +1,12 @@
 import React, { useRef, useState, useEffect } from 'react'
 import { Modal, AutoComplete, Input, Tag, Typography, Space, Divider, List, Empty } from 'antd'
 import { SearchOutlined } from '@ant-design/icons'
-import { debounce, once } from 'lodash-es'
+import { find, debounce, once } from 'lodash-es'
 import HighlightText from '@/components/HighlightText'
 import { memoizeFetch } from '@/utils'
+import { NavData } from '@/configs'
 
-const { Link, Text } = Typography
+const { Text } = Typography
 
 export default () => {
   const autoCompleteRef = useRef()
@@ -26,12 +27,15 @@ export default () => {
       if (!filters.length) {
         return
       }
+      const { icon } = find(NavData, { value: k })
       list.push({
         value: k,
         label: (
           <Space>
-            <Link href={`#${k}`}>{k}</Link>
-            <Text type="secondary">{filters.length}</Text>
+            <div style={{ position: 'relative', top: 3 }}>
+              <Text type="secondary">{icon}</Text>
+            </div>
+            <Text type="secondary">{k}</Text>
           </Space>
         ),
         options: filters.map(({ name, title, content }) => {
@@ -108,9 +112,9 @@ export default () => {
   return (
     <>
       <Input
-        style={{ position: 'absolute', bottom: 0, padding: '5px 10px', margin: 12, width: 150 - 12 * 2 }}
+        style={{ position: 'absolute', bottom: 0, padding: 5, margin: 12, width: 150 - 12 * 2 }}
         prefix={<SearchOutlined />}
-        suffix={<Tag style={{ margin: 0 }}>⌘K</Tag>}
+        suffix={<Tag style={{ margin: 0 }}>⌘ K</Tag>}
         placeholder="Search"
         readOnly
         onClick={() => {
