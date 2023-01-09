@@ -13,6 +13,7 @@ export default ({ mode }) => {
       rollupOptions: {
         output: {
           manualChunks: {
+            react: ['react', 'react-dom'],
             markdown: ['markdown-it', 'markdown-it-anchor', 'markdown-it-attrs', 'markdown-it-task-lists'],
             mermaid: ['mermaid'],
             katex: ['katex']
