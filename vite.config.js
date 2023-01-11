@@ -1,5 +1,6 @@
 import { resolve } from 'path'
 import react from '@vitejs/plugin-react'
+import Analyze from 'rollup-plugin-analyze'
 
 // https://vitejs.dev/config/
 export default ({ mode }) => {
@@ -45,6 +46,6 @@ export default ({ mode }) => {
     configureWebpack: {
       externals: {}
     },
-    plugins: [react()]
+    plugins: [react(), Analyze()]
   }
 }
