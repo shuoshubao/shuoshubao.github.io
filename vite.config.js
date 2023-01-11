@@ -46,6 +46,6 @@ export default ({ mode }) => {
     configureWebpack: {
       externals: {}
     },
-    plugins: [react(), Analyze()]
+    plugins: [react(), Analyze({ filename: 'docs/stats.html' })]
   }
 }
