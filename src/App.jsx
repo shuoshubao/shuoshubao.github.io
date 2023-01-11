@@ -42,7 +42,7 @@ export default () => {
       setSelectedClassification(getHashs()[0])
       setPageType(getPageType())
     })
-  }, [])
+  }, [setSelectedClassification, setPageType])
 
   useEffect(() => {
     fetchData()
@@ -119,7 +119,7 @@ export default () => {
         <Skeleton loading={Object.keys(categoryData).length === 0}>
           {pageType === 'index' && <Home data={categoryData} />}
           {pageType === 'list' && <Category data={categoryData[selectedClassification]} />}
-          {pageType === 'detail' && <Article data={categoryData} />}
+          {pageType === 'detail' && <Article key={getHashs().join('/')} data={categoryData} />}
           {pageType === '404' && (
             <Result status="404" title="404" subTitle="Sorry, the page you visited does not exist." />
           )}
