@@ -11,6 +11,7 @@ body .markdown-body {
       overflow-x: auto;
       word-break: normal;
       counter-reset: line;
+
       .line {
         &::before {
           display: inline-block;
@@ -27,18 +28,18 @@ body .markdown-body {
         position: absolute;
         top: 5px;
         right: 10px;
+        display: flex;
+        gap: 12px;
         color: hsl(0deg 0% 54.9% / 80%);
         line-height: 20px;
 
         .btn-lang {
           display: inline-block;
-          padding: 0 5px;
           line-height: 20px;
           cursor: default;
         }
 
         .anticon-copy {
-          padding: 0 5px;
           line-height: 20px;
           cursor: pointer;
           transition: color 0.1s;

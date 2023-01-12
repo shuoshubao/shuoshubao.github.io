@@ -15,7 +15,6 @@ export default ({ mode }) => {
         output: {
           manualChunks: {
             react: ['react', 'react-dom'],
-            antd: ['antd'],
             highlight: [
               'highlight.js/lib/core',
               'highlight.js/lib/languages/javascript',

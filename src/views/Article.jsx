@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { Modal, Result, Card, Button, Typography, Tag, Space } from 'antd'
+import { Modal, Result, Card, Button, Typography, Tag, Space, message } from 'antd'
+import copy from 'copy-to-clipboard'
 import { CodeOutlined } from '@ant-design/icons'
 import { map, find } from 'lodash-es'
 import ms from 'ms'
@@ -19,6 +20,8 @@ export default props => {
   const [html, setHtml] = useState('')
 
   const [isModalOpen, setIsModalOpen] = useState(false)
+
+  const [messageApi, contextHolder] = message.useMessage()
 
   const [category, name] = getHashs()
 
@@ -40,6 +43,30 @@ export default props => {
   useEffect(() => {
     fetchData()
   }, [setHtml, setContent, setParserTime])
+
+  const handleCopy = e => {
+    const { target } = e
+    let targetNode
+    if (target.classList.contains('anticon-copy')) {
+      targetNode = target
+    }
+    if (target.closest('.markdown-body .anticon-copy')) {
+      targetNode = target.closest('.markdown-body .anticon-copy')
+    }
+    if (targetNode) {
+      const code = decodeURIComponent(targetNode.dataset.code)
+      copy(code)
+      messageApi.success('Copied')
+    }
+  }
+
+  useEffect(() => {
+    document.body.addEventListener('click', handleCopy)
+
+    return () => {
+      document.body.removeEventListener('click', handleCopy)
+    }
+  }, [])
 
   const { title } = find(AllArticles, { name })
 
@@ -85,6 +112,7 @@ export default props => {
           {content}
         </pre>
       </Modal>
+      {contextHolder}
     </>
   )
 }
