@@ -127,7 +127,7 @@ export default () => {
           )}
         </Skeleton>
       </Content>
-      {pageType === 'detail' && <MarkdownToc />}
+      {pageType === 'detail' && <MarkdownToc key={pageHashs.join('/')} />}
     </Layout>
   )
 }
