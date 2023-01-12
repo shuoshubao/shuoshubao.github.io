@@ -35,12 +35,12 @@ export default () => {
     setExpandedKeys(map(tocData.list, 'slug'))
     setTimeout(() => {
       updateSelectedKeys()
-    }, 0)
+    }, 500)
   }
 
   useEffect(() => {
     fetchData()
-  }, [])
+  }, [setTreeData, setList, setExpandedKeys, setSelectedKeys])
 
   useEffect(() => {
     window.addEventListener('hashchange', updateSelectedKeys)
