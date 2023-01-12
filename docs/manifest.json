@@ -1,50 +1,42 @@
 {
   "index.css": {
-    "file": "assets/index-14b4ca19.css",
+    "file": "assets/index-ddc83d52.css",
     "src": "index.css"
-  },
-  "index.html": {
-    "file": "assets/index-5dc88c00.js",
-    "src": "index.html",
-    "isEntry": true,
-    "imports": [
-      "_react-2e35263e.js",
-      "_markdown-bed463f8.js",
-      "_highlight-a0f3a822.js",
-      "_antd-84f4c742.js",
-      "_mermaid-453b2555.js",
-      "_katex-589a4957.js"
-    ],
-    "css": [
-      "assets/index-14b4ca19.css"
-    ]
   },
   "_highlight-a0f3a822.js": {
     "file": "assets/highlight-a0f3a822.js"
   },
-  "_react-2e35263e.js": {
-    "file": "assets/react-2e35263e.js"
+  "_react-245936aa.js": {
+    "file": "assets/react-245936aa.js"
   },
-  "_markdown-bed463f8.js": {
-    "file": "assets/markdown-bed463f8.js",
+  "_markdown-47163c19.js": {
+    "file": "assets/markdown-47163c19.js",
     "imports": [
-      "_react-2e35263e.js"
+      "_react-245936aa.js"
     ]
   },
   "_katex-589a4957.js": {
     "file": "assets/katex-589a4957.js"
   },
-  "_antd-84f4c742.js": {
-    "file": "assets/antd-84f4c742.js",
+  "index.html": {
+    "file": "assets/index-bc67b9ed.js",
+    "src": "index.html",
+    "isEntry": true,
     "imports": [
-      "_react-2e35263e.js"
+      "_react-245936aa.js",
+      "_markdown-47163c19.js",
+      "_highlight-a0f3a822.js",
+      "_mermaid-3a326a47.js",
+      "_katex-589a4957.js"
+    ],
+    "css": [
+      "assets/index-ddc83d52.css"
     ]
   },
-  "_mermaid-453b2555.js": {
-    "file": "assets/mermaid-453b2555.js",
+  "_mermaid-3a326a47.js": {
+    "file": "assets/mermaid-3a326a47.js",
     "imports": [
-      "_react-2e35263e.js",
-      "_antd-84f4c742.js"
+      "_react-245936aa.js"
     ]
   }
 }
