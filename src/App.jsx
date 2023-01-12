@@ -20,6 +20,7 @@ const SiderWidth = 150
 
 export default () => {
   const [pageType, setPageType] = useState(getPageType())
+  const [pageHashs, setPageHashs] = useState(getHashs())
   const [collapsed, setCollapsed] = useState(JSON.parse(window.localStorage.getItem(CollapsedKey) || 'false'))
   const [categoryData, setCategoryData] = useState({})
   const [selectedClassification, setSelectedClassification] = useState(getHashs()[0])
@@ -39,6 +40,7 @@ export default () => {
 
   useEffect(() => {
     window.addEventListener('hashchange', () => {
+      setPageHashs(getHashs())
       setSelectedClassification(getHashs()[0])
       setPageType(getPageType())
     })
@@ -119,7 +121,7 @@ export default () => {
         <Skeleton loading={Object.keys(categoryData).length === 0}>
           {pageType === 'index' && <Home data={categoryData} />}
           {pageType === 'list' && <Category data={categoryData[selectedClassification]} />}
-          {pageType === 'detail' && <Article key={getHashs().join('/')} data={categoryData} />}
+          {pageType === 'detail' && <Article key={pageHashs.join('/')} data={categoryData} />}
           {pageType === '404' && (
             <Result status="404" title="404" subTitle="Sorry, the page you visited does not exist." />
           )}

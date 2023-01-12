@@ -1,12 +1,10 @@
 import React, { useRef, useState, useEffect } from 'react'
-import { Modal, AutoComplete, Input, Tag, Typography, Space, Divider, List, Empty } from 'antd'
+import { Modal, AutoComplete, Input, Tag, Col, Row, List, Empty } from 'antd'
 import { SearchOutlined } from '@ant-design/icons'
 import { find, debounce, once } from 'lodash-es'
 import HighlightText from '@/components/HighlightText'
 import { memoizeFetch } from '@/utils'
 import { NavData } from '@/configs'
-
-const { Text } = Typography
 
 export default () => {
   const autoCompleteRef = useRef()
@@ -20,47 +18,42 @@ export default () => {
 
   const searchFunc = query => {
     const list = []
-    Object.entries(AllData).forEach(([k, v]) => {
-      const filters = v.filter(({ content }) => {
-        return content.split('\n').some(v2 => v2.includes(query))
-      })
-      if (!filters.length) {
+    Object.entries(AllData).forEach(([k, { title, content }]) => {
+      // console.log(k, title, content)
+      const contentList = content.split('\n').filter(v2 => v2.includes(query))
+      if (!contentList.length) {
         return
       }
-      const { icon } = find(NavData, { value: k })
       list.push({
         value: k,
         label: (
-          <Space>
-            <div style={{ position: 'relative', top: 3 }}>
-              <Text type="secondary">{icon}</Text>
-            </div>
-            <Text type="secondary">{k}</Text>
-          </Space>
-        ),
-        options: filters.map(({ name, title, content }) => {
-          const contentList = content.split('\n').filter(v2 => v2.includes(query))
-          return {
-            value: [k, name].join('/'),
-            label: (
-              <Space split={<Divider type="vertical" />}>
-                <Text>{title}</Text>
-                <List
-                  dataSource={contentList}
-                  renderItem={item => {
-                    return (
-                      <List.Item style={{ padding: '5px 0' }}>
-                        <div>
-                          <HighlightText value={item.trim()} query={query} />
-                        </div>
-                      </List.Item>
-                    )
-                  }}
-                />
-              </Space>
-            )
-          }
-        })
+          <Row>
+            <Col
+              span={6}
+              style={{
+                display: 'flex',
+                alignContent: 'center',
+                flexWrap: 'wrap'
+              }}
+            >
+              {title}
+            </Col>
+            <Col span={18}>
+              <List
+                dataSource={contentList}
+                renderItem={item => {
+                  return (
+                    <List.Item style={{ padding: '5px 0' }}>
+                      <div>
+                        <HighlightText value={item.trim()} query={query} />
+                      </div>
+                    </List.Item>
+                  )
+                }}
+              />
+            </Col>
+          </Row>
+        )
       })
     })
     setOptions(list)
