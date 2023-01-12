@@ -1,19 +1,26 @@
 import React, { useState, useEffect } from 'react'
-import { Modal, Result, Card, Button, Typography, Tag, Space, message } from 'antd'
-import copy from 'copy-to-clipboard'
+import { Modal, Result, Card, Button, Typography, Space, Divider, Tag, message } from 'antd'
 import { CodeOutlined } from '@ant-design/icons'
+import copy from 'copy-to-clipboard'
+import dayjs from 'dayjs'
 import { map, find } from 'lodash-es'
-import ms from 'ms'
+import filesize from 'filesize'
 import 'github-markdown-css/github-markdown.css'
 import 'highlight.js/styles/vs2015.css'
 import { memoizeFetch, getHashs, MarkdownItHighlight } from '@/utils'
 
 const { Text } = Typography
 
+const getFileSize = size => {
+  return filesize(size || 0, { base: 2, standard: 'jedec' })
+}
+
+const formatTime = time => {
+  return dayjs(time).format('YYYY-MM-DD HH:mm:ss')
+}
+
 export default props => {
   const { data } = props
-
-  const [parserTime, setParserTime] = useState(null)
 
   const [content, setContent] = useState('')
 
@@ -33,16 +40,14 @@ export default props => {
 
   const fetchData = async () => {
     const md = await memoizeFetch(`article/${[category, name].join('/')}.md`)
-    const timeStamp = Date.now()
     const htmlStr = MarkdownItHighlight.render(md)
     setHtml(htmlStr)
     setContent(md)
-    setParserTime(Date.now() - timeStamp)
   }
 
   useEffect(() => {
     fetchData()
-  }, [setHtml, setContent, setParserTime])
+  }, [setHtml, setContent])
 
   const handleCopy = e => {
     const { target } = e
@@ -68,19 +73,17 @@ export default props => {
     }
   }, [])
 
-  const { title } = find(AllArticles, { name })
+  const { title, size, ctime, mtime } = find(AllArticles, { name })
 
   return (
     <>
       <Card
-        title={
-          <Space>
-            <Text>{title}</Text>
-            {parserTime && <Tag color="success">{ms(parserTime, { long: true })}</Tag>}
-          </Space>
-        }
+        title={title}
         extra={
           <Space>
+            <Text type="secondary" italic>
+              {formatTime(mtime)}
+            </Text>
             <Button
               icon={<CodeOutlined />}
               onClick={() => {
@@ -94,7 +97,18 @@ export default props => {
         <div className="markdown-body" dangerouslySetInnerHTML={{ __html: html }} />
       </Card>
       <Modal
-        title="Markdown 源码"
+        title={
+          <Space split={<Divider type="vertical" />}>
+            <Text>Markdown 源码</Text>
+            <Text type="secondary" italic>
+              {formatTime(ctime)}
+            </Text>
+            <Text type="secondary" italic>
+              {formatTime(mtime)}
+            </Text>
+            <Tag color="cyan">{getFileSize(size)}</Tag>
+          </Space>
+        }
         open={isModalOpen}
         onCancel={() => {
           setIsModalOpen(false)
