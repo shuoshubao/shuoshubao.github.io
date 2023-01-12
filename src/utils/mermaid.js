@@ -1,5 +1,7 @@
 /* eslint-disable */
 
+// code from https://github.com/liradb2000/markdown-it-mermaid/blob/master/src/index.js
+
 import Mermaid from 'mermaid'
 import Murmur from 'murmurhash-js/murmurhash3_gc'
 
