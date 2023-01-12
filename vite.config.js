@@ -30,7 +30,12 @@ export default ({ mode }) => {
               'highlight.js/lib/languages/bash',
               'highlight.js/lib/languages/php'
             ],
-            markdown: ['markdown-it', 'markdown-it-anchor', 'markdown-it-attrs', 'markdown-it-task-lists'],
+            markdown: [
+              'markdown-it/dist/markdown-it',
+              'markdown-it-anchor',
+              'markdown-it-attrs',
+              'markdown-it-task-lists'
+            ],
             mermaid: ['mermaid'],
             katex: ['katex']
           }

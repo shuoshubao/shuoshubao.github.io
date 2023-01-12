@@ -1,5 +1,5 @@
 import { kebabCase } from 'lodash-es'
-import MarkdownIt from 'markdown-it'
+import MarkdownIt from 'markdown-it/dist/markdown-it'
 import getTocData from 'mdx-toc'
 import TaskLists from 'markdown-it-task-lists'
 import MarkdownItAttrs from 'markdown-it-attrs'
