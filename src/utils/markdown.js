@@ -1,5 +1,6 @@
 import { kebabCase } from 'lodash-es'
 import MarkdownIt from 'markdown-it'
+import getTocData from 'mdx-toc'
 import TaskLists from 'markdown-it-task-lists'
 import MarkdownItAttrs from 'markdown-it-attrs'
 import MarkdownItAnchor from 'markdown-it-anchor'
@@ -33,7 +34,7 @@ hljs.registerLanguage('shell', shell)
 hljs.registerLanguage('bash', bash)
 hljs.registerLanguage('php', php)
 
-export const slugify = str => {
+const slugify = str => {
   return [getHashs().join('/'), encodeURIComponent(kebabCase(str))].join('#')
 }
 
@@ -73,3 +74,14 @@ export const MarkdownItHighlight = MarkdownIt({
   })
   .use(MarkdownItMermaid)
   .use(MarkdownItKaTeX)
+
+const parser = md => {
+  return MarkdownIt().render(md)
+}
+
+export const getMarkdownTocData = md => {
+  return getTocData(parser(md), {
+    parser,
+    slugify
+  })
+}

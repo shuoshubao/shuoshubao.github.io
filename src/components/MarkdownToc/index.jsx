@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { Layout, Typography, Space, Tooltip, Tree, theme } from 'antd'
 import { CaretLeftOutlined, CaretRightOutlined, UnorderedListOutlined } from '@ant-design/icons'
-import getTocData from 'mdx-toc'
 import { map } from 'lodash-es'
 import { TocCollapsedKey } from '@/configs'
-import { memoizeFetch, getHashs, slugify } from '@/utils'
+import { memoizeFetch, getHashs, getMarkdownTocData } from '@/utils'
 
 const { Sider } = Layout
 const { Text } = Typography
@@ -30,7 +29,7 @@ export default () => {
 
   const fetchData = async () => {
     const md = await memoizeFetch(`article/${getHashs().join('/')}.md`)
-    const tocData = getTocData(md, { slugify })
+    const tocData = getMarkdownTocData(md)
     setTreeData(tocData.treeData)
     setList(tocData.list)
     setExpandedKeys(map(tocData.list, 'slug'))
