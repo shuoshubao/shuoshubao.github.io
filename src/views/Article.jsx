@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Modal, Result, Card, Button, Typography, Space, Divider, Tag, message } from 'antd'
+import { Modal, Result, Card, Button, Typography, Space, Divider, Tag, Image, message } from 'antd'
 import { CodeOutlined } from '@ant-design/icons'
 import copy from 'copy-to-clipboard'
 import dayjs from 'dayjs'
@@ -32,6 +32,10 @@ export default props => {
 
   const [category, name] = getHashs()
 
+  const [visible, setVisible] = useState(false)
+  const [imageList, setImageList] = useState([])
+  const [currentImgIndex, setCurrentImgIndex] = useState('')
+
   const AllArticles = data[category]
 
   if (!map(AllArticles, 'name').includes(name)) {
@@ -43,6 +47,9 @@ export default props => {
     const htmlStr = MarkdownItHighlight.render(md)
     setHtml(htmlStr)
     setContent(md)
+    setTimeout(() => {
+      setImageList([...document.querySelectorAll('.markdown-body img')].map(v => v.src))
+    }, 1)
   }
 
   useEffect(() => {
@@ -70,6 +77,23 @@ export default props => {
 
     return () => {
       document.body.removeEventListener('click', handleCopy)
+    }
+  }, [])
+
+  const handlePreviewImage = e => {
+    const { tagName, src } = e.target
+    if (tagName === 'IMG') {
+      const index = [...document.querySelectorAll('.markdown-body img')].map(v => v.src).indexOf(src)
+      setCurrentImgIndex(index)
+      setVisible(true)
+    }
+  }
+
+  useEffect(() => {
+    document.body.addEventListener('click', handlePreviewImage)
+
+    return () => {
+      document.body.removeEventListener('click', handlePreviewImage)
     }
   }, [])
 
@@ -126,6 +150,19 @@ export default props => {
           {content}
         </pre>
       </Modal>
+      <div style={{ display: 'none' }}>
+        <Image.PreviewGroup
+          preview={{
+            visible,
+            current: currentImgIndex,
+            onVisibleChange: vis => setVisible(vis)
+          }}
+        >
+          {imageList.map(v => {
+            return <Image key={v} src={v} />
+          })}
+        </Image.PreviewGroup>
+      </div>
       {contextHolder}
     </>
   )
