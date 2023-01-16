@@ -6,8 +6,8 @@
   "_highlight-a0f3a822.js": {
     "file": "assets/highlight-a0f3a822.js"
   },
-  "_markdown-bbe3ee14.js": {
-    "file": "assets/markdown-bbe3ee14.js",
+  "_markdown-70fa3ee7.js": {
+    "file": "assets/markdown-70fa3ee7.js",
     "imports": [
       "_react-68524ee9.js"
     ]
@@ -19,12 +19,12 @@
     "file": "assets/katex-589a4957.js"
   },
   "index.html": {
-    "file": "assets/index-9f59eea7.js",
+    "file": "assets/index-4d5c8c43.js",
     "src": "index.html",
     "isEntry": true,
     "imports": [
       "_react-68524ee9.js",
-      "_markdown-bbe3ee14.js",
+      "_markdown-70fa3ee7.js",
       "_highlight-a0f3a822.js",
       "_mermaid-a475a5fd.js",
       "_katex-589a4957.js"

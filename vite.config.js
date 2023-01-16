@@ -34,7 +34,9 @@ export default ({ mode }) => {
               'markdown-it/dist/markdown-it',
               'markdown-it-anchor',
               'markdown-it-attrs',
-              'markdown-it-task-lists'
+              'markdown-it-task-lists',
+              'markdown-it-link-attributes',
+              'mdx-toc'
             ],
             mermaid: ['mermaid'],
             katex: ['katex']
