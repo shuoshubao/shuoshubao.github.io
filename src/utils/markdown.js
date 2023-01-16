@@ -4,6 +4,7 @@ import getTocData from 'mdx-toc'
 import TaskLists from 'markdown-it-task-lists'
 import MarkdownItAttrs from 'markdown-it-attrs'
 import MarkdownItAnchor from 'markdown-it-anchor'
+import MarkdownItLinkAttrs from 'markdown-it-link-attributes'
 import hljs from 'highlight.js/lib/core'
 import javascript from 'highlight.js/lib/languages/javascript'
 import typescript from 'highlight.js/lib/languages/typescript'
@@ -71,6 +72,13 @@ export const MarkdownItHighlight = MarkdownIt({
   .use(MarkdownItAttrs)
   .use(MarkdownItAnchor, {
     slugify
+  })
+  .use(MarkdownItLinkAttrs, {
+    matcher: href => href.startsWith('http'),
+    attrs: {
+      target: '_blank',
+      rel: 'noopener'
+    }
   })
   .use(MarkdownItMermaid)
   .use(MarkdownItKaTeX)
