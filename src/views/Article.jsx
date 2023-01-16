@@ -34,7 +34,7 @@ export default props => {
 
   const [visible, setVisible] = useState(false)
   const [imageList, setImageList] = useState([])
-  const [currentImgIndex, setCurrentImgIndex] = useState('')
+  const [currentImgIndex, setCurrentImgIndex] = useState(0)
 
   const AllArticles = data[category]
 
