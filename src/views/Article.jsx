@@ -81,8 +81,11 @@ export default props => {
   }, [])
 
   const handlePreviewImage = e => {
-    const { tagName, src } = e.target
+    const { tagName, src, parentNode } = e.target
     if (tagName === 'IMG') {
+      if (parentNode.tagName === 'A') {
+        return
+      }
       const index = [...document.querySelectorAll('.markdown-body img')].map(v => v.src).indexOf(src)
       setCurrentImgIndex(index)
       setVisible(true)
