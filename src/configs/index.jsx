@@ -1,5 +1,5 @@
 import React from 'react'
-import { HomeOutlined, ToolOutlined, BulbOutlined } from '@ant-design/icons'
+import { HomeOutlined, HeartOutlined, ToolOutlined, BulbOutlined } from '@ant-design/icons'
 
 export const CollapsedKey = 'collapsed'
 
@@ -57,6 +57,11 @@ export const NavData = [
     label: 'Tool',
     value: 'tool',
     icon: <ToolOutlined style={{ fontSize: IconFontSize }} />
+  },
+  {
+    label: 'Awesome',
+    value: 'awesome',
+    icon: <HeartOutlined style={{ fontSize: IconFontSize }} />
   },
   {
     label: 'HTML',
