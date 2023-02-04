@@ -1,10 +1,9 @@
 import React, { useRef, useState, useEffect } from 'react'
 import { Modal, AutoComplete, Input, Tag, Col, Row, List, Empty } from 'antd'
 import { SearchOutlined } from '@ant-design/icons'
-import { find, debounce, once } from 'lodash-es'
+import { debounce, once } from 'lodash-es'
 import HighlightText from '@/components/HighlightText'
 import { memoizeFetch } from '@/utils'
-import { NavData } from '@/configs'
 
 export default () => {
   const autoCompleteRef = useRef()
