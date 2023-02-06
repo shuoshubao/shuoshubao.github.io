@@ -50,6 +50,26 @@ const IconsHtml = {
     '<svg viewBox="64 64 896 896" width="1em" height="1em" fill="currentColor"><path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm165.4 618.2l-66-.3L512 563.4l-99.3 118.4-66.1.3c-4.4 0-8-3.5-8-8 0-1.9.7-3.7 1.9-5.2l130.1-155L340.5 359a8.32 8.32 0 01-1.9-5.2c0-4.4 3.6-8 8-8l66.1.3L512 464.6l99.3-118.4 66-.3c4.4 0 8 3.5 8 8 0 1.9-.7 3.7-1.9 5.2L553.5 514l130 155c1.2 1.5 1.9 3.3 1.9 5.2 0 4.4-3.6 8-8 8z"></path></svg>'
 }
 
+const MarkdownItContainerAlert = type => {
+  return {
+    render: (tokens, idx) => {
+      if (tokens[idx].nesting === 1) {
+        const text = tokens[idx].info.trim()
+        const message = text.replace(type, '').trim()
+        const messageText = message || type.toLocaleUpperCase()
+        return [
+          `<div class="markdown-it-alert markdown-it-alert-${type}">`,
+          `<span class="markdown-it-alert-icon">${IconsHtml[type]}</span>`,
+          '<div class="markdown-it-alert-content">',
+          `<div class="markdown-it-alert-message">${messageText}</div>`,
+          '<div class="markdown-it-alert-description">'
+        ].join('\n')
+      }
+      return '</div></div></div>'
+    }
+  }
+}
+
 export const MarkdownItHighlight = MarkdownIt({
   html: true,
   highlight: (str, lang) => {
@@ -81,25 +101,10 @@ export const MarkdownItHighlight = MarkdownIt({
 })
   .use(TaskLists)
   .use(MarkdownItAttrs)
-  .use(MarkdownItContainer, 'alert', {
-    render: (tokens, idx) => {
-      if (tokens[idx].nesting === 1) {
-        const text = tokens[idx].info.trim()
-        const [type, ...tips] = text.split(/\s+/).slice(1)
-        const message = tips.join(' ')
-        const types = ['success', 'info', 'warning', 'error']
-        const typeText = types.includes(type) ? type : 'info'
-        return [
-          `<div class="markdown-it-alert markdown-it-alert-${typeText}">`,
-          `<span class="markdown-it-alert-icon">${IconsHtml[typeText]}</span>`,
-          '<div class="markdown-it-alert-content">',
-          message ? `<div class="markdown-it-alert-message">${message}</div>` : '',
-          '<div class="markdown-it-alert-description">'
-        ].join('\n')
-      }
-      return '</div></div></div>'
-    }
-  })
+  .use(MarkdownItContainer, 'success', MarkdownItContainerAlert('success'))
+  .use(MarkdownItContainer, 'info', MarkdownItContainerAlert('info'))
+  .use(MarkdownItContainer, 'warning', MarkdownItContainerAlert('warning'))
+  .use(MarkdownItContainer, 'error', MarkdownItContainerAlert('error'))
   .use(MarkdownItAnchor, {
     slugify
   })
