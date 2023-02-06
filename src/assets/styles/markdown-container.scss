@@ -1,16 +1,11 @@
 .markdown-it-alert {
   position: relative;
   display: flex;
-  align-items: center;
-
   align-items: flex-start;
-
   box-sizing: border-box;
   margin-bottom: 16px;
   padding: 8px 12px;
   color: rgb(0 0 0 / 88%);
-  font-size: 14px;
-  line-height: 1.5714285714285714;
   word-wrap: break-word;
   list-style: none;
   border-radius: 8px;
@@ -31,7 +26,6 @@
   .markdown-it-alert-message {
     display: block;
     margin-bottom: 8px;
-    color: rgb(0 0 0 / 88%);
     font-size: 16px;
   }
 
@@ -76,6 +70,32 @@
 
     .markdown-it-alert-icon {
       color: #ff4d4f;
+    }
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .markdown-it-alert {
+    color: rgb(255 255 255 / 85%);
+
+    &.markdown-it-alert-success {
+      background-color: #162312;
+      border: 1px solid #274916;
+    }
+
+    &.markdown-it-alert-info {
+      background-color: #111a2c;
+      border: 1px solid #15325b;
+    }
+
+    &.markdown-it-alert-warning {
+      background-color: #2b2111;
+      border: 1px solid #594214;
+    }
+
+    &.markdown-it-alert-error {
+      background-color: #2c1618;
+      border: 1px solid #5b2526;
     }
   }
 }
