@@ -1,17 +1,18 @@
-import React, { useState, useEffect } from 'react'
+import React, { lazy, Suspense, useState, useEffect } from 'react'
 import { Layout, Skeleton, Menu, Result, theme } from 'antd'
 import { CaretLeftOutlined, CaretRightOutlined } from '@ant-design/icons'
 import 'antd/dist/reset.css'
 import '@/assets/styles/index.scss'
 import '@/assets/styles/markdown.scss'
 import '@/assets/styles/markdown-container.scss'
-import Home from '@/views/Home'
-import Category from '@/views/Category'
-import Article from '@/views/Article'
 import Algolia from '@/components/Algolia'
 import MarkdownToc from '@/components/MarkdownToc'
 import { NavData, CollapsedKey } from '@/configs'
 import { memoizeFetch, isDark, getHashs, getPageType } from '@/utils'
+
+const Home = lazy(() => import('@/views/Home'))
+const Category = lazy(() => import('@/views/Category'))
+const Article = lazy(() => import('@/views/Article'))
 
 const { Sider, Content } = Layout
 
@@ -119,14 +120,16 @@ export default () => {
         </div>
       </Sider>
       <Content style={{ padding: token.paddingContentVertical, height: '100vh', overflowY: 'auto' }}>
-        <Skeleton loading={Object.keys(categoryData).length === 0}>
-          {pageType === 'index' && <Home data={categoryData} />}
-          {pageType === 'list' && <Category data={categoryData[selectedClassification]} />}
-          {pageType === 'detail' && <Article key={pageHashs.join('/')} data={categoryData} />}
-          {pageType === '404' && (
-            <Result status="404" title="404" subTitle="Sorry, the page you visited does not exist." />
-          )}
-        </Skeleton>
+        <Suspense fallback={<Skeleton active />}>
+          <Skeleton loading={Object.keys(categoryData).length === 0}>
+            {pageType === 'index' && <Home data={categoryData} />}
+            {pageType === 'list' && <Category data={categoryData[selectedClassification]} />}
+            {pageType === 'detail' && <Article key={pageHashs.join('/')} data={categoryData} />}
+            {pageType === '404' && (
+              <Result status="404" title="404" subTitle="Sorry, the page you visited does not exist." />
+            )}
+          </Skeleton>
+        </Suspense>
       </Content>
       {pageType === 'detail' && <MarkdownToc key={pageHashs.join('/')} />}
     </Layout>
