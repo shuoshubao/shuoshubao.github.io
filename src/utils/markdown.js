@@ -6,6 +6,7 @@ import MarkdownItAttrs from 'markdown-it-attrs'
 import MarkdownItAnchor from 'markdown-it-anchor'
 import MarkdownItLinkAttrs from 'markdown-it-link-attributes'
 import MarkdownItContainer from 'markdown-it-container'
+import MarkdownItEmoji from 'markdown-it-emoji'
 import hljs from 'highlight.js/lib/core'
 import javascript from 'highlight.js/lib/languages/javascript'
 import typescript from 'highlight.js/lib/languages/typescript'
@@ -105,6 +106,7 @@ export const MarkdownItHighlight = MarkdownIt({
   .use(MarkdownItContainer, 'info', MarkdownItContainerAlert('info'))
   .use(MarkdownItContainer, 'warning', MarkdownItContainerAlert('warning'))
   .use(MarkdownItContainer, 'error', MarkdownItContainerAlert('error'))
+  .use(MarkdownItEmoji)
   .use(MarkdownItAnchor, {
     slugify
   })
