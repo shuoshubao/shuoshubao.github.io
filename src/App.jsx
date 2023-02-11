@@ -6,7 +6,6 @@ import '@/assets/styles/index.scss'
 import '@/assets/styles/markdown.scss'
 import '@/assets/styles/markdown-container.scss'
 import Algolia from '@/components/Algolia'
-import MarkdownToc from '@/components/MarkdownToc'
 import { NavData, CollapsedKey } from '@/configs'
 import { memoizeFetch, isDark, getHashs, getPageType } from '@/utils'
 
@@ -131,7 +130,6 @@ export default () => {
           </Skeleton>
         </Suspense>
       </Content>
-      {pageType === 'detail' && <MarkdownToc key={pageHashs.join('/')} />}
     </Layout>
   )
 }

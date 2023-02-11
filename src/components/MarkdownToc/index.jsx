@@ -3,13 +3,15 @@ import { Layout, Typography, Space, Tooltip, Tree, theme } from 'antd'
 import { CaretLeftOutlined, CaretRightOutlined, UnorderedListOutlined } from '@ant-design/icons'
 import { map } from 'lodash-es'
 import { TocCollapsedKey } from '@/configs'
-import { memoizeFetch, getHashs, getMarkdownTocData } from '@/utils'
+import { getMarkdownTocData } from '@/utils'
 
 const { Sider } = Layout
 const { Text } = Typography
 const { useToken } = theme
 
-export default () => {
+export default props => {
+  const { data } = props
+
   const [collapsed, setCollapsed] = useState(JSON.parse(window.localStorage.getItem(TocCollapsedKey) || 'false'))
 
   const [list, setList] = useState([])
@@ -27,20 +29,15 @@ export default () => {
     setSelectedKeys([window.location.hash.slice(1)])
   }
 
-  const fetchData = async () => {
-    const md = await memoizeFetch(`article/${getHashs().join('/')}.md`)
-    const tocData = getMarkdownTocData(md)
+  useEffect(() => {
+    const tocData = getMarkdownTocData(data)
     setTreeData(tocData.treeData)
     setList(tocData.list)
     setExpandedKeys(map(tocData.list, 'slug'))
     setTimeout(() => {
       updateSelectedKeys()
     }, 500)
-  }
-
-  useEffect(() => {
-    fetchData()
-  }, [setTreeData, setList, setExpandedKeys, setSelectedKeys])
+  }, [setTreeData, setList, setExpandedKeys])
 
   useEffect(() => {
     window.addEventListener('hashchange', updateSelectedKeys)
@@ -49,6 +46,10 @@ export default () => {
       window.removeEventListener('hashchange', updateSelectedKeys)
     }
   }, [setSelectedKeys])
+
+  if (!list.length) {
+    return null
+  }
 
   return (
     <Sider
@@ -63,6 +64,10 @@ export default () => {
       }}
       width={300}
       style={{
+        position: 'sticky',
+        top: 0,
+        zIndex: 1,
+        marginLeft: 12,
         height: '100vh',
         overflowY: 'auto',
         borderRight: collapsed ? 'none' : `1px solid ${token.colorBorderSecondary}`
@@ -83,9 +88,6 @@ export default () => {
     >
       <div
         style={{
-          position: 'sticky',
-          top: 0,
-          zIndex: 1,
           padding: '6px 10px 6px 28px',
           marginBottom: token.paddingContentVertical,
           background: token.colorBgBase,
