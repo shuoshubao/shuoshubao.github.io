@@ -1,10 +1,52 @@
 {
   "index.css": {
-    "file": "assets/index-eaa75532.css",
+    "file": "assets/index-37c07b37.css",
     "src": "index.css"
+  },
+  "src/views/Article.css": {
+    "file": "assets/Article-97b8a01c.css",
+    "src": "src/views/Article.css"
+  },
+  "src/views/Category.jsx": {
+    "file": "assets/Category-023c2616.js",
+    "src": "src/views/Category.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "index.html",
+      "_react-68524ee9.js",
+      "_index-3a55d778.js",
+      "_markdown-70fa3ee7.js",
+      "_highlight-a0f3a822.js",
+      "_mermaid-a475a5fd.js",
+      "_katex-589a4957.js"
+    ]
+  },
+  "src/views/Home.jsx": {
+    "file": "assets/Home-67fad5d4.js",
+    "src": "src/views/Home.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "index.html",
+      "_react-68524ee9.js",
+      "_mermaid-a475a5fd.js",
+      "_index-3a55d778.js",
+      "_markdown-70fa3ee7.js",
+      "_highlight-a0f3a822.js",
+      "_katex-589a4957.js"
+    ]
   },
   "_highlight-a0f3a822.js": {
     "file": "assets/highlight-a0f3a822.js"
+  },
+  "_index-3a55d778.js": {
+    "file": "assets/index-3a55d778.js",
+    "imports": [
+      "index.html",
+      "_react-68524ee9.js"
+    ]
+  },
+  "_react-68524ee9.js": {
+    "file": "assets/react-68524ee9.js"
   },
   "_markdown-70fa3ee7.js": {
     "file": "assets/markdown-70fa3ee7.js",
@@ -12,14 +54,28 @@
       "_react-68524ee9.js"
     ]
   },
-  "_react-68524ee9.js": {
-    "file": "assets/react-68524ee9.js"
+  "src/views/Article.jsx": {
+    "file": "assets/Article-5cd3edee.js",
+    "src": "src/views/Article.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "index.html",
+      "_react-68524ee9.js",
+      "_mermaid-a475a5fd.js",
+      "_index-3a55d778.js",
+      "_markdown-70fa3ee7.js",
+      "_highlight-a0f3a822.js",
+      "_katex-589a4957.js"
+    ],
+    "css": [
+      "assets/Article-97b8a01c.css"
+    ]
   },
   "_katex-589a4957.js": {
     "file": "assets/katex-589a4957.js"
   },
   "index.html": {
-    "file": "assets/index-473228b1.js",
+    "file": "assets/index-5ab8196a.js",
     "src": "index.html",
     "isEntry": true,
     "imports": [
@@ -29,8 +85,13 @@
       "_mermaid-a475a5fd.js",
       "_katex-589a4957.js"
     ],
+    "dynamicImports": [
+      "src/views/Home.jsx",
+      "src/views/Category.jsx",
+      "src/views/Article.jsx"
+    ],
     "css": [
-      "assets/index-eaa75532.css"
+      "assets/index-37c07b37.css"
     ]
   },
   "_mermaid-a475a5fd.js": {
