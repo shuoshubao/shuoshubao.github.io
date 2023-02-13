@@ -76,7 +76,7 @@ export default props => {
         position: 'fixed',
         top: 'calc(50% - 22px)',
         insetInlineStart: 'auto',
-        insetInlineEnd: collapsed ? 0 : 300 - 12 / 2,
+        insetInlineEnd: collapsed ? 0 : 300 + 12 / 2,
         width: 12,
         height: 44,
         fontSize: 12,
