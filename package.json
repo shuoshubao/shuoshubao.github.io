@@ -2,6 +2,7 @@
   "name": "shuoshubao.github.io",
   "version": "1.0.0",
   "private": true,
+  "description": "个人博客",
   "repository": {
     "url": "https://github.com/shuoshubao/shuoshubao.github.io.git",
     "type": "git"

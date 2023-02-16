@@ -46,3 +46,9 @@
     max-height: none !important;
   }
 }
+
+.ant-card {
+  & + & {
+    margin-top: 12px;
+  }
+}
