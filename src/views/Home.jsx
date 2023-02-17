@@ -136,6 +136,9 @@ export default props => {
     .flat()
   return (
     <>
+      <Card>
+        <img src="https://ghchart.rshah.org/30a14e/shuoshubao" width="100%" />
+      </Card>
       <Card title="作品集" size="small">
         <Row gutter={[12, 12]}>
           {ProjectList.map(v => {
