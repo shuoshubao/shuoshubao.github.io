@@ -48,14 +48,14 @@ const ProjectList = [
   },
   {
     title: '前端工作台',
-    homepage: 'https://github.com/shuoshubao/magpie',
+    homepage: '',
     github: 'magpie',
     npm: '',
     description: ['基于 Electron 开发的前端研发工作台, 集成前端开发日常所需要的功能. 参考 AppToolkit, AppWorks等']
   },
   {
     title: 'eslint-formatter-html',
-    homepage: 'https://github.com/shuoshubao/eslint-formatter-html',
+    homepage: '',
     github: 'eslint-formatter-html',
     npm: 'eslint-formatter-html',
     description: [
@@ -72,8 +72,18 @@ const ProjectList = [
     ]
   },
   {
+    title: 'istanbul-reporter-html',
+    homepage: '',
+    github: 'istanbul-reporter-html',
+    npm: 'istanbul-reporter-html',
+    description: [
+      'A beautiful html reporter for Istanbul',
+      '<a href="https://shuoshubao.github.io/istanbul-reporter-html" target="_blank">示例</a>'
+    ]
+  },
+  {
     title: 'webpack-analyzer',
-    homepage: 'https://github.com/shuoshubao/webpack-analyzer',
+    homepage: '',
     github: 'webpack-analyzer',
     npm: 'webpack-analyzer-plugin',
     description: [
@@ -83,14 +93,14 @@ const ProjectList = [
   },
   {
     title: 'static-visualizer',
-    homepage: 'https://github.com/shuoshubao/static-visualizer',
+    homepage: '',
     github: 'static-visualizer',
     npm: 'static-visualizer',
     description: ['一个简单的静态服务器', '造轮子, 市面上使用较多的是 http-server, serve']
   },
   {
     title: 'rollup-plugin-analyze',
-    homepage: 'https://github.com/shuoshubao/rollup-plugin-analyze',
+    homepage: '',
     github: 'rollup-plugin-analyze',
     npm: 'rollup-plugin-analyze',
     description: [
@@ -101,7 +111,7 @@ const ProjectList = [
   },
   {
     title: 'esbuild-analyzer',
-    homepage: 'https://github.com/shuoshubao/esbuild-analyzer',
+    homepage: '',
     github: 'esbuild-analyzer',
     npm: 'esbuild-analyzer',
     description: [
@@ -112,7 +122,7 @@ const ProjectList = [
   },
   {
     title: 'markdown-toc',
-    homepage: 'https://github.com/shuoshubao/markdown-toc',
+    homepage: '',
     github: 'markdown-toc',
     npm: 'mdx-toc',
     description: ['Table of contents for markdown', '几行代码即可生成 markdown 大纲']
@@ -142,7 +152,7 @@ export default props => {
                   bodyStyle={{ height: 124, maxHeight: 124, overflowY: 'auto', lineHeight: '20px' }}
                   actions={[
                     <Button type="link" href={githubUrl} target="_blank" icon={<GithubOutlined />} />,
-                    <Button type="link" href={homepage} target="_blank" icon={<HomeOutlined />} />,
+                    homepage && <Button type="link" href={homepage} target="_blank" icon={<HomeOutlined />} />,
                     npm && <Button type="link" href={npmUrl} target="_blank" icon={Icons.Npm} />
                   ].filter(Boolean)}
                 >
