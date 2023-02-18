@@ -82,6 +82,16 @@ const ProjectList = [
     ]
   },
   {
+    title: 'jscpd-react-reporter',
+    homepage: '',
+    github: 'jscpd-react-reporter',
+    npm: 'jscpd-react-reporter',
+    description: [
+      'A reporter wrote with React for jscpd',
+      '<a href="https://shuoshubao.github.io/jscpd-react-reporter" target="_blank">示例</a>'
+    ]
+  },
+  {
     title: 'webpack-analyzer',
     homepage: '',
     github: 'webpack-analyzer',
