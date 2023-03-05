@@ -1,4 +1,4 @@
-import { kebabCase } from 'lodash-es'
+import md5 from 'md5'
 import MarkdownIt from 'markdown-it/dist/markdown-it'
 import getTocData from 'mdx-toc'
 import TaskLists from 'markdown-it-task-lists'
@@ -38,7 +38,7 @@ hljs.registerLanguage('bash', bash)
 hljs.registerLanguage('php', php)
 
 const slugify = str => {
-  return [getHashs().join('/'), encodeURIComponent(kebabCase(str))].join('#')
+  return [getHashs().join('/'), md5(str).slice(0, 10)].join('#')
 }
 
 const IconsHtml = {

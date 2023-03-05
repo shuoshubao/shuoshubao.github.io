@@ -30,6 +30,7 @@
     "markdown-it-emoji": "^2.0.2",
     "markdown-it-link-attributes": "^4.0.1",
     "markdown-it-task-lists": "^2.1.1",
+    "md5": "^2.3.0",
     "mdx-toc": "^1.2.0",
     "mermaid": "^9.3.0",
     "murmurhash-js": "^1.0.0",
