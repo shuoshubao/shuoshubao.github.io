@@ -18,7 +18,6 @@ export default () => {
   const searchFunc = query => {
     const list = []
     Object.entries(AllData).forEach(([k, { title, content }]) => {
-      // console.log(k, title, content)
       const contentList = content.split('\n').filter(v2 => v2.includes(query))
       if (!contentList.length) {
         return

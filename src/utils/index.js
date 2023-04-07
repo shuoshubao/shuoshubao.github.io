@@ -1,4 +1,4 @@
-import { isEqual, pick } from 'lodash-es'
+import { memoize } from '@nbfe/tools'
 
 export * from './markdown'
 export * from './route'
@@ -12,23 +12,11 @@ export const getFetchPrefix = () => {
   return 'https://raw.githubusercontent.com/shuoshubao/blog/master/'
 }
 
-const CacheFetchList = []
-
-export const memoizeFetch = (url = '', options = {}) => {
-  const item = CacheFetchList.find(v => {
-    return isEqual(pick(v, 'url', 'options'), { url, options })
-  })
-  if (item) {
-    return item.request
-  }
-  const request = fetch(getFetchPrefix() + url, options).then(res => res.text())
-  CacheFetchList.push({
-    url,
-    options,
-    request
-  })
-  return request
+const fetchMd = (url = '', options = {}) => {
+  return fetch(getFetchPrefix() + url, options).then(res => res.text())
 }
+
+export const memoizeFetch = memoize(fetchMd)
 
 export const isDark = () => {
   const { matchMedia } = window
@@ -43,4 +31,17 @@ export const addListenerPrefersColorScheme = callback => {
   matchMedia('(prefers-color-scheme: light)').addListener(mediaQueryList => {
     callback(!mediaQueryList.matches)
   })
+}
+
+const addStylesheet = (href = '') => {
+  const link = document.createElement('link')
+  link.setAttribute('rel', 'stylesheet')
+  link.href = href
+  document.head.appendChild(link)
+}
+
+const memoizedAddStylesheet = memoize(addStylesheet)
+
+export const addKatexStylesheet = () => {
+  memoizedAddStylesheet('https://unpkg.com/katex@0.16.4/dist/katex.min.css')
 }

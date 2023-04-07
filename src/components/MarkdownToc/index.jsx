@@ -30,10 +30,13 @@ export default props => {
   }
 
   useEffect(() => {
-    const tocData = getMarkdownTocData(data)
-    setTreeData(tocData.treeData)
-    setList(tocData.list)
-    setExpandedKeys(map(tocData.list, 'slug'))
+    const parseTocData = async () => {
+      const tocData = await getMarkdownTocData(data)
+      setTreeData(tocData.treeData)
+      setList(tocData.list)
+      setExpandedKeys(map(tocData.list, 'slug'))
+    }
+    parseTocData()
     setTimeout(() => {
       updateSelectedKeys()
     }, 500)

@@ -8,7 +8,7 @@ import filesize from 'filesize'
 import 'github-markdown-css/github-markdown.css'
 import 'highlight.js/styles/vs2015.css'
 import MarkdownToc from '@/components/MarkdownToc'
-import { memoizeFetch, getHashs, MarkdownItHighlight } from '@/utils'
+import { addKatexStylesheet, memoizeFetch, getHashs, getAllLanguages, MarkdownItHighlight } from '@/utils'
 
 const { Text } = Typography
 const { Content } = Layout
@@ -46,7 +46,9 @@ export default props => {
 
   const fetchData = async () => {
     const md = await memoizeFetch(`article/${[category, name].join('/')}.md`)
-    const htmlStr = MarkdownItHighlight.render(md)
+    const languages = await getAllLanguages(md)
+    const MarkdownIt = await MarkdownItHighlight(languages)
+    const htmlStr = MarkdownIt.render(md)
     setHtml(htmlStr)
     setContent(md)
     setTimeout(() => {
@@ -55,6 +57,7 @@ export default props => {
   }
 
   useEffect(() => {
+    addKatexStylesheet()
     fetchData()
   }, [setHtml, setContent])
 

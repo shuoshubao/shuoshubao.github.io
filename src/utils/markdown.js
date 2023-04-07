@@ -1,5 +1,4 @@
 import md5 from 'md5'
-import MarkdownIt from 'markdown-it/dist/markdown-it'
 import getTocData from 'mdx-toc'
 import TaskLists from 'markdown-it-task-lists'
 import MarkdownItAttrs from 'markdown-it-attrs'
@@ -7,35 +6,8 @@ import MarkdownItAnchor from 'markdown-it-anchor'
 import MarkdownItLinkAttrs from 'markdown-it-link-attributes'
 import MarkdownItContainer from 'markdown-it-container'
 import MarkdownItEmoji from 'markdown-it-emoji'
-import hljs from 'highlight.js/lib/core'
-import javascript from 'highlight.js/lib/languages/javascript'
-import typescript from 'highlight.js/lib/languages/typescript'
-import xml from 'highlight.js/lib/languages/xml'
-import css from 'highlight.js/lib/languages/css'
-import scss from 'highlight.js/lib/languages/scss'
-import less from 'highlight.js/lib/languages/less'
-import json from 'highlight.js/lib/languages/json'
-import markdown from 'highlight.js/lib/languages/markdown'
-import plaintext from 'highlight.js/lib/languages/plaintext'
-import shell from 'highlight.js/lib/languages/shell'
-import bash from 'highlight.js/lib/languages/bash'
-import php from 'highlight.js/lib/languages/php'
+import { dynamicRegisterLanguage } from '@/utils/highlight'
 import { getHashs } from './route'
-import MarkdownItMermaid from './mermaid'
-import MarkdownItKaTeX from './katex'
-
-hljs.registerLanguage('javascript', javascript)
-hljs.registerLanguage('typescript', typescript)
-hljs.registerLanguage('xml', xml)
-hljs.registerLanguage('css', css)
-hljs.registerLanguage('scss', scss)
-hljs.registerLanguage('less', less)
-hljs.registerLanguage('json', json)
-hljs.registerLanguage('markdown', markdown)
-hljs.registerLanguage('plaintext', plaintext)
-hljs.registerLanguage('shell', shell)
-hljs.registerLanguage('bash', bash)
-hljs.registerLanguage('php', php)
 
 const slugify = str => {
   return [getHashs().join('/'), md5(str).slice(0, 10)].join('#')
@@ -71,61 +43,86 @@ const MarkdownItContainerAlert = type => {
   }
 }
 
-export const MarkdownItHighlight = MarkdownIt({
-  html: true,
-  highlight: (str, lang) => {
-    const trimedStr = str.trim()
-    if (lang && hljs.getLanguage(lang)) {
-      try {
-        const { value } = hljs.highlight(trimedStr, { language: lang })
-        return [
-          '<pre style="background: rgb(24, 24, 27);">',
-          `<code class="hljs language-${lang}" lang="${lang}">`,
-          value.split('\n').map((v, i, arr) => {
-            return `<div ${arr.length < 5 ? '' : 'class="line"'}>${v}</div>`
-          }),
-          '<span class="markdown-code-btns">',
-          `<span class="btn-lang">${lang}</span>`,
-          `<span data-code="${encodeURIComponent(
-            trimedStr
-          )}" class="anticon anticon-copy"><svg viewBox="64 64 896 896" focusable="false" data-icon="copy" width="1em" height="1em" fill="currentColor" aria-hidden="true"><path d="M832 64H296c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h496v688c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8V96c0-17.7-14.3-32-32-32zM704 192H192c-17.7 0-32 14.3-32 32v530.7c0 8.5 3.4 16.6 9.4 22.6l173.3 173.3c2.2 2.2 4.7 4 7.4 5.5v1.9h4.2c3.5 1.3 7.2 2 11 2H704c17.7 0 32-14.3 32-32V224c0-17.7-14.3-32-32-32zM350 856.2L263.9 770H350v86.2zM664 888H414V746c0-22.1-17.9-40-40-40H232V264h432v624z"></path></svg></span>`,
-          '</span>',
-          '</code>',
-          '</pre>'
-        ]
-          .flat()
-          .join('')
-      } catch (__) {}
+export const getAllLanguages = async md => {
+  const { default: MarkdownIt } = await import('markdown-it/dist/markdown-it')
+  const languages = new Set()
+  MarkdownIt({
+    html: true,
+    highlight: (str, lang) => {
+      if (lang) {
+        languages.add(lang)
+      }
     }
-    return `<pre><code class="language-${lang}">${trimedStr}</code></pre>`
-  }
-})
-  .use(TaskLists)
-  .use(MarkdownItAttrs)
-  .use(MarkdownItContainer, 'success', MarkdownItContainerAlert('success'))
-  .use(MarkdownItContainer, 'info', MarkdownItContainerAlert('info'))
-  .use(MarkdownItContainer, 'warning', MarkdownItContainerAlert('warning'))
-  .use(MarkdownItContainer, 'error', MarkdownItContainerAlert('error'))
-  .use(MarkdownItEmoji)
-  .use(MarkdownItAnchor, {
-    slugify
-  })
-  .use(MarkdownItLinkAttrs, {
-    matcher: href => href.startsWith('http'),
-    attrs: {
-      target: '_blank',
-      rel: 'noopener'
-    }
-  })
-  .use(MarkdownItMermaid)
-  .use(MarkdownItKaTeX)
-
-const parser = md => {
-  return MarkdownIt().render(md)
+  }).render(md)
+  return Array.from(languages)
 }
 
-export const getMarkdownTocData = md => {
-  return getTocData(parser(md), {
+export const MarkdownItHighlight = async languages => {
+  const { default: MarkdownIt } = await import('markdown-it/dist/markdown-it')
+  const { default: hljs } = await import('highlight.js/lib/core')
+  await Promise.all(
+    languages.map(language => {
+      return dynamicRegisterLanguage(hljs, language)
+    })
+  )
+  const { default: MarkdownItMermaid } = await import('./mermaid')
+  const { default: MarkdownItKaTeX } = await import('./katex')
+  return MarkdownIt({
+    html: true,
+    highlight: (str, lang) => {
+      const trimedStr = str.trim()
+      if (lang && hljs.getLanguage(lang)) {
+        try {
+          const { value } = hljs.highlight(trimedStr, { language: lang })
+          return [
+            '<pre style="background: rgb(24, 24, 27);">',
+            `<code class="hljs language-${lang}" lang="${lang}">`,
+            value.split('\n').map((v, i, arr) => {
+              return `<div ${arr.length < 5 ? '' : 'class="line"'}>${v}</div>`
+            }),
+            '<span class="markdown-code-btns">',
+            `<span class="btn-lang">${lang}</span>`,
+            `<span data-code="${encodeURIComponent(
+              trimedStr
+            )}" class="anticon anticon-copy"><svg viewBox="64 64 896 896" focusable="false" data-icon="copy" width="1em" height="1em" fill="currentColor" aria-hidden="true"><path d="M832 64H296c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h496v688c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8V96c0-17.7-14.3-32-32-32zM704 192H192c-17.7 0-32 14.3-32 32v530.7c0 8.5 3.4 16.6 9.4 22.6l173.3 173.3c2.2 2.2 4.7 4 7.4 5.5v1.9h4.2c3.5 1.3 7.2 2 11 2H704c17.7 0 32-14.3 32-32V224c0-17.7-14.3-32-32-32zM350 856.2L263.9 770H350v86.2zM664 888H414V746c0-22.1-17.9-40-40-40H232V264h432v624z"></path></svg></span>`,
+            '</span>',
+            '</code>',
+            '</pre>'
+          ]
+            .flat()
+            .join('')
+        } catch (__) {}
+      }
+      return `<pre><code class="language-${lang}">${trimedStr}</code></pre>`
+    }
+  })
+    .use(TaskLists)
+    .use(MarkdownItAttrs)
+    .use(MarkdownItContainer, 'success', MarkdownItContainerAlert('success'))
+    .use(MarkdownItContainer, 'info', MarkdownItContainerAlert('info'))
+    .use(MarkdownItContainer, 'warning', MarkdownItContainerAlert('warning'))
+    .use(MarkdownItContainer, 'error', MarkdownItContainerAlert('error'))
+    .use(MarkdownItEmoji)
+    .use(MarkdownItAnchor, {
+      slugify
+    })
+    .use(MarkdownItLinkAttrs, {
+      matcher: href => href.startsWith('http'),
+      attrs: {
+        target: '_blank',
+        rel: 'noopener'
+      }
+    })
+    .use(MarkdownItMermaid)
+    .use(MarkdownItKaTeX)
+}
+
+export const getMarkdownTocData = async markdown => {
+  const { default: MarkdownIt } = await import('markdown-it/dist/markdown-it')
+  const parser = md => {
+    return MarkdownIt().render(md)
+  }
+  return getTocData(parser(markdown), {
     parser,
     slugify
   })
