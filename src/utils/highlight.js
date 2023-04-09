@@ -197,779 +197,780 @@ export const HighlightLanguages = [
 ]
 
 export const dynamicRegisterLanguage = async (hljs, lang) => {
+  const { getLanguage, registerLanguage } = hljs
   if (!HighlightLanguages.flat().includes(lang)) {
     return
   }
-  if (hljs.getLanguage(lang)) {
+  if (getLanguage(lang)) {
     return
   }
   const [language] = HighlightLanguages.find(v => v.includes(lang))
   if (language === '1c') {
-    const { default: language0 } = await import('highlight.js/lib/languages/1c')
-    hljs.registerLanguage('1c', language0)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/1c')
+    registerLanguage('1c', languageDefinition)
   }
   if (language === 'abnf') {
-    const { default: language1 } = await import('highlight.js/lib/languages/abnf')
-    hljs.registerLanguage('abnf', language1)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/abnf')
+    registerLanguage('abnf', languageDefinition)
   }
   if (language === 'accesslog') {
-    const { default: language2 } = await import('highlight.js/lib/languages/accesslog')
-    hljs.registerLanguage('accesslog', language2)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/accesslog')
+    registerLanguage('accesslog', languageDefinition)
   }
   if (language === 'actionscript') {
-    const { default: language3 } = await import('highlight.js/lib/languages/actionscript')
-    hljs.registerLanguage('actionscript', language3)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/actionscript')
+    registerLanguage('actionscript', languageDefinition)
   }
   if (language === 'ada') {
-    const { default: language4 } = await import('highlight.js/lib/languages/ada')
-    hljs.registerLanguage('ada', language4)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/ada')
+    registerLanguage('ada', languageDefinition)
   }
   if (language === 'angelscript') {
-    const { default: language5 } = await import('highlight.js/lib/languages/angelscript')
-    hljs.registerLanguage('angelscript', language5)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/angelscript')
+    registerLanguage('angelscript', languageDefinition)
   }
   if (language === 'apache') {
-    const { default: language6 } = await import('highlight.js/lib/languages/apache')
-    hljs.registerLanguage('apache', language6)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/apache')
+    registerLanguage('apache', languageDefinition)
   }
   if (language === 'applescript') {
-    const { default: language7 } = await import('highlight.js/lib/languages/applescript')
-    hljs.registerLanguage('applescript', language7)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/applescript')
+    registerLanguage('applescript', languageDefinition)
   }
   if (language === 'arcade') {
-    const { default: language8 } = await import('highlight.js/lib/languages/arcade')
-    hljs.registerLanguage('arcade', language8)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/arcade')
+    registerLanguage('arcade', languageDefinition)
   }
   if (language === 'arduino') {
-    const { default: language9 } = await import('highlight.js/lib/languages/arduino')
-    hljs.registerLanguage('arduino', language9)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/arduino')
+    registerLanguage('arduino', languageDefinition)
   }
   if (language === 'armasm') {
-    const { default: language10 } = await import('highlight.js/lib/languages/armasm')
-    hljs.registerLanguage('armasm', language10)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/armasm')
+    registerLanguage('armasm', languageDefinition)
   }
   if (language === 'asciidoc') {
-    const { default: language11 } = await import('highlight.js/lib/languages/asciidoc')
-    hljs.registerLanguage('asciidoc', language11)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/asciidoc')
+    registerLanguage('asciidoc', languageDefinition)
   }
   if (language === 'aspectj') {
-    const { default: language12 } = await import('highlight.js/lib/languages/aspectj')
-    hljs.registerLanguage('aspectj', language12)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/aspectj')
+    registerLanguage('aspectj', languageDefinition)
   }
   if (language === 'autohotkey') {
-    const { default: language13 } = await import('highlight.js/lib/languages/autohotkey')
-    hljs.registerLanguage('autohotkey', language13)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/autohotkey')
+    registerLanguage('autohotkey', languageDefinition)
   }
   if (language === 'autoit') {
-    const { default: language14 } = await import('highlight.js/lib/languages/autoit')
-    hljs.registerLanguage('autoit', language14)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/autoit')
+    registerLanguage('autoit', languageDefinition)
   }
   if (language === 'avrasm') {
-    const { default: language15 } = await import('highlight.js/lib/languages/avrasm')
-    hljs.registerLanguage('avrasm', language15)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/avrasm')
+    registerLanguage('avrasm', languageDefinition)
   }
   if (language === 'awk') {
-    const { default: language16 } = await import('highlight.js/lib/languages/awk')
-    hljs.registerLanguage('awk', language16)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/awk')
+    registerLanguage('awk', languageDefinition)
   }
   if (language === 'axapta') {
-    const { default: language17 } = await import('highlight.js/lib/languages/axapta')
-    hljs.registerLanguage('axapta', language17)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/axapta')
+    registerLanguage('axapta', languageDefinition)
   }
   if (language === 'bash') {
-    const { default: language18 } = await import('highlight.js/lib/languages/bash')
-    hljs.registerLanguage('bash', language18)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/bash')
+    registerLanguage('bash', languageDefinition)
   }
   if (language === 'basic') {
-    const { default: language19 } = await import('highlight.js/lib/languages/basic')
-    hljs.registerLanguage('basic', language19)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/basic')
+    registerLanguage('basic', languageDefinition)
   }
   if (language === 'bnf') {
-    const { default: language20 } = await import('highlight.js/lib/languages/bnf')
-    hljs.registerLanguage('bnf', language20)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/bnf')
+    registerLanguage('bnf', languageDefinition)
   }
   if (language === 'brainfuck') {
-    const { default: language21 } = await import('highlight.js/lib/languages/brainfuck')
-    hljs.registerLanguage('brainfuck', language21)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/brainfuck')
+    registerLanguage('brainfuck', languageDefinition)
   }
   if (language === 'c') {
-    const { default: language22 } = await import('highlight.js/lib/languages/c')
-    hljs.registerLanguage('c', language22)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/c')
+    registerLanguage('c', languageDefinition)
   }
   if (language === 'cal') {
-    const { default: language23 } = await import('highlight.js/lib/languages/cal')
-    hljs.registerLanguage('cal', language23)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/cal')
+    registerLanguage('cal', languageDefinition)
   }
   if (language === 'capnproto') {
-    const { default: language24 } = await import('highlight.js/lib/languages/capnproto')
-    hljs.registerLanguage('capnproto', language24)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/capnproto')
+    registerLanguage('capnproto', languageDefinition)
   }
   if (language === 'ceylon') {
-    const { default: language25 } = await import('highlight.js/lib/languages/ceylon')
-    hljs.registerLanguage('ceylon', language25)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/ceylon')
+    registerLanguage('ceylon', languageDefinition)
   }
   if (language === 'clean') {
-    const { default: language26 } = await import('highlight.js/lib/languages/clean')
-    hljs.registerLanguage('clean', language26)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/clean')
+    registerLanguage('clean', languageDefinition)
   }
   if (language === 'clojure-repl') {
-    const { default: language27 } = await import('highlight.js/lib/languages/clojure-repl')
-    hljs.registerLanguage('clojure-repl', language27)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/clojure-repl')
+    registerLanguage('clojure-repl', languageDefinition)
   }
   if (language === 'clojure') {
-    const { default: language28 } = await import('highlight.js/lib/languages/clojure')
-    hljs.registerLanguage('clojure', language28)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/clojure')
+    registerLanguage('clojure', languageDefinition)
   }
   if (language === 'cmake') {
-    const { default: language29 } = await import('highlight.js/lib/languages/cmake')
-    hljs.registerLanguage('cmake', language29)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/cmake')
+    registerLanguage('cmake', languageDefinition)
   }
   if (language === 'coffeescript') {
-    const { default: language30 } = await import('highlight.js/lib/languages/coffeescript')
-    hljs.registerLanguage('coffeescript', language30)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/coffeescript')
+    registerLanguage('coffeescript', languageDefinition)
   }
   if (language === 'coq') {
-    const { default: language31 } = await import('highlight.js/lib/languages/coq')
-    hljs.registerLanguage('coq', language31)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/coq')
+    registerLanguage('coq', languageDefinition)
   }
   if (language === 'cos') {
-    const { default: language32 } = await import('highlight.js/lib/languages/cos')
-    hljs.registerLanguage('cos', language32)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/cos')
+    registerLanguage('cos', languageDefinition)
   }
   if (language === 'cpp') {
-    const { default: language33 } = await import('highlight.js/lib/languages/cpp')
-    hljs.registerLanguage('cpp', language33)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/cpp')
+    registerLanguage('cpp', languageDefinition)
   }
   if (language === 'crmsh') {
-    const { default: language34 } = await import('highlight.js/lib/languages/crmsh')
-    hljs.registerLanguage('crmsh', language34)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/crmsh')
+    registerLanguage('crmsh', languageDefinition)
   }
   if (language === 'crystal') {
-    const { default: language35 } = await import('highlight.js/lib/languages/crystal')
-    hljs.registerLanguage('crystal', language35)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/crystal')
+    registerLanguage('crystal', languageDefinition)
   }
   if (language === 'csharp') {
-    const { default: language36 } = await import('highlight.js/lib/languages/csharp')
-    hljs.registerLanguage('csharp', language36)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/csharp')
+    registerLanguage('csharp', languageDefinition)
   }
   if (language === 'csp') {
-    const { default: language37 } = await import('highlight.js/lib/languages/csp')
-    hljs.registerLanguage('csp', language37)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/csp')
+    registerLanguage('csp', languageDefinition)
   }
   if (language === 'css') {
-    const { default: language38 } = await import('highlight.js/lib/languages/css')
-    hljs.registerLanguage('css', language38)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/css')
+    registerLanguage('css', languageDefinition)
   }
   if (language === 'd') {
-    const { default: language39 } = await import('highlight.js/lib/languages/d')
-    hljs.registerLanguage('d', language39)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/d')
+    registerLanguage('d', languageDefinition)
   }
   if (language === 'dart') {
-    const { default: language40 } = await import('highlight.js/lib/languages/dart')
-    hljs.registerLanguage('dart', language40)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/dart')
+    registerLanguage('dart', languageDefinition)
   }
   if (language === 'delphi') {
-    const { default: language41 } = await import('highlight.js/lib/languages/delphi')
-    hljs.registerLanguage('delphi', language41)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/delphi')
+    registerLanguage('delphi', languageDefinition)
   }
   if (language === 'diff') {
-    const { default: language42 } = await import('highlight.js/lib/languages/diff')
-    hljs.registerLanguage('diff', language42)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/diff')
+    registerLanguage('diff', languageDefinition)
   }
   if (language === 'django') {
-    const { default: language43 } = await import('highlight.js/lib/languages/django')
-    hljs.registerLanguage('django', language43)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/django')
+    registerLanguage('django', languageDefinition)
   }
   if (language === 'dns') {
-    const { default: language44 } = await import('highlight.js/lib/languages/dns')
-    hljs.registerLanguage('dns', language44)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/dns')
+    registerLanguage('dns', languageDefinition)
   }
   if (language === 'dockerfile') {
-    const { default: language45 } = await import('highlight.js/lib/languages/dockerfile')
-    hljs.registerLanguage('dockerfile', language45)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/dockerfile')
+    registerLanguage('dockerfile', languageDefinition)
   }
   if (language === 'dos') {
-    const { default: language46 } = await import('highlight.js/lib/languages/dos')
-    hljs.registerLanguage('dos', language46)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/dos')
+    registerLanguage('dos', languageDefinition)
   }
   if (language === 'dsconfig') {
-    const { default: language47 } = await import('highlight.js/lib/languages/dsconfig')
-    hljs.registerLanguage('dsconfig', language47)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/dsconfig')
+    registerLanguage('dsconfig', languageDefinition)
   }
   if (language === 'dts') {
-    const { default: language48 } = await import('highlight.js/lib/languages/dts')
-    hljs.registerLanguage('dts', language48)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/dts')
+    registerLanguage('dts', languageDefinition)
   }
   if (language === 'dust') {
-    const { default: language49 } = await import('highlight.js/lib/languages/dust')
-    hljs.registerLanguage('dust', language49)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/dust')
+    registerLanguage('dust', languageDefinition)
   }
   if (language === 'ebnf') {
-    const { default: language50 } = await import('highlight.js/lib/languages/ebnf')
-    hljs.registerLanguage('ebnf', language50)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/ebnf')
+    registerLanguage('ebnf', languageDefinition)
   }
   if (language === 'elixir') {
-    const { default: language51 } = await import('highlight.js/lib/languages/elixir')
-    hljs.registerLanguage('elixir', language51)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/elixir')
+    registerLanguage('elixir', languageDefinition)
   }
   if (language === 'elm') {
-    const { default: language52 } = await import('highlight.js/lib/languages/elm')
-    hljs.registerLanguage('elm', language52)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/elm')
+    registerLanguage('elm', languageDefinition)
   }
   if (language === 'erb') {
-    const { default: language53 } = await import('highlight.js/lib/languages/erb')
-    hljs.registerLanguage('erb', language53)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/erb')
+    registerLanguage('erb', languageDefinition)
   }
   if (language === 'erlang-repl') {
-    const { default: language54 } = await import('highlight.js/lib/languages/erlang-repl')
-    hljs.registerLanguage('erlang-repl', language54)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/erlang-repl')
+    registerLanguage('erlang-repl', languageDefinition)
   }
   if (language === 'erlang') {
-    const { default: language55 } = await import('highlight.js/lib/languages/erlang')
-    hljs.registerLanguage('erlang', language55)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/erlang')
+    registerLanguage('erlang', languageDefinition)
   }
   if (language === 'excel') {
-    const { default: language56 } = await import('highlight.js/lib/languages/excel')
-    hljs.registerLanguage('excel', language56)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/excel')
+    registerLanguage('excel', languageDefinition)
   }
   if (language === 'fix') {
-    const { default: language57 } = await import('highlight.js/lib/languages/fix')
-    hljs.registerLanguage('fix', language57)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/fix')
+    registerLanguage('fix', languageDefinition)
   }
   if (language === 'flix') {
-    const { default: language58 } = await import('highlight.js/lib/languages/flix')
-    hljs.registerLanguage('flix', language58)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/flix')
+    registerLanguage('flix', languageDefinition)
   }
   if (language === 'fortran') {
-    const { default: language59 } = await import('highlight.js/lib/languages/fortran')
-    hljs.registerLanguage('fortran', language59)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/fortran')
+    registerLanguage('fortran', languageDefinition)
   }
   if (language === 'fsharp') {
-    const { default: language60 } = await import('highlight.js/lib/languages/fsharp')
-    hljs.registerLanguage('fsharp', language60)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/fsharp')
+    registerLanguage('fsharp', languageDefinition)
   }
   if (language === 'gams') {
-    const { default: language61 } = await import('highlight.js/lib/languages/gams')
-    hljs.registerLanguage('gams', language61)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/gams')
+    registerLanguage('gams', languageDefinition)
   }
   if (language === 'gauss') {
-    const { default: language62 } = await import('highlight.js/lib/languages/gauss')
-    hljs.registerLanguage('gauss', language62)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/gauss')
+    registerLanguage('gauss', languageDefinition)
   }
   if (language === 'gcode') {
-    const { default: language63 } = await import('highlight.js/lib/languages/gcode')
-    hljs.registerLanguage('gcode', language63)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/gcode')
+    registerLanguage('gcode', languageDefinition)
   }
   if (language === 'gherkin') {
-    const { default: language64 } = await import('highlight.js/lib/languages/gherkin')
-    hljs.registerLanguage('gherkin', language64)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/gherkin')
+    registerLanguage('gherkin', languageDefinition)
   }
   if (language === 'glsl') {
-    const { default: language65 } = await import('highlight.js/lib/languages/glsl')
-    hljs.registerLanguage('glsl', language65)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/glsl')
+    registerLanguage('glsl', languageDefinition)
   }
   if (language === 'gml') {
-    const { default: language66 } = await import('highlight.js/lib/languages/gml')
-    hljs.registerLanguage('gml', language66)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/gml')
+    registerLanguage('gml', languageDefinition)
   }
   if (language === 'go') {
-    const { default: language67 } = await import('highlight.js/lib/languages/go')
-    hljs.registerLanguage('go', language67)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/go')
+    registerLanguage('go', languageDefinition)
   }
   if (language === 'golo') {
-    const { default: language68 } = await import('highlight.js/lib/languages/golo')
-    hljs.registerLanguage('golo', language68)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/golo')
+    registerLanguage('golo', languageDefinition)
   }
   if (language === 'gradle') {
-    const { default: language69 } = await import('highlight.js/lib/languages/gradle')
-    hljs.registerLanguage('gradle', language69)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/gradle')
+    registerLanguage('gradle', languageDefinition)
   }
   if (language === 'graphql') {
-    const { default: language70 } = await import('highlight.js/lib/languages/graphql')
-    hljs.registerLanguage('graphql', language70)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/graphql')
+    registerLanguage('graphql', languageDefinition)
   }
   if (language === 'groovy') {
-    const { default: language71 } = await import('highlight.js/lib/languages/groovy')
-    hljs.registerLanguage('groovy', language71)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/groovy')
+    registerLanguage('groovy', languageDefinition)
   }
   if (language === 'haml') {
-    const { default: language72 } = await import('highlight.js/lib/languages/haml')
-    hljs.registerLanguage('haml', language72)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/haml')
+    registerLanguage('haml', languageDefinition)
   }
   if (language === 'handlebars') {
-    const { default: language73 } = await import('highlight.js/lib/languages/handlebars')
-    hljs.registerLanguage('handlebars', language73)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/handlebars')
+    registerLanguage('handlebars', languageDefinition)
   }
   if (language === 'haskell') {
-    const { default: language74 } = await import('highlight.js/lib/languages/haskell')
-    hljs.registerLanguage('haskell', language74)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/haskell')
+    registerLanguage('haskell', languageDefinition)
   }
   if (language === 'haxe') {
-    const { default: language75 } = await import('highlight.js/lib/languages/haxe')
-    hljs.registerLanguage('haxe', language75)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/haxe')
+    registerLanguage('haxe', languageDefinition)
   }
   if (language === 'hsp') {
-    const { default: language76 } = await import('highlight.js/lib/languages/hsp')
-    hljs.registerLanguage('hsp', language76)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/hsp')
+    registerLanguage('hsp', languageDefinition)
   }
   if (language === 'http') {
-    const { default: language77 } = await import('highlight.js/lib/languages/http')
-    hljs.registerLanguage('http', language77)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/http')
+    registerLanguage('http', languageDefinition)
   }
   if (language === 'hy') {
-    const { default: language78 } = await import('highlight.js/lib/languages/hy')
-    hljs.registerLanguage('hy', language78)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/hy')
+    registerLanguage('hy', languageDefinition)
   }
   if (language === 'inform7') {
-    const { default: language79 } = await import('highlight.js/lib/languages/inform7')
-    hljs.registerLanguage('inform7', language79)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/inform7')
+    registerLanguage('inform7', languageDefinition)
   }
   if (language === 'ini') {
-    const { default: language80 } = await import('highlight.js/lib/languages/ini')
-    hljs.registerLanguage('ini', language80)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/ini')
+    registerLanguage('ini', languageDefinition)
   }
   if (language === 'irpf90') {
-    const { default: language81 } = await import('highlight.js/lib/languages/irpf90')
-    hljs.registerLanguage('irpf90', language81)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/irpf90')
+    registerLanguage('irpf90', languageDefinition)
   }
   if (language === 'isbl') {
-    const { default: language82 } = await import('highlight.js/lib/languages/isbl')
-    hljs.registerLanguage('isbl', language82)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/isbl')
+    registerLanguage('isbl', languageDefinition)
   }
   if (language === 'java') {
-    const { default: language83 } = await import('highlight.js/lib/languages/java')
-    hljs.registerLanguage('java', language83)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/java')
+    registerLanguage('java', languageDefinition)
   }
   if (language === 'javascript') {
-    const { default: language84 } = await import('highlight.js/lib/languages/javascript')
-    hljs.registerLanguage('javascript', language84)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/javascript')
+    registerLanguage('javascript', languageDefinition)
   }
   if (language === 'jboss-cli') {
-    const { default: language85 } = await import('highlight.js/lib/languages/jboss-cli')
-    hljs.registerLanguage('jboss-cli', language85)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/jboss-cli')
+    registerLanguage('jboss-cli', languageDefinition)
   }
   if (language === 'json') {
-    const { default: language86 } = await import('highlight.js/lib/languages/json')
-    hljs.registerLanguage('json', language86)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/json')
+    registerLanguage('json', languageDefinition)
   }
   if (language === 'julia-repl') {
-    const { default: language87 } = await import('highlight.js/lib/languages/julia-repl')
-    hljs.registerLanguage('julia-repl', language87)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/julia-repl')
+    registerLanguage('julia-repl', languageDefinition)
   }
   if (language === 'julia') {
-    const { default: language88 } = await import('highlight.js/lib/languages/julia')
-    hljs.registerLanguage('julia', language88)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/julia')
+    registerLanguage('julia', languageDefinition)
   }
   if (language === 'kotlin') {
-    const { default: language89 } = await import('highlight.js/lib/languages/kotlin')
-    hljs.registerLanguage('kotlin', language89)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/kotlin')
+    registerLanguage('kotlin', languageDefinition)
   }
   if (language === 'lasso') {
-    const { default: language90 } = await import('highlight.js/lib/languages/lasso')
-    hljs.registerLanguage('lasso', language90)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/lasso')
+    registerLanguage('lasso', languageDefinition)
   }
   if (language === 'latex') {
-    const { default: language91 } = await import('highlight.js/lib/languages/latex')
-    hljs.registerLanguage('latex', language91)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/latex')
+    registerLanguage('latex', languageDefinition)
   }
   if (language === 'ldif') {
-    const { default: language92 } = await import('highlight.js/lib/languages/ldif')
-    hljs.registerLanguage('ldif', language92)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/ldif')
+    registerLanguage('ldif', languageDefinition)
   }
   if (language === 'leaf') {
-    const { default: language93 } = await import('highlight.js/lib/languages/leaf')
-    hljs.registerLanguage('leaf', language93)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/leaf')
+    registerLanguage('leaf', languageDefinition)
   }
   if (language === 'less') {
-    const { default: language94 } = await import('highlight.js/lib/languages/less')
-    hljs.registerLanguage('less', language94)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/less')
+    registerLanguage('less', languageDefinition)
   }
   if (language === 'lisp') {
-    const { default: language95 } = await import('highlight.js/lib/languages/lisp')
-    hljs.registerLanguage('lisp', language95)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/lisp')
+    registerLanguage('lisp', languageDefinition)
   }
   if (language === 'livecodeserver') {
-    const { default: language96 } = await import('highlight.js/lib/languages/livecodeserver')
-    hljs.registerLanguage('livecodeserver', language96)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/livecodeserver')
+    registerLanguage('livecodeserver', languageDefinition)
   }
   if (language === 'livescript') {
-    const { default: language97 } = await import('highlight.js/lib/languages/livescript')
-    hljs.registerLanguage('livescript', language97)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/livescript')
+    registerLanguage('livescript', languageDefinition)
   }
   if (language === 'llvm') {
-    const { default: language98 } = await import('highlight.js/lib/languages/llvm')
-    hljs.registerLanguage('llvm', language98)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/llvm')
+    registerLanguage('llvm', languageDefinition)
   }
   if (language === 'lsl') {
-    const { default: language99 } = await import('highlight.js/lib/languages/lsl')
-    hljs.registerLanguage('lsl', language99)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/lsl')
+    registerLanguage('lsl', languageDefinition)
   }
   if (language === 'lua') {
-    const { default: language100 } = await import('highlight.js/lib/languages/lua')
-    hljs.registerLanguage('lua', language100)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/lua')
+    registerLanguage('lua', languageDefinition)
   }
   if (language === 'makefile') {
-    const { default: language101 } = await import('highlight.js/lib/languages/makefile')
-    hljs.registerLanguage('makefile', language101)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/makefile')
+    registerLanguage('makefile', languageDefinition)
   }
   if (language === 'markdown') {
-    const { default: language102 } = await import('highlight.js/lib/languages/markdown')
-    hljs.registerLanguage('markdown', language102)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/markdown')
+    registerLanguage('markdown', languageDefinition)
   }
   if (language === 'mathematica') {
-    const { default: language103 } = await import('highlight.js/lib/languages/mathematica')
-    hljs.registerLanguage('mathematica', language103)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/mathematica')
+    registerLanguage('mathematica', languageDefinition)
   }
   if (language === 'matlab') {
-    const { default: language104 } = await import('highlight.js/lib/languages/matlab')
-    hljs.registerLanguage('matlab', language104)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/matlab')
+    registerLanguage('matlab', languageDefinition)
   }
   if (language === 'maxima') {
-    const { default: language105 } = await import('highlight.js/lib/languages/maxima')
-    hljs.registerLanguage('maxima', language105)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/maxima')
+    registerLanguage('maxima', languageDefinition)
   }
   if (language === 'mel') {
-    const { default: language106 } = await import('highlight.js/lib/languages/mel')
-    hljs.registerLanguage('mel', language106)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/mel')
+    registerLanguage('mel', languageDefinition)
   }
   if (language === 'mercury') {
-    const { default: language107 } = await import('highlight.js/lib/languages/mercury')
-    hljs.registerLanguage('mercury', language107)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/mercury')
+    registerLanguage('mercury', languageDefinition)
   }
   if (language === 'mipsasm') {
-    const { default: language108 } = await import('highlight.js/lib/languages/mipsasm')
-    hljs.registerLanguage('mipsasm', language108)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/mipsasm')
+    registerLanguage('mipsasm', languageDefinition)
   }
   if (language === 'mizar') {
-    const { default: language109 } = await import('highlight.js/lib/languages/mizar')
-    hljs.registerLanguage('mizar', language109)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/mizar')
+    registerLanguage('mizar', languageDefinition)
   }
   if (language === 'mojolicious') {
-    const { default: language110 } = await import('highlight.js/lib/languages/mojolicious')
-    hljs.registerLanguage('mojolicious', language110)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/mojolicious')
+    registerLanguage('mojolicious', languageDefinition)
   }
   if (language === 'monkey') {
-    const { default: language111 } = await import('highlight.js/lib/languages/monkey')
-    hljs.registerLanguage('monkey', language111)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/monkey')
+    registerLanguage('monkey', languageDefinition)
   }
   if (language === 'moonscript') {
-    const { default: language112 } = await import('highlight.js/lib/languages/moonscript')
-    hljs.registerLanguage('moonscript', language112)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/moonscript')
+    registerLanguage('moonscript', languageDefinition)
   }
   if (language === 'n1ql') {
-    const { default: language113 } = await import('highlight.js/lib/languages/n1ql')
-    hljs.registerLanguage('n1ql', language113)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/n1ql')
+    registerLanguage('n1ql', languageDefinition)
   }
   if (language === 'nestedtext') {
-    const { default: language114 } = await import('highlight.js/lib/languages/nestedtext')
-    hljs.registerLanguage('nestedtext', language114)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/nestedtext')
+    registerLanguage('nestedtext', languageDefinition)
   }
   if (language === 'nginx') {
-    const { default: language115 } = await import('highlight.js/lib/languages/nginx')
-    hljs.registerLanguage('nginx', language115)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/nginx')
+    registerLanguage('nginx', languageDefinition)
   }
   if (language === 'nim') {
-    const { default: language116 } = await import('highlight.js/lib/languages/nim')
-    hljs.registerLanguage('nim', language116)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/nim')
+    registerLanguage('nim', languageDefinition)
   }
   if (language === 'nix') {
-    const { default: language117 } = await import('highlight.js/lib/languages/nix')
-    hljs.registerLanguage('nix', language117)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/nix')
+    registerLanguage('nix', languageDefinition)
   }
   if (language === 'node-repl') {
-    const { default: language118 } = await import('highlight.js/lib/languages/node-repl')
-    hljs.registerLanguage('node-repl', language118)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/node-repl')
+    registerLanguage('node-repl', languageDefinition)
   }
   if (language === 'nsis') {
-    const { default: language119 } = await import('highlight.js/lib/languages/nsis')
-    hljs.registerLanguage('nsis', language119)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/nsis')
+    registerLanguage('nsis', languageDefinition)
   }
   if (language === 'objectivec') {
-    const { default: language120 } = await import('highlight.js/lib/languages/objectivec')
-    hljs.registerLanguage('objectivec', language120)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/objectivec')
+    registerLanguage('objectivec', languageDefinition)
   }
   if (language === 'ocaml') {
-    const { default: language121 } = await import('highlight.js/lib/languages/ocaml')
-    hljs.registerLanguage('ocaml', language121)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/ocaml')
+    registerLanguage('ocaml', languageDefinition)
   }
   if (language === 'openscad') {
-    const { default: language122 } = await import('highlight.js/lib/languages/openscad')
-    hljs.registerLanguage('openscad', language122)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/openscad')
+    registerLanguage('openscad', languageDefinition)
   }
   if (language === 'oxygene') {
-    const { default: language123 } = await import('highlight.js/lib/languages/oxygene')
-    hljs.registerLanguage('oxygene', language123)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/oxygene')
+    registerLanguage('oxygene', languageDefinition)
   }
   if (language === 'parser3') {
-    const { default: language124 } = await import('highlight.js/lib/languages/parser3')
-    hljs.registerLanguage('parser3', language124)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/parser3')
+    registerLanguage('parser3', languageDefinition)
   }
   if (language === 'perl') {
-    const { default: language125 } = await import('highlight.js/lib/languages/perl')
-    hljs.registerLanguage('perl', language125)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/perl')
+    registerLanguage('perl', languageDefinition)
   }
   if (language === 'pf') {
-    const { default: language126 } = await import('highlight.js/lib/languages/pf')
-    hljs.registerLanguage('pf', language126)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/pf')
+    registerLanguage('pf', languageDefinition)
   }
   if (language === 'pgsql') {
-    const { default: language127 } = await import('highlight.js/lib/languages/pgsql')
-    hljs.registerLanguage('pgsql', language127)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/pgsql')
+    registerLanguage('pgsql', languageDefinition)
   }
   if (language === 'php-template') {
-    const { default: language128 } = await import('highlight.js/lib/languages/php-template')
-    hljs.registerLanguage('php-template', language128)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/php-template')
+    registerLanguage('php-template', languageDefinition)
   }
   if (language === 'php') {
-    const { default: language129 } = await import('highlight.js/lib/languages/php')
-    hljs.registerLanguage('php', language129)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/php')
+    registerLanguage('php', languageDefinition)
   }
   if (language === 'plaintext') {
-    const { default: language130 } = await import('highlight.js/lib/languages/plaintext')
-    hljs.registerLanguage('plaintext', language130)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/plaintext')
+    registerLanguage('plaintext', languageDefinition)
   }
   if (language === 'pony') {
-    const { default: language131 } = await import('highlight.js/lib/languages/pony')
-    hljs.registerLanguage('pony', language131)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/pony')
+    registerLanguage('pony', languageDefinition)
   }
   if (language === 'powershell') {
-    const { default: language132 } = await import('highlight.js/lib/languages/powershell')
-    hljs.registerLanguage('powershell', language132)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/powershell')
+    registerLanguage('powershell', languageDefinition)
   }
   if (language === 'processing') {
-    const { default: language133 } = await import('highlight.js/lib/languages/processing')
-    hljs.registerLanguage('processing', language133)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/processing')
+    registerLanguage('processing', languageDefinition)
   }
   if (language === 'profile') {
-    const { default: language134 } = await import('highlight.js/lib/languages/profile')
-    hljs.registerLanguage('profile', language134)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/profile')
+    registerLanguage('profile', languageDefinition)
   }
   if (language === 'prolog') {
-    const { default: language135 } = await import('highlight.js/lib/languages/prolog')
-    hljs.registerLanguage('prolog', language135)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/prolog')
+    registerLanguage('prolog', languageDefinition)
   }
   if (language === 'properties') {
-    const { default: language136 } = await import('highlight.js/lib/languages/properties')
-    hljs.registerLanguage('properties', language136)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/properties')
+    registerLanguage('properties', languageDefinition)
   }
   if (language === 'protobuf') {
-    const { default: language137 } = await import('highlight.js/lib/languages/protobuf')
-    hljs.registerLanguage('protobuf', language137)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/protobuf')
+    registerLanguage('protobuf', languageDefinition)
   }
   if (language === 'puppet') {
-    const { default: language138 } = await import('highlight.js/lib/languages/puppet')
-    hljs.registerLanguage('puppet', language138)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/puppet')
+    registerLanguage('puppet', languageDefinition)
   }
   if (language === 'purebasic') {
-    const { default: language139 } = await import('highlight.js/lib/languages/purebasic')
-    hljs.registerLanguage('purebasic', language139)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/purebasic')
+    registerLanguage('purebasic', languageDefinition)
   }
   if (language === 'python-repl') {
-    const { default: language140 } = await import('highlight.js/lib/languages/python-repl')
-    hljs.registerLanguage('python-repl', language140)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/python-repl')
+    registerLanguage('python-repl', languageDefinition)
   }
   if (language === 'python') {
-    const { default: language141 } = await import('highlight.js/lib/languages/python')
-    hljs.registerLanguage('python', language141)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/python')
+    registerLanguage('python', languageDefinition)
   }
   if (language === 'q') {
-    const { default: language142 } = await import('highlight.js/lib/languages/q')
-    hljs.registerLanguage('q', language142)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/q')
+    registerLanguage('q', languageDefinition)
   }
   if (language === 'qml') {
-    const { default: language143 } = await import('highlight.js/lib/languages/qml')
-    hljs.registerLanguage('qml', language143)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/qml')
+    registerLanguage('qml', languageDefinition)
   }
   if (language === 'r') {
-    const { default: language144 } = await import('highlight.js/lib/languages/r')
-    hljs.registerLanguage('r', language144)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/r')
+    registerLanguage('r', languageDefinition)
   }
   if (language === 'reasonml') {
-    const { default: language145 } = await import('highlight.js/lib/languages/reasonml')
-    hljs.registerLanguage('reasonml', language145)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/reasonml')
+    registerLanguage('reasonml', languageDefinition)
   }
   if (language === 'rib') {
-    const { default: language146 } = await import('highlight.js/lib/languages/rib')
-    hljs.registerLanguage('rib', language146)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/rib')
+    registerLanguage('rib', languageDefinition)
   }
   if (language === 'roboconf') {
-    const { default: language147 } = await import('highlight.js/lib/languages/roboconf')
-    hljs.registerLanguage('roboconf', language147)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/roboconf')
+    registerLanguage('roboconf', languageDefinition)
   }
   if (language === 'routeros') {
-    const { default: language148 } = await import('highlight.js/lib/languages/routeros')
-    hljs.registerLanguage('routeros', language148)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/routeros')
+    registerLanguage('routeros', languageDefinition)
   }
   if (language === 'rsl') {
-    const { default: language149 } = await import('highlight.js/lib/languages/rsl')
-    hljs.registerLanguage('rsl', language149)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/rsl')
+    registerLanguage('rsl', languageDefinition)
   }
   if (language === 'ruby') {
-    const { default: language150 } = await import('highlight.js/lib/languages/ruby')
-    hljs.registerLanguage('ruby', language150)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/ruby')
+    registerLanguage('ruby', languageDefinition)
   }
   if (language === 'ruleslanguage') {
-    const { default: language151 } = await import('highlight.js/lib/languages/ruleslanguage')
-    hljs.registerLanguage('ruleslanguage', language151)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/ruleslanguage')
+    registerLanguage('ruleslanguage', languageDefinition)
   }
   if (language === 'rust') {
-    const { default: language152 } = await import('highlight.js/lib/languages/rust')
-    hljs.registerLanguage('rust', language152)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/rust')
+    registerLanguage('rust', languageDefinition)
   }
   if (language === 'sas') {
-    const { default: language153 } = await import('highlight.js/lib/languages/sas')
-    hljs.registerLanguage('sas', language153)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/sas')
+    registerLanguage('sas', languageDefinition)
   }
   if (language === 'scala') {
-    const { default: language154 } = await import('highlight.js/lib/languages/scala')
-    hljs.registerLanguage('scala', language154)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/scala')
+    registerLanguage('scala', languageDefinition)
   }
   if (language === 'scheme') {
-    const { default: language155 } = await import('highlight.js/lib/languages/scheme')
-    hljs.registerLanguage('scheme', language155)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/scheme')
+    registerLanguage('scheme', languageDefinition)
   }
   if (language === 'scilab') {
-    const { default: language156 } = await import('highlight.js/lib/languages/scilab')
-    hljs.registerLanguage('scilab', language156)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/scilab')
+    registerLanguage('scilab', languageDefinition)
   }
   if (language === 'scss') {
-    const { default: language157 } = await import('highlight.js/lib/languages/scss')
-    hljs.registerLanguage('scss', language157)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/scss')
+    registerLanguage('scss', languageDefinition)
   }
   if (language === 'shell') {
-    const { default: language158 } = await import('highlight.js/lib/languages/shell')
-    hljs.registerLanguage('shell', language158)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/shell')
+    registerLanguage('shell', languageDefinition)
   }
   if (language === 'smali') {
-    const { default: language159 } = await import('highlight.js/lib/languages/smali')
-    hljs.registerLanguage('smali', language159)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/smali')
+    registerLanguage('smali', languageDefinition)
   }
   if (language === 'smalltalk') {
-    const { default: language160 } = await import('highlight.js/lib/languages/smalltalk')
-    hljs.registerLanguage('smalltalk', language160)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/smalltalk')
+    registerLanguage('smalltalk', languageDefinition)
   }
   if (language === 'sml') {
-    const { default: language161 } = await import('highlight.js/lib/languages/sml')
-    hljs.registerLanguage('sml', language161)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/sml')
+    registerLanguage('sml', languageDefinition)
   }
   if (language === 'sqf') {
-    const { default: language162 } = await import('highlight.js/lib/languages/sqf')
-    hljs.registerLanguage('sqf', language162)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/sqf')
+    registerLanguage('sqf', languageDefinition)
   }
   if (language === 'sql') {
-    const { default: language163 } = await import('highlight.js/lib/languages/sql')
-    hljs.registerLanguage('sql', language163)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/sql')
+    registerLanguage('sql', languageDefinition)
   }
   if (language === 'stan') {
-    const { default: language164 } = await import('highlight.js/lib/languages/stan')
-    hljs.registerLanguage('stan', language164)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/stan')
+    registerLanguage('stan', languageDefinition)
   }
   if (language === 'stata') {
-    const { default: language165 } = await import('highlight.js/lib/languages/stata')
-    hljs.registerLanguage('stata', language165)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/stata')
+    registerLanguage('stata', languageDefinition)
   }
   if (language === 'step21') {
-    const { default: language166 } = await import('highlight.js/lib/languages/step21')
-    hljs.registerLanguage('step21', language166)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/step21')
+    registerLanguage('step21', languageDefinition)
   }
   if (language === 'stylus') {
-    const { default: language167 } = await import('highlight.js/lib/languages/stylus')
-    hljs.registerLanguage('stylus', language167)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/stylus')
+    registerLanguage('stylus', languageDefinition)
   }
   if (language === 'subunit') {
-    const { default: language168 } = await import('highlight.js/lib/languages/subunit')
-    hljs.registerLanguage('subunit', language168)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/subunit')
+    registerLanguage('subunit', languageDefinition)
   }
   if (language === 'swift') {
-    const { default: language169 } = await import('highlight.js/lib/languages/swift')
-    hljs.registerLanguage('swift', language169)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/swift')
+    registerLanguage('swift', languageDefinition)
   }
   if (language === 'taggerscript') {
-    const { default: language170 } = await import('highlight.js/lib/languages/taggerscript')
-    hljs.registerLanguage('taggerscript', language170)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/taggerscript')
+    registerLanguage('taggerscript', languageDefinition)
   }
   if (language === 'tap') {
-    const { default: language171 } = await import('highlight.js/lib/languages/tap')
-    hljs.registerLanguage('tap', language171)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/tap')
+    registerLanguage('tap', languageDefinition)
   }
   if (language === 'tcl') {
-    const { default: language172 } = await import('highlight.js/lib/languages/tcl')
-    hljs.registerLanguage('tcl', language172)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/tcl')
+    registerLanguage('tcl', languageDefinition)
   }
   if (language === 'thrift') {
-    const { default: language173 } = await import('highlight.js/lib/languages/thrift')
-    hljs.registerLanguage('thrift', language173)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/thrift')
+    registerLanguage('thrift', languageDefinition)
   }
   if (language === 'tp') {
-    const { default: language174 } = await import('highlight.js/lib/languages/tp')
-    hljs.registerLanguage('tp', language174)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/tp')
+    registerLanguage('tp', languageDefinition)
   }
   if (language === 'twig') {
-    const { default: language175 } = await import('highlight.js/lib/languages/twig')
-    hljs.registerLanguage('twig', language175)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/twig')
+    registerLanguage('twig', languageDefinition)
   }
   if (language === 'typescript') {
-    const { default: language176 } = await import('highlight.js/lib/languages/typescript')
-    hljs.registerLanguage('typescript', language176)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/typescript')
+    registerLanguage('typescript', languageDefinition)
   }
   if (language === 'vala') {
-    const { default: language177 } = await import('highlight.js/lib/languages/vala')
-    hljs.registerLanguage('vala', language177)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/vala')
+    registerLanguage('vala', languageDefinition)
   }
   if (language === 'vbnet') {
-    const { default: language178 } = await import('highlight.js/lib/languages/vbnet')
-    hljs.registerLanguage('vbnet', language178)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/vbnet')
+    registerLanguage('vbnet', languageDefinition)
   }
   if (language === 'vbscript-html') {
-    const { default: language179 } = await import('highlight.js/lib/languages/vbscript-html')
-    hljs.registerLanguage('vbscript-html', language179)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/vbscript-html')
+    registerLanguage('vbscript-html', languageDefinition)
   }
   if (language === 'vbscript') {
-    const { default: language180 } = await import('highlight.js/lib/languages/vbscript')
-    hljs.registerLanguage('vbscript', language180)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/vbscript')
+    registerLanguage('vbscript', languageDefinition)
   }
   if (language === 'verilog') {
-    const { default: language181 } = await import('highlight.js/lib/languages/verilog')
-    hljs.registerLanguage('verilog', language181)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/verilog')
+    registerLanguage('verilog', languageDefinition)
   }
   if (language === 'vhdl') {
-    const { default: language182 } = await import('highlight.js/lib/languages/vhdl')
-    hljs.registerLanguage('vhdl', language182)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/vhdl')
+    registerLanguage('vhdl', languageDefinition)
   }
   if (language === 'vim') {
-    const { default: language183 } = await import('highlight.js/lib/languages/vim')
-    hljs.registerLanguage('vim', language183)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/vim')
+    registerLanguage('vim', languageDefinition)
   }
   if (language === 'wasm') {
-    const { default: language184 } = await import('highlight.js/lib/languages/wasm')
-    hljs.registerLanguage('wasm', language184)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/wasm')
+    registerLanguage('wasm', languageDefinition)
   }
   if (language === 'wren') {
-    const { default: language185 } = await import('highlight.js/lib/languages/wren')
-    hljs.registerLanguage('wren', language185)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/wren')
+    registerLanguage('wren', languageDefinition)
   }
   if (language === 'x86asm') {
-    const { default: language186 } = await import('highlight.js/lib/languages/x86asm')
-    hljs.registerLanguage('x86asm', language186)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/x86asm')
+    registerLanguage('x86asm', languageDefinition)
   }
   if (language === 'xl') {
-    const { default: language187 } = await import('highlight.js/lib/languages/xl')
-    hljs.registerLanguage('xl', language187)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/xl')
+    registerLanguage('xl', languageDefinition)
   }
   if (language === 'xml') {
-    const { default: language188 } = await import('highlight.js/lib/languages/xml')
-    hljs.registerLanguage('xml', language188)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/xml')
+    registerLanguage('xml', languageDefinition)
   }
   if (language === 'xquery') {
-    const { default: language189 } = await import('highlight.js/lib/languages/xquery')
-    hljs.registerLanguage('xquery', language189)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/xquery')
+    registerLanguage('xquery', languageDefinition)
   }
   if (language === 'yaml') {
-    const { default: language190 } = await import('highlight.js/lib/languages/yaml')
-    hljs.registerLanguage('yaml', language190)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/yaml')
+    registerLanguage('yaml', languageDefinition)
   }
   if (language === 'zephir') {
-    const { default: language191 } = await import('highlight.js/lib/languages/zephir')
-    hljs.registerLanguage('zephir', language191)
+    const { default: languageDefinition } = await import('highlight.js/lib/languages/zephir')
+    registerLanguage('zephir', languageDefinition)
   }
 }

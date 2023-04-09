@@ -47,8 +47,7 @@ export const getAllLanguages = async md => {
   const { default: MarkdownIt } = await import('markdown-it/dist/markdown-it')
   const languages = new Set()
   MarkdownIt({
-    html: true,
-    highlight: (str, lang) => {
+    highlight(str, lang) {
       if (lang) {
         languages.add(lang)
       }
