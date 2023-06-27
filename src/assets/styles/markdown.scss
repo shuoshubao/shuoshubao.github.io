@@ -12,6 +12,10 @@ body .markdown-body {
       word-break: normal;
       counter-reset: line;
 
+      & > div {
+        min-height: 20px;
+      }
+
       .line {
         &::before {
           display: inline-block;
