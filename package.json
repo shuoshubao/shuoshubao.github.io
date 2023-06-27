@@ -38,6 +38,7 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@babel/preset-react": "^7.22.5",
     "@nbfe/standard": "^1.1.1",
     "@vitejs/plugin-react": "^4.0.1",
     "rollup-plugin-analyze": "^0.1.1",
