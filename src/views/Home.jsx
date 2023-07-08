@@ -1,11 +1,12 @@
 import React from 'react'
-import { Card, Row, Col, List, Space, Typography, Button } from 'antd'
+import { Row, Col, Card, Space, Table, Typography, Button } from 'antd'
 import { HomeOutlined, GithubOutlined } from '@ant-design/icons'
-import { map } from 'lodash-es'
+import { map, find } from 'lodash-es'
+import { formatTime } from '@nbfe/tools'
 import { NavData } from '@/configs'
 import Icons from '@/configs/Icons'
 
-const { Text } = Typography
+const { Text, Link } = Typography
 
 const ProjectList = [
   {
@@ -139,6 +140,51 @@ const ProjectList = [
   }
 ]
 
+const columns = [
+  {
+    title: '标题',
+    dataIndex: 'title',
+    render(value, record) {
+      const { category, name } = record
+      const path = [category, name].join('/')
+      return <Link href={`#${path}`}>{value}</Link>
+    }
+  },
+  {
+    title: '分类',
+    dataIndex: 'category',
+    render(value) {
+      const { label, icon } = find(NavData, { value })
+      return (
+        <Link href={`#/${value}`}>
+          <Space>
+            <span style={{ position: 'relative', top: 3 }}>{icon}</span>
+            <span>{label}</span>
+          </Space>
+        </Link>
+      )
+    }
+  },
+  {
+    title: '更新时间',
+    dataIndex: 'mtime',
+    render(value) {
+      return formatTime(value, 'YYYY-MM-DD HH:mm:ss')
+    }
+  },
+  {
+    title: '创建时间',
+    dataIndex: 'ctime',
+    render(value) {
+      return formatTime(value, 'YYYY-MM-DD HH:mm:ss')
+    }
+  },
+  {
+    title: '字数',
+    dataIndex: 'size'
+  }
+]
+
 export default props => {
   const { data } = props
   const AllArticles = map(NavData.slice(1), 'value')
@@ -146,7 +192,27 @@ export default props => {
     .flat()
   return (
     <>
-      <Card>
+      <Table
+        rowKey={record => {
+          const { category, name } = record
+          return [category, name].join()
+        }}
+        dataSource={AllArticles}
+        columns={columns}
+        title={() => {
+          return (
+            <Space>
+              <Text strong>共</Text>
+              <Text strong italic>
+                {AllArticles.length}
+              </Text>
+              <Text strong>篇文章</Text>
+            </Space>
+          )
+        }}
+        pagination={false}
+      />
+      <Card style={{ marginTop: 12 }}>
         <img src="https://ghchart.rshah.org/30a14e/shuoshubao" width="100%" />
       </Card>
       <Card title="作品集" size="small">
@@ -178,31 +244,6 @@ export default props => {
             )
           })}
         </Row>
-      </Card>
-      <Card
-        title={
-          <Space>
-            <Text>共</Text>
-            <Text italic>{AllArticles.length}</Text>
-            <Text>篇文章</Text>
-          </Space>
-        }
-      >
-        <List
-          dataSource={AllArticles}
-          grid={{ column: 2, xs: 1, lg: 3, xl: 4, xxl: 5 }}
-          renderItem={item => {
-            const { category, name, title } = item
-            const path = [category, name].join('/')
-            return (
-              <List.Item style={{ paddingLeft: 0, paddingRight: 0 }}>
-                <Button type="link" href={`#${path}`}>
-                  {title}
-                </Button>
-              </List.Item>
-            )
-          }}
-        />
       </Card>
     </>
   )
