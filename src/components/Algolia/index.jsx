@@ -5,6 +5,10 @@ import { debounce, once } from 'lodash-es'
 import HighlightText from '@/components/HighlightText'
 import { memoizeFetch } from '@/utils'
 
+const decodeText = arrary => {
+  return new TextDecoder().decode(new Uint8Array(arrary))
+}
+
 export default () => {
   const autoCompleteRef = useRef()
   const autoCompleteContainerRef = useRef()
@@ -18,7 +22,9 @@ export default () => {
   const searchFunc = query => {
     const list = []
     Object.entries(AllData).forEach(([k, { title, content }]) => {
-      const contentList = content.split('\n').filter(v2 => v2.includes(query))
+      const contentList = decodeText(content.toString().split(','))
+        .split('\n')
+        .filter(v2 => v2.includes(query))
       if (!contentList.length) {
         return
       }
