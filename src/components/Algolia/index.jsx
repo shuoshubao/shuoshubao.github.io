@@ -22,10 +22,13 @@ export default () => {
   const searchFunc = query => {
     const list = []
     Object.entries(AllData).forEach(([k, { title, content }]) => {
-      const contentList = decodeText(content.toString().split(','))
+      const ContentList = decodeText(content.toString().split(','))
         .split('\n')
-        .filter(v2 => v2.includes(query))
-      if (!contentList.length) {
+      const filterContentList = [k, title, ...ContentList]
+        .filter(v2 => {
+          return v2.toLowerCase().includes(query.toLowerCase())
+        })
+      if (!filterContentList.length) {
         return
       }
       list.push({
@@ -44,7 +47,7 @@ export default () => {
             </Col>
             <Col span={18}>
               <List
-                dataSource={contentList}
+                dataSource={filterContentList}
                 renderItem={item => {
                   return (
                     <List.Item style={{ padding: '5px 0' }}>
