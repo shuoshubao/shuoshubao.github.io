@@ -29,5 +29,14 @@ export default () => {
     window.localStorage.setItem(ThemeKey, value)
   }
 
-  return <Select value={theme} onChange={handleChange} options={options} style={{ width: '100%' }} />
+  return (
+    <Select
+      value={theme}
+      onChange={handleChange}
+      options={options}
+      dropdownMatchSelectWidth={150}
+      style={{ width: '100%' }}
+      placement="topLeft"
+    />
+  )
 }
