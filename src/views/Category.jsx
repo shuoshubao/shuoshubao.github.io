@@ -1,6 +1,7 @@
 import React from 'react'
-import { Space, Table, Typography } from 'antd'
+import { Table, Typography } from 'antd'
 import { formatTime } from '@nbfe/tools'
+import { useTranslation } from 'react-i18next'
 import { getHashs } from '@/utils'
 
 const { Text, Link } = Typography
@@ -9,9 +10,11 @@ export default props => {
   const { data } = props
   const [category] = getHashs()
 
+  const { t } = useTranslation()
+
   const columns = [
     {
-      title: '标题',
+      title: t('columns.title'),
       dataIndex: 'title',
       render(value, record) {
         const { name } = record
@@ -20,21 +23,21 @@ export default props => {
       }
     },
     {
-      title: '更新时间',
+      title: t('columns.mtime'),
       dataIndex: 'mtime',
       render(value) {
         return formatTime(value, 'YYYY-MM-DD HH:mm:ss')
       }
     },
     {
-      title: '创建时间',
+      title: t('columns.ctime'),
       dataIndex: 'ctime',
       render(value) {
         return formatTime(value, 'YYYY-MM-DD HH:mm:ss')
       }
     },
     {
-      title: '字数',
+      title: t('columns.words'),
       dataIndex: 'size',
       render(value) {
         return value.toLocaleString()
@@ -48,15 +51,7 @@ export default props => {
       dataSource={data}
       columns={columns}
       title={() => {
-        return (
-          <Space>
-            <Text strong>共</Text>
-            <Text strong italic>
-              {data.length}
-            </Text>
-            <Text strong>篇文章</Text>
-          </Space>
-        )
+        return <Text>{t('total_articles', { value: data.length })}</Text>
       }}
       pagination={false}
     />

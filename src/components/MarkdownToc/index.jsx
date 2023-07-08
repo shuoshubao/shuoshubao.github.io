@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Layout, Typography, Space, Tooltip, Tree, theme } from 'antd'
 import { CaretLeftOutlined, CaretRightOutlined, UnorderedListOutlined } from '@ant-design/icons'
 import { map } from 'lodash-es'
+import { useTranslation } from 'react-i18next'
 import { TocCollapsedKey } from '@/configs'
 import { getMarkdownTocData } from '@/utils'
 
@@ -22,6 +23,8 @@ export default props => {
   const [expandedKeys, setExpandedKeys] = useState([])
 
   const { token } = useToken()
+
+  const { t } = useTranslation()
 
   const updateSelectedKeys = () => {
     document.querySelector(`[id="${window.location.hash.slice(1)}"]`)?.scrollIntoView()
@@ -99,7 +102,7 @@ export default props => {
       >
         <Space>
           <Text strong style={{ lineHeight: '20px' }}>
-            大纲
+            {t('toc')}
           </Text>
           <Tooltip title={allExpanded ? '全部折叠' : '全部展开'}>
             <UnorderedListOutlined

@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from 'react'
 import { Button, Modal, AutoComplete, Input, Tag, Col, Row, List, Empty, Typography } from 'antd'
 import { SearchOutlined } from '@ant-design/icons'
 import { find, debounce, once } from 'lodash-es'
+import { useTranslation } from 'react-i18next'
 import HighlightText from '@/components/HighlightText'
 import { memoizeFetch } from '@/utils'
 
@@ -20,6 +21,8 @@ export default () => {
   const [AllData, setAllData] = useState({})
 
   const [options, setOptions] = useState([])
+
+  const { t } = useTranslation()
 
   const searchFunc = async query => {
     const text = await memoizeFetch('store/data.json')
@@ -128,7 +131,7 @@ export default () => {
       >
         <SearchOutlined />
         <Text type="secondary" style={{ flex: 1, textAlign: 'left' }}>
-          Search
+          {t('search')}
         </Text>
         <Tag style={{ margin: 0 }}>⌘ K</Tag>
       </Button>

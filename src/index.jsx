@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { createRoot } from 'react-dom/client'
 import { ConfigProvider, theme } from 'antd'
 import {
+  initI18n,
   ThemeKey,
   ThemeKeyEnum,
   DefaultTheme,
@@ -12,6 +13,8 @@ import {
 import App from './App'
 
 const { defaultAlgorithm, darkAlgorithm } = theme
+
+initI18n()
 
 const Container = () => {
   const [themeValue, setThemeValue] = useState(window.localStorage.getItem(ThemeKey) || DefaultTheme)

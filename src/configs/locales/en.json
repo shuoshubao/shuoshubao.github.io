@@ -1,0 +1,17 @@
+{
+  "search": "Search",
+  "theme": {
+    "dark": "Dark mode",
+    "light": "Light mode",
+    "system": "Follow system"
+  },
+  "total_articles": "Total {{value}} articles",
+  "toc": "Table of Contents",
+  "columns": {
+    "title": "Title",
+    "category": "Category",
+    "mtime": "Update Time",
+    "ctime": "Creation Time",
+    "words": "Words"
+  }
+}

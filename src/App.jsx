@@ -5,6 +5,7 @@ import 'antd/dist/reset.css'
 import '@/assets/styles/index.scss'
 import '@/assets/styles/markdown.scss'
 import '@/assets/styles/markdown-container.scss'
+import I18nSelect from '@/components/I18nSelect'
 import ThemeSelect from '@/components/ThemeSelect'
 import Algolia from '@/components/Algolia'
 import { NavData, CollapsedKey } from '@/configs'
@@ -115,6 +116,7 @@ export default () => {
               />
               <div style={{ position: 'absolute', bottom: 0, margin: 12, width: 150 - 12 * 2 }}>
                 <Space direction="vertical" style={{ display: 'flex' }}>
+                  <I18nSelect />
                   <ThemeSelect />
                   <Algolia />
                 </Space>

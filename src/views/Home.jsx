@@ -3,6 +3,7 @@ import { Row, Col, Card, Space, Table, Typography, Button } from 'antd'
 import { HomeOutlined, GithubOutlined } from '@ant-design/icons'
 import { map, find } from 'lodash-es'
 import { formatTime } from '@nbfe/tools'
+import { useTranslation } from 'react-i18next'
 import { NavData } from '@/configs'
 import Icons from '@/configs/Icons'
 
@@ -140,59 +141,63 @@ const ProjectList = [
   }
 ]
 
-const columns = [
-  {
-    title: '标题',
-    dataIndex: 'title',
-    render(value, record) {
-      const { category, name } = record
-      const path = [category, name].join('/')
-      return <Link href={`#${path}`}>{value}</Link>
-    }
-  },
-  {
-    title: '分类',
-    dataIndex: 'category',
-    render(value) {
-      const { label, icon } = find(NavData, { value })
-      return (
-        <Link href={`#/${value}`}>
-          <Space>
-            <span style={{ position: 'relative', top: 3 }}>{icon}</span>
-            <span>{label}</span>
-          </Space>
-        </Link>
-      )
-    }
-  },
-  {
-    title: '更新时间',
-    dataIndex: 'mtime',
-    render(value) {
-      return formatTime(value, 'YYYY-MM-DD HH:mm:ss')
-    }
-  },
-  {
-    title: '创建时间',
-    dataIndex: 'ctime',
-    render(value) {
-      return formatTime(value, 'YYYY-MM-DD HH:mm:ss')
-    }
-  },
-  {
-    title: '字数',
-    dataIndex: 'size',
-    render(value) {
-      return value.toLocaleString()
-    }
-  }
-]
-
 export default props => {
   const { data } = props
+
+  const { t } = useTranslation()
+
   const AllArticles = map(NavData.slice(1), 'value')
     .map(v => data[v])
     .flat()
+
+  const columns = [
+    {
+      title: t('columns.title'),
+      dataIndex: 'title',
+      render(value, record) {
+        const { category, name } = record
+        const path = [category, name].join('/')
+        return <Link href={`#${path}`}>{value}</Link>
+      }
+    },
+    {
+      title: t('columns.category'),
+      dataIndex: 'category',
+      render(value) {
+        const { label, icon } = find(NavData, { value })
+        return (
+          <Link href={`#/${value}`}>
+            <Space>
+              <span style={{ position: 'relative', top: 3 }}>{icon}</span>
+              <span>{label}</span>
+            </Space>
+          </Link>
+        )
+      }
+    },
+    {
+      title: t('columns.mtime'),
+      dataIndex: 'mtime',
+      render(value) {
+        return formatTime(value, 'YYYY-MM-DD HH:mm:ss')
+      }
+    },
+    {
+      title: t('columns.ctime'),
+      dataIndex: 'ctime',
+      render(value) {
+        return formatTime(value, 'YYYY-MM-DD HH:mm:ss')
+      }
+    },
+    {
+      title: t('columns.words'),
+      dataIndex: 'size',
+      render(value) {
+        return value.toLocaleString()
+      }
+    }
+  ]
+
   return (
     <>
       <Table
@@ -203,15 +208,7 @@ export default props => {
         dataSource={AllArticles}
         columns={columns}
         title={() => {
-          return (
-            <Space>
-              <Text strong>共</Text>
-              <Text strong italic>
-                {AllArticles.length}
-              </Text>
-              <Text strong>篇文章</Text>
-            </Space>
-          )
+          return <Text>{t('total_articles', { value: AllArticles.length })}</Text>
         }}
         pagination={false}
       />
