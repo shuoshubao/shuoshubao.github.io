@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react'
 import { Modal, AutoComplete, Input, Tag, Col, Row, List, Empty } from 'antd'
 import { SearchOutlined } from '@ant-design/icons'
-import { debounce, once } from 'lodash-es'
+import { find, debounce, once } from 'lodash-es'
 import HighlightText from '@/components/HighlightText'
 import { memoizeFetch } from '@/utils'
 
@@ -19,15 +19,17 @@ export default () => {
 
   const [options, setOptions] = useState([])
 
-  const searchFunc = query => {
+  const searchFunc = async query => {
+    const text = await memoizeFetch('store/data.json')
+    const ArticleData = JSON.parse(text)
     const list = []
-    Object.entries(AllData).forEach(([k, { title, content }]) => {
-      const ContentList = decodeText(content.toString().split(','))
-        .split('\n')
-      const filterContentList = [k, title, ...ContentList]
-        .filter(v2 => {
-          return v2.toLowerCase().includes(query.toLowerCase())
-        })
+    Object.entries(AllData).forEach(([k, content]) => {
+      const [category, name] = atob(k).split('/')
+      const { title } = find(ArticleData[category], { name })
+      const ContentList = decodeText(content.toString().split(',')).split('\n')
+      const filterContentList = [k, title, ...ContentList].filter(v2 => {
+        return v2.toLowerCase().includes(query.toLowerCase())
+      })
       if (!filterContentList.length) {
         return
       }
