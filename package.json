@@ -46,12 +46,6 @@
     "sass": "^1.57.1",
     "vite": "^4.3.9"
   },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -e $GIT_PARAMS",
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
     "ignore": [
       "CHANGELOG.md",
