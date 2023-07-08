@@ -1,23 +1,49 @@
 import React, { useState, useEffect } from 'react'
 import { createRoot } from 'react-dom/client'
 import { ConfigProvider, theme } from 'antd'
-import { isDark, addListenerPrefersColorScheme } from '@/utils'
+import {
+  ThemeKey,
+  ThemeKeyEnum,
+  DefaultTheme,
+  ThemeEventEmitter,
+  isDark,
+  addListenerPrefersColorScheme
+} from '@/configs'
 import App from './App'
 
 const { defaultAlgorithm, darkAlgorithm } = theme
 
 const Container = () => {
-  const [dark, setDark] = useState(isDark())
+  const [themeValue, setThemeValue] = useState(window.localStorage.getItem(ThemeKey) || DefaultTheme)
+  const [dark, setDark] = useState()
+
+  const handleThemeChange = value => {
+    setThemeValue(value)
+    if (value !== ThemeKeyEnum.SYSTEM) {
+      setDark(isDark(value))
+    }
+  }
 
   useEffect(() => {
-    addListenerPrefersColorScheme(value => {
-      setDark(value)
+    addListenerPrefersColorScheme(() => {
+      setDark(isDark(themeValue))
     })
   }, [setDark])
 
+  useEffect(() => {
+    setDark(isDark(themeValue))
+  }, [setDark])
+
+  useEffect(() => {
+    ThemeEventEmitter.on(ThemeKey, handleThemeChange)
+
+    return () => {
+      ThemeEventEmitter.off(ThemeKey, handleThemeChange)
+    }
+  }, [setThemeValue, setDark])
+
   return (
     <ConfigProvider
-      componentSize="small"
       theme={{
         algorithm: dark ? darkAlgorithm : defaultAlgorithm
       }}

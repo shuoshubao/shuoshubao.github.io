@@ -2,6 +2,8 @@ import React from 'react'
 import { HomeOutlined, HeartOutlined, ToolOutlined, BulbOutlined } from '@ant-design/icons'
 import Icons, { IconFontSize } from './Icons'
 
+export * from './theme'
+
 export const CollapsedKey = 'collapsed'
 
 export const TocCollapsedKey = ['collapsed', 'toc'].join('-')

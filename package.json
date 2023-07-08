@@ -19,6 +19,7 @@
   "dependencies": {
     "@nbfe/tools": "^0.5.2",
     "antd": "^5.6.4",
+    "eventemitter3": "^5.0.1",
     "filesize": "^8.0.7",
     "github-markdown-css": "^5.1.0",
     "highlight.js": "^11.7.0",

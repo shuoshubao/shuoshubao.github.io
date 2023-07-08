@@ -1,9 +1,11 @@
 import React, { useRef, useState, useEffect } from 'react'
-import { Modal, AutoComplete, Input, Tag, Col, Row, List, Empty } from 'antd'
+import { Button, Modal, AutoComplete, Input, Tag, Col, Row, List, Empty, Typography } from 'antd'
 import { SearchOutlined } from '@ant-design/icons'
 import { find, debounce, once } from 'lodash-es'
 import HighlightText from '@/components/HighlightText'
 import { memoizeFetch } from '@/utils'
+
+const { Text } = Typography
 
 const decodeText = arrary => {
   return new TextDecoder().decode(new Uint8Array(arrary))
@@ -113,12 +115,9 @@ export default () => {
 
   return (
     <>
-      <Input
-        style={{ position: 'absolute', bottom: 0, padding: 5, margin: 12, width: 150 - 12 * 2 }}
-        prefix={<SearchOutlined />}
-        suffix={<Tag style={{ margin: 0 }}>⌘ K</Tag>}
-        placeholder="Search"
-        readOnly
+      <Button
+        style={{ padding: '4px 5px', display: 'flex', alignItems: 'center' }}
+        block
         onClick={() => {
           setIsModalOpen(true)
           onceFetchData()
@@ -126,7 +125,13 @@ export default () => {
             autoCompleteRef?.current?.focus()
           }, 100)
         }}
-      />
+      >
+        <SearchOutlined />
+        <Text type="secondary" style={{ flex: 1, textAlign: 'left' }}>
+          Search
+        </Text>
+        <Tag style={{ margin: 0 }}>⌘ K</Tag>
+      </Button>
       <Modal
         open={isModalOpen}
         width="90%"

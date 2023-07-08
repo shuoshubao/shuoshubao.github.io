@@ -218,7 +218,7 @@ export default props => {
       <Card style={{ marginTop: 12 }}>
         <img src="https://ghchart.rshah.org/30a14e/shuoshubao" width="100%" />
       </Card>
-      <Card title="作品集" size="small">
+      <Card title="作品集">
         <Row gutter={[12, 12]}>
           {ProjectList.map(v => {
             const { title, homepage, github, npm, description } = v

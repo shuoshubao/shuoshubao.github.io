@@ -1,13 +1,14 @@
 import React, { lazy, Suspense, useState, useEffect } from 'react'
-import { Layout, Skeleton, Menu, Result, theme } from 'antd'
+import { Layout, Skeleton, Menu, Result, Space, theme } from 'antd'
 import { CaretLeftOutlined, CaretRightOutlined } from '@ant-design/icons'
 import 'antd/dist/reset.css'
 import '@/assets/styles/index.scss'
 import '@/assets/styles/markdown.scss'
 import '@/assets/styles/markdown-container.scss'
+import ThemeSelect from '@/components/ThemeSelect'
 import Algolia from '@/components/Algolia'
 import { NavData, CollapsedKey } from '@/configs'
-import { memoizeFetch, isDark, getHashs, getPageType } from '@/utils'
+import { memoizeFetch, getHashs, getPageType } from '@/utils'
 
 const Home = lazy(() => import('@/views/Home'))
 const Category = lazy(() => import('@/views/Category'))
@@ -87,8 +88,7 @@ export default () => {
             width: collapsed ? 0 : SiderWidth - 1,
             left: 0,
             top: 0,
-            bottom: 0,
-            background: isDark() ? '#141414' : '#ffffff'
+            bottom: 0
           }}
         >
           {!collapsed && (
@@ -113,7 +113,12 @@ export default () => {
                   window.location.hash = key
                 }}
               />
-              <Algolia />
+              <div style={{ position: 'absolute', bottom: 0, margin: 12, width: 150 - 12 * 2 }}>
+                <Space direction="vertical" style={{ display: 'flex' }}>
+                  <ThemeSelect />
+                  <Algolia />
+                </Space>
+              </div>
             </>
           )}
         </div>
