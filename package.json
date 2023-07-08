@@ -47,10 +47,6 @@
     "vite": "^4.3.9"
   },
   "lint-staged": {
-    "ignore": [
-      "CHANGELOG.md",
-      "docs/**"
-    ],
     "*.{ts,tsx,js,jsx,vue,css,less,scss,sass,json,md}": [
       "prettier --write",
       "git add"
