@@ -11,9 +11,10 @@
   "scripts": {
     "start": "npx vite",
     "build": "npx vite build",
+    "prepare": "husky install",
     "prettier": "npx prettier --write",
     "lint": "npx eslint --ext .ts,.tsx,.js,.jsx,.vue -f html -o ESLintReport.html",
-    "lint:style": "npx stylelint --fix -o StyleLintReport.html --aei --custom-formatter node_modules/stylelint-formatters-html **/*.{css,less,scss,sass}"
+    "lint:style": "npx stylelint --fix -o StyleLintReport.html --custom-formatter node_modules/stylelint-formatters-html **/*.{css,less,scss,sass}"
   },
   "dependencies": {
     "@nbfe/tools": "^0.5.2",
@@ -39,7 +40,7 @@
   },
   "devDependencies": {
     "@babel/preset-react": "^7.22.5",
-    "@nbfe/standard": "^1.1.1",
+    "@nbfe/standard": "^1.2.3",
     "@vitejs/plugin-react": "^4.0.1",
     "rollup-plugin-analyze": "^0.1.1",
     "sass": "^1.57.1",
@@ -52,28 +53,26 @@
     }
   },
   "lint-staged": {
-    "linters": {
-      "*.{ts,tsx,js,jsx,vue,css,less,scss,sass,json,md}": [
-        "prettier --write",
-        "git add"
-      ],
-      "*.{css,less,scss,sass}": [
-        "npx stylelint --fix",
-        "git add"
-      ],
-      "*.{ts,tsx,js,jsx,vue}": [
-        "eslint -f table",
-        "git add"
-      ]
-    },
     "ignore": [
       "CHANGELOG.md",
       "docs/**"
+    ],
+    "*.{ts,tsx,js,jsx,vue,css,less,scss,sass,json,md}": [
+      "prettier --write",
+      "git add"
+    ],
+    "*.{css,less,scss,sass}": [
+      "npx stylelint --fix",
+      "git add"
+    ],
+    "*.{ts,tsx,js,jsx,vue}": [
+      "eslint -f table",
+      "git add"
     ]
   },
   "config": {
     "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
+      "path": "cz-conventional-changelog"
     }
   },
   "commitlint": {
