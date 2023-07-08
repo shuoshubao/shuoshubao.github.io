@@ -35,7 +35,10 @@ export default props => {
     },
     {
       title: '字数',
-      dataIndex: 'size'
+      dataIndex: 'size',
+      render(value) {
+        return value.toLocaleString()
+      }
     }
   ]
 
