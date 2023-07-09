@@ -22,7 +22,7 @@ const defaultThemeValue = window.localStorage.getItem(ThemeKey) || DefaultTheme
 
 let vConsole
 
-if (isDevelopment) {
+if (isDevelopment && ['Android', 'iPhone', 'iPad'].includes(window.navigator.platform)) {
   // eslint-disable-next-line no-new
   vConsole = new VConsole({ theme: isDark(defaultThemeValue) ? 'dark' : 'light' })
 }
