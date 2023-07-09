@@ -32,14 +32,14 @@ export default () => {
       const [category, name] = atob(k).split('/')
       const { title } = find(ArticleData[category], { name })
       const ContentList = decodeText(content.toString().split(',')).split('\n')
-      const filterContentList = [k, title, ...ContentList].filter(v2 => {
+      const filterContentList = [category, name, title, ...ContentList].filter(v2 => {
         return v2.toLowerCase().includes(query.toLowerCase())
       })
       if (!filterContentList.length) {
         return
       }
       list.push({
-        value: k,
+        value: atob(k),
         label: (
           <Row>
             <Col
@@ -77,7 +77,7 @@ export default () => {
 
   const handleSearch = q => {
     const query = q.trim()
-    if (query.length <= 2) {
+    if (query.length <= 1) {
       setOptions([])
       return
     }
