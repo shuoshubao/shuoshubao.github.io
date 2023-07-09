@@ -5,6 +5,7 @@
     "light": "Light mode",
     "system": "Follow system"
   },
+  "page_not_found": "Sorry, the page you visited does not exist.",
   "total_articles": "Total {{value}} articles",
   "toc": "Table of Contents",
   "columns": {

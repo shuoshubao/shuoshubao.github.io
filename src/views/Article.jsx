@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Layout, Modal, Result, Card, Button, Typography, Space, Divider, Tag, Image, message, theme } from 'antd'
 import { CodeOutlined } from '@ant-design/icons'
+import { useTranslation } from 'react-i18next'
 import copy from 'copy-to-clipboard'
 import dayjs from 'dayjs'
 import { map, find } from 'lodash-es'
@@ -38,6 +39,8 @@ export default props => {
   const [visible, setVisible] = useState(false)
   const [imageList, setImageList] = useState([])
   const [currentImgIndex, setCurrentImgIndex] = useState(0)
+
+  const { t } = useTranslation()
 
   const { token } = useToken()
 
@@ -109,7 +112,7 @@ export default props => {
   }, [])
 
   if (!map(AllArticles, 'name').includes(name)) {
-    return <Result status="404" title="404" subTitle="Sorry, the page you visited does not exist." />
+    return <Result status="404" title="404" subTitle={t('page_not_found')} />
   }
 
   const { title, size, ctime, mtime } = find(AllArticles, { name })

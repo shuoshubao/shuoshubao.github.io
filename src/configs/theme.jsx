@@ -66,9 +66,9 @@ const IconLight = () => {
   )
 }
 
-const isAndroid = navigator.platform === 'Android'
+const isAndroid = window.navigator.platform === 'Android'
 
-const isWindows = navigator.platform.includes('Win')
+const isWindows = window.navigator.platform.includes('Win')
 
 const getSystemIcon = () => {
   if (isAndroid) {

@@ -2,6 +2,7 @@ import React, { lazy, Suspense, useState, useEffect } from 'react'
 import { Layout, Skeleton, Menu, Result, Space, theme } from 'antd'
 import { CaretLeftOutlined, CaretRightOutlined } from '@ant-design/icons'
 import 'antd/dist/reset.css'
+import { useTranslation } from 'react-i18next'
 import '@/assets/styles/index.scss'
 import '@/assets/styles/markdown.scss'
 import '@/assets/styles/markdown-container.scss'
@@ -28,6 +29,7 @@ export default () => {
   const [categoryData, setCategoryData] = useState({})
   const [selectedClassification, setSelectedClassification] = useState(getHashs()[0])
 
+  const { t } = useTranslation()
   const { token } = useToken()
 
   const fetchData = async () => {
@@ -131,9 +133,7 @@ export default () => {
             {pageType === 'index' && <Home data={categoryData} />}
             {pageType === 'list' && <Category data={categoryData[selectedClassification]} />}
             {pageType === 'detail' && <Article key={pageHashs.join('/')} data={categoryData} />}
-            {pageType === '404' && (
-              <Result status="404" title="404" subTitle="Sorry, the page you visited does not exist." />
-            )}
+            {pageType === '404' && <Result status="404" title="404" subTitle={t('page_not_found')} />}
           </Skeleton>
         </Suspense>
       </Content>
