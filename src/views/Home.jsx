@@ -36,7 +36,7 @@ const ProjectList = [
     homepage: 'https://github.com/shuoshubao/tools',
     github: 'nbfe',
     npm: '@nbfe/tools',
-    description: ['基于 lodash 开发的通用工具库', '采用rollup打包', '拥有完善的使用文档和测试用例']
+    description: ['通用工具库', '采用rollup打包', '拥有完善的使用文档和测试用例']
   },
   {
     title: '工程化',
