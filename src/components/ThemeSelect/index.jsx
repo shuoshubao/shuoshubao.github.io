@@ -34,7 +34,7 @@ export default () => {
       value={theme}
       onChange={handleChange}
       options={options}
-      dropdownMatchSelectWidth={150}
+      popupMatchSelectWidth={150}
       style={{ width: '100%' }}
       placement="topLeft"
     />

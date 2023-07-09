@@ -1,6 +1,8 @@
 import React from 'react'
 import { AppleOutlined, WindowsOutlined } from '@ant-design/icons'
 import EventEmitter from 'eventemitter3'
+import { v4 as uuidv4 } from 'uuid'
+import { camelCase } from 'lodash-es'
 
 export const ThemeKey = 'theme'
 
@@ -102,4 +104,31 @@ export const addListenerPrefersColorScheme = callback => {
   matchMedia('(prefers-color-scheme: light)').addListener(mediaQueryList => {
     callback(!mediaQueryList.matches)
   })
+}
+
+const uniqId = uuidv4()
+
+export const updateMarkdownTheme = async dark => {
+  const DataSetGithubMarkdownCssKey = 'github-markdown-css'
+  let themeCssText
+  if (dark) {
+    const { default: cssText } = await import('github-markdown-css/github-markdown-dark.css?inline')
+    themeCssText = cssText.replaceAll('\n', '')
+  } else {
+    const { default: cssText } = await import('github-markdown-css/github-markdown-light.css?inline')
+    themeCssText = cssText.replaceAll('\n', '')
+  }
+
+  let style = document.querySelector(`[data-${DataSetGithubMarkdownCssKey}="${uniqId}"]`)
+  if (style) {
+    style.innerHTML = themeCssText
+    style.dataset.theme = dark ? 'dark' : 'light'
+  } else {
+    const { head } = document
+    style = document.createElement('style')
+    style.dataset[camelCase(DataSetGithubMarkdownCssKey)] = uniqId
+    style.dataset.theme = isDark ? 'dark' : 'light'
+    style.innerHTML = themeCssText
+    head.appendChild(style)
+  }
 }

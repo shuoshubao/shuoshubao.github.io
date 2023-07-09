@@ -17,7 +17,7 @@ export default () => {
         i18n.changeLanguage(value)
         window.localStorage.setItem(I18nKey, value)
       }}
-      dropdownMatchSelectWidth={150}
+      popupMatchSelectWidth={150}
       style={{ width: '100%' }}
       placement="topLeft"
     />
