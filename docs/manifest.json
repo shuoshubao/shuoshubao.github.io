@@ -1,11 +1,11 @@
 {
   "Article.css": {
-    "file": "assets/Article-51d5a5d5.css",
+    "file": "assets/Article-64f72b0b.css",
     "src": "Article.css"
   },
-  "_Article-64d33ff7.js": {
+  "_Article-858f6c84.js": {
     "css": [
-      "assets/Article-51d5a5d5.css"
+      "assets/Article-64f72b0b.css"
     ],
     "dynamicImports": [
       "node_modules/highlight.js/es/languages/1c.js",
@@ -203,46 +203,46 @@
       "_markdown-it-cfda44d3.js",
       "_markdown-it-cfda44d3.js",
       "node_modules/highlight.js/es/core.js",
-      "_mermaid-6557dc85.js",
+      "_mermaid-48830cfe.js",
       "src/utils/katex.js",
       "_markdown-it-cfda44d3.js"
     ],
-    "file": "assets/Article-64d33ff7.js",
+    "file": "assets/Article-858f6c84.js",
     "imports": [
       "index.html",
       "_react-f959c32e.js",
-      "_index-6036ff5f.js",
-      "_index-566dca0a.js"
+      "_index-2f1306c3.js",
+      "_index-1d3174bc.js"
     ],
     "isDynamicEntry": true
   },
-  "_Table-ffdc45e0.js": {
-    "file": "assets/Table-ffdc45e0.js",
+  "_Table-f6b19787.js": {
+    "file": "assets/Table-f6b19787.js",
     "imports": [
       "index.html",
       "_react-f959c32e.js",
-      "_index-6036ff5f.js"
+      "_index-2f1306c3.js"
     ]
   },
-  "_index-566dca0a.js": {
-    "file": "assets/index-566dca0a.js",
+  "_index-1d3174bc.js": {
+    "file": "assets/index-1d3174bc.js",
     "imports": [
       "index.html",
       "_react-f959c32e.js",
-      "_index-6036ff5f.js"
+      "_index-2f1306c3.js"
     ]
   },
-  "_index-6036ff5f.js": {
-    "file": "assets/index-6036ff5f.js",
+  "_index-2f1306c3.js": {
+    "file": "assets/index-2f1306c3.js",
     "imports": [
       "index.html",
       "_react-f959c32e.js"
     ]
   },
-  "_is_dark-195a00dd.js": {
-    "file": "assets/is_dark-195a00dd.js",
+  "_is_dark-5efedcf3.js": {
+    "file": "assets/is_dark-5efedcf3.js",
     "imports": [
-      "_mermaid-6557dc85.js"
+      "_mermaid-48830cfe.js"
     ]
   },
   "_markdown-it-cfda44d3.js": {
@@ -252,16 +252,16 @@
     ],
     "isDynamicEntry": true
   },
-  "_mermaid-6557dc85.js": {
+  "_mermaid-48830cfe.js": {
     "dynamicImports": [
       "node_modules/mermaid/dist/flowchart-elk-definition-170a3958.js",
       "node_modules/mermaid/dist/timeline-definition-8e5a9bc6.js",
       "node_modules/mermaid/dist/mindmap-definition-44684416.js"
     ],
-    "file": "assets/mermaid-6557dc85.js",
+    "file": "assets/mermaid-48830cfe.js",
     "imports": [
       "index.html",
-      "_Article-64d33ff7.js",
+      "_Article-858f6c84.js",
       "_react-f959c32e.js"
     ],
     "isDynamicEntry": true
@@ -278,16 +278,28 @@
       "assets/index-ef5cc5a6.css"
     ],
     "dynamicImports": [
+      "node_modules/github-markdown-css/github-markdown-dark.css?used&inline",
+      "node_modules/github-markdown-css/github-markdown-light.css?used&inline",
       "src/views/Home.jsx",
       "src/views/Category.jsx",
-      "_Article-64d33ff7.js"
+      "_Article-858f6c84.js"
     ],
-    "file": "assets/index-a78c0576.js",
+    "file": "assets/index-de5842d2.js",
     "imports": [
       "_react-f959c32e.js"
     ],
     "isEntry": true,
     "src": "index.html"
+  },
+  "node_modules/github-markdown-css/github-markdown-dark.css?used&inline": {
+    "file": "assets/github-markdown-dark-d171302b.js",
+    "isDynamicEntry": true,
+    "src": "node_modules/github-markdown-css/github-markdown-dark.css?used&inline"
+  },
+  "node_modules/github-markdown-css/github-markdown-light.css?used&inline": {
+    "file": "assets/github-markdown-light-6af1a568.js",
+    "isDynamicEntry": true,
+    "src": "node_modules/github-markdown-css/github-markdown-light.css?used&inline"
   },
   "node_modules/highlight.js/es/core.js": {
     "file": "assets/core-a1b98e3e.js",
@@ -1258,42 +1270,42 @@
     "src": "node_modules/highlight.js/es/languages/zephir.js"
   },
   "node_modules/mermaid/dist/flowchart-elk-definition-170a3958.js": {
-    "file": "assets/flowchart-elk-definition-170a3958-fa3b678a.js",
+    "file": "assets/flowchart-elk-definition-170a3958-d8beb806.js",
     "imports": [
-      "_mermaid-6557dc85.js",
+      "_mermaid-48830cfe.js",
       "_react-f959c32e.js",
-      "_Article-64d33ff7.js",
+      "_Article-858f6c84.js",
       "index.html",
-      "_index-6036ff5f.js",
-      "_index-566dca0a.js"
+      "_index-2f1306c3.js",
+      "_index-1d3174bc.js"
     ],
     "isDynamicEntry": true,
     "src": "node_modules/mermaid/dist/flowchart-elk-definition-170a3958.js"
   },
   "node_modules/mermaid/dist/mindmap-definition-44684416.js": {
-    "file": "assets/mindmap-definition-44684416-9dc62abf.js",
+    "file": "assets/mindmap-definition-44684416-42a80fe5.js",
     "imports": [
-      "_mermaid-6557dc85.js",
+      "_mermaid-48830cfe.js",
       "_react-f959c32e.js",
-      "_Article-64d33ff7.js",
-      "_is_dark-195a00dd.js",
+      "_Article-858f6c84.js",
+      "_is_dark-5efedcf3.js",
       "index.html",
-      "_index-6036ff5f.js",
-      "_index-566dca0a.js"
+      "_index-2f1306c3.js",
+      "_index-1d3174bc.js"
     ],
     "isDynamicEntry": true,
     "src": "node_modules/mermaid/dist/mindmap-definition-44684416.js"
   },
   "node_modules/mermaid/dist/timeline-definition-8e5a9bc6.js": {
-    "file": "assets/timeline-definition-8e5a9bc6-27d2bb6c.js",
+    "file": "assets/timeline-definition-8e5a9bc6-c499d44e.js",
     "imports": [
-      "_mermaid-6557dc85.js",
-      "_Article-64d33ff7.js",
-      "_is_dark-195a00dd.js",
+      "_mermaid-48830cfe.js",
+      "_Article-858f6c84.js",
+      "_is_dark-5efedcf3.js",
       "index.html",
       "_react-f959c32e.js",
-      "_index-6036ff5f.js",
-      "_index-566dca0a.js"
+      "_index-2f1306c3.js",
+      "_index-1d3174bc.js"
     ],
     "isDynamicEntry": true,
     "src": "node_modules/mermaid/dist/timeline-definition-8e5a9bc6.js"
@@ -1304,24 +1316,24 @@
     "src": "src/utils/katex.js"
   },
   "src/views/Category.jsx": {
-    "file": "assets/Category-5b2e20b1.js",
+    "file": "assets/Category-d8443c44.js",
     "imports": [
       "index.html",
       "_react-f959c32e.js",
-      "_Table-ffdc45e0.js",
-      "_index-6036ff5f.js"
+      "_Table-f6b19787.js",
+      "_index-2f1306c3.js"
     ],
     "isDynamicEntry": true,
     "src": "src/views/Category.jsx"
   },
   "src/views/Home.jsx": {
-    "file": "assets/Home-f7633b74.js",
+    "file": "assets/Home-3a19e5be.js",
     "imports": [
       "index.html",
       "_react-f959c32e.js",
-      "_Table-ffdc45e0.js",
-      "_index-566dca0a.js",
-      "_index-6036ff5f.js"
+      "_Table-f6b19787.js",
+      "_index-1d3174bc.js",
+      "_index-2f1306c3.js"
     ],
     "isDynamicEntry": true,
     "src": "src/views/Home.jsx"

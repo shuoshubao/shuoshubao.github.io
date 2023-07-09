@@ -14,7 +14,7 @@
     "prepare": "husky install",
     "prettier": "npx prettier --write",
     "lint": "npx eslint --ext .ts,.tsx,.js,.jsx,.vue -f html -o ESLintReport.html",
-    "lint:style": "npx stylelint --fix -o StyleLintReport.html --custom-formatter node_modules/stylelint-formatters-html **/*.{css,less,scss,sass}"
+    "lint:style": "npx stylelint --fix -o StyleLintReport.html --custom-formatter node_modules/stylelint-formatters-html src/**/*.{css,less,scss,sass}"
   },
   "dependencies": {
     "@nbfe/tools": "^0.5.2",
@@ -55,7 +55,7 @@
       "prettier --write",
       "git add"
     ],
-    "*.{css,less,scss,sass}": [
+    "src/**/*.{css,less,scss,sass}": [
       "npx stylelint --fix",
       "git add"
     ],
