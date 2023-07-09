@@ -119,7 +119,6 @@ export default () => {
   return (
     <>
       <Button
-        style={{ padding: '4px 5px', display: 'flex', alignItems: 'center' }}
         block
         onClick={() => {
           setIsModalOpen(true)
@@ -133,7 +132,7 @@ export default () => {
         <Text type="secondary" style={{ flex: 1, textAlign: 'left' }}>
           {t('search')}
         </Text>
-        <Tag style={{ margin: 0 }}>⌘ K</Tag>
+        <Tag style={{ margin: 0, marginLeft: 12 }}>⌘ K</Tag>
       </Button>
       <Modal
         open={isModalOpen}

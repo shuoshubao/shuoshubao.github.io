@@ -7,15 +7,29 @@
   line-height: 20px;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
+html {
+  &[data-theme='dark'] {
     background: #000;
+  }
+
+  &[data-theme='light'] {
+    background: #fff;
   }
 }
 
-@media (prefers-color-scheme: light) {
-  html {
-    background: #fff;
+@media screen and (min-width: 768px) {
+  body {
+    .site-layout-sider-actions {
+      display: none;
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  body {
+    .ant-layout-header {
+      display: none !important;
+    }
   }
 }
 

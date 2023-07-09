@@ -1,5 +1,5 @@
 import React, { lazy, Suspense, useState, useEffect } from 'react'
-import { Layout, Skeleton, Menu, Result, Space, theme } from 'antd'
+import { Avatar, Layout, Skeleton, Menu, Result, Space, Typography, theme } from 'antd'
 import { CaretLeftOutlined, CaretRightOutlined } from '@ant-design/icons'
 import 'antd/dist/reset.css'
 import { useTranslation } from 'react-i18next'
@@ -16,7 +16,8 @@ const Home = lazy(() => import('@/views/Home'))
 const Category = lazy(() => import('@/views/Category'))
 const Article = lazy(() => import('@/views/Article'))
 
-const { Sider, Content } = Layout
+const { Text } = Typography
+const { Header, Sider, Content } = Layout
 
 const { useToken } = theme
 
@@ -57,86 +58,110 @@ export default () => {
 
   return (
     <Layout>
-      <Sider
-        width={SiderWidth}
-        theme="light"
-        collapsible
-        collapsedWidth={0}
-        collapsed={collapsed}
-        onCollapse={value => {
-          setCollapsed(value)
-          window.localStorage.setItem(CollapsedKey, JSON.stringify(value))
-        }}
+      <Header
         style={{
-          height: '100vh',
-          borderRight: collapsed ? 'none' : `1px solid ${token.colorBorderSecondary}`
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          padding: `0 ${token.paddingLG}px`,
+          background: token.colorBgContainer,
+          boxShadow:
+            '0 1px 2px 0 rgba(0, 0, 0, 0.03), 0 1px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px 0 rgba(0, 0, 0, 0.02)',
+          zIndex: 1
         }}
-        zeroWidthTriggerStyle={{
-          position: 'fixed',
-          top: 'calc(50% - 22px)',
-          width: 12,
-          height: 44,
-          fontSize: 12,
-          insetInlineStart: collapsed ? 0 : SiderWidth - 12 / 2,
-          border: `1px solid ${token.colorBorderSecondary}`,
-          borderRadius: collapsed ? '0 6px 6px 0' : 6,
-          overflow: 'hidden',
-          boxShadow: token.boxShadow
-        }}
-        trigger={collapsed ? <CaretRightOutlined /> : <CaretLeftOutlined />}
       >
-        <div
-          style={{
-            position: 'fixed',
-            width: collapsed ? 0 : SiderWidth - 1,
-            left: 0,
-            top: 0,
-            bottom: 0
+        <Space>
+          <Space style={{ width: SiderWidth - token.paddingLG }}>
+            <Avatar src="https://vitejs.dev/logo.svg" />
+            <Text strong>Blog</Text>
+          </Space>
+          <Algolia />
+        </Space>
+        <Space>
+          <I18nSelect />
+          <ThemeSelect />
+        </Space>
+      </Header>
+      <Layout>
+        <Sider
+          width={SiderWidth}
+          theme="light"
+          collapsible
+          collapsedWidth={0}
+          collapsed={collapsed}
+          onCollapse={value => {
+            setCollapsed(value)
+            window.localStorage.setItem(CollapsedKey, JSON.stringify(value))
           }}
+          style={{
+            borderRight: collapsed ? 'none' : `1px solid ${token.colorBorderSecondary}`
+          }}
+          zeroWidthTriggerStyle={{
+            position: 'fixed',
+            top: 'calc(50% - 22px)',
+            width: 12,
+            height: 44,
+            fontSize: 12,
+            insetInlineStart: collapsed ? 0 : SiderWidth - 12 / 2,
+            border: `1px solid ${token.colorBorderSecondary}`,
+            borderRadius: collapsed ? '0 6px 6px 0' : 6,
+            overflow: 'hidden',
+            boxShadow: token.boxShadow
+          }}
+          trigger={collapsed ? <CaretRightOutlined /> : <CaretLeftOutlined />}
         >
-          {!collapsed && (
-            <>
-              <Menu
-                key={selectedClassification}
-                defaultSelectedKeys={[selectedClassification]}
-                items={NavData.map(v => {
-                  const { label, value, icon } = v
-                  return {
-                    key: value,
-                    label,
-                    icon
-                  }
-                })}
-                style={{ borderInlineEnd: 'none' }}
-                onClick={({ key }) => {
-                  if (key === 'index') {
-                    window.location.hash = '#'
-                    return
-                  }
-                  window.location.hash = key
-                }}
-              />
-              <div style={{ position: 'absolute', bottom: 0, margin: 12, width: 150 - 12 * 2 }}>
-                <Space direction="vertical" style={{ display: 'flex' }}>
-                  <I18nSelect />
-                  <ThemeSelect />
-                  <Algolia />
-                </Space>
-              </div>
-            </>
-          )}
-        </div>
-      </Sider>
-      <Content style={{ padding: token.paddingContentVertical, height: '100vh', overflowY: 'auto' }}>
-        <Suspense fallback={<Skeleton active />}>
-          <Skeleton loading={Object.keys(categoryData).length === 0}>
-            {pageType === 'index' && <Home data={categoryData} />}
-            {pageType === 'list' && <Category data={categoryData[selectedClassification]} />}
-            {pageType === 'detail' && <Article key={pageHashs.join('/')} data={categoryData} />}
-            {pageType === '404' && <Result status="404" title="404" subTitle={t('page_not_found')} />}
-          </Skeleton>
-        </Suspense>
-      </Content>
+          <div
+            style={{
+              width: collapsed ? 0 : SiderWidth - 1
+            }}
+          >
+            {!collapsed && (
+              <>
+                <Menu
+                  key={selectedClassification}
+                  defaultSelectedKeys={[selectedClassification]}
+                  items={NavData.map(v => {
+                    const { label, value, icon } = v
+                    return {
+                      key: value,
+                      label,
+                      icon
+                    }
+                  })}
+                  style={{ borderInlineEnd: 'none' }}
+                  onClick={({ key }) => {
+                    if (key === 'index') {
+                      window.location.hash = '#'
+                      return
+                    }
+                    window.location.hash = key
+                  }}
+                />
+                <div
+                  style={{ position: 'absolute', bottom: 0, margin: 12, width: 150 - 12 * 2 }}
+                  className="site-layout-sider-actions"
+                >
+                  <Space direction="vertical" style={{ display: 'flex' }}>
+                    <I18nSelect size="default" style={{ width: '100%' }} />
+                    <ThemeSelect size="default" style={{ width: '100%' }} />
+                    <Algolia />
+                  </Space>
+                </div>
+              </>
+            )}
+          </div>
+        </Sider>
+        <Content style={{ padding: token.paddingContentVertical, height: '100vh', overflowY: 'auto' }}>
+          <Suspense fallback={<Skeleton active />}>
+            <Skeleton loading={Object.keys(categoryData).length === 0}>
+              {pageType === 'index' && <Home data={categoryData} />}
+              {pageType === 'list' && <Category data={categoryData[selectedClassification]} />}
+              {pageType === 'detail' && <Article key={pageHashs.join('/')} data={categoryData} />}
+              {pageType === '404' && <Result status="404" title="404" subTitle={t('page_not_found')} />}
+            </Skeleton>
+          </Suspense>
+        </Content>
+      </Layout>
     </Layout>
   )
 }

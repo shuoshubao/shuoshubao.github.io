@@ -50,6 +50,7 @@ const Container = () => {
 
   useEffect(() => {
     vConsole?.setOption?.('theme', dark ? 'dark' : 'light')
+    document.documentElement.dataset.theme = dark ? 'dark' : 'light'
   }, [dark])
 
   useEffect(() => {

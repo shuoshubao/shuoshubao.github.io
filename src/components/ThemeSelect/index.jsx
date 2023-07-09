@@ -5,7 +5,7 @@ import { ThemeKey, DefaultTheme, getThemeOptions, ThemeEventEmitter } from '@/co
 
 const { Text } = Typography
 
-export default () => {
+export default props => {
   const [theme, setTheme] = useState(window.localStorage.getItem(ThemeKey) || DefaultTheme)
 
   const { t } = useTranslation()
@@ -29,14 +29,5 @@ export default () => {
     window.localStorage.setItem(ThemeKey, value)
   }
 
-  return (
-    <Select
-      value={theme}
-      onChange={handleChange}
-      options={options}
-      popupMatchSelectWidth={150}
-      style={{ width: '100%' }}
-      placement="topLeft"
-    />
-  )
+  return <Select size="small" value={theme} onChange={handleChange} options={options} placement="topLeft" {...props} />
 }
