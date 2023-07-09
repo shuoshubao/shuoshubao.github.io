@@ -3,9 +3,11 @@ import { Avatar, Layout, Skeleton, Menu, Result, Space, Typography, theme } from
 import { CaretLeftOutlined, CaretRightOutlined } from '@ant-design/icons'
 import 'antd/dist/reset.css'
 import { useTranslation } from 'react-i18next'
+import { ErrorBoundary } from 'react-error-boundary'
 import '@/assets/styles/index.scss'
 import '@/assets/styles/markdown.scss'
 import '@/assets/styles/markdown-container.scss'
+import ErrorBoundaryFallback from '@/components/ErrorBoundaryFallback'
 import I18nSelect from '@/components/I18nSelect'
 import ThemeSelect from '@/components/ThemeSelect'
 import Algolia from '@/components/Algolia'
@@ -152,14 +154,16 @@ export default () => {
           </div>
         </Sider>
         <Content style={{ padding: token.paddingContentVertical, height: '100vh', overflowY: 'auto' }}>
-          <Suspense fallback={<Skeleton active />}>
-            <Skeleton loading={Object.keys(categoryData).length === 0}>
-              {pageType === 'index' && <Home data={categoryData} />}
-              {pageType === 'list' && <Category data={categoryData[selectedClassification]} />}
-              {pageType === 'detail' && <Article key={pageHashs.join('/')} data={categoryData} />}
-              {pageType === '404' && <Result status="404" title="404" subTitle={t('page_not_found')} />}
-            </Skeleton>
-          </Suspense>
+          <ErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
+            <Suspense fallback={<Skeleton active />}>
+              <Skeleton loading={Object.keys(categoryData).length === 0}>
+                {pageType === 'index' && <Home data={categoryData} />}
+                {pageType === 'list' && <Category data={categoryData[selectedClassification]} />}
+                {pageType === 'detail' && <Article key={pageHashs.join('/')} data={categoryData} />}
+                {pageType === '404' && <Result status="404" title="404" subTitle={t('page_not_found')} />}
+              </Skeleton>
+            </Suspense>
+          </ErrorBoundary>
         </Content>
       </Layout>
     </Layout>
