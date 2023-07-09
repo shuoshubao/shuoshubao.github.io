@@ -5,6 +5,8 @@ import Icons, { IconFontSize } from './Icons'
 export * from './i18n'
 export * from './theme'
 
+export const isDevelopment = !!window.location.port
+
 export const CollapsedKey = 'collapsed'
 
 export const TocCollapsedKey = ['collapsed', 'toc'].join('-')

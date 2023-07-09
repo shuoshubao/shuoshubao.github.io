@@ -1,5 +1,5 @@
 import React from 'react'
-import { AppleOutlined, WindowsOutlined } from '@ant-design/icons'
+import { AppleOutlined, WindowsOutlined, AndroidOutlined } from '@ant-design/icons'
 import EventEmitter from 'eventemitter3'
 import { v4 as uuidv4 } from 'uuid'
 import { camelCase } from 'lodash-es'
@@ -66,7 +66,19 @@ const IconLight = () => {
   )
 }
 
-const isMac = navigator.platform.toUpperCase().includes('MAC')
+const isAndroid = navigator.platform === 'Android'
+
+const isWindows = navigator.platform.includes('Win')
+
+const getSystemIcon = () => {
+  if (isAndroid) {
+    return <AndroidOutlined />
+  }
+  if (isWindows) {
+    return <WindowsOutlined />
+  }
+  return <AppleOutlined />
+}
 
 export const getThemeOptions = ({ t }) => {
   return [
@@ -83,7 +95,7 @@ export const getThemeOptions = ({ t }) => {
     {
       value: ThemeKeyEnum.SYSTEM,
       label: t('theme.system'),
-      icon: isMac ? <AppleOutlined /> : <WindowsOutlined />
+      icon: getSystemIcon()
     }
   ]
 }

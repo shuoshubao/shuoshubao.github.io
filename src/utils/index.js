@@ -1,13 +1,13 @@
 import { memoize } from '@nbfe/tools'
+import { isDevelopment } from '@/configs'
 
 export * from './markdown'
 export * from './route'
 
-const isDevelopment = !!window.location.port
-
 export const getFetchPrefix = () => {
   if (isDevelopment) {
-    return 'http://localhost:3000/'
+    const { protocol, hostname } = window.location
+    return `${protocol}//${hostname}:3000/`
   }
   return 'https://raw.githubusercontent.com/shuoshubao/blog/master/'
 }

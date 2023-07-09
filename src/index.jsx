@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { createRoot } from 'react-dom/client'
 import { ConfigProvider, theme } from 'antd'
+import VConsole from 'vconsole'
 import {
+  isDevelopment,
   initI18n,
   ThemeKey,
   ThemeKeyEnum,
@@ -16,8 +18,17 @@ const { defaultAlgorithm, darkAlgorithm } = theme
 
 initI18n()
 
+const defaultThemeValue = window.localStorage.getItem(ThemeKey) || DefaultTheme
+
+let vConsole
+
+if (isDevelopment) {
+  // eslint-disable-next-line no-new
+  vConsole = new VConsole({ theme: isDark(defaultThemeValue) ? 'dark' : 'light' })
+}
+
 const Container = () => {
-  const [themeValue, setThemeValue] = useState(window.localStorage.getItem(ThemeKey) || DefaultTheme)
+  const [themeValue, setThemeValue] = useState(defaultThemeValue)
   const [dark, setDark] = useState()
 
   const handleThemeChange = value => {
@@ -36,6 +47,10 @@ const Container = () => {
   useEffect(() => {
     setDark(isDark(themeValue))
   }, [setDark])
+
+  useEffect(() => {
+    vConsole?.setOption?.('theme', dark ? 'dark' : 'light')
+  }, [dark])
 
   useEffect(() => {
     ThemeEventEmitter.on(ThemeKey, handleThemeChange)
