@@ -9,6 +9,7 @@ import filesize from 'filesize'
 import 'highlight.js/styles/vs2015.css'
 import MarkdownToc from '@/components/MarkdownToc'
 import { updateMarkdownTheme } from '@/configs'
+import { createIframe } from '@/utils/playground'
 import { addKatexStylesheet, memoizeFetch, getHashs, getAllLanguages, MarkdownItHighlight } from '@/utils'
 
 const { useToken } = theme
@@ -56,6 +57,25 @@ export default props => {
     setTimeout(() => {
       setImageList([...document.querySelectorAll('.markdown-body img')].map(v => v.src))
     }, 1)
+
+    const decodeText = text => {
+      return new TextDecoder().decode(new Uint8Array(text.split(',')))
+    }
+
+    setTimeout(() => {
+      const list = [...document.querySelectorAll('.playround-container')]
+      list.forEach(v => {
+        console.log(v.lastChild)
+        const node = v.lastChild
+        const id = node.id
+        const html = decodeText(node.dataset.html)
+        const css = decodeText(node.dataset.css)
+        const js = decodeText(node.dataset.js)
+        console.log(id)
+        console.log(html)
+        createIframe(id, { html, css, js })
+      })
+    }, 1e2)
   }
 
   const handleCopy = e => {
