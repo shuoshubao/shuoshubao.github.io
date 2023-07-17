@@ -4,12 +4,15 @@ import { Typography } from 'antd'
 const { Text } = Typography
 
 export default ({ value, query }) => {
-  const [left, ...right] = value.split(query)
+  const index = value.toLowerCase().indexOf(query.toLowerCase())
+  const left = value.slice(0, index)
+  const center = value.slice(index, index + query.length)
+  const right = value.slice(index + query.length)
   return (
     <>
       <Text>{left}</Text>
-      <Text type="danger">{query}</Text>
-      <Text>{right.join('')}</Text>
+      <Text type="danger">{center}</Text>
+      <Text>{right}</Text>
     </>
   )
 }

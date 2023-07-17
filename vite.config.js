@@ -24,9 +24,6 @@ export default ({ mode }) => {
         '@': resolve(__dirname, 'src')
       }
     },
-    configureWebpack: {
-      externals: {}
-    },
     plugins: [react(), Analyze({ filename: 'docs/stats.html' })]
   }
 }

@@ -1,11 +1,13 @@
 import React from 'react'
-import { Card, Row, Col, List, Space, Typography, Button } from 'antd'
+import { Row, Col, Card, Space, Table, Typography, Button } from 'antd'
 import { HomeOutlined, GithubOutlined } from '@ant-design/icons'
-import { map } from 'lodash-es'
+import { map, find } from 'lodash-es'
+import { formatTime } from '@nbfe/tools'
+import { useTranslation } from 'react-i18next'
 import { NavData } from '@/configs'
 import Icons from '@/configs/Icons'
 
-const { Text } = Typography
+const { Text, Link } = Typography
 
 const ProjectList = [
   {
@@ -34,7 +36,7 @@ const ProjectList = [
     homepage: 'https://github.com/shuoshubao/tools',
     github: 'nbfe',
     npm: '@nbfe/tools',
-    description: ['基于 lodash 开发的通用工具库', '采用rollup打包', '拥有完善的使用文档和测试用例']
+    description: ['通用工具库', '采用rollup打包', '拥有完善的使用文档和测试用例']
   },
   {
     title: '工程化',
@@ -141,15 +143,79 @@ const ProjectList = [
 
 export default props => {
   const { data } = props
+
+  const { t } = useTranslation()
+
   const AllArticles = map(NavData.slice(1), 'value')
     .map(v => data[v])
     .flat()
+
+  const columns = [
+    {
+      title: t('columns.title'),
+      dataIndex: 'title',
+      render(value, record) {
+        const { category, name } = record
+        const path = [category, name].join('/')
+        return <Link href={`#${path}`}>{value}</Link>
+      }
+    },
+    {
+      title: t('columns.category'),
+      dataIndex: 'category',
+      render(value) {
+        const { label, icon } = find(NavData, { value })
+        return (
+          <Link href={`#/${value}`}>
+            <Space>
+              <span style={{ position: 'relative', top: 3 }}>{icon}</span>
+              <span>{label}</span>
+            </Space>
+          </Link>
+        )
+      }
+    },
+    {
+      title: t('columns.mtime'),
+      dataIndex: 'mtime',
+      render(value) {
+        return formatTime(value, 'YYYY-MM-DD HH:mm:ss')
+      }
+    },
+    {
+      title: t('columns.ctime'),
+      dataIndex: 'ctime',
+      render(value) {
+        return formatTime(value, 'YYYY-MM-DD HH:mm:ss')
+      }
+    },
+    {
+      title: t('columns.words'),
+      dataIndex: 'size',
+      render(value) {
+        return value.toLocaleString()
+      }
+    }
+  ]
+
   return (
     <>
-      <Card>
+      <Table
+        rowKey={record => {
+          const { category, name } = record
+          return [category, name].join()
+        }}
+        dataSource={AllArticles}
+        columns={columns}
+        title={() => {
+          return <Text>{t('total_articles', { value: AllArticles.length })}</Text>
+        }}
+        pagination={false}
+      />
+      <Card style={{ marginTop: 12 }}>
         <img src="https://ghchart.rshah.org/30a14e/shuoshubao" width="100%" />
       </Card>
-      <Card title="作品集" size="small">
+      <Card title="作品集">
         <Row gutter={[12, 12]}>
           {ProjectList.map(v => {
             const { title, homepage, github, npm, description } = v
@@ -178,31 +244,6 @@ export default props => {
             )
           })}
         </Row>
-      </Card>
-      <Card
-        title={
-          <Space>
-            <Text>共</Text>
-            <Text italic>{AllArticles.length}</Text>
-            <Text>篇文章</Text>
-          </Space>
-        }
-      >
-        <List
-          dataSource={AllArticles}
-          grid={{ column: 2, xs: 1, lg: 3, xl: 4, xxl: 5 }}
-          renderItem={item => {
-            const { category, name, title } = item
-            const path = [category, name].join('/')
-            return (
-              <List.Item style={{ paddingLeft: 0, paddingRight: 0 }}>
-                <Button type="link" href={`#${path}`}>
-                  {title}
-                </Button>
-              </List.Item>
-            )
-          }}
-        />
       </Card>
     </>
   )

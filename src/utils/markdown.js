@@ -1,4 +1,6 @@
+import { uniq } from 'lodash'
 import md5 from 'md5'
+import { v4 as uuidv4 } from 'uuid'
 import getTocData from 'mdx-toc'
 import TaskLists from 'markdown-it-task-lists'
 import MarkdownItAttrs from 'markdown-it-attrs'
@@ -56,11 +58,32 @@ export const getAllLanguages = async md => {
   return Array.from(languages)
 }
 
+const getHighlightCode = (str, lang, { MarkdownIt, hljs }) => {
+  const { value } = hljs.highlight(str, { language: lang })
+  return [
+    '<pre style="background: rgb(24, 24, 27);">',
+    `<code class="hljs language-${lang}" lang="${lang}">`,
+    value.split('\n').map((v, i, arr) => {
+      return `<div ${arr.length < 5 ? '' : 'class="line"'}>${v}</div>`
+    }),
+    '<span class="markdown-code-btns">',
+    `<span class="btn-lang">${lang}</span>`,
+    `<span data-code="${encodeURIComponent(
+      str
+    )}" class="anticon anticon-copy"><svg viewBox="64 64 896 896" focusable="false" data-icon="copy" width="1em" height="1em" fill="currentColor" aria-hidden="true"><path d="M832 64H296c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h496v688c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8V96c0-17.7-14.3-32-32-32zM704 192H192c-17.7 0-32 14.3-32 32v530.7c0 8.5 3.4 16.6 9.4 22.6l173.3 173.3c2.2 2.2 4.7 4 7.4 5.5v1.9h4.2c3.5 1.3 7.2 2 11 2H704c17.7 0 32-14.3 32-32V224c0-17.7-14.3-32-32-32zM350 856.2L263.9 770H350v86.2zM664 888H414V746c0-22.1-17.9-40-40-40H232V264h432v624z"></path></svg></span>`,
+    '</span>',
+    '</code>',
+    '</pre>'
+  ]
+    .flat()
+    .join('')
+}
+
 export const MarkdownItHighlight = async languages => {
   const { default: MarkdownIt } = await import('markdown-it/dist/markdown-it')
   const { default: hljs } = await import('highlight.js/lib/core')
   await Promise.all(
-    languages.map(language => {
+    uniq(['html', 'css', 'less', 'js', ...languages]).map(language => {
       return dynamicRegisterLanguage(hljs, language)
     })
   )
@@ -91,6 +114,35 @@ export const MarkdownItHighlight = async languages => {
             .flat()
             .join('')
         } catch (__) {}
+      }
+      if (lang === 'playround') {
+        const MarkupTagName = 'Markup'
+        const StyleTagName = 'style'
+        const ScriptTagName = 'script'
+        const html = str
+          .slice(str.indexOf(`<${MarkupTagName}>`) + MarkupTagName.length + 2, str.indexOf(`</${MarkupTagName}>`))
+          .trim()
+        const css = str
+          .slice(str.indexOf(`<${StyleTagName}>`) + StyleTagName.length + 2, str.indexOf(`</${StyleTagName}>`))
+          .trim()
+        const script = str
+          .slice(str.indexOf(`<${ScriptTagName}>`) + ScriptTagName.length + 2, str.indexOf(`</${ScriptTagName}>`))
+          .trim()
+        console.log(111)
+        console.log(html)
+        console.log(css)
+        const htmlCode = getHighlightCode(html, 'html', { MarkdownIt, hljs })
+        const cssCode = getHighlightCode(css, 'css', { MarkdownIt, hljs })
+        const jsCode = getHighlightCode(script, 'jsx', { MarkdownIt, hljs })
+        const uniqId = uuidv4()
+        return `<pre class="playround-container">${htmlCode}${cssCode}${jsCode}<div id=${[
+          'playround',
+          uniqId.replaceAll('-', '')
+        ].join('_')} data-html=${new TextEncoder().encode(html)} data-css=${new TextEncoder().encode(
+          css
+        )} data-js=${new TextEncoder().encode(script)}></div></pre>`
+        // return `<pre></pre>`
+        return `<pre class="playround-container"><code class="language-html">${html}</code><code class="language-css">${style}</code></pre>`
       }
       return `<pre><code class="language-${lang}">${trimedStr}</code></pre>`
     }

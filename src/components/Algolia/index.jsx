@@ -1,9 +1,16 @@
 import React, { useRef, useState, useEffect } from 'react'
-import { Modal, AutoComplete, Input, Tag, Col, Row, List, Empty } from 'antd'
+import { Button, Modal, AutoComplete, Input, Tag, Col, Row, List, Empty, Typography } from 'antd'
 import { SearchOutlined } from '@ant-design/icons'
-import { debounce, once } from 'lodash-es'
+import { find, debounce, once } from 'lodash-es'
+import { useTranslation } from 'react-i18next'
 import HighlightText from '@/components/HighlightText'
 import { memoizeFetch } from '@/utils'
+
+const { Text } = Typography
+
+const decodeText = arrary => {
+  return new TextDecoder().decode(new Uint8Array(arrary))
+}
 
 export default () => {
   const autoCompleteRef = useRef()
@@ -15,15 +22,24 @@ export default () => {
 
   const [options, setOptions] = useState([])
 
-  const searchFunc = query => {
+  const { t } = useTranslation()
+
+  const searchFunc = async query => {
+    const text = await memoizeFetch('store/data.json')
+    const ArticleData = JSON.parse(text)
     const list = []
-    Object.entries(AllData).forEach(([k, { title, content }]) => {
-      const contentList = content.split('\n').filter(v2 => v2.includes(query))
-      if (!contentList.length) {
+    Object.entries(AllData).forEach(([k, content]) => {
+      const [category, name] = atob(k).split('/')
+      const { title } = find(ArticleData[category], { name })
+      const ContentList = decodeText(content.toString().split(',')).split('\n')
+      const filterContentList = [category, name, title, ...ContentList].filter(v2 => {
+        return v2.toLowerCase().includes(query.toLowerCase())
+      })
+      if (!filterContentList.length) {
         return
       }
       list.push({
-        value: k,
+        value: atob(k),
         label: (
           <Row>
             <Col
@@ -38,7 +54,7 @@ export default () => {
             </Col>
             <Col span={18}>
               <List
-                dataSource={contentList}
+                dataSource={filterContentList}
                 renderItem={item => {
                   return (
                     <List.Item style={{ padding: '5px 0' }}>
@@ -61,7 +77,7 @@ export default () => {
 
   const handleSearch = q => {
     const query = q.trim()
-    if (query.length <= 2) {
+    if (query.length <= 1) {
       setOptions([])
       return
     }
@@ -102,12 +118,8 @@ export default () => {
 
   return (
     <>
-      <Input
-        style={{ position: 'absolute', bottom: 0, padding: 5, margin: 12, width: 150 - 12 * 2 }}
-        prefix={<SearchOutlined />}
-        suffix={<Tag style={{ margin: 0 }}>⌘ K</Tag>}
-        placeholder="Search"
-        readOnly
+      <Button
+        block
         onClick={() => {
           setIsModalOpen(true)
           onceFetchData()
@@ -115,7 +127,13 @@ export default () => {
             autoCompleteRef?.current?.focus()
           }, 100)
         }}
-      />
+      >
+        <SearchOutlined />
+        <Text type="secondary" style={{ flex: 1, textAlign: 'left' }}>
+          {t('search')}
+        </Text>
+        <Tag style={{ margin: 0, marginLeft: 12 }}>⌘ K</Tag>
+      </Button>
       <Modal
         open={isModalOpen}
         width="90%"

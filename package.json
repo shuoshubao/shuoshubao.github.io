@@ -11,17 +11,20 @@
   "scripts": {
     "start": "npx vite",
     "build": "npx vite build",
-    "commit": "npx git-cz",
+    "prepare": "husky install",
     "prettier": "npx prettier --write",
     "lint": "npx eslint --ext .ts,.tsx,.js,.jsx,.vue -f html -o ESLintReport.html",
-    "lint:style": "npx stylelint --fix -o StyleLintReport.html --aei --custom-formatter node_modules/stylelint-formatters-html **/*.{css,less,scss,sass}"
+    "lint:style": "npx stylelint --fix -o StyleLintReport.html --custom-formatter node_modules/stylelint-formatters-html src/**/*.{css,less,scss,sass}"
   },
   "dependencies": {
-    "@nbfe/tools": "^0.5.0",
-    "antd": "^5.1.2",
+    "@nbfe/tools": "^0.5.2",
+    "antd": "^5.6.4",
+    "error-stack-parser": "^2.1.4",
+    "eventemitter3": "^5.0.1",
     "filesize": "^8.0.7",
     "github-markdown-css": "^5.1.0",
     "highlight.js": "^11.7.0",
+    "i18next": "^23.2.8",
     "katex": "^0.16.4",
     "lodash-es": "^4.17.21",
     "markdown-it": "^13.0.1",
@@ -36,45 +39,37 @@
     "mermaid": "^9.3.0",
     "murmurhash-js": "^1.0.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-error-boundary": "^4.0.10",
+    "react-i18next": "^13.0.1",
+    "uuid": "^9.0.0",
+    "vconsole": "^3.15.1"
   },
   "devDependencies": {
-    "@babel/preset-react": "^7.18.6",
-    "@nbfe/standard": "^1.1.1",
-    "@vitejs/plugin-react": "^3.0.0",
+    "@babel/preset-react": "^7.22.5",
+    "@nbfe/standard": "^1.2.3",
+    "@vitejs/plugin-react": "^4.0.1",
     "rollup-plugin-analyze": "^0.1.1",
     "sass": "^1.57.1",
-    "vite": "^4.0.3"
-  },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -e $GIT_PARAMS",
-      "pre-commit": "lint-staged"
-    }
+    "vite": "^4.3.9"
   },
   "lint-staged": {
-    "linters": {
-      "*.{ts,tsx,js,jsx,vue,css,less,scss,sass,json,md}": [
-        "prettier --write",
-        "git add"
-      ],
-      "*.{css,less,scss,sass}": [
-        "npx stylelint --fix",
-        "git add"
-      ],
-      "*.{ts,tsx,js,jsx,vue}": [
-        "eslint -f table",
-        "git add"
-      ]
-    },
-    "ignore": [
-      "CHANGELOG.md",
-      "docs/**"
+    "*.{ts,tsx,js,jsx,vue,css,less,scss,sass,json,md}": [
+      "prettier --write",
+      "git add"
+    ],
+    "src/**/*.{css,less,scss,sass}": [
+      "npx stylelint --fix",
+      "git add"
+    ],
+    "*.{ts,tsx,js,jsx,vue}": [
+      "eslint -f table",
+      "git add"
     ]
   },
   "config": {
     "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
+      "path": "cz-conventional-changelog"
     }
   },
   "commitlint": {

@@ -1,37 +1,59 @@
 import React from 'react'
-import { Card, List, Space, Typography, Button } from 'antd'
+import { Table, Typography } from 'antd'
+import { formatTime } from '@nbfe/tools'
+import { useTranslation } from 'react-i18next'
 import { getHashs } from '@/utils'
 
-const { Text } = Typography
+const { Text, Link } = Typography
 
 export default props => {
   const { data } = props
   const [category] = getHashs()
-  return (
-    <Card
-      title={
-        <Space>
-          <Text>共</Text>
-          <Text italic>{data.length}</Text>
-          <Text>篇文章</Text>
-        </Space>
+
+  const { t } = useTranslation()
+
+  const columns = [
+    {
+      title: t('columns.title'),
+      dataIndex: 'title',
+      render(value, record) {
+        const { name } = record
+        const path = [category, name].join('/')
+        return <Link href={`#${path}`}>{value}</Link>
       }
-    >
-      <List
-        dataSource={data}
-        grid={{ column: 2, xs: 1, lg: 3, xl: 4, xxl: 5 }}
-        renderItem={item => {
-          const { name, title } = item
-          const path = [category, name].join('/')
-          return (
-            <List.Item style={{ paddingLeft: 0, paddingRight: 0 }}>
-              <Button type="link" href={`#${path}`}>
-                {title}
-              </Button>
-            </List.Item>
-          )
-        }}
-      />
-    </Card>
+    },
+    {
+      title: t('columns.mtime'),
+      dataIndex: 'mtime',
+      render(value) {
+        return formatTime(value, 'YYYY-MM-DD HH:mm:ss')
+      }
+    },
+    {
+      title: t('columns.ctime'),
+      dataIndex: 'ctime',
+      render(value) {
+        return formatTime(value, 'YYYY-MM-DD HH:mm:ss')
+      }
+    },
+    {
+      title: t('columns.words'),
+      dataIndex: 'size',
+      render(value) {
+        return value.toLocaleString()
+      }
+    }
+  ]
+
+  return (
+    <Table
+      rowKey="name"
+      dataSource={data}
+      columns={columns}
+      title={() => {
+        return <Text>{t('total_articles', { value: data.length })}</Text>
+      }}
+      pagination={false}
+    />
   )
 }

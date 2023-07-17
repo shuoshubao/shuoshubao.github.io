@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from 'react'
-import { Layout, Modal, Result, Card, Button, Typography, Space, Divider, Tag, Image, message } from 'antd'
+import { Layout, Modal, Result, Card, Button, Typography, Space, Divider, Tag, Image, message, theme } from 'antd'
 import { CodeOutlined } from '@ant-design/icons'
+import { useTranslation } from 'react-i18next'
 import copy from 'copy-to-clipboard'
 import dayjs from 'dayjs'
 import { map, find } from 'lodash-es'
 import filesize from 'filesize'
-import 'github-markdown-css/github-markdown.css'
 import 'highlight.js/styles/vs2015.css'
 import MarkdownToc from '@/components/MarkdownToc'
+import { updateMarkdownTheme } from '@/configs'
+import { createIframe } from '@/utils/playground'
 import { addKatexStylesheet, memoizeFetch, getHashs, getAllLanguages, MarkdownItHighlight } from '@/utils'
 
+const { useToken } = theme
 const { Text } = Typography
 const { Content } = Layout
 
@@ -38,11 +41,11 @@ export default props => {
   const [imageList, setImageList] = useState([])
   const [currentImgIndex, setCurrentImgIndex] = useState(0)
 
-  const AllArticles = data[category]
+  const { t } = useTranslation()
 
-  if (!map(AllArticles, 'name').includes(name)) {
-    return <Result status="404" title="404" subTitle="Sorry, the page you visited does not exist." />
-  }
+  const { token } = useToken()
+
+  const AllArticles = data[category]
 
   const fetchData = async () => {
     const md = await memoizeFetch(`article/${[category, name].join('/')}.md`)
@@ -54,12 +57,26 @@ export default props => {
     setTimeout(() => {
       setImageList([...document.querySelectorAll('.markdown-body img')].map(v => v.src))
     }, 1)
-  }
 
-  useEffect(() => {
-    addKatexStylesheet()
-    fetchData()
-  }, [setHtml, setContent])
+    const decodeText = text => {
+      return new TextDecoder().decode(new Uint8Array(text.split(',')))
+    }
+
+    setTimeout(() => {
+      const list = [...document.querySelectorAll('.playround-container')]
+      list.forEach(v => {
+        console.log(v.lastChild)
+        const node = v.lastChild
+        const id = node.id
+        const html = decodeText(node.dataset.html)
+        const css = decodeText(node.dataset.css)
+        const js = decodeText(node.dataset.js)
+        console.log(id)
+        console.log(html)
+        createIframe(id, { html, css, js })
+      })
+    }, 1e2)
+  }
 
   const handleCopy = e => {
     const { target } = e
@@ -77,14 +94,6 @@ export default props => {
     }
   }
 
-  useEffect(() => {
-    document.body.addEventListener('click', handleCopy)
-
-    return () => {
-      document.body.removeEventListener('click', handleCopy)
-    }
-  }, [])
-
   const handlePreviewImage = e => {
     const { tagName, src, parentNode } = e.target
     if (tagName === 'IMG') {
@@ -98,12 +107,33 @@ export default props => {
   }
 
   useEffect(() => {
+    updateMarkdownTheme(token.colorPrimary === '#1668dc')
+  }, [token.colorPrimary])
+
+  useEffect(() => {
+    addKatexStylesheet()
+    fetchData()
+  }, [setHtml, setContent])
+
+  useEffect(() => {
+    document.body.addEventListener('click', handleCopy)
+
+    return () => {
+      document.body.removeEventListener('click', handleCopy)
+    }
+  }, [])
+
+  useEffect(() => {
     document.body.addEventListener('click', handlePreviewImage)
 
     return () => {
       document.body.removeEventListener('click', handlePreviewImage)
     }
   }, [])
+
+  if (!map(AllArticles, 'name').includes(name)) {
+    return <Result status="404" title="404" subTitle={t('page_not_found')} />
+  }
 
   const { title, size, ctime, mtime } = find(AllArticles, { name })
 
