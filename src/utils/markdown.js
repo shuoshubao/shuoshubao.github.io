@@ -1,6 +1,5 @@
 import { uniq } from 'lodash'
 import md5 from 'md5'
-import { v4 as uuidv4 } from 'uuid'
 import getTocData from 'mdx-toc'
 import TaskLists from 'markdown-it-task-lists'
 import MarkdownItAttrs from 'markdown-it-attrs'
@@ -19,8 +18,7 @@ const slugify = str => {
 const IconsHtml = {
   success:
     '<svg viewBox="64 64 896 896" width="1em" height="1em" fill="currentColor"><path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm193.5 301.7l-210.6 292a31.8 31.8 0 01-51.7 0L318.5 484.9c-3.8-5.3 0-12.7 6.5-12.7h46.9c10.2 0 19.9 4.9 25.9 13.3l71.2 98.8 157.2-218c6-8.3 15.6-13.3 25.9-13.3H699c6.5 0 10.3 7.4 6.5 12.7z"></path></svg>',
-  info:
-    '<svg viewBox="64 64 896 896" width="1em" height="1em" fill="currentColor"><path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm32 664c0 4.4-3.6 8-8 8h-48c-4.4 0-8-3.6-8-8V456c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v272zm-32-344a48.01 48.01 0 010-96 48.01 48.01 0 010 96z"></path></svg>',
+  info: '<svg viewBox="64 64 896 896" width="1em" height="1em" fill="currentColor"><path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm32 664c0 4.4-3.6 8-8 8h-48c-4.4 0-8-3.6-8-8V456c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v272zm-32-344a48.01 48.01 0 010-96 48.01 48.01 0 010 96z"></path></svg>',
   warning:
     '<svg viewBox="64 64 896 896" width="1em" height="1em" fill="currentColor"><path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm-32 232c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v272c0 4.4-3.6 8-8 8h-48c-4.4 0-8-3.6-8-8V296zm32 440a48.01 48.01 0 010-96 48.01 48.01 0 010 96z"></path></svg>',
   error:
@@ -60,7 +58,7 @@ export const getAllLanguages = async md => {
   return Array.from(languages)
 }
 
-const getHighlightCode = (str, lang, { MarkdownIt, hljs }) => {
+const getHighlightCode = (str, lang, { hljs }) => {
   const { value } = hljs.highlight(str, { language: lang })
   return [
     '<pre style="background: rgb(24, 24, 27);">',
@@ -79,6 +77,10 @@ const getHighlightCode = (str, lang, { MarkdownIt, hljs }) => {
   ]
     .flat()
     .join('')
+}
+
+const encodeText = text => {
+  return new TextEncoder().encode(text)
 }
 
 export const MarkdownItHighlight = async languages => {
@@ -122,15 +124,9 @@ export const MarkdownItHighlight = async languages => {
         const htmlCode = html ? getHighlightCode(html, 'html', { MarkdownIt, hljs }) : ''
         const cssCode = css ? getHighlightCode(css, 'css', { MarkdownIt, hljs }) : ''
         const jsCode = script ? getHighlightCode(script, 'jsx', { MarkdownIt, hljs }) : ''
-        const uniqId = uuidv4()
-        return `<pre class="playround-container">${htmlCode}${cssCode}${jsCode}<div id=${[
-          'playround',
-          uniqId.replaceAll('-', '')
-        ].join('_')} data-html=${new TextEncoder().encode(html)} data-css=${new TextEncoder().encode(
+        return `<pre class="playround-container" data-html=${encodeText(html)} data-css=${encodeText(
           css
-        )} data-js=${new TextEncoder().encode(script)}></div></pre>`
-        // return `<pre></pre>`
-        return `<pre class="playround-container"><code class="language-html">${html}</code><code class="language-css">${style}</code></pre>`
+        )} data-js=${encodeText(script)}>${htmlCode}${cssCode}${jsCode}</pre>`
       }
       return `<pre><code class="language-${lang}">${trimedStr}</code></pre>`
     }

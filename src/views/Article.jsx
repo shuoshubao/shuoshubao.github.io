@@ -29,7 +29,7 @@ export default props => {
 
   const [content, setContent] = useState('')
 
-  const [html, setHtml] = useState('')
+  const [markdownHtml, setMarkdownHtml] = useState('')
 
   const [isModalOpen, setIsModalOpen] = useState(false)
 
@@ -52,7 +52,7 @@ export default props => {
     const languages = await getAllLanguages(md)
     const MarkdownIt = await MarkdownItHighlight(languages)
     const htmlStr = MarkdownIt.render(md)
-    setHtml(htmlStr)
+    setMarkdownHtml(htmlStr)
     setContent(md)
     setTimeout(() => {
       setImageList([...document.querySelectorAll('.markdown-body img')].map(v => v.src))
@@ -65,12 +65,13 @@ export default props => {
     setTimeout(() => {
       const list = [...document.querySelectorAll('.playround-container')]
       list.forEach(v => {
-        const node = v.lastChild
-        const id = node.id
-        const html = decodeText(node.dataset.html)
-        const css = decodeText(node.dataset.css)
-        const js = decodeText(node.dataset.js)
-        createIframe(id, { html, css, js })
+        const html = decodeText(v.dataset.html)
+        const css = decodeText(v.dataset.css)
+        const js = decodeText(v.dataset.js)
+        createIframe(v, { html, css, js })
+        delete v.dataset.html
+        delete v.dataset.css
+        delete v.dataset.js
       })
     }, 1e2)
   }
@@ -110,7 +111,7 @@ export default props => {
   useEffect(() => {
     addKatexStylesheet()
     fetchData()
-  }, [setHtml, setContent])
+  }, [setMarkdownHtml, setContent])
 
   useEffect(() => {
     document.body.addEventListener('click', handleCopy)
@@ -154,7 +155,7 @@ export default props => {
           }
           loading={!content}
         >
-          <div className="markdown-body" dangerouslySetInnerHTML={{ __html: html }} />
+          <div className="markdown-body" dangerouslySetInnerHTML={{ __html: markdownHtml }} />
         </Card>
         <Modal
           title={

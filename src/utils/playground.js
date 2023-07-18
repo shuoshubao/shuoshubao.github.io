@@ -1,5 +1,7 @@
+import less from 'less'
+
 export const parsePlayground = str => {
-  const MarkupTagName = 'Markup'
+  const MarkupTagName = 'body'
   const StyleTagName = 'style'
   const ScriptTagName = 'script'
 
@@ -28,25 +30,33 @@ export const parsePlayground = str => {
   }
 }
 
-export const createIframe = (id, { html, css, js }) => {
+const getCssCode = input => {
+  return new Promise(resolve => {
+    less.render(input, (err, result) => {
+      resolve(result.css)
+    })
+  })
+}
+
+export const createIframe = (el, { html, css, js }) => {
   const iframe = document.createElement('iframe')
-  iframe.addEventListener('load', () => {
-    const frameWin = document.querySelector(`#${id} iframe`).contentWindow
+  iframe.addEventListener('load', async () => {
+    const frameWin = iframe.contentWindow
     const frameDoc = frameWin.document
 
     if (css.length > 1) {
       const style = frameDoc.createElement('style')
-      style.innerText = css
+      style.innerHTML = await getCssCode(css)
       frameDoc.head.appendChild(style)
     }
     if (js.length > 1) {
       const script = frameDoc.createElement('script')
-      script.innerText = js
+      script.innerHTML = js
       frameDoc.body.appendChild(script)
     }
     if (html.length > 1) {
       frameDoc.body.innerHTML = html
     }
   })
-  document.querySelector(`#${id}`).appendChild(iframe)
+  el.insertAdjacentElement('afterend', iframe)
 }
