@@ -7,9 +7,35 @@ import MarkdownItAnchor from 'markdown-it-anchor'
 import MarkdownItLinkAttrs from 'markdown-it-link-attributes'
 import MarkdownItContainer from 'markdown-it-container'
 import MarkdownItEmoji from 'markdown-it-emoji'
+import prettier from 'prettier'
+import babelParser from 'prettier/parser-babel'
+import cssParser from 'prettier/parser-postcss'
+import htmlParser from 'prettier/parser-html'
 import { dynamicRegisterLanguage } from '@/utils/highlight'
 import { parsePlayground } from './playground'
 import { getHashs } from './route'
+
+const formatCode = (code, lang) => {
+  if (lang === 'babel') {
+    return prettier.format(code, {
+      parser: lang,
+      plugins: [babelParser]
+    })
+  }
+  if (['css', 'less', 'scss'].includes(lang)) {
+    return prettier.format(code, {
+      parser: lang,
+      plugins: [cssParser]
+    })
+  }
+  if (lang === 'html') {
+    return prettier.format(code, {
+      parser: lang,
+      plugins: [htmlParser]
+    })
+  }
+  return code
+}
 
 const slugify = str => {
   return [getHashs().join('/'), md5(str).slice(0, 10)].join('#')
@@ -63,9 +89,12 @@ const getHighlightCode = (str, lang, { hljs }) => {
   return [
     '<pre style="background: rgb(24, 24, 27);">',
     `<code class="hljs language-${lang}" lang="${lang}">`,
-    value.split('\n').map((v, i, arr) => {
-      return `<div ${arr.length < 5 ? '' : 'class="line"'}>${v}</div>`
-    }),
+    value
+      .trim()
+      .split('\n')
+      .map((v, i, arr) => {
+        return `<div ${arr.length < 5 ? '' : 'class="line"'}>${v}</div>`
+      }),
     '<span class="markdown-code-btns">',
     `<span class="btn-lang">${lang}</span>`,
     `<span data-code="${encodeURIComponent(
@@ -121,9 +150,9 @@ export const MarkdownItHighlight = async languages => {
       }
       if (lang === 'playround') {
         const { html, css, script } = parsePlayground(str)
-        const htmlCode = html ? getHighlightCode(html, 'html', { MarkdownIt, hljs }) : ''
-        const cssCode = css ? getHighlightCode(css, 'css', { MarkdownIt, hljs }) : ''
-        const jsCode = script ? getHighlightCode(script, 'jsx', { MarkdownIt, hljs }) : ''
+        const htmlCode = html ? getHighlightCode(formatCode(html, 'html'), 'html', { MarkdownIt, hljs }) : ''
+        const cssCode = css ? getHighlightCode(formatCode(css, 'less'), 'css', { MarkdownIt, hljs }) : ''
+        const jsCode = script ? getHighlightCode(formatCode(script, 'babel'), 'jsx', { MarkdownIt, hljs }) : ''
         return `<pre class="playround-container" data-html=${encodeText(html)} data-css=${encodeText(
           css
         )} data-js=${encodeText(script)}>${htmlCode}${cssCode}${jsCode}</pre>`
