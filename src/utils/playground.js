@@ -57,6 +57,10 @@ export const createIframe = (el, { html, css, js }) => {
     if (html.length > 1) {
       frameDoc.body.innerHTML = html
     }
+
+    setTimeout(() => {
+      iframe.height = frameWin.document.documentElement.scrollHeight
+    }, 0)
   })
   el.insertAdjacentElement('afterend', iframe)
 }
