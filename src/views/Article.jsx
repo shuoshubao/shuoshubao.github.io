@@ -65,8 +65,9 @@ export default props => {
     setTimeout(() => {
       const list = [...document.querySelectorAll('.playround-container')]
       list.forEach(v => {
-        const { html, css, js } = v.dataset
+        const { id, html, css, js } = v.dataset
         createIframe(v, {
+          id,
           html: html ? decodeText(html) : '',
           css: css ? decodeText(css) : '',
           js: js ? decodeText(js) : ''

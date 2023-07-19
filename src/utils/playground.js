@@ -55,21 +55,25 @@ const injectReact = js => {
     jsCode = js
   }
   return `
-const loadScript = src => {
-  return new Promise(resolve => {
-    const script = document.createElement('script');
-    script.onload = () => {
-      resolve();
-    };
-    script.src = src;
-    document.head.appendChild(script);
-  });
-};
 (async () => {
+  window.React = window.parent.React;
+  window.ReactDOM = window.parent.ReactDOM;
+  window.dayjs = window.parent.dayjs;
+  const loadScript = src => {
+    return new Promise(resolve => {
+      const script = document.createElement('script');
+      script.onload = () => {
+        resolve();
+      };
+      script.src = src;
+      document.head.appendChild(script);
+    });
+  };
   const ScriptList = [
-    'https://unpkg.com/react@18.2.0/umd/react.production.min.js',
-    'https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js',
-    'https://unpkg.com/antd@4.24.12/dist/antd.min.js',
+    // 'https://unpkg.com/react@18.2.0/umd/react.production.min.js',
+    // 'https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js',
+    // 'https://unpkg.com/dayjs@1.11.9/dayjs.min.js',
+    'https://unpkg.com/antd@5.7.1/dist/antd.min.js',
     'https://unpkg.com/@babel/standalone@7.22.9/babel.min.js'
   ];
   for (const src of ScriptList) {
@@ -100,8 +104,10 @@ const loadScript = src => {
 `
 }
 
-export const createIframe = (el, { html, css, js }) => {
+export const createIframe = (el, { id, html, css, js }) => {
   const iframe = document.createElement('iframe')
+
+  iframe.name = id
 
   iframe.addEventListener('load', async () => {
     const frameWin = iframe.contentWindow
@@ -110,7 +116,7 @@ export const createIframe = (el, { html, css, js }) => {
     const injectCss = () => {
       const link = frameDoc.createElement('link')
       link.rel = 'stylesheet'
-      link.href = 'https://unpkg.com/antd@4.24.12/dist/antd.min.css'
+      link.href = 'https://unpkg.com/antd@5.7.1/dist/reset.css'
       frameDoc.head.appendChild(link)
     }
 
@@ -124,7 +130,9 @@ export const createIframe = (el, { html, css, js }) => {
 
     injectCss()
 
-    injectJs()
+    if (js) {
+      injectJs()
+    }
 
     if (css) {
       const style = frameDoc.createElement('style')
