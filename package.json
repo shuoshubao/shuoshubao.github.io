@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@nbfe/tools": "^0.5.2",
-    "antd": "^5.6.4",
+    "antd": "^5.7.1",
     "error-stack-parser": "^2.1.4",
     "eventemitter3": "^5.0.1",
     "filesize": "^8.0.7",
@@ -43,6 +43,7 @@
     "react-dom": "^18.2.0",
     "react-error-boundary": "^4.0.10",
     "react-i18next": "^13.0.1",
+    "uuid": "^9.0.0",
     "vconsole": "^3.15.1"
   },
   "devDependencies": {
@@ -51,7 +52,8 @@
     "@vitejs/plugin-react": "^4.0.1",
     "rollup-plugin-analyze": "^0.1.1",
     "sass": "^1.57.1",
-    "vite": "^4.3.9"
+    "vite": "^4.3.9",
+    "vite-plugin-externals": "^0.6.2"
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx,vue,css,less,scss,sass,json,md}": [

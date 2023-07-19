@@ -1,6 +1,7 @@
 import { resolve } from 'path'
 import react from '@vitejs/plugin-react'
 import Analyze from 'rollup-plugin-analyze'
+import { viteExternalsPlugin } from 'vite-plugin-externals'
 
 // https://vitejs.dev/config/
 export default ({ mode }) => {
@@ -10,20 +11,22 @@ export default ({ mode }) => {
       outDir: 'docs',
       target: 'chrome100',
       manifest: true,
-      minify: isDevelopment ? false : 'esbuild',
-      rollupOptions: {
-        output: {
-          manualChunks: {
-            react: ['react', 'react-dom']
-          }
-        }
-      }
+      minify: isDevelopment ? false : 'esbuild'
     },
     resolve: {
       alias: {
         '@': resolve(__dirname, 'src')
       }
     },
-    plugins: [react(), Analyze({ filename: 'docs/stats.html' })]
+    plugins: [
+      react(),
+      viteExternalsPlugin({
+        react: 'React',
+        'react-dom': 'ReactDOM',
+        dayjs: 'dayjs',
+        antd: 'antd'
+      }),
+      Analyze({ filename: 'docs/stats.html' })
+    ]
   }
 }

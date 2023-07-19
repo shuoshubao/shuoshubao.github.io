@@ -63,7 +63,9 @@ body .markdown-body .playround-container {
   gap: 1px;
 
   pre {
+    max-height: 200px;
     margin: 0;
+    overflow-y: auto;
   }
 
   & + iframe {
@@ -74,6 +76,7 @@ body .markdown-body .playround-container {
     background: #fff;
     border: none;
     border-radius: 4px;
+
     ::-webkit-scrollbar {
       display: none;
     }
