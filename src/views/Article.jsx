@@ -59,16 +59,18 @@ export default props => {
     }, 1)
 
     const decodeText = text => {
-      return new TextDecoder().decode(new Uint8Array(text.split(',')))
+      return new TextDecoder().decode(new Uint8Array((text || '').split(',')))
     }
 
     setTimeout(() => {
       const list = [...document.querySelectorAll('.playround-container')]
       list.forEach(v => {
-        const html = decodeText(v.dataset.html)
-        const css = decodeText(v.dataset.css)
-        const js = decodeText(v.dataset.js)
-        createIframe(v, { html, css, js })
+        const { html, css, js } = v.dataset
+        createIframe(v, {
+          html: html ? decodeText(html) : '',
+          css: css ? decodeText(css) : '',
+          js: js ? decodeText(js) : ''
+        })
         delete v.dataset.html
         delete v.dataset.css
         delete v.dataset.js

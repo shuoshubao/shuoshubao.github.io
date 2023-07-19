@@ -1,4 +1,4 @@
-import { uniq } from 'lodash'
+import { flatten, uniq } from 'lodash'
 import md5 from 'md5'
 import getTocData from 'mdx-toc'
 import TaskLists from 'markdown-it-task-lists'
@@ -109,14 +109,14 @@ const getHighlightCode = (str, lang, { hljs }) => {
 }
 
 const encodeText = text => {
-  return new TextEncoder().encode(text)
+  return new TextEncoder().encode(text).toString()
 }
 
 export const MarkdownItHighlight = async languages => {
   const { default: MarkdownIt } = await import('markdown-it/dist/markdown-it')
   const { default: hljs } = await import('highlight.js/lib/core')
   await Promise.all(
-    uniq(['html', 'css', 'less', 'js', ...languages]).map(language => {
+    uniq(flatten([languages.includes('playround') ? ['html', 'css', 'less', 'js'] : [], languages])).map(language => {
       return dynamicRegisterLanguage(hljs, language)
     })
   )
@@ -149,13 +149,17 @@ export const MarkdownItHighlight = async languages => {
         } catch (__) {}
       }
       if (lang === 'playround') {
-        const { html, css, script } = parsePlayground(str)
+        const { html, css, js } = parsePlayground(str)
+
         const htmlCode = html ? getHighlightCode(formatCode(html, 'html'), 'html', { MarkdownIt, hljs }) : ''
         const cssCode = css ? getHighlightCode(formatCode(css, 'less'), 'css', { MarkdownIt, hljs }) : ''
-        const jsCode = script ? getHighlightCode(formatCode(script, 'babel'), 'jsx', { MarkdownIt, hljs }) : ''
-        return `<pre class="playround-container" data-html=${encodeText(html)} data-css=${encodeText(
-          css
-        )} data-js=${encodeText(script)}>${htmlCode}${cssCode}${jsCode}</pre>`
+        const jsCode = js ? getHighlightCode(formatCode(js, 'babel'), 'jsx', { MarkdownIt, hljs }) : ''
+        return `<pre
+          class="playround-container"
+          data-html="${encodeText(html)}"
+          data-css="${encodeText(css)}"
+          data-js="${encodeText(js)}"
+        >${htmlCode}${cssCode}${jsCode}</pre>`
       }
       return `<pre><code class="language-${lang}">${trimedStr}</code></pre>`
     }
