@@ -12,6 +12,7 @@ import prettier from 'prettier'
 import babelParser from 'prettier/parser-babel'
 import cssParser from 'prettier/parser-postcss'
 import htmlParser from 'prettier/parser-html'
+import PrettierConfig from '@nbfe/standard/prettier.config'
 import { dynamicRegisterLanguage } from '@/utils/highlight'
 import { parsePlayground } from './playground'
 import { getHashs } from './route'
@@ -20,19 +21,22 @@ const formatCode = (code, lang) => {
   if (lang === 'babel') {
     return prettier.format(code, {
       parser: lang,
-      plugins: [babelParser]
+      plugins: [babelParser],
+      ...PrettierConfig
     })
   }
   if (['css', 'less', 'scss'].includes(lang)) {
     return prettier.format(code, {
       parser: lang,
-      plugins: [cssParser]
+      plugins: [cssParser],
+      ...PrettierConfig
     })
   }
   if (lang === 'html') {
     return prettier.format(code, {
       parser: lang,
-      plugins: [htmlParser]
+      plugins: [htmlParser],
+      ...PrettierConfig
     })
   }
   return code
