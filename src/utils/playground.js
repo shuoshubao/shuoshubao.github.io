@@ -87,8 +87,7 @@ const injectReact = js => {
     babel: Babel.version,
     react: React.version,
     'react-dom': ReactDOM.version,
-    antd: antd.version,
-    dayjs: '1.11.9'
+    antd: antd.version
   });
 
   Object.keys(window.parent.antd)
