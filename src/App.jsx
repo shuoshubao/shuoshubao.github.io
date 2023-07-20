@@ -140,7 +140,7 @@ export default () => {
                   }}
                 />
                 <div
-                  style={{ position: 'absolute', bottom: 0, margin: 12, width: 150 - 12 * 2 }}
+                  style={{ position: 'fixed', bottom: 0, margin: 12, width: 150 - 12 * 2 }}
                   className="site-layout-sider-actions"
                 >
                   <Space direction="vertical" style={{ display: 'flex' }}>
