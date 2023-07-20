@@ -30,6 +30,12 @@ html {
     .ant-layout-header {
       display: none !important;
     }
+
+    .site-layout-sider-actions {
+      .ant-tag {
+        display: none;
+      }
+    }
   }
 }
 

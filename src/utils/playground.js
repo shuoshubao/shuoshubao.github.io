@@ -56,9 +56,14 @@ const injectReact = js => {
   }
   return `
 (async () => {
+  const ConsoleTimeKey = [window.name, 'initialized'].join('_');
+
+  console.time(ConsoleTimeKey);
+
   window.React = window.parent.React;
   window.ReactDOM = window.parent.ReactDOM;
   window.dayjs = window.parent.dayjs;
+
   const loadScript = src => {
     return new Promise(resolve => {
       const script = document.createElement('script');
@@ -69,21 +74,18 @@ const injectReact = js => {
       document.head.appendChild(script);
     });
   };
+
   const ScriptList = [
-    // 'https://unpkg.com/react@18.2.0/umd/react.production.min.js',
-    // 'https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js',
-    // 'https://unpkg.com/dayjs@1.11.9/dayjs.min.js',
     'https://unpkg.com/antd@5.7.1/dist/antd.min.js',
     'https://unpkg.com/@babel/standalone@7.22.9/babel.min.js'
   ];
-  for (const src of ScriptList) {
-    await loadScript(src);
-  }
 
-  Object.keys(antd)
+  await Promise.all(ScriptList.map(loadScript));
+
+  Object.keys(window.parent.antd)
     .filter(v => !['version'].includes(v))
     .forEach(v => {
-      window[v] = antd[v];
+      window[v] = window.antd[v];
     });
 
   Object.keys(React)
@@ -96,10 +98,12 @@ const injectReact = js => {
   script.innerHTML = \`${jsCode}\`;
   script.dataset.type = 'module';
   script.type = 'text/babel';
-  script.presets = 'env,react';
+  script.presets = 'env,react,typescript';
 
   document.body.appendChild(script);
   window.dispatchEvent(new Event('DOMContentLoaded'));
+
+  console.timeEnd(ConsoleTimeKey);
 })();
 `
 }
@@ -145,10 +149,11 @@ export const createIframe = (el, { id, html, css, js }) => {
     frameDoc.body.insertAdjacentHTML('afterbegin', html || '<div id="app"></div>')
 
     setInterval(() => {
-      if (iframe.height !== Number(frameWin.document.documentElement.scrollHeight)) {
-        iframe.height = frameWin.document.documentElement.scrollHeight
+      const innerHeight = Number(frameWin.document.querySelector('#app')?.scrollHeight)
+      if (iframe.height !== innerHeight) {
+        iframe.height = innerHeight
       }
-    }, 3e3)
+    }, 1e3)
   })
   el.insertAdjacentElement('afterend', iframe)
 }
