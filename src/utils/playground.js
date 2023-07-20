@@ -54,6 +54,7 @@ const injectReact = js => {
   } else {
     jsCode = js
   }
+
   return `
 (async () => {
   const ConsoleTimeKey = [window.name, 'initialized'].join('_');
@@ -82,6 +83,14 @@ const injectReact = js => {
 
   await Promise.all(ScriptList.map(loadScript));
 
+  console.table({
+    babel: Babel.version,
+    react: React.version,
+    'react-dom': ReactDOM.version,
+    antd: antd.version,
+    dayjs: '1.11.9'
+  });
+
   Object.keys(window.parent.antd)
     .filter(v => !['version'].includes(v))
     .forEach(v => {
@@ -94,14 +103,17 @@ const injectReact = js => {
       window[v] = React[v];
     });
 
-  const script = document.createElement('script');
-  script.innerHTML = \`${jsCode}\`;
-  script.dataset.type = 'module';
-  script.type = 'text/babel';
-  script.presets = 'env,react,typescript';
+  const { code } = Babel.transform(\`${jsCode}\`, {
+    filename: [window.name, '.js'].join(''),
+    presets: ['env', 'react', 'typescript'],
+    targets: {
+      chrome: '200'
+    }
+  });
 
+  const script = document.createElement('script');
+  script.innerHTML = code;
   document.body.appendChild(script);
-  window.dispatchEvent(new Event('DOMContentLoaded'));
 
   console.timeEnd(ConsoleTimeKey);
 })();
