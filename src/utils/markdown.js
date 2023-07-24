@@ -167,6 +167,7 @@ export const MarkdownItHighlight = async languages => {
           data-id="${id}"
           data-html="${encodeText(html)}"
           data-css="${encodeText(css.text)}"
+          data-css-type="${css.type}"
           data-js="${encodeText(js)}"
         >${htmlCode}${cssCode}${jsCode}</pre>`
       }

@@ -1,4 +1,5 @@
-import less from 'less'
+import axios from 'axios'
+import { VercelApiPrefix } from '@/configs'
 import InjectJS from './inject.js?raw'
 
 export const parsePlayground = str => {
@@ -39,18 +40,26 @@ export const parsePlayground = str => {
   return result
 }
 
-const getCssCode = input => {
-  if (input.length <= 1) {
+const getCssCode = async (css, cssType) => {
+  if (css.length <= 1) {
     return ''
   }
-  return new Promise(resolve => {
-    less.render(input, (err, result) => {
-      if (err) {
-        resolve(input)
-      }
-      resolve(result.css)
+  if (cssType === 'css') {
+    return css
+  }
+  if (cssType === 'less') {
+    const res = await axios.post(`${VercelApiPrefix}/api/compiler/less`, {
+      code: css
     })
-  })
+    return res.data.data.css
+  }
+  if (cssType === 'sass') {
+    const res = await axios.post(`${VercelApiPrefix}/api/compiler/sass`, {
+      code: css
+    })
+    return res.data.data.css
+  }
+  return css
 }
 
 const injectReact = js => {
@@ -67,7 +76,7 @@ const injectReact = js => {
   return InjectJS.replace('jsCode', jsCode)
 }
 
-export const createIframe = (el, { id, html, css, js }) => {
+export const createIframe = (el, { id, html, css, cssType, js }) => {
   const iframe = document.createElement('iframe')
 
   iframe.name = id
@@ -100,7 +109,8 @@ export const createIframe = (el, { id, html, css, js }) => {
     if (css) {
       const style = frameDoc.createElement('style')
 
-      style.innerHTML = await getCssCode(css)
+      style.innerHTML = await getCssCode(css, cssType)
+
       frameDoc.head.appendChild(style)
     }
 

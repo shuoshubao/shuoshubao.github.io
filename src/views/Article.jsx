@@ -65,15 +65,17 @@ export default props => {
     setTimeout(() => {
       const list = [...document.querySelectorAll('.playround-container')]
       list.forEach(v => {
-        const { id, html, css, js } = v.dataset
+        const { id, html, css, cssType, js } = v.dataset
         createIframe(v, {
           id,
           html: html ? decodeText(html) : '',
           css: css ? decodeText(css) : '',
+          cssType,
           js: js ? decodeText(js) : ''
         })
         delete v.dataset.html
         delete v.dataset.css
+        delete v.dataset.cssType
         delete v.dataset.js
       })
     }, 1e2)

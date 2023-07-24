@@ -11,6 +11,8 @@ export const CollapsedKey = 'collapsed'
 
 export const TocCollapsedKey = ['collapsed', 'toc'].join('-')
 
+export const VercelApiPrefix = isDevelopment ? 'http://localhost:4000' : 'https://truethy.vercel.app'
+
 export const NavData = [
   {
     label: 'Home',
