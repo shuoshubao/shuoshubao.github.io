@@ -1,33 +1,41 @@
 import less from 'less'
 
 export const parsePlayground = str => {
-  const MarkupTagName = 'body'
   const StyleTagName = 'style'
+  const MarkupTagName = 'template'
   const ScriptTagName = 'script'
 
-  let html = ''
-  if (str.includes(`<${MarkupTagName}>`)) {
-    html = str
-      .slice(str.indexOf(`<${MarkupTagName}>`) + MarkupTagName.length + 2, str.indexOf(`</${MarkupTagName}>`))
-      .trim()
+  const result = {
+    html: '',
+    css: {
+      type: 'css',
+      text: ''
+    },
+    js: ''
   }
-  let css = ''
-  if (str.includes(`<${StyleTagName}>`)) {
-    css = str
-      .slice(str.indexOf(`<${StyleTagName}>`) + StyleTagName.length + 2, str.indexOf(`</${StyleTagName}>`))
-      .trim()
-  }
-  let js = ''
-  if (str.includes(`<${ScriptTagName}>`)) {
-    js = str
-      .slice(str.indexOf(`<${ScriptTagName}>`) + ScriptTagName.length + 2, str.indexOf(`</${ScriptTagName}>`))
-      .trim()
-  }
-  return {
-    html: html.trim(),
-    css: css.trim(),
-    js: js.trim()
-  }
+
+  const renderer = document.createElement('template')
+  renderer.innerHTML = str
+
+  const { content: fragment } = renderer
+
+  Array.from(fragment.children).forEach(v => {
+    const { localName, type, innerHTML } = v
+    if (localName === StyleTagName) {
+      result.css = {
+        type: type ? type.split('/')[1] : 'css',
+        text: innerHTML.trim()
+      }
+    }
+    if (localName === MarkupTagName) {
+      result.html = innerHTML.trim()
+    }
+    if (localName === ScriptTagName) {
+      result.js = innerHTML.trim()
+    }
+  })
+
+  return result
 }
 
 const getCssCode = input => {

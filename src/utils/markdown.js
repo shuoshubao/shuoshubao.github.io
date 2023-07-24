@@ -157,16 +157,20 @@ export const MarkdownItHighlight = async languages => {
       if (lang === 'playround') {
         const { html, css, js } = parsePlayground(str)
 
+        console.log(html)
+        console.log(css)
+        console.log(js)
+
         const id = ['playround', uuidv4()].join('_')
         const htmlCode = html ? getHighlightCode(formatCode(html, 'html'), 'html', { MarkdownIt, hljs }) : ''
-        const cssCode = css ? getHighlightCode(formatCode(css, 'less'), 'css', { MarkdownIt, hljs }) : ''
+        const cssCode = css.text ? getHighlightCode(formatCode(css.text, css.type), css.type, { MarkdownIt, hljs }) : ''
         const jsCode = js ? getHighlightCode(formatCode(js, 'babel'), 'jsx', { MarkdownIt, hljs }) : ''
 
         return `<pre
           class="playround-container"
           data-id="${id}"
           data-html="${encodeText(html)}"
-          data-css="${encodeText(css)}"
+          data-css="${encodeText(css.text)}"
           data-js="${encodeText(js)}"
         >${htmlCode}${cssCode}${jsCode}</pre>`
       }
