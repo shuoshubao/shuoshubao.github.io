@@ -157,10 +157,6 @@ export const MarkdownItHighlight = async languages => {
       if (lang === 'playround') {
         const { html, css, js } = parsePlayground(str)
 
-        console.log(html)
-        console.log(css)
-        console.log(js)
-
         const id = ['playround', uuidv4()].join('_')
         const htmlCode = html ? getHighlightCode(formatCode(html, 'html'), 'html', { MarkdownIt, hljs }) : ''
         const cssCode = css.text ? getHighlightCode(formatCode(css.text, css.type), css.type, { MarkdownIt, hljs }) : ''
