@@ -1,17 +1,30 @@
 import { useEffect, useRef, useState } from 'react'
-import { Button, Radio, Space, message, Tooltip } from 'antd'
+import { Button, ConfigProvider, Radio, Space, Tooltip, message, theme } from 'antd'
 import { CopyOutlined } from '@ant-design/icons'
 import { useAsyncEffect } from 'ahooks'
 import classnames from 'classnames'
 import copy from 'copy-to-clipboard'
+import { isUndefined } from 'lodash-es'
 import { PlaygroundStore, createIframe } from '@/utils/playground'
 import { dynamicRegisterLanguage } from '@/utils/highlight'
 import { getHighlightCode } from '@/utils/markdown'
+import {
+  ThemeKey,
+  ThemeKeyEnum,
+  ThemeEventEmitter,
+  DefaultTheme,
+  isDark,
+  addListenerPrefersColorScheme
+} from '@/configs'
 import Icons from '@/configs/Icons'
 import { IconCode, IconCodeExpand } from './config'
 import styles from './index.module.less'
 
-export default ({ id }) => {
+const { defaultAlgorithm, darkAlgorithm } = theme
+
+const defaultThemeValue = window.localStorage.getItem(ThemeKey) || DefaultTheme
+
+const App = ({ id }) => {
   const demoRef = useRef(null)
 
   const [showCode, setShowCode] = useState(false)
@@ -67,15 +80,20 @@ export default ({ id }) => {
     setSourceCode(code)
   }, [showCode, selectedIndex])
 
+  const { token } = theme.useToken()
+
+  const { colorBorderSecondary } = token
+
   return (
     <div
       className={classnames('playround-container', styles['playround-container'], {
         [styles['playround-container-open']]: showCode
       })}
+      style={{ borderColor: colorBorderSecondary }}
     >
       <div className={styles['playround-container-demo']} ref={demoRef} />
       <div className={styles['playround-container-meta']}>
-        <div className={styles['playround-container-actions']}>
+        <div className={styles['playround-container-actions']} style={{ borderColor: colorBorderSecondary }}>
           <div className={styles['playround-container-files']}>
             <Radio.Group
               value={selectedIndex}
@@ -118,11 +136,52 @@ export default ({ id }) => {
             </Space>
           </div>
         </div>
-        <div className={styles['playround-container-source-code']}>
+        <div className={styles['playround-container-source-code']} style={{ borderColor: colorBorderSecondary }}>
           <div dangerouslySetInnerHTML={{ __html: sourceCode }} />
         </div>
       </div>
       {contextHolder}
     </div>
+  )
+}
+
+export default ({ id }) => {
+  const [themeValue, setThemeValue] = useState(defaultThemeValue)
+  const [dark, setDark] = useState()
+
+  const handleThemeChange = value => {
+    setThemeValue(value)
+    if (value !== ThemeKeyEnum.SYSTEM) {
+      setDark(isDark(value))
+    }
+  }
+
+  useEffect(() => {
+    addListenerPrefersColorScheme(() => {
+      setDark(isDark(themeValue))
+    })
+  }, [setDark])
+
+  useEffect(() => {
+    setDark(isDark(themeValue))
+  }, [setDark])
+
+  useEffect(() => {
+    ThemeEventEmitter.on(ThemeKey, handleThemeChange)
+
+    return () => {}
+  }, [setThemeValue, setDark])
+
+  if (isUndefined(dark)) {
+    return null
+  }
+  return (
+    <ConfigProvider
+      theme={{
+        algorithm: dark ? darkAlgorithm : defaultAlgorithm
+      }}
+    >
+      <App id={id} key={dark} />
+    </ConfigProvider>
   )
 }
