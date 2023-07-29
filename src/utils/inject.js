@@ -58,5 +58,15 @@
   script.innerHTML = code
   document.body.appendChild(script)
 
+  window.parent.postMessage(
+    {
+      type: 'playground',
+      id: window.name,
+      eventName: 'initialized',
+      initializedTime: Date.now() - PlaygroundStartTime
+    },
+    '/'
+  )
+
   console.timeEnd(ConsoleTimeKey)
 })()

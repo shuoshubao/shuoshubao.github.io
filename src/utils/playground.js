@@ -100,7 +100,7 @@ const getCssCode = async (css, cssType) => {
   return css
 }
 
-const injectReact = js => {
+const injectReact = ({ PlaygroundStartTime, js }) => {
   let jsCode
   if (js.includes('export default')) {
     jsCode = [
@@ -111,10 +111,11 @@ const injectReact = js => {
     jsCode = js
   }
 
-  return InjectJS.replace('jsCode', jsCode)
+  return InjectJS.replace('jsCode', jsCode).replace('PlaygroundStartTime', PlaygroundStartTime)
 }
 
 export const createIframe = id => {
+  const PlaygroundStartTime = Date.now()
   const { html, css, js } = PlaygroundStore.get(id)
   const iframe = document.createElement('iframe')
 
@@ -134,7 +135,7 @@ export const createIframe = id => {
     const injectJs = () => {
       const script = frameDoc.createElement('script')
 
-      script.innerHTML = injectReact(js)
+      script.innerHTML = injectReact({ PlaygroundStartTime, js })
 
       frameDoc.body.appendChild(script)
     }
@@ -155,6 +156,18 @@ export const createIframe = id => {
 
     // 注入 html
     frameDoc.body.insertAdjacentHTML('afterbegin', html || '<div id="app"></div>')
+
+    if (!js) {
+      frameWin.parent.postMessage(
+        {
+          type: 'playground',
+          id,
+          eventName: 'initialized',
+          initializedTime: Date.now() - PlaygroundStartTime
+        },
+        '/'
+      )
+    }
 
     setInterval(() => {
       const innerHeight = Number(frameWin.document.querySelector('#app')?.scrollHeight)

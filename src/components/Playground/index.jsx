@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { Button, ConfigProvider, Radio, Space, Tooltip, message, theme } from 'antd'
+import { Button, ConfigProvider, Radio, Space, Spin, Tag, Tooltip, message, theme } from 'antd'
 import { CopyOutlined } from '@ant-design/icons'
 import { useAsyncEffect } from 'ahooks'
 import classnames from 'classnames'
@@ -27,12 +27,33 @@ const defaultThemeValue = window.localStorage.getItem(ThemeKey) || DefaultTheme
 const App = ({ id }) => {
   const demoRef = useRef(null)
 
+  const [loading, setLoading] = useState(true)
+  const [time, setTime] = useState(0)
   const [showCode, setShowCode] = useState(false)
   const [files, setFiles] = useState([])
   const [selectedIndex, setSelectedIndex] = useState(0)
   const [sourceCode, setSourceCode] = useState('')
 
   const [messageApi, contextHolder] = message.useMessage()
+
+  useEffect(() => {
+    const receiveMessage = e => {
+      if (e.data?.type !== 'playground') {
+        return
+      }
+      const { id: playgroundId, eventName, initializedTime } = e.data
+      if (playgroundId === id && eventName === 'initialized') {
+        setTime(initializedTime)
+        setLoading(false)
+      }
+    }
+
+    window.addEventListener('message', receiveMessage, false)
+
+    return () => {
+      window.removeEventListener('message', receiveMessage, false)
+    }
+  }, [])
 
   useEffect(() => {
     const { html, css, js } = PlaygroundStore.get(id)
@@ -91,7 +112,9 @@ const App = ({ id }) => {
       })}
       style={{ borderColor: colorBorderSecondary }}
     >
-      <div className={styles['playround-container-demo']} ref={demoRef} />
+      <Spin spinning={loading} tip="Loading...">
+        <div className={styles['playround-container-demo']} ref={demoRef} />
+      </Spin>
       <div className={styles['playround-container-meta']}>
         <div className={styles['playround-container-actions']} style={{ borderColor: colorBorderSecondary }}>
           <div className={styles['playround-container-files']}>
@@ -115,6 +138,7 @@ const App = ({ id }) => {
           </div>
           <div className={styles['playround-container-btns']}>
             <Space>
+              {!!time && <Tag color="success">{[time, 'ms'].join(' ')}</Tag>}
               <Tooltip title="复制代码">
                 <Button
                   icon={<CopyOutlined className={styles['playround-container-btncopy']} />}
