@@ -4,13 +4,9 @@ import { SearchOutlined } from '@ant-design/icons'
 import { find, debounce, once } from 'lodash-es'
 import { useTranslation } from 'react-i18next'
 import HighlightText from '@/components/HighlightText'
-import { memoizeFetch } from '@/utils'
+import { memoizeFetch, decodeText } from '@/utils'
 
 const { Text } = Typography
-
-const decodeText = arrary => {
-  return new TextDecoder().decode(new Uint8Array(arrary))
-}
 
 export default () => {
   const autoCompleteRef = useRef()

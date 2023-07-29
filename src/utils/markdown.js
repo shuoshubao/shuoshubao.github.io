@@ -1,6 +1,5 @@
 import { flatten, uniq } from 'lodash'
 import md5 from 'md5'
-import { v4 as uuidv4 } from 'uuid'
 import getTocData from 'mdx-toc'
 import TaskLists from 'markdown-it-task-lists'
 import MarkdownItAttrs from 'markdown-it-attrs'
@@ -8,39 +7,9 @@ import MarkdownItAnchor from 'markdown-it-anchor'
 import MarkdownItLinkAttrs from 'markdown-it-link-attributes'
 import MarkdownItContainer from 'markdown-it-container'
 import MarkdownItEmoji from 'markdown-it-emoji'
-import prettier from 'prettier'
-import babelParser from 'prettier/parser-babel'
-import cssParser from 'prettier/parser-postcss'
-import htmlParser from 'prettier/parser-html'
-import PrettierConfig from '@nbfe/standard/prettier.config'
 import { dynamicRegisterLanguage } from '@/utils/highlight'
 import { parsePlayground } from './playground'
 import { getHashs } from './route'
-
-const formatCode = (code, lang) => {
-  if (lang === 'babel') {
-    return prettier.format(code, {
-      parser: lang,
-      plugins: [babelParser],
-      ...PrettierConfig
-    })
-  }
-  if (['css', 'less', 'scss'].includes(lang)) {
-    return prettier.format(code, {
-      parser: lang,
-      plugins: [cssParser],
-      ...PrettierConfig
-    })
-  }
-  if (lang === 'html') {
-    return prettier.format(code, {
-      parser: lang,
-      plugins: [htmlParser],
-      ...PrettierConfig
-    })
-  }
-  return code
-}
 
 const slugify = str => {
   return [getHashs().join('/'), md5(str).slice(0, 10)].join('#')
@@ -49,8 +18,7 @@ const slugify = str => {
 const IconsHtml = {
   success:
     '<svg viewBox="64 64 896 896" width="1em" height="1em" fill="currentColor"><path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm193.5 301.7l-210.6 292a31.8 31.8 0 01-51.7 0L318.5 484.9c-3.8-5.3 0-12.7 6.5-12.7h46.9c10.2 0 19.9 4.9 25.9 13.3l71.2 98.8 157.2-218c6-8.3 15.6-13.3 25.9-13.3H699c6.5 0 10.3 7.4 6.5 12.7z"></path></svg>',
-  info:
-    '<svg viewBox="64 64 896 896" width="1em" height="1em" fill="currentColor"><path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm32 664c0 4.4-3.6 8-8 8h-48c-4.4 0-8-3.6-8-8V456c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v272zm-32-344a48.01 48.01 0 010-96 48.01 48.01 0 010 96z"></path></svg>',
+  info: '<svg viewBox="64 64 896 896" width="1em" height="1em" fill="currentColor"><path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm32 664c0 4.4-3.6 8-8 8h-48c-4.4 0-8-3.6-8-8V456c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v272zm-32-344a48.01 48.01 0 010-96 48.01 48.01 0 010 96z"></path></svg>',
   warning:
     '<svg viewBox="64 64 896 896" width="1em" height="1em" fill="currentColor"><path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm-32 232c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v272c0 4.4-3.6 8-8 8h-48c-4.4 0-8-3.6-8-8V296zm32 440a48.01 48.01 0 010-96 48.01 48.01 0 010 96z"></path></svg>',
   error:
@@ -90,7 +58,8 @@ export const getAllLanguages = async md => {
   return Array.from(languages)
 }
 
-const getHighlightCode = (str, lang, { hljs }) => {
+export const getHighlightCode = async (str, lang) => {
+  const { default: hljs } = await import('highlight.js/lib/core')
   const { value } = hljs.highlight(str, { language: lang })
   return [
     '<pre style="background: rgb(24, 24, 27);">',
@@ -101,21 +70,11 @@ const getHighlightCode = (str, lang, { hljs }) => {
       .map((v, i, arr) => {
         return `<div ${arr.length < 5 ? '' : 'class="line"'}>${v}</div>`
       }),
-    '<span class="markdown-code-btns">',
-    `<span class="btn-lang">${lang}</span>`,
-    `<span data-code="${encodeURIComponent(
-      str
-    )}" class="anticon anticon-copy"><svg viewBox="64 64 896 896" focusable="false" data-icon="copy" width="1em" height="1em" fill="currentColor" aria-hidden="true"><path d="M832 64H296c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h496v688c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8V96c0-17.7-14.3-32-32-32zM704 192H192c-17.7 0-32 14.3-32 32v530.7c0 8.5 3.4 16.6 9.4 22.6l173.3 173.3c2.2 2.2 4.7 4 7.4 5.5v1.9h4.2c3.5 1.3 7.2 2 11 2H704c17.7 0 32-14.3 32-32V224c0-17.7-14.3-32-32-32zM350 856.2L263.9 770H350v86.2zM664 888H414V746c0-22.1-17.9-40-40-40H232V264h432v624z"></path></svg></span>`,
-    '</span>',
     '</code>',
     '</pre>'
   ]
     .flat()
     .join('')
-}
-
-const encodeText = text => {
-  return new TextEncoder().encode(text).toString()
 }
 
 export const MarkdownItHighlight = async languages => {
@@ -155,21 +114,12 @@ export const MarkdownItHighlight = async languages => {
         } catch (__) {}
       }
       if (lang === 'playround') {
-        const { html, css, js } = parsePlayground(str)
-
-        const id = ['playround', uuidv4()].join('_')
-        const htmlCode = html ? getHighlightCode(formatCode(html, 'html'), 'html', { MarkdownIt, hljs }) : ''
-        const cssCode = css.text ? getHighlightCode(formatCode(css.text, css.type), css.type, { MarkdownIt, hljs }) : ''
-        const jsCode = js ? getHighlightCode(formatCode(js, 'babel'), 'jsx', { MarkdownIt, hljs }) : ''
+        const id = parsePlayground(str)
 
         return `<pre
-          class="playround-container"
+          class="playround-coordinate"
           data-id="${id}"
-          data-html="${encodeText(html)}"
-          data-css="${encodeText(css.text)}"
-          data-css-type="${css.type}"
-          data-js="${encodeText(js)}"
-        >${htmlCode}${cssCode}${jsCode}</pre>`
+        ></pre>`
       }
       return `<pre><code class="language-${lang}">${trimedStr}</code></pre>`
     }

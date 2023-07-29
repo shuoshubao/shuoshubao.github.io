@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { createRoot } from 'react-dom/client'
 import { Layout, Modal, Result, Card, Button, Typography, Space, Divider, Tag, Image, message, theme } from 'antd'
 import { CodeOutlined } from '@ant-design/icons'
 import { useTranslation } from 'react-i18next'
@@ -8,8 +9,8 @@ import { map, find } from 'lodash-es'
 import filesize from 'filesize'
 import 'highlight.js/styles/vs2015.css'
 import MarkdownToc from '@/components/MarkdownToc'
+import Playground from '@/components/Playground'
 import { updateMarkdownTheme } from '@/configs'
-import { createIframe } from '@/utils/playground'
 import { addKatexStylesheet, memoizeFetch, getHashs, getAllLanguages, MarkdownItHighlight } from '@/utils'
 
 const { useToken } = theme
@@ -58,25 +59,17 @@ export default props => {
       setImageList([...document.querySelectorAll('.markdown-body img')].map(v => v.src))
     }, 1)
 
-    const decodeText = text => {
-      return new TextDecoder().decode(new Uint8Array((text || '').split(',')))
-    }
-
     setTimeout(() => {
-      const list = [...document.querySelectorAll('.playround-container')]
+      const list = [...document.querySelectorAll('.playround-coordinate')]
       list.forEach(v => {
-        const { id, html, css, cssType, js } = v.dataset
-        createIframe(v, {
-          id,
-          html: html ? decodeText(html) : '',
-          css: css ? decodeText(css) : '',
-          cssType,
-          js: js ? decodeText(js) : ''
-        })
-        delete v.dataset.html
-        delete v.dataset.css
-        delete v.dataset.cssType
-        delete v.dataset.js
+        const { id } = v.dataset
+
+        const div = document.createElement('div')
+        div.id = id
+
+        v.insertAdjacentElement('afterend', div)
+
+        createRoot(div).render(<Playground id={id} />)
       })
     }, 1e2)
   }
@@ -84,6 +77,9 @@ export default props => {
   const handleCopy = e => {
     const { target } = e
     let targetNode
+    if (target.closest('.markdown-body .playround-container')) {
+      return
+    }
     if (target.classList.contains('anticon-copy')) {
       targetNode = target
     }

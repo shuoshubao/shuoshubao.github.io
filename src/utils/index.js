@@ -3,6 +3,7 @@ import { isDevelopment } from '@/configs'
 
 export * from './markdown'
 export * from './route'
+export * from './text'
 
 export const getFetchPrefix = () => {
   if (isDevelopment) {
