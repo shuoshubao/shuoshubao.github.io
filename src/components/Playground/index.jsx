@@ -110,17 +110,17 @@ const App = ({ id }) => {
 
   return (
     <div
-      className={classnames('playround-container', styles['playround-container'], {
-        [styles['playround-container-open']]: showCode
+      className={classnames('playground-container', styles['playground-container'], {
+        [styles['playground-container-open']]: showCode
       })}
       style={{ borderColor: colorBorderSecondary }}
     >
       <Spin spinning={loading} tip="Loading...">
-        <div className={styles['playround-container-demo']} ref={demoRef} />
+        <div className={styles['playground-container-demo']} ref={demoRef} />
       </Spin>
-      <div className={styles['playround-container-meta']}>
-        <div className={styles['playround-container-actions']} style={{ borderColor: colorBorderSecondary }}>
-          <div className={styles['playround-container-files']}>
+      <div className={styles['playground-container-meta']}>
+        <div className={styles['playground-container-actions']} style={{ borderColor: colorBorderSecondary }}>
+          <div className={styles['playground-container-files']}>
             <Radio.Group
               value={selectedIndex}
               onChange={e => {
@@ -139,7 +139,7 @@ const App = ({ id }) => {
               })}
             </Radio.Group>
           </div>
-          <div className={styles['playround-container-btns']}>
+          <div className={styles['playground-container-btns']}>
             <Space>
               {!!time && (
                 <Tag color={timeTagColor} style={{ marginRight: 0 }}>
@@ -169,7 +169,7 @@ const App = ({ id }) => {
             </Space>
           </div>
         </div>
-        <div className={styles['playround-container-source-code']} style={{ borderColor: colorBorderSecondary }}>
+        <div className={styles['playground-container-source-code']} style={{ borderColor: colorBorderSecondary }}>
           <div dangerouslySetInnerHTML={{ __html: sourceCode }} />
         </div>
       </div>

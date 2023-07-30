@@ -60,7 +60,7 @@ export default props => {
     }, 1)
 
     setTimeout(() => {
-      const list = [...document.querySelectorAll('.playround-coordinate')]
+      const list = [...document.querySelectorAll('.playground-coordinate')]
       list.forEach(v => {
         const { id } = v.dataset
 
@@ -77,7 +77,7 @@ export default props => {
   const handleCopy = e => {
     const { target } = e
     let targetNode
-    if (target.closest('.markdown-body .playround-container')) {
+    if (target.closest('.markdown-body .playground-container')) {
       return
     }
     if (target.classList.contains('anticon-copy')) {
