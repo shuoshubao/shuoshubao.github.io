@@ -88,7 +88,7 @@ const App = ({ id }) => {
   useEffect(() => {
     const iframe = createIframe(id)
     demoRef.current.appendChild(iframe)
-  }, [])
+  }, [id])
 
   useAsyncEffect(async () => {
     if (!showCode) {
@@ -104,6 +104,9 @@ const App = ({ id }) => {
   const { token } = theme.useToken()
 
   const { colorBorderSecondary } = token
+
+  // eslint-disable-next-line no-nested-ternary
+  const timeTagColor = time < 500 ? 'success' : time < 1000 ? 'warning' : 'error'
 
   return (
     <div
@@ -138,16 +141,22 @@ const App = ({ id }) => {
           </div>
           <div className={styles['playround-container-btns']}>
             <Space>
-              {!!time && <Tag color="success">{[time, 'ms'].join(' ')}</Tag>}
-              <Tooltip title="复制代码">
-                <Button
-                  icon={<CopyOutlined className={styles['playround-container-btncopy']} />}
-                  onClick={() => {
-                    copy(files[selectedIndex].content)
-                    messageApi.success('Copied')
-                  }}
-                />
-              </Tooltip>
+              {!!time && (
+                <Tag color={timeTagColor} style={{ marginRight: 0 }}>
+                  {[time, 'ms'].join(' ')}
+                </Tag>
+              )}
+              {showCode && (
+                <Tooltip title="复制代码">
+                  <Button
+                    icon={<CopyOutlined />}
+                    onClick={() => {
+                      copy(files[selectedIndex].content)
+                      messageApi.success('Copied')
+                    }}
+                  />
+                </Tooltip>
+              )}
               <Tooltip title={showCode ? '收起代码' : '展开代码'}>
                 <Button
                   onClick={() => {
