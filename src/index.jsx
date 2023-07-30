@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from 'react'
-import { createRoot } from 'react-dom/client'
-import { ConfigProvider, theme } from 'antd'
-import VConsole from 'vconsole'
 import {
-  isDevelopment,
-  initI18n,
-  ThemeKey,
-  ThemeKeyEnum,
   DefaultTheme,
   ThemeEventEmitter,
+  ThemeKey,
+  ThemeKeyEnum,
+  addListenerPrefersColorScheme,
+  initI18n,
   isDark,
-  addListenerPrefersColorScheme
+  isDevelopment
 } from '@/configs'
+import { ConfigProvider, theme } from 'antd'
+import React, { useEffect, useState } from 'react'
+import { createRoot } from 'react-dom/client'
+import VConsole from 'vconsole'
 import App from './App'
 
 const { defaultAlgorithm, darkAlgorithm } = theme

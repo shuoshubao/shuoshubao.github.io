@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import { DefaultI18nLng, I18nKey, I18nOptions } from '@/configs'
 import { Select } from 'antd'
+import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { I18nKey, DefaultI18nLng, I18nOptions } from '@/configs'
 
 export default props => {
   const [language, setLanguage] = useState(window.localStorage.getItem(I18nKey) || DefaultI18nLng)

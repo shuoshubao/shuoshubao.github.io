@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import { DefaultTheme, ThemeEventEmitter, ThemeKey, getThemeOptions } from '@/configs'
 import { Select, Space, Typography } from 'antd'
+import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { ThemeKey, DefaultTheme, getThemeOptions, ThemeEventEmitter } from '@/configs'
 
 const { Text } = Typography
 

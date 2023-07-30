@@ -1,8 +1,8 @@
-import React from 'react'
-import { AppleOutlined, WindowsOutlined, AndroidOutlined } from '@ant-design/icons'
+import { AndroidOutlined, AppleOutlined, WindowsOutlined } from '@ant-design/icons'
 import EventEmitter from 'eventemitter3'
-import { v4 as uuidv4 } from 'uuid'
 import { camelCase } from 'lodash-es'
+import React from 'react'
+import { v4 as uuidv4 } from 'uuid'
 
 export const ThemeKey = 'theme'
 

@@ -1,5 +1,5 @@
-import { memoize } from '@nbfe/tools'
 import { isDevelopment } from '@/configs'
+import { memoize } from '@nbfe/tools'
 
 export * from './markdown'
 export * from './route'

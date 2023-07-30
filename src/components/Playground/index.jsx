@@ -1,22 +1,22 @@
-import { useEffect, useRef, useState } from 'react'
-import { Button, ConfigProvider, Radio, Result, Space, Spin, Tag, Tooltip, message, theme } from 'antd'
+import {
+  DefaultTheme,
+  ThemeEventEmitter,
+  ThemeKey,
+  ThemeKeyEnum,
+  addListenerPrefersColorScheme,
+  isDark
+} from '@/configs'
+import Icons from '@/configs/Icons'
+import { dynamicRegisterLanguage } from '@/utils/highlight'
+import { getHighlightCode } from '@/utils/markdown'
+import { PlaygroundStore, createIframe } from '@/utils/playground'
 import { CopyOutlined } from '@ant-design/icons'
 import { useAsyncEffect } from 'ahooks'
+import { Button, ConfigProvider, Radio, Result, Space, Spin, Tag, Tooltip, message, theme } from 'antd'
 import classnames from 'classnames'
 import copy from 'copy-to-clipboard'
 import { isUndefined } from 'lodash-es'
-import { PlaygroundStore, createIframe } from '@/utils/playground'
-import { dynamicRegisterLanguage } from '@/utils/highlight'
-import { getHighlightCode } from '@/utils/markdown'
-import {
-  ThemeKey,
-  ThemeKeyEnum,
-  ThemeEventEmitter,
-  DefaultTheme,
-  isDark,
-  addListenerPrefersColorScheme
-} from '@/configs'
-import Icons from '@/configs/Icons'
+import { useEffect, useRef, useState } from 'react'
 import { IconCode, IconCodeExpand } from './config'
 import styles from './index.module.less'
 

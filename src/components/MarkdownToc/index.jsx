@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react'
-import { Layout, Typography, Space, Tooltip, Tree, theme } from 'antd'
-import { CaretLeftOutlined, CaretRightOutlined, UnorderedListOutlined } from '@ant-design/icons'
-import { map } from 'lodash-es'
-import { useTranslation } from 'react-i18next'
 import { TocCollapsedKey } from '@/configs'
 import { getMarkdownTocData } from '@/utils'
+import { CaretLeftOutlined, CaretRightOutlined, UnorderedListOutlined } from '@ant-design/icons'
+import { Layout, Space, Tooltip, Tree, Typography, theme } from 'antd'
+import { map } from 'lodash-es'
+import React, { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 const { Sider } = Layout
 const { Text } = Typography

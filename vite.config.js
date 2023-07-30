@@ -1,5 +1,5 @@
-import { resolve } from 'path'
 import react from '@vitejs/plugin-react'
+import { resolve } from 'path'
 import Analyze from 'rollup-plugin-analyze'
 import { viteExternalsPlugin } from 'vite-plugin-externals'
 

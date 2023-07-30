@@ -1,10 +1,10 @@
-import prettier from 'prettier'
-import babelParser from 'prettier/parser-babel'
-import cssParser from 'prettier/parser-postcss'
-import htmlParser from 'prettier/parser-html'
+import { VercelApiPrefix } from '@/configs'
 import axios from 'axios'
 import { uniqueId } from 'lodash'
-import { VercelApiPrefix } from '@/configs'
+import prettier from 'prettier'
+import babelParser from 'prettier/parser-babel'
+import htmlParser from 'prettier/parser-html'
+import cssParser from 'prettier/parser-postcss'
 import InjectJS from './inject.js?raw'
 
 const PrettierConfig = {

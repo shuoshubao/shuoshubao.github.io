@@ -1,5 +1,5 @@
-import { map } from 'lodash-es'
 import { NavData } from '@/configs'
+import { map } from 'lodash-es'
 
 export const getHashs = () => {
   const hash = window.location.hash.slice(1)

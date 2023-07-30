@@ -1,6 +1,6 @@
-import React from 'react'
 import { Button, Card, Result, Typography } from 'antd'
 import ErrorStackParser from 'error-stack-parser'
+import React from 'react'
 
 const { Paragraph, Text } = Typography
 

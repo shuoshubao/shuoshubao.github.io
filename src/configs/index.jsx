@@ -1,5 +1,5 @@
+import { BulbOutlined, HeartOutlined, HomeOutlined, ToolOutlined } from '@ant-design/icons'
 import React from 'react'
-import { HomeOutlined, HeartOutlined, ToolOutlined, BulbOutlined } from '@ant-design/icons'
 import Icons, { IconFontSize } from './Icons'
 
 export * from './i18n'
