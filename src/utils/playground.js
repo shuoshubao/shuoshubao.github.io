@@ -116,8 +116,8 @@ const injectReact = ({ PlaygroundStartTime, js }) => {
   let jsCode
   if (js.includes('export default')) {
     jsCode = [
-      js.replace('export default', 'const App = '),
-      'ReactDOM.createRoot(document.querySelector("#app")).render(<App />);'
+      js.replace('export default', 'const PlaygroundApp = '),
+      'ReactDOM.createRoot(document.querySelector("#app")).render(<PlaygroundApp />);'
     ].join('\n')
   } else {
     jsCode = js
