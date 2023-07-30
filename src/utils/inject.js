@@ -48,13 +48,24 @@
 
   const { code } = Babel.transform(`jsCode`, {
     filename: [window.name, '.js'].join(''),
-    presets: ['env', 'react', 'typescript'],
+    sourceType: 'module',
+    presets: [
+      [
+        'env',
+        {
+          modules: false
+        }
+      ],
+      'react',
+      'typescript'
+    ],
     targets: {
       chrome: '200'
     }
   })
 
   const script = document.createElement('script')
+  script.setAttribute('type', 'module')
   script.innerHTML = code
   document.body.appendChild(script)
 

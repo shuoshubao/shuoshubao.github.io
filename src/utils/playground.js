@@ -2,11 +2,23 @@ import prettier from 'prettier'
 import babelParser from 'prettier/parser-babel'
 import cssParser from 'prettier/parser-postcss'
 import htmlParser from 'prettier/parser-html'
-import PrettierConfig from '@nbfe/standard/prettier.config'
 import axios from 'axios'
 import { uniqueId } from 'lodash'
 import { VercelApiPrefix } from '@/configs'
 import InjectJS from './inject.js?raw'
+
+const PrettierConfig = {
+  printWidth: 160,
+  useTabs: false,
+  tabWidth: 2,
+  semi: true,
+  singleQuote: true,
+  trailingComma: 'none',
+  proseWrap: 'never',
+  arrowParens: 'avoid',
+  bracketSpacing: true,
+  htmlWhitespaceSensitivity: 'ignore'
+}
 
 export const PlaygroundStore = new Map()
 
