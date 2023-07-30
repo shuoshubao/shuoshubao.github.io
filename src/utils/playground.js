@@ -123,7 +123,7 @@ const injectReact = ({ PlaygroundStartTime, js }) => {
     jsCode = js
   }
 
-  return InjectJS.replace('jsCode', jsCode).replace('PlaygroundStartTime', PlaygroundStartTime)
+  return InjectJS.replace('jsCode', jsCode).replaceAll('PlaygroundStartTime', PlaygroundStartTime)
 }
 
 export const createIframe = id => {

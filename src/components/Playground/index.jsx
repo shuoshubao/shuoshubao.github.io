@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { Button, ConfigProvider, Radio, Space, Spin, Tag, Tooltip, message, theme } from 'antd'
+import { Button, ConfigProvider, Radio, Result, Space, Spin, Tag, Tooltip, message, theme } from 'antd'
 import { CopyOutlined } from '@ant-design/icons'
 import { useAsyncEffect } from 'ahooks'
 import classnames from 'classnames'
@@ -28,6 +28,7 @@ const App = ({ id }) => {
   const demoRef = useRef(null)
 
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
   const [time, setTime] = useState(0)
   const [showCode, setShowCode] = useState(false)
   const [files, setFiles] = useState([])
@@ -42,9 +43,16 @@ const App = ({ id }) => {
         return
       }
       const { id: playgroundId, eventName, initializedTime } = e.data
-      if (playgroundId === id && eventName === 'initialized') {
-        setTime(initializedTime)
-        setLoading(false)
+      if (playgroundId === id) {
+        if (eventName === 'initialized') {
+          setTime(initializedTime)
+          setLoading(false)
+        }
+        if (eventName === 'error') {
+          setError(e.data.error)
+          setTime(initializedTime)
+          setLoading(false)
+        }
       }
     }
 
@@ -116,8 +124,17 @@ const App = ({ id }) => {
       style={{ borderColor: colorBorderSecondary }}
     >
       <Spin spinning={loading} tip="Loading...">
-        <div className={styles['playground-container-demo']} ref={demoRef} />
+        <div
+          className={styles['playground-container-demo']}
+          ref={demoRef}
+          style={{ display: error ? 'none' : 'block' }}
+        />
       </Spin>
+      {!loading && error && (
+        <Result status="error" title={error.name}>
+          <pre style={{ margin: 0 }}>{error.message}</pre>
+        </Result>
+      )}
       <div className={styles['playground-container-meta']}>
         <div className={styles['playground-container-actions']} style={{ borderColor: colorBorderSecondary }}>
           <div className={styles['playground-container-files']}>
