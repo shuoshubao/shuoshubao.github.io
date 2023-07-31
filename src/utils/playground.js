@@ -1,3 +1,4 @@
+import less from 'less'
 import { VercelApiPrefix } from '@/configs'
 import axios from 'axios'
 import { uniqueId } from 'lodash'
@@ -98,10 +99,8 @@ const getCssCode = async (css, cssType) => {
     return ''
   }
   if (cssType === 'less') {
-    const res = await axios.post(`${VercelApiPrefix}/api/compiler/less`, {
-      code: css
-    })
-    return res.data.data.css
+    const res = await less.render(css)
+    return res.css
   }
   if (cssType === 'sass') {
     const res = await axios.post(`${VercelApiPrefix}/api/compiler/sass`, {
