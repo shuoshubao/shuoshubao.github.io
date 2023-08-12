@@ -5,9 +5,13 @@
     "light": "Light mode",
     "system": "Follow system"
   },
+  "copied": "Copied",
   "page_not_found": "Sorry, the page you visited does not exist.",
   "total_articles": "Total {{value}} articles",
   "toc": "Table of Contents",
+  "expand_code": "Expand Code",
+  "collapse_code": "Collapse Code",
+  "fullscreen": "Fullscreen",
   "columns": {
     "title": "Title",
     "category": "Category",

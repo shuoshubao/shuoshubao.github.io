@@ -10,7 +10,6 @@ export default props => {
 
   return (
     <Select
-      size="small"
       options={I18nOptions}
       value={language}
       onChange={value => {

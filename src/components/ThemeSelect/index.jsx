@@ -29,5 +29,5 @@ export default props => {
     window.localStorage.setItem(ThemeKey, value)
   }
 
-  return <Select size="small" value={theme} onChange={handleChange} options={options} placement="topLeft" {...props} />
+  return <Select value={theme} onChange={handleChange} options={options} placement="topLeft" {...props} />
 }

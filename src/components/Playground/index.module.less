@@ -12,9 +12,16 @@
   .playground-container-demo {
     padding: 12px;
 
+    &:fullscreen {
+      iframe {
+        height: calc(100vh - 12px * 2);
+      }
+    }
+
     iframe {
       display: block;
       width: 100%;
+      height: unset;
       border: none;
 
       ::-webkit-scrollbar {
@@ -43,28 +50,27 @@
           }
         }
       }
-
-      .playground-container-btns {
-        :global {
-          .ant-btn {
-            width: 24px;
-            height: 24px;
-            padding: 0;
-            border: none;
-          }
-        }
-
-        svg {
-          width: 16px;
-          transition: fill 0.2s;
-          fill: #98a3aa;
-        }
-      }
     }
 
     .playground-container-source-code {
       padding: 12px;
       border-top: 1px solid transparent;
+    }
+  }
+}
+
+html[data-theme='light'] {
+  .playground-container-demo {
+    &:fullscreen {
+      background-color: #fff;
+    }
+  }
+}
+
+html[data-theme='dark'] {
+  .playground-container-demo {
+    &:fullscreen {
+      background-color: #000;
     }
   }
 }

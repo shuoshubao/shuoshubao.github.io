@@ -5,9 +5,13 @@
     "light": "浅色模式",
     "system": "跟随系统"
   },
+  "copied": "已复制",
   "page_not_found": "抱歉，您访问的页面不存在",
   "total_articles": "共 {{value}} 篇文章",
   "toc": "大纲",
+  "expand_code": "展开代码",
+  "collapse_code": "收起代码",
+  "fullscreen": "全屏",
   "columns": {
     "title": "标题",
     "category": "分类",

@@ -89,7 +89,7 @@ export default props => {
     if (targetNode) {
       const code = decodeURIComponent(targetNode.dataset.code)
       copy(code)
-      messageApi.success('Copied')
+      messageApi.success(t('copied'))
     }
   }
 

@@ -10,13 +10,14 @@ import Icons from '@/configs/Icons'
 import { dynamicRegisterLanguage } from '@/utils/highlight'
 import { getHighlightCode } from '@/utils/markdown'
 import { PlaygroundStore, createIframe } from '@/utils/playground'
-import { CopyOutlined } from '@ant-design/icons'
+import { CopyOutlined, FullscreenOutlined } from '@ant-design/icons'
 import { useAsyncEffect } from 'ahooks'
 import { Button, ConfigProvider, Radio, Result, Space, Spin, Tag, Tooltip, message, theme } from 'antd'
 import classnames from 'classnames'
 import copy from 'copy-to-clipboard'
 import { isUndefined } from 'lodash-es'
 import { useEffect, useRef, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { IconCode, IconCodeExpand } from './config'
 import styles from './index.module.less'
 
@@ -25,6 +26,8 @@ const { defaultAlgorithm, darkAlgorithm } = theme
 const defaultThemeValue = window.localStorage.getItem(ThemeKey) || DefaultTheme
 
 const App = ({ id }) => {
+  const { t } = useTranslation()
+
   const demoRef = useRef(null)
 
   const [loading, setLoading] = useState(true)
@@ -143,7 +146,6 @@ const App = ({ id }) => {
               onChange={e => {
                 setSelectedIndex(e.target.value)
               }}
-              size="small"
             >
               {files.map((v, i) => {
                 const { label, icon } = v
@@ -156,35 +158,43 @@ const App = ({ id }) => {
               })}
             </Radio.Group>
           </div>
-          <div className={styles['playground-container-btns']}>
-            <Space>
-              {!!time && (
-                <Tag color={timeTagColor} style={{ marginRight: 0 }}>
-                  {[time, 'ms'].join(' ')}
-                </Tag>
-              )}
-              {showCode && (
-                <Tooltip title="复制代码">
-                  <Button
-                    icon={<CopyOutlined />}
-                    onClick={() => {
-                      copy(files[selectedIndex].content)
-                      messageApi.success('Copied')
-                    }}
-                  />
-                </Tooltip>
-              )}
-              <Tooltip title={showCode ? '收起代码' : '展开代码'}>
+          <Space>
+            {!!time && (
+              <Tag color={timeTagColor} style={{ marginRight: 0, marginBottom: 5 }}>
+                {[time, 'ms'].join(' ')}
+              </Tag>
+            )}
+            <Tooltip title={t('fullscreen')}>
+              <Button
+                type="text"
+                icon={<FullscreenOutlined />}
+                onClick={() => {
+                  demoRef.current.requestFullscreen()
+                }}
+              />
+            </Tooltip>
+            {showCode && (
+              <Tooltip title="复制代码">
                 <Button
+                  type="text"
+                  icon={<CopyOutlined />}
                   onClick={() => {
-                    setShowCode(!showCode)
+                    copy(files[selectedIndex].content)
+                    messageApi.success(t('copied'))
                   }}
-                >
-                  {showCode ? <IconCodeExpand /> : <IconCode />}
-                </Button>
+                />
               </Tooltip>
-            </Space>
-          </div>
+            )}
+            <Tooltip title={showCode ? t('collapse_code') : t('expand_code')}>
+              <Button
+                type="text"
+                icon={showCode ? <IconCodeExpand /> : <IconCode />}
+                onClick={() => {
+                  setShowCode(!showCode)
+                }}
+              />
+            </Tooltip>
+          </Space>
         </div>
         <div className={styles['playground-container-source-code']} style={{ borderColor: colorBorderSecondary }}>
           <div dangerouslySetInnerHTML={{ __html: sourceCode }} />
