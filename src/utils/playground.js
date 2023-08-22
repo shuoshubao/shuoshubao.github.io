@@ -183,7 +183,7 @@ export const createIframe = id => {
     setInterval(() => {
       const innerHeight = Number(frameWin.document.body.scrollHeight)
       if (iframe.height !== innerHeight) {
-        iframe.height = innerHeight
+        iframe.style.height = [innerHeight, 'px'].join('')
       }
     }, 1e3)
   })
