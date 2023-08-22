@@ -23,9 +23,6 @@ const PrettierConfig = {
 
 export const PlaygroundStore = new Map()
 
-// test
-window.PlaygroundStore = PlaygroundStore
-
 const formatCode = (code, lang) => {
   if (lang === 'babel') {
     return prettier.format(code, {
@@ -64,7 +61,9 @@ export const parsePlayground = str => {
       type: 'css',
       text: ''
     },
-    js: ''
+    cssAssets: [],
+    js: '',
+    jsAssets: []
   }
 
   const renderer = document.createElement('template')
@@ -73,19 +72,22 @@ export const parsePlayground = str => {
   const { content: fragment } = renderer
 
   Array.from(fragment.children).forEach(v => {
-    const { localName, type, innerHTML } = v
+    const { localName, type, innerHTML, dataset } = v
+    const assets = (dataset.assets || '').split(';').filter(Boolean)
     if (localName === StyleTagName) {
       const cssType = type ? type.split('/')[1] : 'css'
       result.css = {
         type: cssType,
         text: formatCode(innerHTML, cssType)
       }
+      result.cssAssets = assets
     }
     if (localName === MarkupTagName) {
       result.html = formatCode(innerHTML, 'html')
     }
     if (localName === ScriptTagName) {
       result.js = formatCode(innerHTML, 'babel')
+      result.jsAssets = assets
     }
   })
 
@@ -111,7 +113,7 @@ const getCssCode = async (css, cssType) => {
   return css
 }
 
-const injectReact = ({ PlaygroundStartTime, js }) => {
+const injectReact = ({ PlaygroundStartTime, js, jsAssets }) => {
   let jsCode
   if (js.includes('export default')) {
     jsCode = [
@@ -122,12 +124,21 @@ const injectReact = ({ PlaygroundStartTime, js }) => {
     jsCode = js
   }
 
-  return InjectJS.replace('jsCode', jsCode).replaceAll('PlaygroundStartTime', PlaygroundStartTime)
+  return InjectJS.replace('jsCode', jsCode)
+    .replaceAll('PlaygroundStartTime', PlaygroundStartTime)
+    .replaceAll('PlaygroundJsAssets', JSON.stringify(jsAssets))
+}
+
+const loadStyle = (doc, src) => {
+  const link = doc.createElement('link')
+  link.rel = 'stylesheet'
+  link.href = src
+  doc.head.appendChild(link)
 }
 
 export const createIframe = id => {
   const PlaygroundStartTime = Date.now()
-  const { html, css, js } = PlaygroundStore.get(id)
+  const { html, css, cssAssets, js, jsAssets } = PlaygroundStore.get(id)
   const iframe = document.createElement('iframe')
 
   iframe.name = id
@@ -137,16 +148,15 @@ export const createIframe = id => {
     const frameDoc = frameWin.document
 
     const injectCss = () => {
-      const link = frameDoc.createElement('link')
-      link.rel = 'stylesheet'
-      link.href = 'https://unpkg.com/antd@5.7.1/dist/reset.css'
-      frameDoc.head.appendChild(link)
+      ;['https://unpkg.com/antd@5.7.1/dist/reset.css'].concat(cssAssets).forEach(v => {
+        loadStyle(frameDoc, v)
+      })
     }
 
     const injectJs = () => {
       const script = frameDoc.createElement('script')
 
-      script.innerHTML = injectReact({ PlaygroundStartTime, js })
+      script.innerHTML = injectReact({ PlaygroundStartTime, js, jsAssets })
 
       frameDoc.body.appendChild(script)
     }

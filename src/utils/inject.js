@@ -29,6 +29,10 @@
 
     await Promise.all(ScriptList.map(loadScript))
 
+    for (const src of PlaygroundJsAssets) {
+      await loadScript(src)
+    }
+
     const { Babel, React, ReactDOM, antd } = window
 
     console.table({
