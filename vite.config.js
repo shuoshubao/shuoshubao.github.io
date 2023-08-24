@@ -24,7 +24,8 @@ export default ({ mode }) => {
         react: 'React',
         'react-dom': 'ReactDOM',
         dayjs: 'dayjs',
-        antd: 'antd'
+        antd: 'antd',
+        lodash: '_'
       }),
       Analyze({ filename: 'docs/stats.html' })
     ]

@@ -10,6 +10,7 @@
     window.React = window.parent.React
     window.ReactDOM = window.parent.ReactDOM
     window.dayjs = window.parent.dayjs
+    window._ = window.parent._
 
     const loadScript = src => {
       return new Promise(resolve => {
@@ -39,14 +40,16 @@
       babel: Babel.version,
       react: React.version,
       'react-dom': ReactDOM.version,
-      antd: antd.version
+      antd: antd.version,
+      lodash: _.VERSION
     })
 
     const ExternalMap = {
       react: 'React',
       'react-dom': 'ReactDOM',
       dayjs: 'dayjs',
-      antd: 'antd'
+      antd: 'antd',
+      lodash: '_'
     }
 
     // eslint-disable-next-line quotes
