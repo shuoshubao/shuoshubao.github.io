@@ -1,6 +1,6 @@
 import { AndroidOutlined, AppleOutlined, WindowsOutlined } from '@ant-design/icons'
 import EventEmitter from 'eventemitter3'
-import { camelCase } from 'lodash-es'
+import { camelCase } from 'lodash'
 import React from 'react'
 import { v4 as uuidv4 } from 'uuid'
 

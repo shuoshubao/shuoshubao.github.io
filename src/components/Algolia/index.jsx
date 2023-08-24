@@ -2,7 +2,7 @@ import HighlightText from '@/components/HighlightText'
 import { decodeText, memoizeFetch } from '@/utils'
 import { SearchOutlined } from '@ant-design/icons'
 import { AutoComplete, Button, Col, Empty, Input, List, Modal, Row, Tag, Typography } from 'antd'
-import { debounce, find, once } from 'lodash-es'
+import { debounce, find, once } from 'lodash'
 import React, { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 

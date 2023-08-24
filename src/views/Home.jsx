@@ -3,7 +3,7 @@ import Icons from '@/configs/Icons'
 import { GithubOutlined, HomeOutlined } from '@ant-design/icons'
 import { formatTime } from '@nbfe/tools'
 import { Button, Card, Col, Row, Space, Table, Typography } from 'antd'
-import { find, map } from 'lodash-es'
+import { find, map } from 'lodash'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 
