@@ -1,6 +1,6 @@
-import less from 'less'
 import { VercelApiPrefix } from '@/configs'
 import axios from 'axios'
+import less from 'less'
 import { uniqueId } from 'lodash'
 import prettier from 'prettier'
 import babelParser from 'prettier/parser-babel'
@@ -57,10 +57,8 @@ export const parsePlayground = str => {
 
   const result = {
     html: '',
-    css: {
-      type: 'css',
-      text: ''
-    },
+    css: '',
+    cssType: '',
     cssAssets: [],
     js: '',
     jsAssets: []
@@ -76,10 +74,8 @@ export const parsePlayground = str => {
     const assets = (dataset.assets || '').split(';').filter(Boolean)
     if (localName === StyleTagName) {
       const cssType = type ? type.split('/')[1] : 'css'
-      result.css = {
-        type: cssType,
-        text: formatCode(innerHTML, cssType)
-      }
+      result.css = formatCode(innerHTML, cssType)
+      result.cssType = cssType
       result.cssAssets = assets
     }
     if (localName === MarkupTagName) {
@@ -138,7 +134,7 @@ const loadStyle = (doc, src) => {
 
 export const createIframe = id => {
   const PlaygroundStartTime = Date.now()
-  const { html, css, cssAssets, js, jsAssets } = PlaygroundStore.get(id)
+  const { html, css, cssType, cssAssets, js, jsAssets } = PlaygroundStore.get(id)
   const iframe = document.createElement('iframe')
 
   iframe.name = id
@@ -148,7 +144,8 @@ export const createIframe = id => {
     const frameDoc = frameWin.document
 
     const injectCss = () => {
-      ;['https://unpkg.com/antd@5.7.1/dist/reset.css'].concat(cssAssets).forEach(v => {
+      const builtInCssAssets = ['https://unpkg.com/antd@5.7.1/dist/reset.css']
+      builtInCssAssets.concat(cssAssets).forEach(v => {
         loadStyle(frameDoc, v)
       })
     }
@@ -167,10 +164,10 @@ export const createIframe = id => {
       injectJs()
     }
 
-    if (css.text) {
+    if (css) {
       const style = frameDoc.createElement('style')
 
-      style.innerHTML = await getCssCode(css.text, css.type)
+      style.innerHTML = await getCssCode(css, cssType)
 
       frameDoc.head.appendChild(style)
     }
