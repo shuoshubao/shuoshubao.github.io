@@ -1,0 +1,22 @@
+.container {
+  .sider-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    overflow-y: auto;
+
+    .editor-container {
+      flex: 1;
+    }
+  }
+
+  .iframe-container {
+    flex: 1;
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  }
+}

@@ -1,5 +1,5 @@
 import { NavData } from '@/configs'
-import { map } from 'lodash'
+import { isEqual, map } from 'lodash'
 
 export const getHashs = () => {
   const hash = window.location.hash.slice(1)
@@ -11,6 +11,9 @@ export const getPageType = () => {
   const [category] = hashs
   if (hashs.length === 0) {
     return 'index'
+  }
+  if (isEqual(hashs, ['playground'])) {
+    return 'playground'
   }
   if (!map(NavData.slice(1), 'value').includes(category)) {
     return '404'

@@ -17,6 +17,7 @@ import { useTranslation } from 'react-i18next'
 const Home = lazy(() => import('@/views/Home'))
 const Category = lazy(() => import('@/views/Category'))
 const Article = lazy(() => import('@/views/Article'))
+const Playground = lazy(() => import('@/views/Playground'))
 
 const { Text } = Typography
 const { Header, Sider, Content } = Layout
@@ -57,6 +58,10 @@ export default () => {
   useEffect(() => {
     fetchData()
   }, [setCategoryData])
+
+  if (pageType === 'playground') {
+    return <Playground />
+  }
 
   return (
     <Layout>
