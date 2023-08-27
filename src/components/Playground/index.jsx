@@ -67,7 +67,7 @@ const App = ({ id }) => {
   }, [])
 
   useEffect(() => {
-    const { html, css, js } = PlaygroundStore.get(id)
+    const { html, css, cssType, js } = PlaygroundStore.get(id)
     const list = []
     if (js) {
       list.push({
@@ -77,11 +77,11 @@ const App = ({ id }) => {
         icon: Icons.JavaScript
       })
     }
-    if (css.text) {
+    if (css) {
       list.push({
-        value: css.type,
-        label: css.type,
-        content: css.text,
+        value: cssType,
+        label: cssType,
+        content: css,
         icon: Icons.Css
       })
     }
