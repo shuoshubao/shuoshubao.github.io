@@ -1,4 +1,5 @@
 import { VercelApiPrefix } from '@/configs'
+import antdResetCss from 'antd/dist/reset.css'
 import axios from 'axios'
 import less from 'less'
 import { uniqueId } from 'lodash'
@@ -125,6 +126,12 @@ const injectReact = ({ PlaygroundStartTime, js, jsAssets }) => {
     .replaceAll('PlaygroundJsAssets', JSON.stringify(jsAssets))
 }
 
+const loadStyleText = (doc, text) => {
+  const style = doc.createElement('style')
+  style.innerHTML = text
+  doc.head.appendChild(style)
+}
+
 const loadStyle = (doc, src) => {
   const link = doc.createElement('link')
   link.rel = 'stylesheet'
@@ -144,8 +151,7 @@ export const createIframe = id => {
     const frameDoc = frameWin.document
 
     const injectCss = () => {
-      const builtInCssAssets = ['https://unpkg.com/antd@5.7.1/dist/reset.css']
-      builtInCssAssets.concat(cssAssets).forEach(v => {
+      cssAssets.forEach(v => {
         loadStyle(frameDoc, v)
       })
     }
@@ -158,24 +164,22 @@ export const createIframe = id => {
       frameDoc.body.appendChild(script)
     }
 
+    // 注入 css
     injectCss()
-
-    if (js) {
-      injectJs()
-    }
+    loadStyleText(frameDoc, antdResetCss)
 
     if (css) {
-      const style = frameDoc.createElement('style')
-
-      style.innerHTML = await getCssCode(css, cssType)
-
-      frameDoc.head.appendChild(style)
+      const cssText = await getCssCode(css, cssType)
+      loadStyleText(frameDoc, cssText)
     }
 
     // 注入 html
     frameDoc.body.insertAdjacentHTML('afterbegin', html || '<div id="app"></div>')
 
-    if (!js) {
+    // 注入 js
+    if (js) {
+      injectJs()
+    } else {
       frameWin.parent.postMessage(
         {
           type: 'playground',

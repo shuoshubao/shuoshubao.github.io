@@ -1,5 +1,5 @@
 import { PlaygroundStore, createIframe } from '@/utils/playground'
-import { EyeInvisibleOutlined, EyeOutlined, SendOutlined, SettingOutlined } from '@ant-design/icons'
+import { EyeInvisibleOutlined, EyeOutlined, PlayCircleOutlined, SettingOutlined } from '@ant-design/icons'
 import { sleep } from '@nbfe/tools'
 import { useGetState } from 'ahooks'
 import { Button, ConfigProvider, Layout, Radio, Space, theme } from 'antd'
@@ -137,10 +137,10 @@ export default () => {
               }}
               icon={collapsed ? <EyeOutlined /> : <EyeInvisibleOutlined />}
             />
+            <Button icon={<SettingOutlined />} />
           </Space>
           <Space>
-            <Button icon={<SettingOutlined />} />
-            <Button type="primary" icon={<SendOutlined />} onClick={handleExecute}>
+            <Button type="primary" icon={<PlayCircleOutlined />} onClick={handleExecute}>
               运行
             </Button>
           </Space>
@@ -182,7 +182,11 @@ export default () => {
               </div>
             </Sider>
           </Resizable>
-          <Content ref={iframeRef} className={styles['iframe-container']} />
+          <Content
+            ref={iframeRef}
+            className={styles['iframe-container']}
+            style={{ padding: token.paddingContentVertical }}
+          />
         </Layout>
       </Layout>
     </ConfigProvider>
