@@ -1,5 +1,5 @@
 import { VercelApiPrefix } from '@/configs'
-import antdResetCss from 'antd/dist/reset.css'
+import antdResetCss from 'antd/dist/reset.css?inline'
 import axios from 'axios'
 import less from 'less'
 import { uniqueId } from 'lodash'

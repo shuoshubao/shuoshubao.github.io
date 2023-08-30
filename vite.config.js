@@ -24,6 +24,7 @@ export default ({ mode }) => {
       viteExternalsPlugin({
         react: 'React',
         'react-dom': 'ReactDOM',
+        moment: 'moment',
         dayjs: 'dayjs',
         antd: 'antd',
         lodash: '_'

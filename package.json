@@ -17,6 +17,7 @@
     "lint:style": "npx stylelint --fix -o StyleLintReport.html --custom-formatter node_modules/stylelint-formatters-html src/**/*.{css,less,scss,sass}"
   },
   "dependencies": {
+    "@nbfe/components": "^0.5.0",
     "@nbfe/tools": "^0.5.2",
     "ahooks": "^3.7.8",
     "antd": "^5.7.1",

@@ -1,8 +1,9 @@
 import { PlaygroundStore, createIframe } from '@/utils/playground'
 import { EyeInvisibleOutlined, EyeOutlined, PlayCircleOutlined, SettingOutlined } from '@ant-design/icons'
-import { sleep } from '@nbfe/tools'
+import { Form } from '@nbfe/components'
+import { isEmptyString, isUniq, sleep } from '@nbfe/tools'
 import { useGetState } from 'ahooks'
-import { Button, ConfigProvider, Layout, Radio, Space, theme } from 'antd'
+import { Button, ConfigProvider, Layout, Modal, Radio, Space, theme } from 'antd'
 import { cloneDeep } from 'lodash'
 import 'monaco-editor/esm/vs/basic-languages/monaco.contribution'
 import 'monaco-editor/esm/vs/editor/editor.all'
@@ -23,7 +24,7 @@ import { v4 as uuidv4 } from 'uuid'
 import styles from './index.module.less'
 
 const { Header, Sider, Content } = Layout
-const { defaultAlgorithm, useToken } = theme
+const { defaultAlgorithm, darkAlgorithm, useToken } = theme
 
 const CollapsedKey = 'playground-collapsed'
 const SiderWidthKey = 'playground-sider-width'
@@ -50,6 +51,7 @@ export default () => {
   const resizableRef = useRef()
   const editorRef = useRef()
   const iframeRef = useRef()
+  const formRef = useRef()
 
   const [PlaygroundId] = useState(uuidv4())
   const [collapsed, setCollapsed] = useState(JSON.parse(window.sessionStorage.getItem(CollapsedKey)) || false)
@@ -58,6 +60,65 @@ export default () => {
   const [language, setLanguage, getLanguage] = useGetState(LanguagesEnum[0].value)
 
   const { token } = useToken()
+
+  const columns = [
+    {
+      label: 'CSS',
+      name: 'cssAssets',
+      tooltip: '额外的 CSS 资源',
+      rules: [
+        {
+          validator(rule, value) {
+            if (value.some(v => isEmptyString(v))) {
+              console.log(111)
+              console.log(value)
+              return Promise.reject(new Error('不能有空数据'))
+            }
+            if (!isUniq(value)) {
+              return Promise.reject(new Error('不能有重复项'))
+            }
+            if (value.length > 5) {
+              return Promise.reject(new Error('至多 5 项'))
+            }
+            return Promise.resolve()
+          }
+        }
+      ],
+      formListConfig: {
+        record: '',
+        rules: [
+          (label, index, name) => {
+            console.log(name)
+            return {
+              required: true,
+              message: '不得为空'
+            }
+          }
+        ]
+      },
+      template: {
+        tpl: 'input'
+      }
+    },
+    {
+      label: '城市',
+      name: 'cities',
+      tooltip: '和其他内置组件一样的写法',
+      rules: [
+        {
+          validator(rule, value) {
+            if (value.length < 2) {
+              return Promise.reject(new Error('至少 2 项'))
+            }
+            if (value.length > 5) {
+              return Promise.reject(new Error('至多 5 项'))
+            }
+            return Promise.resolve()
+          }
+        }
+      ]
+    }
+  ]
 
   const handleChangeLanguage = value => {
     const result = PlaygroundStore.get(PlaygroundId)
@@ -79,6 +140,12 @@ export default () => {
 
     const iframe = createIframe(PlaygroundId)
     iframeRef.current.appendChild(iframe)
+  }
+
+  const handleSubmit = async () => {
+    const values = await formRef.current.getFieldsValue()
+    console.log(999)
+    console.log(values)
   }
 
   useEffect(() => {
@@ -113,7 +180,7 @@ export default () => {
   return (
     <ConfigProvider
       theme={{
-        algorithm: defaultAlgorithm
+        algorithm: darkAlgorithm
       }}
     >
       <Layout className={styles.container}>
@@ -189,6 +256,14 @@ export default () => {
           />
         </Layout>
       </Layout>
+      <Modal title="设置" open={true} onOk={handleSubmit}>
+        <Form
+          ref={formRef}
+          columns={columns}
+          // initialValues={initialValues}
+          onFinish={handleSubmit}
+        />
+      </Modal>
     </ConfigProvider>
   )
 }
