@@ -1,9 +1,9 @@
 import { PlaygroundStore, createIframe } from '@/utils/playground'
 import { EyeInvisibleOutlined, EyeOutlined, PlayCircleOutlined, SettingOutlined } from '@ant-design/icons'
 import { Form } from '@nbfe/components'
-import { isEmptyString, isUniq, sleep } from '@nbfe/tools'
+import { sleep } from '@nbfe/tools'
 import { useGetState } from 'ahooks'
-import { Button, ConfigProvider, Layout, Modal, Radio, Space, theme } from 'antd'
+import { Button, ConfigProvider, Layout, Modal, Radio, Space, message, theme } from 'antd'
 import { cloneDeep } from 'lodash'
 import 'monaco-editor/esm/vs/basic-languages/monaco.contribution'
 import 'monaco-editor/esm/vs/editor/editor.all'
@@ -21,6 +21,7 @@ import 'monaco-editor/esm/vs/language/typescript/monaco.contribution'
 import { Resizable } from 're-resizable'
 import { useEffect, useRef, useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
+import { formColumns } from './config'
 import styles from './index.module.less'
 
 const { Header, Sider, Content } = Layout
@@ -53,6 +54,7 @@ export default () => {
   const iframeRef = useRef()
   const formRef = useRef()
 
+  const [visibleSettting, setVisibleSettting] = useState(false)
   const [PlaygroundId] = useState(uuidv4())
   const [collapsed, setCollapsed] = useState(JSON.parse(window.sessionStorage.getItem(CollapsedKey)) || false)
   const [siderWidth, setSiderWidth] = useState(JSON.parse(window.sessionStorage.getItem(SiderWidthKey)) || 500)
@@ -60,65 +62,6 @@ export default () => {
   const [language, setLanguage, getLanguage] = useGetState(LanguagesEnum[0].value)
 
   const { token } = useToken()
-
-  const columns = [
-    {
-      label: 'CSS',
-      name: 'cssAssets',
-      tooltip: '额外的 CSS 资源',
-      rules: [
-        {
-          validator(rule, value) {
-            if (value.some(v => isEmptyString(v))) {
-              console.log(111)
-              console.log(value)
-              return Promise.reject(new Error('不能有空数据'))
-            }
-            if (!isUniq(value)) {
-              return Promise.reject(new Error('不能有重复项'))
-            }
-            if (value.length > 5) {
-              return Promise.reject(new Error('至多 5 项'))
-            }
-            return Promise.resolve()
-          }
-        }
-      ],
-      formListConfig: {
-        record: '',
-        rules: [
-          (label, index, name) => {
-            console.log(name)
-            return {
-              required: true,
-              message: '不得为空'
-            }
-          }
-        ]
-      },
-      template: {
-        tpl: 'input'
-      }
-    },
-    {
-      label: '城市',
-      name: 'cities',
-      tooltip: '和其他内置组件一样的写法',
-      rules: [
-        {
-          validator(rule, value) {
-            if (value.length < 2) {
-              return Promise.reject(new Error('至少 2 项'))
-            }
-            if (value.length > 5) {
-              return Promise.reject(new Error('至多 5 项'))
-            }
-            return Promise.resolve()
-          }
-        }
-      ]
-    }
-  ]
 
   const handleChangeLanguage = value => {
     const result = PlaygroundStore.get(PlaygroundId)
@@ -142,10 +85,19 @@ export default () => {
     iframeRef.current.appendChild(iframe)
   }
 
-  const handleSubmit = async () => {
-    const values = await formRef.current.getFieldsValue()
-    console.log(999)
-    console.log(values)
+  const handleSubmit = () => {
+    formRef.current
+      .validateFields()
+      .then(values => {
+        console.log(999)
+        console.log(values)
+
+        setVisibleSettting(false)
+      })
+      .catch(err => {
+        console.log(err)
+        message.error('Please check the form')
+      })
   }
 
   useEffect(() => {
@@ -204,7 +156,12 @@ export default () => {
               }}
               icon={collapsed ? <EyeOutlined /> : <EyeInvisibleOutlined />}
             />
-            <Button icon={<SettingOutlined />} />
+            <Button
+              icon={<SettingOutlined />}
+              onClick={() => {
+                setVisibleSettting(true)
+              }}
+            />
           </Space>
           <Space>
             <Button type="primary" icon={<PlayCircleOutlined />} onClick={handleExecute}>
@@ -256,13 +213,15 @@ export default () => {
           />
         </Layout>
       </Layout>
-      <Modal title="设置" open={true} onOk={handleSubmit}>
-        <Form
-          ref={formRef}
-          columns={columns}
-          // initialValues={initialValues}
-          onFinish={handleSubmit}
-        />
+      <Modal
+        title="设置"
+        open={visibleSettting}
+        onOk={handleSubmit}
+        onCancel={() => {
+          setVisibleSettting(false)
+        }}
+      >
+        <Form ref={formRef} columns={formColumns} initialValues={{ cssAssets: [] }} onFinish={handleSubmit} />
       </Modal>
     </ConfigProvider>
   )
