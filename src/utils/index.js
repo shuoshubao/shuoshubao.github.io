@@ -29,5 +29,5 @@ const addStylesheet = (href = '') => {
 const memoizedAddStylesheet = memoize(addStylesheet)
 
 export const addKatexStylesheet = () => {
-  memoizedAddStylesheet('https://unpkg.com/katex@0.16.4/dist/katex.min.css')
+  memoizedAddStylesheet('https://cdn.bootcdn.net/ajax/libs/KaTeX/0.16.8/katex.min.css')
 }
