@@ -24,8 +24,8 @@
     }
 
     const ScriptList = [
-      'https://cdn.bootcdn.net/ajax/libs/antd/5.7.1/antd.min.js',
-      'https://cdn.bootcdn.net/ajax/libs/babel-standalone/7.22.17/babel.min.js'
+      'https://registry.npmmirror.com/antd/5.7.1/files/dist/antd.min.js',
+      'https://registry.npmmirror.com/@babel/standalone/7.22.9/files/babel.min.js'
     ]
 
     await Promise.all(ScriptList.map(loadScript))
