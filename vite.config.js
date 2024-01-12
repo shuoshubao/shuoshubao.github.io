@@ -2,7 +2,6 @@ import react from '@vitejs/plugin-react'
 import { resolve } from 'path'
 import Analyze from 'rollup-plugin-analyze'
 import { viteExternalsPlugin } from 'vite-plugin-externals'
-import monacoEditorPlugin from 'vite-plugin-monaco-editor'
 
 // https://vitejs.dev/config/
 export default ({ mode }) => {
@@ -28,9 +27,6 @@ export default ({ mode }) => {
         dayjs: 'dayjs',
         antd: 'antd',
         lodash: '_'
-      }),
-      monacoEditorPlugin({
-        languageWorkers: ['editorWorkerService', 'css', 'html', 'typescript']
       }),
       Analyze({ filename: 'docs/stats.html' })
     ]

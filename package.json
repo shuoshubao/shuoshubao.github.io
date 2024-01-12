@@ -57,8 +57,7 @@
     "rollup-plugin-analyze": "^0.1.1",
     "sass": "^1.57.1",
     "vite": "^4.3.9",
-    "vite-plugin-externals": "^0.6.2",
-    "vite-plugin-monaco-editor": "^1.1.0"
+    "vite-plugin-externals": "^0.6.2"
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx,vue,css,less,scss,sass,json,md}": [

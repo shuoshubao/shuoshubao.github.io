@@ -1,47 +1,26 @@
+<!--
+ * @Author: shuoshubao shuoshubao@gmail.com
+ * @Date: 2023-10-08 17:15:31
+ * @LastEditors: shuoshubao shuoshubao@gmail.com
+ * @LastEditTime: 2023-10-11 19:36:54
+ * @Description: 
+-->
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <script>self["MonacoEnvironment"] = (function (paths) {
-          return {
-            globalAPI: false,
-            getWorkerUrl : function (moduleId, label) {
-              var result =  paths[label];
-              if (/^((http:)|(https:)|(file:)|(\/\/))/.test(result)) {
-                var currentUrl = String(window.location);
-                var currentOrigin = currentUrl.substr(0, currentUrl.length - window.location.hash.length - window.location.search.length - window.location.pathname.length);
-                if (result.substring(0, currentOrigin.length) !== currentOrigin) {
-                  var js = '/*' + label + '*/importScripts("' + result + '");';
-                  var blob = new Blob([js], { type: 'application/javascript' });
-                  return URL.createObjectURL(blob);
-                }
-              }
-              return result;
-            }
-          };
-        })({
-  "editorWorkerService": "/monacoeditorwork/editor.worker.bundle.js",
-  "css": "/monacoeditorwork/css.worker.bundle.js",
-  "html": "/monacoeditorwork/html.worker.bundle.js",
-  "typescript": "/monacoeditorwork/ts.worker.bundle.js",
-  "javascript": "/monacoeditorwork/ts.worker.bundle.js",
-  "less": "/monacoeditorwork/css.worker.bundle.js",
-  "scss": "/monacoeditorwork/css.worker.bundle.js",
-  "handlebars": "/monacoeditorwork/html.worker.bundle.js",
-  "razor": "/monacoeditorwork/html.worker.bundle.js"
-});</script>
-
   <title>硕鼠宝</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <link rel="icon" type="image/svg+xml" href="https://vitejs.dev/logo.svg" />
-  <link rel="stylesheet" href="https://unpkg.com/antd@5.7.1/dist/reset.css" />
-  <script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
-  <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
-  <script src="https://unpkg.com/dayjs@1.11.9/dayjs.min.js"></script>
-  <script src="https://unpkg.com/antd@5.7.1/dist/antd.min.js"></script>
-  <script src="https://unpkg.com/lodash@4.17.21/lodash.min.js"></script>
-  <script type="module" crossorigin src="/assets/index-2c137f09.js"></script>
+  <link rel="stylesheet" href="https://registry.npmmirror.com/antd/5.7.1/files/dist/reset.css" />
+  <script src="https://registry.npmmirror.com/react/18.2.0/files/umd/react.production.min.js"></script>
+  <script src="https://registry.npmmirror.com/react-dom/18.2.0/files/umd/react-dom.production.min.js"></script>
+  <script src="https://registry.npmmirror.com/dayjs/1.10.8/files/dayjs.min.js"></script>
+  <script src="https://registry.npmmirror.com/moment/2.29.4/files/min/moment.min.js"></script>
+  <script src="https://registry.npmmirror.com/antd/5.7.1/files/dist/antd.min.js"></script>
+  <script src="https://registry.npmmirror.com/lodash/4.17.21/files/lodash.min.js"></script>
+  <script type="module" crossorigin src="/assets/index-f0d706bd.js"></script>
   <link rel="stylesheet" href="/assets/index-38771d87.css">
 </head>
 
