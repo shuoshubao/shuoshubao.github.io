@@ -22,6 +22,7 @@
     "ahooks": "^3.7.8",
     "antd": "^5.7.1",
     "axios": "^1.4.0",
+    "canvas-confetti": "^1.9.2",
     "error-stack-parser": "^2.1.4",
     "eventemitter3": "^5.0.1",
     "filesize": "^8.0.7",

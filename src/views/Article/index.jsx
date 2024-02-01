@@ -1,7 +1,7 @@
 import MarkdownToc from '@/components/MarkdownToc'
 import Playground from '@/components/Playground'
 import { updateMarkdownTheme } from '@/configs'
-import { MarkdownItHighlight, addKatexStylesheet, getAllLanguages, getHashs, memoizeFetch } from '@/utils'
+import { MarkdownItHighlight, addKatexStylesheet, getAllLanguages, getHashs, memoizeFetch, showConfetti } from '@/utils'
 import { CodeOutlined } from '@ant-design/icons'
 import { Button, Card, Divider, Image, Layout, Modal, Result, Space, Tag, Typography, message, theme } from 'antd'
 import copy from 'copy-to-clipboard'
@@ -50,6 +50,7 @@ export default props => {
 
   const fetchData = async () => {
     const md = await memoizeFetch(`article/${[category, name].join('/')}.md`)
+    showConfetti()
     const languages = await getAllLanguages(md)
     const MarkdownIt = await MarkdownItHighlight(languages)
     const htmlStr = MarkdownIt.render(md)

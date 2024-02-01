@@ -1,5 +1,6 @@
 import { isDevelopment } from '@/configs'
 import { memoize } from '@nbfe/tools'
+import confetti from 'canvas-confetti'
 
 export * from './markdown'
 export * from './route'
@@ -30,4 +31,12 @@ const memoizedAddStylesheet = memoize(addStylesheet)
 
 export const addKatexStylesheet = () => {
   memoizedAddStylesheet('https://registry.npmmirror.com/katex/0.16.8/files/dist/katex.min.css')
+}
+
+export const showConfetti = () => {
+  confetti({
+    particleCount: 200,
+    spread: 200,
+    origin: { y: 0.6 }
+  })
 }

@@ -6,7 +6,7 @@ import ErrorBoundaryFallback from '@/components/ErrorBoundaryFallback'
 import I18nSelect from '@/components/I18nSelect'
 import ThemeSelect from '@/components/ThemeSelect'
 import { CollapsedKey, NavData } from '@/configs'
-import { getHashs, getPageType, memoizeFetch } from '@/utils'
+import { getHashs, getPageType, memoizeFetch, showConfetti } from '@/utils'
 import { CaretLeftOutlined, CaretRightOutlined } from '@ant-design/icons'
 import { Avatar, Layout, Menu, Result, Skeleton, Space, Typography, theme } from 'antd'
 import 'antd/dist/reset.css'
@@ -26,6 +26,7 @@ const { useToken } = theme
 
 const SiderWidth = 150
 
+// eslint-disable-next-line sonarjs/cognitive-complexity
 export default () => {
   const [pageType, setPageType] = useState(getPageType())
   const [pageHashs, setPageHashs] = useState(getHashs())
@@ -46,6 +47,12 @@ export default () => {
     })
     setCategoryData(data)
   }
+
+  useEffect(() => {
+    if (getPageType() !== 'detail') {
+      showConfetti()
+    }
+  }, [])
 
   useEffect(() => {
     window.addEventListener('hashchange', () => {
