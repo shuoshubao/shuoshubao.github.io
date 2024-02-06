@@ -50,12 +50,12 @@ export default props => {
 
   const fetchData = async () => {
     const md = await memoizeFetch(`article/${[category, name].join('/')}.md`)
-    showConfetti()
     const languages = await getAllLanguages(md)
     const MarkdownIt = await MarkdownItHighlight(languages)
     const htmlStr = MarkdownIt.render(md)
     setMarkdownHtml(htmlStr)
     setContent(md)
+    showConfetti()
     setTimeout(() => {
       setImageList([...document.querySelectorAll('.markdown-body img')].map(v => v.src))
     }, 1)
