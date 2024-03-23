@@ -1,21 +1,25 @@
 import { isDevelopment } from '@/configs'
 import { memoize } from '@nbfe/tools'
 import confetti from 'canvas-confetti'
+import { get } from 'lodash'
 
 export * from './markdown'
 export * from './route'
 export * from './text'
 
-export const getFetchPrefix = () => {
+const getFetchPrefix = async () => {
   if (isDevelopment) {
     const { protocol, hostname } = window.location
     return `${protocol}//${hostname}:3000/`
   }
-  return 'https://raw.githubusercontent.com/shuoshubao/blog/master/'
+  const data = await fetch('https://registry.npmmirror.com/@nbfe/blog').then(res => res.json())
+  const version = get(data, 'dist-tags.latest')
+  return ['https://registry.npmmirror.com/@nbfe/blog', version, 'files'].join('/')
 }
 
-const fetchMd = (url = '', options = {}) => {
-  return fetch(getFetchPrefix() + url, options).then(res => res.text())
+const fetchMd = async (url = '', options = {}) => {
+  const prefix = await getFetchPrefix()
+  return fetch([prefix, url].join('/'), options).then(res => res.text())
 }
 
 export const memoizeFetch = memoize(fetchMd)
