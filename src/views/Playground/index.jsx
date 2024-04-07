@@ -5,19 +5,7 @@ import { sleep } from '@nbfe/tools'
 import { useGetState } from 'ahooks'
 import { Button, ConfigProvider, Layout, Modal, Radio, Space, message, theme } from 'antd'
 import { cloneDeep } from 'lodash'
-import 'monaco-editor/esm/vs/basic-languages/monaco.contribution'
-import 'monaco-editor/esm/vs/editor/editor.all'
 import * as monaco from 'monaco-editor/esm/vs/editor/editor.api'
-import 'monaco-editor/esm/vs/editor/standalone/browser/iPadShowKeyboard/iPadShowKeyboard'
-import 'monaco-editor/esm/vs/editor/standalone/browser/inspectTokens/inspectTokens'
-import 'monaco-editor/esm/vs/editor/standalone/browser/quickAccess/standaloneCommandsQuickAccess'
-import 'monaco-editor/esm/vs/editor/standalone/browser/quickAccess/standaloneGotoLineQuickAccess'
-import 'monaco-editor/esm/vs/editor/standalone/browser/quickAccess/standaloneGotoSymbolQuickAccess'
-import 'monaco-editor/esm/vs/editor/standalone/browser/quickAccess/standaloneHelpQuickAccess'
-import 'monaco-editor/esm/vs/editor/standalone/browser/referenceSearch/standaloneReferenceSearch'
-import 'monaco-editor/esm/vs/language/css/monaco.contribution'
-import 'monaco-editor/esm/vs/language/html/monaco.contribution'
-import 'monaco-editor/esm/vs/language/typescript/monaco.contribution'
 import { Resizable } from 're-resizable'
 import { useEffect, useRef, useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
@@ -25,7 +13,7 @@ import { formColumns } from './config'
 import styles from './index.module.less'
 
 const { Header, Sider, Content } = Layout
-const { defaultAlgorithm, darkAlgorithm, useToken } = theme
+const { darkAlgorithm, useToken } = theme
 
 const CollapsedKey = 'playground-collapsed'
 const SiderWidthKey = 'playground-sider-width'
@@ -88,13 +76,11 @@ export default () => {
   const handleSubmit = () => {
     formRef.current
       .validateFields()
-      .then(values => {
-        console.log(999)
-        console.log(values)
-
+      .then(() => {
         setVisibleSettting(false)
       })
       .catch(err => {
+        // eslint-disable-next-line no-console
         console.log(err)
         message.error('Please check the form')
       })
