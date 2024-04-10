@@ -1,3 +1,10 @@
+/*
+ * @Author: shuoshubao
+ * @Date: 2024-04-07 10:14:39
+ * @LastEditors: shuoshubao
+ * @LastEditTime: 2024-04-10 16:21:52
+ * @Description:
+ */
 import { isDevelopment } from '@/configs'
 import { memoize } from '@nbfe/tools'
 import confetti from 'canvas-confetti'
@@ -17,8 +24,10 @@ const getFetchPrefix = async () => {
   return ['https://registry.npmmirror.com/@nbfe/blog', version, 'files'].join('/')
 }
 
+const memoizeFetchPrefix = memoize(getFetchPrefix)
+
 const fetchMd = async (url = '', options = {}) => {
-  const prefix = await getFetchPrefix()
+  const prefix = await memoizeFetchPrefix()
   return fetch([prefix, url].join('/'), options).then(res => res.text())
 }
 
