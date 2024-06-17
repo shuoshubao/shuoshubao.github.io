@@ -2,7 +2,7 @@
  * @Author: shuoshubao
  * @Date: 2024-04-07 10:14:39
  * @LastEditors: shuoshubao
- * @LastEditTime: 2024-04-10 16:21:52
+ * @LastEditTime: 2024-06-17 20:04:56
  * @Description:
  */
 import { isDevelopment } from '@/configs'
@@ -17,11 +17,12 @@ export * from './text'
 const getFetchPrefix = async () => {
   if (isDevelopment) {
     const { protocol, hostname } = window.location
-    return `${protocol}//${hostname}:3000/`
+    return `${protocol}//${hostname}:3000`
   }
-  const data = await fetch('https://registry.npmmirror.com/@nbfe/blog').then(res => res.json())
+  const name = '@nbfe/blog'
+  const data = await fetch(['https://registry.npmmirror.com', name].join('/')).then(res => res.json())
   const version = get(data, 'dist-tags.latest')
-  return ['https://registry.npmmirror.com/@nbfe/blog', version, 'files'].join('/')
+  return ['https://unpkg.com', [name, version].join('@')].join('/')
 }
 
 const memoizeFetchPrefix = memoize(getFetchPrefix)
