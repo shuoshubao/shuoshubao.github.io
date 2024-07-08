@@ -9,4 +9,4 @@ package-lock.json
 ESLintReport.html
 
 # dist
-/dist
+/docs
