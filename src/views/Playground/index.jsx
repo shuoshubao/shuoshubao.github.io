@@ -5,7 +5,6 @@ import { sleep } from '@nbfe/tools'
 import { useGetState } from 'ahooks'
 import { Button, ConfigProvider, Layout, Modal, Radio, Space, message, theme } from 'antd'
 import { cloneDeep } from 'lodash'
-import * as monaco from 'monaco-editor/esm/vs/editor/editor.api'
 import { Resizable } from 're-resizable'
 import { useEffect, useRef, useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
@@ -36,6 +35,16 @@ const LanguagesEnum = [
   }
 ]
 
+const getMonacoEditor = async () => {
+  const { default: MonacoEditorLoader } = await import('@monaco-editor/loader')
+  MonacoEditorLoader.config({
+    paths: {
+      vs: 'https://registry.npmmirror.com/monaco-editor/0.44.0/files/min/vs'
+    }
+  })
+  return await MonacoEditorLoader.init()
+}
+
 export default () => {
   const resizableRef = useRef()
   const editorRef = useRef()
@@ -51,7 +60,8 @@ export default () => {
 
   const { token } = useToken()
 
-  const handleChangeLanguage = value => {
+  const handleChangeLanguage = async value => {
+    const monaco = await getMonacoEditor()
     const result = PlaygroundStore.get(PlaygroundId)
     editor.getModel().setValue(result[value])
     monaco.editor.setModelLanguage(
@@ -86,7 +96,8 @@ export default () => {
       })
   }
 
-  useEffect(() => {
+  useEffect(async () => {
+    const monaco = await getMonacoEditor()
     const monacoEditor = monaco.editor.create(editorRef.current, {
       value: '',
       language: LanguagesEnum[0].language,

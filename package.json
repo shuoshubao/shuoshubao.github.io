@@ -17,6 +17,7 @@
     "lint:style": "npx stylelint --fix -o StyleLintReport.html --custom-formatter node_modules/stylelint-formatters-html src/**/*.{css,less,scss,sass}"
   },
   "dependencies": {
+    "@monaco-editor/loader": "^1.4.0",
     "@nbfe/components": "^0.6.0",
     "@nbfe/tools": "^0.5.2",
     "ahooks": "^3.7.8",
@@ -42,7 +43,6 @@
     "md5": "^2.3.0",
     "mdx-toc": "^1.2.0",
     "mermaid": "^9.3.0",
-    "monaco-editor": "^0.41.0",
     "murmurhash-js": "^1.0.0",
     "re-resizable": "^6.9.11",
     "react": "^18.2.0",
