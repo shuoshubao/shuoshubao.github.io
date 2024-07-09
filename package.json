@@ -57,7 +57,7 @@
     "@vitejs/plugin-react": "^4.0.1",
     "rollup-plugin-analyze": "^0.1.1",
     "sass": "^1.57.1",
-    "vite": "^4.3.9",
+    "vite": "^4.5.3",
     "vite-plugin-externals": "^0.6.2"
   },
   "lint-staged": {
