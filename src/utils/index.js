@@ -1,10 +1,3 @@
-/*
- * @Author: shuoshubao
- * @Date: 2024-04-07 10:14:39
- * @LastEditors: shuoshubao
- * @LastEditTime: 2024-06-17 20:04:56
- * @Description:
- */
 import { isDevelopment } from '@/configs'
 import { memoize } from '@nbfe/tools'
 import confetti from 'canvas-confetti'
