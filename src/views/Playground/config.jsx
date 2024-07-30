@@ -1,11 +1,34 @@
+export const getLanguagesEnum = ({ JavascriptRef, CssRef, HtmlRef }) => {
+  return [
+    {
+      label: 'React',
+      value: 'js',
+      language: 'javascript',
+      ref: JavascriptRef
+    },
+    {
+      label: 'Less',
+      value: 'css',
+      language: 'less',
+      ref: CssRef
+    },
+    {
+      label: 'HTML',
+      value: 'html',
+      language: 'html',
+      ref: HtmlRef
+    }
+  ]
+}
+
 const AssetRule = [
-  (label, index, name) => {
+  () => {
     return {
       required: true,
       message: '不得为空'
     }
   },
-  (label, index, name) => {
+  () => {
     return {
       type: 'url',
       message: '必须是 URL'

@@ -2,11 +2,11 @@ import { VercelApiPrefix } from '@/configs'
 import antdResetCss from 'antd/dist/reset.css?inline'
 import axios from 'axios'
 import less from 'less'
-import { uniqueId } from 'lodash'
 import prettier from 'prettier'
 import babelParser from 'prettier/parser-babel'
 import htmlParser from 'prettier/parser-html'
 import cssParser from 'prettier/parser-postcss'
+import { v4 as uuidv4 } from 'uuid'
 import InjectJS from './inject.js?raw'
 
 const PrettierConfig = {
@@ -50,7 +50,7 @@ const formatCode = (code, lang) => {
 }
 
 export const parsePlayground = str => {
-  const id = uniqueId('playground-container-')
+  const id = uuidv4()
 
   const StyleTagName = 'style'
   const MarkupTagName = 'template'

@@ -1,39 +1,19 @@
 import { PlaygroundStore, createIframe } from '@/utils/playground'
 import { EyeInvisibleOutlined, EyeOutlined, PlayCircleOutlined, SettingOutlined } from '@ant-design/icons'
 import { Form } from '@nbfe/components'
-import { sleep } from '@nbfe/tools'
-import { useGetState } from 'ahooks'
-import { Button, ConfigProvider, Layout, Modal, Radio, Space, message, theme } from 'antd'
+import { Button, ConfigProvider, Layout, Modal, Space, Tabs, message, theme } from 'antd'
 import { cloneDeep } from 'lodash'
 import { Resizable } from 're-resizable'
 import { useEffect, useRef, useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
-import { formColumns } from './config'
+import { formColumns, getLanguagesEnum } from './config'
 import styles from './index.module.less'
 
 const { Header, Sider, Content } = Layout
-const { darkAlgorithm, useToken } = theme
+const { defaultAlgorithm, useToken } = theme
 
 const CollapsedKey = 'playground-collapsed'
 const SiderWidthKey = 'playground-sider-width'
-
-const LanguagesEnum = [
-  {
-    label: 'React',
-    value: 'js',
-    language: 'javascript'
-  },
-  {
-    label: 'Less',
-    value: 'css',
-    language: 'less'
-  },
-  {
-    label: 'HTML',
-    value: 'html',
-    language: 'html'
-  }
-]
 
 const getMonacoEditor = async () => {
   const { default: MonacoEditorLoader } = await import('@monaco-editor/loader')
@@ -47,32 +27,21 @@ const getMonacoEditor = async () => {
 
 export default () => {
   const resizableRef = useRef()
-  const editorRef = useRef()
   const iframeRef = useRef()
   const formRef = useRef()
+
+  const JavascriptRef = useRef()
+  const CssRef = useRef()
+  const HtmlRef = useRef()
 
   const [visibleSettting, setVisibleSettting] = useState(false)
   const [PlaygroundId] = useState(uuidv4())
   const [collapsed, setCollapsed] = useState(JSON.parse(window.sessionStorage.getItem(CollapsedKey)) || false)
   const [siderWidth, setSiderWidth] = useState(JSON.parse(window.sessionStorage.getItem(SiderWidthKey)) || 500)
-  const [editor, setEditor] = useState(null)
-  const [language, setLanguage, getLanguage] = useGetState(LanguagesEnum[0].value)
+
+  const LanguagesEnum = getLanguagesEnum({ JavascriptRef, CssRef, HtmlRef })
 
   const { token } = useToken()
-
-  const handleChangeLanguage = async value => {
-    const monaco = await getMonacoEditor()
-    const result = PlaygroundStore.get(PlaygroundId)
-    editor.getModel().setValue(result[value])
-    monaco.editor.setModelLanguage(
-      monaco.editor.getModels()[0],
-      LanguagesEnum.find(item => item.value === value).language
-    )
-    setTimeout(() => {
-      editor.getAction('editor.action.formatDocument').run()
-    }, 0)
-    setLanguage(value)
-  }
 
   const handleExecute = () => {
     if (iframeRef.current.firstChild) {
@@ -80,6 +49,7 @@ export default () => {
     }
 
     const iframe = createIframe(PlaygroundId)
+
     iframeRef.current.appendChild(iframe)
   }
 
@@ -98,38 +68,40 @@ export default () => {
 
   useEffect(async () => {
     const monaco = await getMonacoEditor()
-    const monacoEditor = monaco.editor.create(editorRef.current, {
-      value: '',
-      language: LanguagesEnum[0].language,
-      automaticLayout: true,
-      theme: 'vs-dark',
-      autoIndent: true,
-      formatOnPaste: true,
-      formatOnType: true,
-      fontSize: 14
+
+    LanguagesEnum.forEach(item => {
+      PlaygroundStore.set(PlaygroundId, {
+        html: '',
+        css: '',
+        cssType: 'less',
+        cssAssets: [],
+        js: '',
+        jsAssets: []
+      })
+
+      const monacoEditor = monaco.editor.create(item.ref.current, {
+        value: '',
+        language: item.language,
+        automaticLayout: true,
+        theme: 'vs-dark',
+        autoIndent: true,
+        formatOnPaste: true,
+        formatOnType: true,
+        fontSize: 14
+      })
+      monacoEditor.getModel().onDidChangeContent(() => {
+        const content = monacoEditor.getValue()
+        const result = cloneDeep(PlaygroundStore.get(PlaygroundId))
+        result[item.value] = content
+        PlaygroundStore.set(PlaygroundId, result)
+      })
     })
-    PlaygroundStore.set(PlaygroundId, {
-      html: '',
-      css: '',
-      cssType: 'less',
-      cssAssets: [],
-      js: '',
-      jsAssets: []
-    })
-    monacoEditor.getModel().onDidChangeContent(async () => {
-      await sleep(0)
-      const content = monacoEditor.getValue()
-      const result = cloneDeep(PlaygroundStore.get(PlaygroundId))
-      result[getLanguage()] = content
-      PlaygroundStore.set(PlaygroundId, result)
-    })
-    setEditor(monacoEditor)
-  }, [setEditor])
+  }, [])
 
   return (
     <ConfigProvider
       theme={{
-        algorithm: darkAlgorithm
+        algorithm: defaultAlgorithm
       }}
     >
       <Layout className={styles.container}>
@@ -193,13 +165,18 @@ export default () => {
                 className={styles['sider-container']}
                 style={{ height: 'calc(100vh - 64px)', padding: token.paddingContentVertical }}
               >
-                <Radio.Group
-                  value={language}
-                  onChange={e => handleChangeLanguage(e.target.value)}
-                  options={LanguagesEnum}
-                  optionType="button"
+                <Tabs
+                  type="card"
+                  items={LanguagesEnum.map(item => {
+                    return {
+                      label: item.label,
+                      key: item.language,
+                      forceRender: true,
+                      children: <div ref={item.ref} className={styles['monaco-editor-container']} />
+                    }
+                  })}
+                  style={{ flex: 1 }}
                 />
-                <div ref={editorRef} className={styles['editor-container']} />
               </div>
             </Sider>
           </Resizable>

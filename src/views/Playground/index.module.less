@@ -5,8 +5,22 @@
     gap: 8px;
     overflow-y: auto;
 
-    .editor-container {
-      flex: 1;
+    :global {
+      .ant-tabs {
+        .ant-tabs-content-holder {
+          .ant-tabs-content {
+            height: 100%;
+
+            .ant-tabs-tabpane {
+              height: 100%;
+            }
+          }
+        }
+      }
+    }
+
+    .monaco-editor-container {
+      height: 100%;
     }
   }
 

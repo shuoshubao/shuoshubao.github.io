@@ -3,7 +3,7 @@
 // eslint-disable-next-line no-extra-semi
 ;(async () => {
   try {
-    const ConsoleTimeKey = [window.name, 'initialized'].join('_')
+    const ConsoleTimeKey = window.name
 
     console.time(ConsoleTimeKey)
 
@@ -24,25 +24,18 @@
     }
 
     const ScriptList = [
-      'https://registry.npmmirror.com/antd/5.7.1/files/dist/antd.min.js',
+      'https://registry.npmmirror.com/antd/5.19.4/files/dist/antd.min.js',
       'https://registry.npmmirror.com/@babel/standalone/7.22.9/files/babel.min.js'
     ]
 
     await Promise.all(ScriptList.map(loadScript))
 
+    // eslint-disable-next-line
     for (const src of PlaygroundJsAssets) {
       await loadScript(src)
     }
 
-    const { Babel, React, ReactDOM, antd } = window
-
-    console.table({
-      babel: Babel.version,
-      react: React.version,
-      'react-dom': ReactDOM.version,
-      antd: antd.version,
-      lodash: _.VERSION
-    })
+    const { Babel } = window
 
     const ExternalMap = {
       react: 'React',
