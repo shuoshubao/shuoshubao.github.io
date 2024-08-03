@@ -1,6 +1,4 @@
-import { VercelApiPrefix } from '@/configs'
 import antdResetCss from 'antd/dist/reset.css?inline'
-import axios from 'axios'
 import less from 'less'
 import prettier from 'prettier'
 import babelParser from 'prettier/parser-babel'
@@ -9,10 +7,10 @@ import cssParser from 'prettier/parser-postcss'
 import { v4 as uuidv4 } from 'uuid'
 import InjectJS from './inject.js?raw'
 
-const PrettierConfig = {
+export const PrettierConfig = {
   printWidth: 160,
   useTabs: false,
-  tabWidth: 2,
+  tabWidth: 4,
   semi: true,
   singleQuote: true,
   trailingComma: 'none',
@@ -24,24 +22,24 @@ const PrettierConfig = {
 
 export const PlaygroundStore = new Map()
 
-const formatCode = (code, lang) => {
-  if (lang === 'babel') {
+export const formatCode = (code, lang) => {
+  if (lang === 'js') {
     return prettier.format(code, {
-      parser: lang,
+      parser: 'babel',
       plugins: [babelParser],
       ...PrettierConfig
     })
   }
-  if (['css', 'less', 'scss'].includes(lang)) {
+  if (['css', 'less'].includes(lang)) {
     return prettier.format(code, {
-      parser: lang,
+      parser: 'less',
       plugins: [cssParser],
       ...PrettierConfig
     })
   }
   if (lang === 'html') {
     return prettier.format(code, {
-      parser: lang,
+      parser: 'html',
       plugins: [htmlParser],
       ...PrettierConfig
     })
@@ -59,31 +57,29 @@ export const parsePlayground = str => {
   const result = {
     html: '',
     css: '',
-    cssType: '',
     cssAssets: [],
     js: '',
     jsAssets: []
   }
 
   const renderer = document.createElement('template')
+
   renderer.innerHTML = str
 
   const { content: fragment } = renderer
 
   Array.from(fragment.children).forEach(v => {
-    const { localName, type, innerHTML, dataset } = v
+    const { localName, innerHTML, dataset } = v
     const assets = (dataset.assets || '').split(';').filter(Boolean)
     if (localName === StyleTagName) {
-      const cssType = type ? type.split('/')[1] : 'css'
-      result.css = formatCode(innerHTML, cssType)
-      result.cssType = cssType
+      result.css = formatCode(innerHTML, 'css')
       result.cssAssets = assets
     }
     if (localName === MarkupTagName) {
       result.html = formatCode(innerHTML, 'html')
     }
     if (localName === ScriptTagName) {
-      result.js = formatCode(innerHTML, 'babel')
+      result.js = formatCode(innerHTML, 'js')
       result.jsAssets = assets
     }
   })
@@ -93,21 +89,12 @@ export const parsePlayground = str => {
   return id
 }
 
-const getCssCode = async (css, cssType) => {
+const getCssCode = async css => {
   if (!css.length) {
     return ''
   }
-  if (cssType === 'less') {
-    const res = await less.render(css)
-    return res.css
-  }
-  if (cssType === 'sass') {
-    const res = await axios.post(`${VercelApiPrefix}/api/compiler/sass`, {
-      code: css
-    })
-    return res.data.data.css
-  }
-  return css
+  const res = await less.render(css)
+  return res.css
 }
 
 const injectReact = ({ PlaygroundStartTime, js, jsAssets }) => {
@@ -141,7 +128,7 @@ const loadStyle = (doc, src) => {
 
 export const createIframe = id => {
   const PlaygroundStartTime = Date.now()
-  const { html, css, cssType, cssAssets, js, jsAssets } = PlaygroundStore.get(id)
+  const { html, css, cssAssets, js, jsAssets } = PlaygroundStore.get(id)
   const iframe = document.createElement('iframe')
 
   iframe.name = id
@@ -169,7 +156,7 @@ export const createIframe = id => {
     loadStyleText(frameDoc, antdResetCss)
 
     if (css) {
-      const cssText = await getCssCode(css, cssType)
+      const cssText = await getCssCode(css)
       loadStyleText(frameDoc, cssText)
     }
 

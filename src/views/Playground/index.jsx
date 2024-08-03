@@ -1,4 +1,4 @@
-import { PlaygroundStore, createIframe } from '@/utils/playground'
+import { PlaygroundStore, createIframe, formatCode } from '@/utils/playground'
 import { EyeInvisibleOutlined, EyeOutlined, PlayCircleOutlined, SettingOutlined } from '@ant-design/icons'
 import { Form } from '@nbfe/components'
 import { Button, ConfigProvider, Layout, Modal, Space, Tabs, message, theme } from 'antd'
@@ -34,6 +34,9 @@ export default () => {
   const CssRef = useRef()
   const HtmlRef = useRef()
 
+  const [messageApi, messageContextHolder] = message.useMessage()
+  const [modal, modalContextHolder] = Modal.useModal()
+
   const [visibleSettting, setVisibleSettting] = useState(false)
   const [PlaygroundId] = useState(uuidv4())
   const [collapsed, setCollapsed] = useState(JSON.parse(window.sessionStorage.getItem(CollapsedKey)) || false)
@@ -62,7 +65,10 @@ export default () => {
       .catch(err => {
         // eslint-disable-next-line no-console
         console.log(err)
-        message.error('Please check the form')
+        messageApi.open({
+          type: 'error',
+          content: 'Please check the form'
+        })
       })
   }
 
@@ -70,18 +76,19 @@ export default () => {
     const monaco = await getMonacoEditor()
 
     LanguagesEnum.forEach(item => {
+      const { value, language, ref } = item
+
       PlaygroundStore.set(PlaygroundId, {
         html: '',
         css: '',
-        cssType: 'less',
         cssAssets: [],
         js: '',
         jsAssets: []
       })
 
-      const monacoEditor = monaco.editor.create(item.ref.current, {
+      const monacoEditor = monaco.editor.create(ref.current, {
         value: '',
-        language: item.language,
+        language,
         automaticLayout: true,
         theme: 'vs-dark',
         autoIndent: true,
@@ -92,8 +99,28 @@ export default () => {
       monacoEditor.getModel().onDidChangeContent(() => {
         const content = monacoEditor.getValue()
         const result = cloneDeep(PlaygroundStore.get(PlaygroundId))
-        result[item.value] = content
+        result[value] = content
         PlaygroundStore.set(PlaygroundId, result)
+      })
+
+      monacoEditor.onDidBlurEditorText(() => {
+        const content = monacoEditor.getValue()
+        try {
+          const code = formatCode(content, value)
+          monacoEditor.setValue(code)
+        } catch (e) {
+          // eslint-disable-next-line no-console
+          console.log(e)
+          modal.error({
+            title: `${language} 语法报错, 请检查`,
+            width: 800,
+            content: (
+              <pre className={styles.code}>
+                <code>{e.message}</code>
+              </pre>
+            )
+          })
+        }
       })
     })
   }, [])
@@ -197,6 +224,8 @@ export default () => {
       >
         <Form ref={formRef} columns={formColumns} initialValues={{ cssAssets: [] }} onFinish={handleSubmit} />
       </Modal>
+      {messageContextHolder}
+      {modalContextHolder}
     </ConfigProvider>
   )
 }
