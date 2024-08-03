@@ -121,7 +121,7 @@ const injectReact = ({ PlaygroundStartTime, js, jsAssets }) => {
     jsCode = js
   }
 
-  return InjectJS.replace('jsCode', jsCode)
+  return InjectJS.replace('__JsCode__', btoa(encodeURIComponent(jsCode)))
     .replaceAll('PlaygroundStartTime', PlaygroundStartTime)
     .replaceAll('PlaygroundJsAssets', JSON.stringify(jsAssets))
 }

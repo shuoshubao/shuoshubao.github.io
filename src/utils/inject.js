@@ -46,7 +46,7 @@
     }
 
     // eslint-disable-next-line quotes
-    const { code } = Babel.transform(`jsCode`, {
+    const { code } = Babel.transform(decodeURIComponent(atob('__JsCode__')), {
       filename: [window.name, '.js'].join(''),
       sourceType: 'module',
       presets: [
