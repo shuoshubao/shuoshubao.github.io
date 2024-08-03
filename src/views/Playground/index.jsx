@@ -103,10 +103,10 @@ export default () => {
         PlaygroundStore.set(PlaygroundId, result)
       })
 
-      monacoEditor.onDidBlurEditorText(() => {
+      monacoEditor.onDidBlurEditorText(async () => {
         const content = monacoEditor.getValue()
         try {
-          const code = formatCode(content, value)
+          const code = await formatCode(content, value)
           monacoEditor.setValue(code)
         } catch (e) {
           // eslint-disable-next-line no-console

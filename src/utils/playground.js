@@ -1,9 +1,5 @@
 import antdResetCss from 'antd/dist/reset.css?inline'
 import less from 'less'
-import prettier from 'prettier'
-import babelParser from 'prettier/parser-babel'
-import htmlParser from 'prettier/parser-html'
-import cssParser from 'prettier/parser-postcss'
 import { v4 as uuidv4 } from 'uuid'
 import InjectJS from './inject.js?raw'
 
@@ -22,7 +18,12 @@ export const PrettierConfig = {
 
 export const PlaygroundStore = new Map()
 
-export const formatCode = (code, lang) => {
+export const formatCode = async (code, lang) => {
+  const prettier = await import('prettier')
+  const babelParser = await import('prettier/parser-babel')
+  const htmlParser = await import('prettier/parser-html')
+  const cssParser = await import('prettier/parser-postcss')
+
   if (lang === 'js') {
     return prettier.format(code, {
       parser: 'babel',
@@ -68,18 +69,18 @@ export const parsePlayground = str => {
 
   const { content: fragment } = renderer
 
-  Array.from(fragment.children).forEach(v => {
-    const { localName, innerHTML, dataset } = v
+  Array.from(fragment.children).forEach(async item => {
+    const { localName, innerHTML, dataset } = item
     const assets = (dataset.assets || '').split(';').filter(Boolean)
     if (localName === StyleTagName) {
-      result.css = formatCode(innerHTML, 'css')
+      result.css = await formatCode(innerHTML, 'css')
       result.cssAssets = assets
     }
     if (localName === MarkupTagName) {
-      result.html = formatCode(innerHTML, 'html')
+      result.html = await formatCode(innerHTML, 'html')
     }
     if (localName === ScriptTagName) {
-      result.js = formatCode(innerHTML, 'js')
+      result.js = await formatCode(innerHTML, 'js')
       result.jsAssets = assets
     }
   })
