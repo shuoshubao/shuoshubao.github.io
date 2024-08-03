@@ -1,3 +1,4 @@
+import { MonacoEditorBaseConfig, getMonacoEditor } from '@/utils/monaco'
 import { PlaygroundStore, createIframe, formatCode } from '@/utils/playground'
 import { EyeInvisibleOutlined, EyeOutlined, PlayCircleOutlined, SettingOutlined } from '@ant-design/icons'
 import { Form } from '@nbfe/components'
@@ -14,16 +15,6 @@ const { defaultAlgorithm, useToken } = theme
 
 const CollapsedKey = 'playground-collapsed'
 const SiderWidthKey = 'playground-sider-width'
-
-const getMonacoEditor = async () => {
-  const { default: MonacoEditorLoader } = await import('@monaco-editor/loader')
-  MonacoEditorLoader.config({
-    paths: {
-      vs: 'https://registry.npmmirror.com/monaco-editor/0.44.0/files/min/vs'
-    }
-  })
-  return await MonacoEditorLoader.init()
-}
 
 export default () => {
   const resizableRef = useRef()
@@ -87,14 +78,9 @@ export default () => {
       })
 
       const monacoEditor = monaco.editor.create(ref.current, {
+        ...MonacoEditorBaseConfig,
         value: '',
-        language,
-        automaticLayout: true,
-        theme: 'vs-dark',
-        autoIndent: true,
-        formatOnPaste: true,
-        formatOnType: true,
-        fontSize: 14
+        language
       })
       monacoEditor.getModel().onDidChangeContent(() => {
         const content = monacoEditor.getValue()

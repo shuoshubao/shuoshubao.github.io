@@ -2,6 +2,7 @@ import MarkdownToc from '@/components/MarkdownToc'
 import Playground from '@/components/Playground'
 import { updateMarkdownTheme } from '@/configs'
 import { MarkdownItHighlight, addKatexStylesheet, getAllLanguages, getHashs, memoizeFetch, showConfetti } from '@/utils'
+import { MonacoEditorBaseConfig, getMonacoEditor } from '@/utils/monaco'
 import { CodeOutlined } from '@ant-design/icons'
 import { Button, Card, Divider, Image, Layout, Modal, Result, Space, Tag, Typography, message, theme } from 'antd'
 import copy from 'copy-to-clipboard'
@@ -9,7 +10,7 @@ import dayjs from 'dayjs'
 import filesize from 'filesize'
 import 'highlight.js/styles/vs2015.css'
 import { find, map } from 'lodash'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import { useTranslation } from 'react-i18next'
 
@@ -27,6 +28,8 @@ const formatTime = time => {
 
 export default props => {
   const { data } = props
+
+  const monacoEditorRef = useRef()
 
   const [content, setContent] = useState('')
 
@@ -73,6 +76,16 @@ export default props => {
         createRoot(div).render(<Playground id={id} />)
       })
     }, 1e2)
+  }
+
+  const renderMarkdownSourceCode = async () => {
+    const monaco = await getMonacoEditor()
+    monaco.editor.create(monacoEditorRef.current, {
+      ...MonacoEditorBaseConfig,
+      value: content,
+      language: 'markdown',
+      readOnly: true
+    })
   }
 
   const handleCopy = e => {
@@ -151,6 +164,7 @@ export default props => {
                 icon={<CodeOutlined />}
                 onClick={() => {
                   setIsModalOpen(true)
+                  renderMarkdownSourceCode()
                 }}
               />
             </Space>
@@ -179,15 +193,9 @@ export default props => {
           maskClosable
           width="90%"
           style={{ top: 20 }}
-          bodyStyle={{
-            maxHeight: 'calc(100vh - 110px)',
-            overflowY: 'auto'
-          }}
           footer={null}
         >
-          <pre className="markdown-source" contentEditable="true">
-            {content}
-          </pre>
+          <div className="markdown-source" ref={monacoEditorRef} />
         </Modal>
         <div style={{ display: 'none' }}>
           <Image.PreviewGroup
