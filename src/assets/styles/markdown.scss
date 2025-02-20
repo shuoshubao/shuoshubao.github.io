@@ -1,62 +1,62 @@
 body .markdown-body {
-  pre {
-    position: relative;
-    padding: 0;
-    line-height: 20px;
-
-    code {
-      display: block;
-      margin: 0;
-      padding: 16px 12px;
-      overflow-x: auto;
-      word-break: normal;
-      counter-reset: line;
-
-      & > div {
-        min-height: 20px;
-      }
-
-      .line {
-        &::before {
-          display: inline-block;
-          width: 1rem;
-          margin-right: 1rem;
-          color: rgb(82 82 82);
-          text-align: right;
-          content: counter(line);
-          counter-increment: line;
-        }
-      }
-
-      .markdown-code-btns {
-        position: absolute;
-        top: 5px;
-        right: 10px;
-        display: flex;
-        gap: 12px;
-        color: hsl(0deg 0% 54.9% / 80%);
+    pre {
+        position: relative;
+        padding: 0;
         line-height: 20px;
 
-        .btn-lang {
-          display: inline-block;
-          line-height: 20px;
-          cursor: default;
-        }
+        code {
+            display: block;
+            margin: 0;
+            padding: 16px 12px;
+            overflow-x: auto;
+            word-break: normal;
+            counter-reset: line;
 
-        .anticon-copy {
-          line-height: 20px;
-          cursor: pointer;
-          transition: color 0.1s;
+            & > div {
+                min-height: 20px;
+            }
+
+            .line {
+                &::before {
+                    display: inline-block;
+                    width: 1rem;
+                    margin-right: 1rem;
+                    color: rgb(82 82 82);
+                    text-align: right;
+                    content: counter(line);
+                    counter-increment: line;
+                }
+            }
+
+            .markdown-code-btns {
+                position: absolute;
+                top: 5px;
+                right: 10px;
+                display: flex;
+                gap: 12px;
+                color: hsl(0deg 0% 54.9% / 80%);
+                line-height: 20px;
+
+                .btn-lang {
+                    display: inline-block;
+                    line-height: 20px;
+                    cursor: default;
+                }
+
+                .anticon-copy {
+                    line-height: 20px;
+                    cursor: pointer;
+                    transition: color 0.1s;
+                }
+            }
         }
-      }
     }
-  }
 
-  img {
-    cursor: pointer;
-  }
+    img {
+        cursor: pointer;
+    }
 
-  .playground-coordinate {
-    display: none;
-  }
+    .playground-coordinate {
+        display: none;
+    }
 }

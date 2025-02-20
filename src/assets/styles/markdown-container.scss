@@ -1,101 +1,101 @@
 .markdown-it-alert {
-  position: relative;
-  display: flex;
-  align-items: flex-start;
-  box-sizing: border-box;
-  margin-bottom: 16px;
-  padding: 8px 12px;
-  color: rgb(0 0 0 / 88%);
-  word-wrap: break-word;
-  list-style: none;
-  border-radius: 8px;
-  padding-inline: 24px;
-  padding-block: 20px;
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    box-sizing: border-box;
+    margin-bottom: 16px;
+    padding: 8px 12px;
+    color: rgb(0 0 0 / 88%);
+    word-wrap: break-word;
+    list-style: none;
+    border-radius: 8px;
+    padding-inline: 24px;
+    padding-block: 20px;
 
-  .markdown-it-alert-content {
-    flex: 1;
-    min-width: 0;
-  }
-
-  .markdown-it-alert-icon {
-    font-size: 24px;
-    line-height: 0;
-    margin-inline-end: 12px;
-  }
-
-  .markdown-it-alert-message {
-    display: block;
-    margin-bottom: 8px;
-    font-size: 16px;
-  }
-
-  .markdown-it-alert-description {
-    display: block;
-
-    & > *:first-child:last-child {
-      margin: 0;
+    .markdown-it-alert-content {
+        flex: 1;
+        min-width: 0;
     }
-  }
-
-  &.markdown-it-alert-success {
-    background-color: #f6ffed;
-    border: 1px solid #b7eb8f;
 
     .markdown-it-alert-icon {
-      color: #52c41a;
+        font-size: 24px;
+        line-height: 0;
+        margin-inline-end: 12px;
     }
-  }
 
-  &.markdown-it-alert-info {
-    background-color: #e6f4ff;
-    border: 1px solid #91caff;
-
-    .markdown-it-alert-icon {
-      color: #1677ff;
+    .markdown-it-alert-message {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 16px;
     }
-  }
 
-  &.markdown-it-alert-warning {
-    background-color: #fffbe6;
-    border: 1px solid #ffe58f;
+    .markdown-it-alert-description {
+        display: block;
 
-    .markdown-it-alert-icon {
-      color: #faad14;
+        & > *:first-child:last-child {
+            margin: 0;
+        }
     }
-  }
-
-  &.markdown-it-alert-error {
-    background-color: #fff2f0;
-    border: 1px solid #ffccc7;
-
-    .markdown-it-alert-icon {
-      color: #ff4d4f;
-    }
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .markdown-it-alert {
-    color: rgb(255 255 255 / 85%);
 
     &.markdown-it-alert-success {
-      background-color: #162312;
-      border: 1px solid #274916;
+        background-color: #f6ffed;
+        border: 1px solid #b7eb8f;
+
+        .markdown-it-alert-icon {
+            color: #52c41a;
+        }
     }
 
     &.markdown-it-alert-info {
-      background-color: #111a2c;
-      border: 1px solid #15325b;
+        background-color: #e6f4ff;
+        border: 1px solid #91caff;
+
+        .markdown-it-alert-icon {
+            color: #1677ff;
+        }
     }
 
     &.markdown-it-alert-warning {
-      background-color: #2b2111;
-      border: 1px solid #594214;
+        background-color: #fffbe6;
+        border: 1px solid #ffe58f;
+
+        .markdown-it-alert-icon {
+            color: #faad14;
+        }
     }
 
     &.markdown-it-alert-error {
-      background-color: #2c1618;
-      border: 1px solid #5b2526;
+        background-color: #fff2f0;
+        border: 1px solid #ffccc7;
+
+        .markdown-it-alert-icon {
+            color: #ff4d4f;
+        }
     }
-  }
+}
+
+@media (prefers-color-scheme: dark) {
+    .markdown-it-alert {
+        color: rgb(255 255 255 / 85%);
+
+        &.markdown-it-alert-success {
+            background-color: #162312;
+            border: 1px solid #274916;
+        }
+
+        &.markdown-it-alert-info {
+            background-color: #111a2c;
+            border: 1px solid #15325b;
+        }
+
+        &.markdown-it-alert-warning {
+            background-color: #2b2111;
+            border: 1px solid #594214;
+        }
+
+        &.markdown-it-alert-error {
+            background-color: #2c1618;
+            border: 1px solid #5b2526;
+        }
+    }
 }

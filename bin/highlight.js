@@ -5,34 +5,34 @@
  * @Last Modified by:   shuoshubao
  * @Last Modified time: 2023-04-09 22:19:58
  */
-const { writeFileSync } = require('fs')
-const { basename } = require('path')
-const glob = require('glob')
-const hljs = require('highlight.js')
+const { writeFileSync } = require('fs');
+const { basename } = require('path');
+const glob = require('glob');
+const hljs = require('highlight.js');
 
 const HighlightLanguages = glob
-  .sync('node_modules/highlight.js/lib/languages/*.js')
-  .filter(v => !v.endsWith('.js.js'))
-  .reduce((prev, cur) => {
-    const filename = basename(cur, '.js')
-    const path = cur.split('/').slice(1).join('/').slice(0, -3)
-    const { aliases = [] } = require(path)(hljs)
-    prev.push([filename, ...aliases])
-    return prev
-  }, [])
+    .sync('node_modules/highlight.js/lib/languages/*.js')
+    .filter(v => !v.endsWith('.js.js'))
+    .reduce((prev, cur) => {
+        const filename = basename(cur, '.js');
+        const path = cur.split('/').slice(1).join('/').slice(0, -3);
+        const { aliases = [] } = require(path)(hljs);
+        prev.push([filename, ...aliases]);
+        return prev;
+    }, []);
 
-const contentList = []
+const contentList = [];
 
 HighlightLanguages.forEach(v => {
-  const [language] = v
-  const template = `
+    const [language] = v;
+    const template = `
     if (language === '${language}') {
       const { default: languageDefinition } = await import('highlight.js/lib/languages/${language}')
       registerLanguage('${language}', languageDefinition)
     }
-  `
-  contentList.push(template.trim())
-})
+  `;
+    contentList.push(template.trim());
+});
 
 const content = `
 /* eslint-disable */
@@ -51,6 +51,6 @@ export const dynamicRegisterLanguage = async (hljs, lang) => {
   const [language] = HighlightLanguages.find(v => v.includes(lang))
   ${contentList.join('\n')}
 }
-`
+`;
 
-writeFileSync('src/utils/highlight.js', content.trim())
+writeFileSync('src/utils/highlight.js', content.trim());

@@ -1,3 +1,3 @@
-const { StylelintConfig } = require('@nbfe/standard')
+const { StylelintConfig } = require('@nbfe/standard');
 
-module.exports = StylelintConfig
+module.exports = StylelintConfig;

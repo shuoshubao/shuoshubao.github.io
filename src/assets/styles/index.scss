@@ -1,73 +1,73 @@
 :focus-visible {
-  outline: none;
+    outline: none;
 }
 
 .markdown-source {
-  height: calc(100vh - 110px);
+    height: calc(100vh - 110px);
 }
 
 html {
-  &[data-theme='dark'] {
-    background: #000;
-  }
+    &[data-theme='dark'] {
+        background: #000;
+    }
 
-  &[data-theme='light'] {
-    background: #fff;
-  }
+    &[data-theme='light'] {
+        background: #fff;
+    }
 }
 
 @media screen and (min-width: 768px) {
-  body {
-    .site-layout-sider-actions {
-      display: none;
+    body {
+        .site-layout-sider-actions {
+            display: none;
+        }
     }
-  }
 }
 
 @media screen and (max-width: 767px) {
-  body {
-    .ant-layout-header {
-      display: none !important;
-    }
+    body {
+        .ant-layout-header {
+            display: none !important;
+        }
 
-    .site-layout-sider-actions {
-      .ant-tag {
-        display: none;
-      }
+        .site-layout-sider-actions {
+            .ant-tag {
+                display: none;
+            }
+        }
     }
-  }
 }
 
 .ant-modal.algolia-modal {
-  padding-bottom: 0;
+    padding-bottom: 0;
 
-  .ant-modal-close {
-    display: none !important;
-  }
+    .ant-modal-close {
+        display: none !important;
+    }
 }
 
 .algolia-container {
-  min-height: 200px;
-  max-height: calc(100vh - 100px);
-  overflow-y: auto;
+    min-height: 200px;
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
 
-  & > div {
-    position: static !important;
-  }
+    & > div {
+        position: static !important;
+    }
 
-  .ant-select-dropdown {
-    position: static !important;
-    display: block !important;
-    box-shadow: none !important;
-  }
+    .ant-select-dropdown {
+        position: static !important;
+        display: block !important;
+        box-shadow: none !important;
+    }
 
-  .rc-virtual-list-holder {
-    max-height: none !important;
-  }
+    .rc-virtual-list-holder {
+        max-height: none !important;
+    }
 }
 
 .ant-card {
-  & + & {
-    margin-top: 12px;
-  }
+    & + & {
+        margin-top: 12px;
+    }
 }

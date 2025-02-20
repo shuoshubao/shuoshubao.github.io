@@ -1,75 +1,75 @@
 .playground-container {
-  border: 1px solid transparent;
-  border-radius: 2px;
+    border: 1px solid transparent;
+    border-radius: 2px;
 
-  &:not(.playground-container-open) {
-    .playground-container-files > *,
-    .playground-container-source-code {
-      display: none !important;
-    }
-  }
-
-  .playground-container-demo {
-    padding: 12px;
-
-    &:fullscreen {
-      iframe {
-        height: calc(100vh - 12px * 2) !important;
-      }
-    }
-
-    iframe {
-      display: block;
-      width: 100%;
-      border: none;
-
-      ::-webkit-scrollbar {
-        display: none;
-      }
-    }
-  }
-
-  .playground-container-meta {
-    .playground-container-actions {
-      display: flex;
-      justify-content: space-between;
-      padding: 12px;
-      border-top: 1px solid transparent;
-
-      .playground-container-files {
-        display: flex;
-
-        :global {
-          .ant-radio-button-wrapper {
-            span:last-child {
-              display: flex;
-              gap: 8px;
-              align-items: center;
-            }
-          }
+    &:not(.playground-container-open) {
+        .playground-container-files > *,
+        .playground-container-source-code {
+            display: none !important;
         }
-      }
     }
 
-    .playground-container-source-code {
-      padding: 12px;
-      border-top: 1px solid transparent;
+    .playground-container-demo {
+        padding: 12px;
+
+        &:fullscreen {
+            iframe {
+                height: calc(100vh - 12px * 2) !important;
+            }
+        }
+
+        iframe {
+            display: block;
+            width: 100%;
+            border: none;
+
+            ::-webkit-scrollbar {
+                display: none;
+            }
+        }
     }
-  }
+
+    .playground-container-meta {
+        .playground-container-actions {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px;
+            border-top: 1px solid transparent;
+
+            .playground-container-files {
+                display: flex;
+
+                :global {
+                    .ant-radio-button-wrapper {
+                        span:last-child {
+                            display: flex;
+                            gap: 8px;
+                            align-items: center;
+                        }
+                    }
+                }
+            }
+        }
+
+        .playground-container-source-code {
+            padding: 12px;
+            border-top: 1px solid transparent;
+        }
+    }
 }
 
 html[data-theme='light'] {
-  .playground-container-demo {
-    &:fullscreen {
-      background-color: #fff;
+    .playground-container-demo {
+        &:fullscreen {
+            background-color: #fff;
+        }
     }
-  }
 }
 
 html[data-theme='dark'] {
-  .playground-container-demo {
-    &:fullscreen {
-      background-color: #000;
+    .playground-container-demo {
+        &:fullscreen {
+            background-color: #000;
+        }
     }
-  }
 }
