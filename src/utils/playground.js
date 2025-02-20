@@ -147,6 +147,8 @@ export const createIframe = id => {
         const injectJs = () => {
             const script = frameDoc.createElement('script');
 
+            script.type = 'module';
+
             script.innerHTML = injectReact({ PlaygroundStartTime, js, jsAssets });
 
             frameDoc.body.appendChild(script);
