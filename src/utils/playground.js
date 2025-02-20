@@ -19,29 +19,26 @@ export const PrettierConfig = {
 export const PlaygroundStore = new Map();
 
 export const formatCode = async (code, lang) => {
-    const prettier = await import('prettier');
-    const babelParser = await import('prettier/parser-babel');
-    const htmlParser = await import('prettier/parser-html');
-    const cssParser = await import('prettier/parser-postcss');
+    const { prettier, prettierPlugins } = window;
 
     if (lang === 'js') {
         return prettier.format(code, {
             parser: 'babel',
-            plugins: [babelParser],
+            plugins: [prettierPlugins.babel],
             ...PrettierConfig
         });
     }
     if (['css', 'less'].includes(lang)) {
         return prettier.format(code, {
             parser: 'less',
-            plugins: [cssParser],
+            plugins: [prettierPlugins.css],
             ...PrettierConfig
         });
     }
     if (lang === 'html') {
         return prettier.format(code, {
             parser: 'html',
-            plugins: [htmlParser],
+            plugins: [prettierPlugins.html],
             ...PrettierConfig
         });
     }

@@ -2,8 +2,8 @@
  * @Author: shuoshubao
  * @Date: 2025-02-20 12:34:50
  * @LastEditors: shuoshubao
- * @LastEditTime: 2025-02-20 12:37:02
- * @Description:
+ * @LastEditTime: 2025-02-20 12:55:00
+ * @Description: eslint 配置
  */
 const { getESLintConfig } = require('@nbfe/standard');
 
