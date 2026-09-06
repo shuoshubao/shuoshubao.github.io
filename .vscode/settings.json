@@ -1,0 +1,18 @@
+{
+    "emmet.extensionsPath": ["vue"],
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": "explicit"
+    },
+    "prettier.useEditorConfig": true,
+    "prettier.requireConfig": true,
+    "prettier.configPath": "prettier.config.js",
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[less]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "eslint.enable": true,
+    "editor.copyWithSyntaxHighlighting": false
+}

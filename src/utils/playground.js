@@ -19,6 +19,13 @@ export const PrettierConfig = {
 export const PlaygroundStore = new Map();
 
 export const formatCode = async (code, lang) => {
+    await Promise.all([
+        import('https://registry.npmmirror.com/prettier/2.7.1/files/standalone.js'),
+        import('https://registry.npmmirror.com/prettier/2.7.1/files/parser-babel.js'),
+        import('https://registry.npmmirror.com/prettier/2.7.1/files/parser-html.js'),
+        import('https://registry.npmmirror.com/prettier/2.7.1/files/parser-postcss.js')
+    ]);
+
     const { prettier, prettierPlugins } = window;
 
     if (lang === 'js') {
@@ -31,7 +38,7 @@ export const formatCode = async (code, lang) => {
     if (['css', 'less'].includes(lang)) {
         return prettier.format(code, {
             parser: 'less',
-            plugins: [prettierPlugins.css],
+            plugins: [prettierPlugins.postcss],
             ...PrettierConfig
         });
     }
