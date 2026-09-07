@@ -1,7 +1,7 @@
 import antdResetCss from 'antd/dist/reset.css?inline';
-import less from 'less';
 import { v4 as uuidv4 } from 'uuid';
 import InjectJS from './inject.js?raw';
+import { getAliNpmCdnUrl, loadScript } from '@/utils/package';
 
 export const PrettierConfig = {
     printWidth: 160,
@@ -98,6 +98,14 @@ const getCssCode = async css => {
     if (!css.length) {
         return '';
     }
+    const less = await loadScript(
+        getAliNpmCdnUrl({
+            name: 'less',
+            version: '4.2.0',
+            path: 'dist/less.min.js'
+        }),
+        'less'
+    );
     const res = await less.render(css);
     return res.css;
 };

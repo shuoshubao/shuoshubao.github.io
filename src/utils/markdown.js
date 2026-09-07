@@ -79,7 +79,7 @@ export const MarkdownItHighlight = async () => {
     const { default: MarkdownIt } = await import('markdown-it/dist/markdown-it');
     const hljs = await loadHljs();
     // const { default: MarkdownItMermaid } = await import('./mermaid');
-    const { default: MarkdownItKaTeX } = await import('./katex');
+    // const { default: MarkdownItKaTeX } = await import('./katex');
     return MarkdownIt({
         html: true,
         highlight: (str, lang) => {
@@ -130,8 +130,8 @@ export const MarkdownItHighlight = async () => {
                 target: '_blank',
                 rel: 'noopener'
             }
-        })
-        .use(MarkdownItKaTeX);
+        });
+    // .use(MarkdownItKaTeX);
     // .use(MarkdownItMermaid);
 };
 

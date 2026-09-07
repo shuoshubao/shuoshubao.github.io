@@ -1,8 +1,7 @@
-import { DefaultTheme, ThemeEventEmitter, ThemeKey, ThemeKeyEnum, addListenerPrefersColorScheme, initI18n, isDark, isDevelopment } from '@/configs';
+import { DefaultTheme, ThemeEventEmitter, ThemeKey, ThemeKeyEnum, addListenerPrefersColorScheme, initI18n, isDark } from '@/configs';
 import { ConfigProvider, theme } from 'antd';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import VConsole from 'vconsole';
 import App from './App';
 
 const { defaultAlgorithm, darkAlgorithm } = theme;
@@ -10,13 +9,6 @@ const { defaultAlgorithm, darkAlgorithm } = theme;
 initI18n();
 
 const defaultThemeValue = window.localStorage.getItem(ThemeKey) || DefaultTheme;
-
-let vConsole;
-
-if (isDevelopment && ['Android', 'iPhone', 'iPad'].includes(window.navigator.platform)) {
-    // eslint-disable-next-line no-new
-    vConsole = new VConsole({ theme: isDark(defaultThemeValue) ? 'dark' : 'light' });
-}
 
 const Container = () => {
     const [themeValue, setThemeValue] = useState(defaultThemeValue);
@@ -40,7 +32,6 @@ const Container = () => {
     }, [setDark]);
 
     useEffect(() => {
-        vConsole?.setOption?.('theme', dark ? 'dark' : 'light');
         document.documentElement.dataset.theme = dark ? 'dark' : 'light';
     }, [dark]);
 
