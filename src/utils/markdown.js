@@ -1,5 +1,4 @@
-import { dynamicRegisterLanguage } from '@/utils/highlight';
-import { flatten, uniq } from 'lodash';
+import { loadHljs } from '@/utils/highlight';
 import MarkdownItAnchor from 'markdown-it-anchor';
 import MarkdownItAttrs from 'markdown-it-attrs';
 import MarkdownItContainer from 'markdown-it-container';
@@ -58,7 +57,7 @@ export const getAllLanguages = async md => {
 };
 
 export const getHighlightCode = async (str, lang) => {
-    const { default: hljs } = await import('highlight.js/lib/core');
+    const hljs = await loadHljs();
     const { value } = hljs.highlight(str, { language: lang });
     return [
         '<pre style="background: rgb(24, 24, 27);">',
@@ -76,15 +75,10 @@ export const getHighlightCode = async (str, lang) => {
         .join('');
 };
 
-export const MarkdownItHighlight = async languages => {
+export const MarkdownItHighlight = async () => {
     const { default: MarkdownIt } = await import('markdown-it/dist/markdown-it');
-    const { default: hljs } = await import('highlight.js/lib/core');
-    await Promise.all(
-        uniq(flatten([languages.includes('playground') ? ['html', 'css', 'less', 'js'] : [], languages])).map(language => {
-            return dynamicRegisterLanguage(hljs, language);
-        })
-    );
-    const { default: MarkdownItMermaid } = await import('./mermaid');
+    const hljs = await loadHljs();
+    // const { default: MarkdownItMermaid } = await import('./mermaid');
     const { default: MarkdownItKaTeX } = await import('./katex');
     return MarkdownIt({
         html: true,
@@ -137,8 +131,8 @@ export const MarkdownItHighlight = async languages => {
                 rel: 'noopener'
             }
         })
-        .use(MarkdownItMermaid)
         .use(MarkdownItKaTeX);
+    // .use(MarkdownItMermaid);
 };
 
 export const getMarkdownTocData = async markdown => {

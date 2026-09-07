@@ -1,6 +1,6 @@
 import { DefaultTheme, ThemeEventEmitter, ThemeKey, ThemeKeyEnum, addListenerPrefersColorScheme, isDark } from '@/configs';
 import Icons from '@/configs/Icons';
-import { dynamicRegisterLanguage } from '@/utils/highlight';
+import { loadHljs } from '@/utils/highlight';
 import { getHighlightCode } from '@/utils/markdown';
 import { PlaygroundStore, createIframe } from '@/utils/playground';
 import { CopyOutlined, FullscreenOutlined } from '@ant-design/icons';
@@ -99,8 +99,7 @@ const App = ({ id }) => {
             return;
         }
         const { value, content } = files[selectedIndex];
-        const { default: hljs } = await import('highlight.js/lib/core');
-        await dynamicRegisterLanguage(hljs, value);
+        await loadHljs();
         const code = await getHighlightCode(content, value);
         setSourceCode(code);
     }, [showCode, selectedIndex]);

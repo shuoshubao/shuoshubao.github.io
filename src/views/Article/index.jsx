@@ -1,16 +1,16 @@
 import MarkdownToc from '@/components/MarkdownToc';
 import Playground from '@/components/Playground';
 import { updateMarkdownTheme } from '@/configs';
-import { MarkdownItHighlight, addKatexStylesheet, getAllLanguages, getHashs, memoizeFetch, showConfetti } from '@/utils';
+import { MarkdownItHighlight, addKatexStylesheet, getHashs, memoizeFetch, showConfetti } from '@/utils';
+import { loadHljsCss } from '@/utils/highlight';
 import { MonacoEditorBaseConfig, getMonacoEditor } from '@/utils/monaco';
 import { CodeOutlined } from '@ant-design/icons';
 import { Button, Card, Divider, Image, Layout, Modal, Result, Space, Tag, Typography, message, theme } from 'antd';
 import copy from 'copy-to-clipboard';
 import dayjs from 'dayjs';
 import filesize from 'filesize';
-import 'highlight.js/styles/vs2015.css';
 import { find, map } from 'lodash';
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { useTranslation } from 'react-i18next';
 
@@ -53,8 +53,7 @@ export default props => {
 
     const fetchData = async () => {
         const md = await memoizeFetch(`article/${[category, name].join('/')}.md`);
-        const languages = await getAllLanguages(md);
-        const MarkdownIt = await MarkdownItHighlight(languages);
+        const MarkdownIt = await MarkdownItHighlight();
         const htmlStr = MarkdownIt.render(md);
         setMarkdownHtml(htmlStr);
         setContent(md);
@@ -125,6 +124,7 @@ export default props => {
 
     useEffect(() => {
         addKatexStylesheet();
+        loadHljsCss();
         fetchData();
     }, [setMarkdownHtml, setContent]);
 
