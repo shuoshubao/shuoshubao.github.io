@@ -1,6 +1,6 @@
 import MarkdownToc from '@/components/MarkdownToc';
 import Playground from '@/components/Playground';
-import { updateMarkdownTheme } from '@/configs';
+import { updateMarkdownTheme, isMobile } from '@/configs';
 import { MarkdownItHighlight, addKatexStylesheet, getHashs, memoizeFetch, showConfetti } from '@/utils';
 import { loadHljsCss } from '@/utils/highlight';
 import { MonacoEditorBaseConfig, getMonacoEditor } from '@/utils/monaco';
@@ -212,7 +212,7 @@ export default props => {
                 </div>
                 {contextHolder}
             </Content>
-            {!!content && <MarkdownToc data={content} />}
+            {!!content && !isMobile && <MarkdownToc data={content} />}
         </Layout>
     );
 };

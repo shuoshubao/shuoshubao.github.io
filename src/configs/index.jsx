@@ -7,6 +7,8 @@ export * from './theme';
 
 export const isDevelopment = !!window.location.port;
 
+export const isMobile = /Mobile|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
 export const CollapsedKey = 'collapsed';
 
 export const TocCollapsedKey = ['collapsed', 'toc'].join('-');

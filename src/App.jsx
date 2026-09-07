@@ -5,7 +5,7 @@ import Algolia from '@/components/Algolia';
 import ErrorBoundaryFallback from '@/components/ErrorBoundaryFallback';
 import I18nSelect from '@/components/I18nSelect';
 import ThemeSelect from '@/components/ThemeSelect';
-import { CollapsedKey, NavData } from '@/configs';
+import { CollapsedKey, NavData, isMobile } from '@/configs';
 import { getHashs, getPageType, memoizeFetch, showConfetti } from '@/utils';
 import { CaretLeftOutlined, CaretRightOutlined } from '@ant-design/icons';
 import { Avatar, Layout, Menu, Result, Skeleton, Space, Typography, theme } from 'antd';
@@ -29,7 +29,7 @@ const SiderWidth = 150;
 export default () => {
     const [pageType, setPageType] = useState(getPageType());
     const [pageHashs, setPageHashs] = useState(getHashs());
-    const [collapsed, setCollapsed] = useState(JSON.parse(window.localStorage.getItem(CollapsedKey) || 'false'));
+    const [collapsed, setCollapsed] = useState(isMobile || JSON.parse(window.localStorage.getItem(CollapsedKey) || 'false'));
     const [categoryData, setCategoryData] = useState({});
     const [selectedClassification, setSelectedClassification] = useState(getHashs()[0]);
 
