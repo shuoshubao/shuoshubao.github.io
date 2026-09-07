@@ -1,5 +1,4 @@
 import { getAliNpmCdnUrl, loadScript } from '@/utils/package';
-import antdResetCss from 'antd/dist/reset.css?inline';
 import { v4 as uuidv4 } from 'uuid';
 import InjectJS from './inject.js?raw';
 
@@ -19,12 +18,19 @@ export const PrettierConfig = {
 export const PlaygroundStore = new Map();
 
 export const formatCode = async (code, lang) => {
-    await Promise.all([
-        import('https://registry.npmmirror.com/prettier/2.7.1/files/standalone.js'),
-        import('https://registry.npmmirror.com/prettier/2.7.1/files/parser-babel.js'),
-        import('https://registry.npmmirror.com/prettier/2.7.1/files/parser-html.js'),
-        import('https://registry.npmmirror.com/prettier/2.7.1/files/parser-postcss.js')
-    ]);
+    const prettierFiles = ['standalone.js', 'parser-babel.js', 'parser-html.js', 'parser-postcss.js'];
+
+    await Promise.all(
+        prettierFiles.map(item => {
+            return loadScript(
+                getAliNpmCdnUrl({
+                    name: 'prettier',
+                    version: '2.7.1',
+                    path: item
+                })
+            );
+        })
+    );
 
     const { prettier, prettierPlugins } = window;
 
@@ -151,7 +157,7 @@ export const createIframe = id => {
         const frameDoc = frameWin.document;
 
         const injectCss = () => {
-            cssAssets.forEach(v => {
+            ['https://registry.npmmirror.com/antd/5.19.4/files/dist/reset.css', ...cssAssets].forEach(v => {
                 loadStyle(frameDoc, v);
             });
         };
@@ -168,7 +174,6 @@ export const createIframe = id => {
 
         // 注入 css
         injectCss();
-        loadStyleText(frameDoc, antdResetCss);
 
         if (css) {
             const cssText = await getCssCode(css);

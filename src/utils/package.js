@@ -2,7 +2,7 @@
  * @Author: shuoshubao
  * @Date: 2025-02-20 12:47:27
  * @LastEditors: shuoshubao
- * @LastEditTime: 2025-02-20 12:47:44
+ * @LastEditTime: 2026-09-07 20:24:58
  * @Description: npm cdn 地址拼接
  */
 import { setAttrs } from '@nbfe/tools';
@@ -26,15 +26,20 @@ export const loadScript = (src = '', moduleName = '') => {
     }
 
     const requestInstance = new Promise((resolve, reject) => {
+        const { define } = window;
+        window.define = undefined;
+
         const el = document.createElement('script');
 
         setAttrs(el, { src });
 
         el.onload = () => {
+            window.define = define;
             resolve(window[moduleName] ?? null);
         };
 
         el.onerror = () => {
+            window.define = define;
             reject(new Error(`加载js文件失败: ${src}`));
         };
 
