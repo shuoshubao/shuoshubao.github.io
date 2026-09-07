@@ -21,44 +21,28 @@ export const getLanguagesEnum = ({ JavascriptRef, CssRef, HtmlRef }) => {
     ];
 };
 
-const AssetRule = [
-    () => {
-        return {
-            required: true,
-            message: '不得为空'
-        };
+export const AssetRules = [
+    {
+        required: true,
+        message: '不得为空'
     },
-    () => {
-        return {
-            type: 'url',
-            message: '必须是 URL'
-        };
+    {
+        type: 'url',
+        message: '必须是 URL'
     }
 ];
 
-export const formColumns = [
+export const AssetFormListFields = [
     {
         label: 'CSS',
         name: 'cssAssets',
         tooltip: '额外的 CSS 资源',
-        formListConfig: {
-            record: '',
-            rules: AssetRule
-        },
-        template: {
-            tpl: 'input'
-        }
+        placeholder: '请输入 CSS'
     },
     {
         label: 'JavaScript',
         name: 'jsAssets',
         tooltip: '额外的 JavaScript 资源',
-        formListConfig: {
-            record: '',
-            rules: AssetRule
-        },
-        template: {
-            tpl: 'input'
-        }
+        placeholder: '请输入 JavaScript'
     }
 ];

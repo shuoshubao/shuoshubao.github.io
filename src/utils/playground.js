@@ -1,7 +1,7 @@
+import { getAliNpmCdnUrl, loadScript } from '@/utils/package';
 import antdResetCss from 'antd/dist/reset.css?inline';
 import { v4 as uuidv4 } from 'uuid';
 import InjectJS from './inject.js?raw';
-import { getAliNpmCdnUrl, loadScript } from '@/utils/package';
 
 export const PrettierConfig = {
     printWidth: 160,

@@ -1,13 +1,12 @@
 import { MonacoEditorBaseConfig, getMonacoEditor } from '@/utils/monaco';
 import { PlaygroundStore, createIframe, formatCode } from '@/utils/playground';
-import { EyeInvisibleOutlined, EyeOutlined, PlayCircleOutlined, SettingOutlined } from '@ant-design/icons';
-import { Form } from '@nbfe/components';
-import { Button, ConfigProvider, Layout, Modal, Space, Tabs, message, theme } from 'antd';
+import { DeleteOutlined, EyeInvisibleOutlined, EyeOutlined, PlayCircleOutlined, PlusOutlined, SettingOutlined } from '@ant-design/icons';
+import { Button, ConfigProvider, Form, Input, Layout, Modal, Space, Tabs, message, theme } from 'antd';
 import { cloneDeep } from 'lodash';
 import { Resizable } from 're-resizable';
 import { useEffect, useRef, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { formColumns, getLanguagesEnum } from './config';
+import { AssetFormListFields, AssetRules, getLanguagesEnum } from './config';
 import styles from './index.module.less';
 
 const { Header, Sider, Content } = Layout;
@@ -19,7 +18,7 @@ const SiderWidthKey = 'playground-sider-width';
 export default () => {
     const resizableRef = useRef();
     const iframeRef = useRef();
-    const formRef = useRef();
+    const [form] = Form.useForm();
 
     const JavascriptRef = useRef();
     const CssRef = useRef();
@@ -48,9 +47,10 @@ export default () => {
     };
 
     const handleSubmit = () => {
-        formRef.current
-            .validateFields()
-            .then(() => {
+        form.validateFields()
+            .then(values => {
+                const result = cloneDeep(PlaygroundStore.get(PlaygroundId));
+                PlaygroundStore.set(PlaygroundId, { ...result, ...values });
                 setVisibleSettting(false);
             })
             .catch(err => {
@@ -201,7 +201,43 @@ export default () => {
                     setVisibleSettting(false);
                 }}
             >
-                <Form ref={formRef} columns={formColumns} initialValues={{ cssAssets: [] }} onFinish={handleSubmit} />
+                <Form form={form} layout="vertical" initialValues={{ cssAssets: [], jsAssets: [] }}>
+                    {AssetFormListFields.map(field => {
+                        const { label, name, tooltip, placeholder } = field;
+                        return (
+                            <Form.Item key={name} label={label} tooltip={tooltip}>
+                                <Form.List name={name}>
+                                    {(fields, { add, remove }) => (
+                                        <>
+                                            {fields.map(({ key, name: fieldName, ...restField }) => (
+                                                <Space key={key} style={{ display: 'flex', marginBottom: 8 }} align="baseline">
+                                                    <Form.Item {...restField} name={fieldName} rules={AssetRules} style={{ flex: 1, marginBottom: 0 }}>
+                                                        <Input placeholder={placeholder} />
+                                                    </Form.Item>
+                                                    <DeleteOutlined
+                                                        onClick={() => {
+                                                            remove(fieldName);
+                                                        }}
+                                                    />
+                                                </Space>
+                                            ))}
+                                            <Button
+                                                type="dashed"
+                                                block
+                                                icon={<PlusOutlined />}
+                                                onClick={() => {
+                                                    add();
+                                                }}
+                                            >
+                                                添加一行数据
+                                            </Button>
+                                        </>
+                                    )}
+                                </Form.List>
+                            </Form.Item>
+                        );
+                    })}
+                </Form>
             </Modal>
             {messageContextHolder}
             {modalContextHolder}

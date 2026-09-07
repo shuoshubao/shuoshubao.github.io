@@ -9,8 +9,7 @@ import { CollapsedKey, NavData } from '@/configs';
 import { getHashs, getPageType, memoizeFetch, showConfetti } from '@/utils';
 import { CaretLeftOutlined, CaretRightOutlined } from '@ant-design/icons';
 import { Avatar, Layout, Menu, Result, Skeleton, Space, Typography, theme } from 'antd';
-import 'antd/dist/reset.css';
-import React, { Suspense, lazy, useEffect, useState } from 'react';
+import { Suspense, lazy, useEffect, useState } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { useTranslation } from 'react-i18next';
 

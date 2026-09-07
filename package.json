@@ -18,7 +18,6 @@
     },
     "dependencies": {
         "@monaco-editor/loader": "^1.4.0",
-        "@nbfe/components": "^0.6.0",
         "@nbfe/tools": "^0.5.2",
         "ahooks": "^3.7.8",
         "antd": "^5.19.4",
