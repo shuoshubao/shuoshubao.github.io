@@ -1,4 +1,4 @@
-import{x as j,w as v,a as b}from"./index-350c0149.js";const y=({name:e,version:n,path:t})=>["https://registry.npmmirror.com",e,n,"files",t].join("/"),u=new Map,g=(e="",n="")=>{if(u.has(e))return u.get(e);const t=new Promise((s,o)=>{const{define:r}=window;window.define=void 0;const i=document.createElement("script");j(i,{src:e}),i.onload=()=>{window.define=r,s(window[n]??null)},i.onerror=()=>{window.define=r,o(new Error(`加载js文件失败: ${e}`))},document.head.append(i)});return u.set(e,t),t},C=`/* eslint-disable no-console,sonarjs/cognitive-complexity */
+import{x as j,w as v,a as b}from"./index-46227e82.js";const y=({name:e,version:n,path:t})=>["https://registry.npmmirror.com",e,n,"files",t].join("/"),u=new Map,g=(e="",n="")=>{if(u.has(e))return u.get(e);const t=new Promise((s,o)=>{const{define:r}=window;window.define=void 0;const i=document.createElement("script");j(i,{src:e}),i.onload=()=>{window.define=r,s(window[n]??null)},i.onerror=()=>{window.define=r,o(new Error(`加载js文件失败: ${e}`))},document.head.append(i)});return u.set(e,t),t},C=`/* eslint-disable no-console,sonarjs/cognitive-complexity */
 
 // eslint-disable-next-line no-extra-semi
 try {
