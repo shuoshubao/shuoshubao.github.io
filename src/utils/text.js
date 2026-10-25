@@ -1,7 +1,5 @@
-export const encodeText = text => {
-    return new TextEncoder().encode(text).toString();
-};
-
-export const decodeText = arrary => {
-    return new TextDecoder().decode(new Uint8Array(arrary));
+export const decodeText = async base64 => {
+    const bytes = Uint8Array.from(atob(base64), c => c.charCodeAt(0));
+    const stream = new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'));
+    return new Response(stream).text();
 };

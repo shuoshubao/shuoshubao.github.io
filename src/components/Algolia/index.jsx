@@ -23,50 +23,51 @@ export default () => {
     const searchFunc = async query => {
         const text = await memoizeFetch('store/data.json');
         const ArticleData = JSON.parse(text);
-        const list = [];
-        Object.entries(AllData).forEach(([k, content]) => {
-            const [category, name] = atob(k).split('/');
-            const { title } = find(ArticleData[category], { name });
-            const ContentList = decodeText(content.toString().split(',')).split('\n');
-            const filterContentList = [category, name, title, ...ContentList].filter(v2 => {
-                return v2.toLowerCase().includes(query.toLowerCase());
-            });
-            if (!filterContentList.length) {
-                return;
-            }
-            list.push({
-                value: atob(k),
-                label: (
-                    <Row>
-                        <Col
-                            span={6}
-                            style={{
-                                display: 'flex',
-                                alignContent: 'center',
-                                flexWrap: 'wrap'
-                            }}
-                        >
-                            {title}
-                        </Col>
-                        <Col span={18}>
-                            <List
-                                dataSource={filterContentList}
-                                renderItem={item => {
-                                    return (
-                                        <List.Item style={{ padding: '5px 0' }}>
-                                            <div>
-                                                <HighlightText value={item.trim()} query={query} />
-                                            </div>
-                                        </List.Item>
-                                    );
+        const results = await Promise.all(
+            Object.entries(AllData).map(async ([k, content]) => {
+                const [category, name] = k.split('/');
+                const { title } = find(ArticleData[category], { name });
+                const ContentList = await decodeText(content);
+                const filterContentList = [category, name, title, ...ContentList.split('\n')].filter(v2 => {
+                    return v2.toLowerCase().includes(query.toLowerCase());
+                });
+                if (!filterContentList.length) {
+                    return null;
+                }
+                return {
+                    value: k,
+                    label: (
+                        <Row>
+                            <Col
+                                span={6}
+                                style={{
+                                    display: 'flex',
+                                    alignContent: 'center',
+                                    flexWrap: 'wrap'
                                 }}
-                            />
-                        </Col>
-                    </Row>
-                )
-            });
-        });
-        setOptions(list);
+                            >
+                                {title}
+                            </Col>
+                            <Col span={18}>
+                                <List
+                                    dataSource={filterContentList}
+                                    renderItem={item => {
+                                        return (
+                                            <List.Item style={{ padding: '5px 0' }}>
+                                                <div>
+                                                    <HighlightText value={item.trim()} query={query} />
+                                                </div>
+                                            </List.Item>
+                                        );
+                                    }}
+                                />
+                            </Col>
+                        </Row>
+                    )
+                };
+            })
+        );
+        setOptions(results.filter(Boolean));
     };
 
     const debounceSearchFunc = debounce(searchFunc, 500);
